@@ -32,6 +32,29 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development, :test do
+  gem 'rspec-rails', '~> 2.0'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'rspec-example_steps'
+  gem 'shoulda-matchers'
+  gem 'capybara-webkit'
+end
+group :development do
+  gem 'binding_of_caller'
+  gem 'better_errors'
+end
+
+
+gem 'carrierwave'
+gem 'money-rails'
+gem 'sidekiq'
+gem 'rmagick'
+gem 'wicked'
+gem 'roo'
+gem 'cancan'
+gem 'simple_form', :github => 'plataformatec/simple_form'
+gem 'countries', github: 'hexorx/countries'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

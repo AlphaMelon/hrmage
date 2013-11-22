@@ -55,6 +55,11 @@ gem 'roo'
 gem 'cancan'
 gem 'simple_form', :github => 'plataformatec/simple_form'
 gem 'countries', github: 'hexorx/countries'
+gem 'devise'
+
+gem 'zurb-foundation'
+gem 'foundation-icons-sass-rails', github: 'zaiste/foundation-icons-sass-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

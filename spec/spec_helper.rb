@@ -4,6 +4,8 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
+require 'capybara-webkit'
+require 'rack/utils'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -40,4 +42,14 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+  Capybara.javascript_driver = :webkit
+  config.include(UserMacros)
+  config.before(:each) do
+    Employee.delete_all
+    User.delete_all
+    Department.delete_all
+    Document.delete_all
+    
+    create_admin_user
+  end
 end

@@ -1,0 +1,7 @@
+.alert-box.account{
+  background-color: #c17d11;
+  a{
+    text-decoration: underline;
+    color: #fff;
+  }
+}

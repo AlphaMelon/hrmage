@@ -5,6 +5,5 @@ FactoryGirl.define do
     first_name "David"
     last_name "Wong"
     mobile_contact "016123214"
-    address "klang"
   end
 end

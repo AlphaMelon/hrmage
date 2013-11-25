@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <tr>
+        <th>Last Name</th>
+        <td><%= @employee.last_name%></td>
+      </tr>
+      <tr>
+        <th>First Name</th>
+        <td><%= @employee.first_name%></td>
+      </tr>
+      <tr>
+        <th>E-mail</th>
+        <td><%= @employee.user.email%></td>
+      </tr>
+      <tr>
+        <th>Mobile Contact</th>
+        <td><%= @employee.mobile_contact%></td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td><%= @employee.address%></td>
+      </tr>
+      
+    </table>
+    <%= link_to "Back", :back %>
+  </div>
+</div>

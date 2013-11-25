@@ -16,12 +16,16 @@
       
       <!-- Right Nav Section -->
       <ul class="right">
+        
         <% if user_signed_in? %>
+          <% if current_user.role != "Employee" %>
+            <li><%= link_to "Admin Panel", admin_dashboard_path %></li>
+          <% end %>
           <li class="has-dropdown">
             <a href="#">My Account</a>
             <ul class="dropdown">
               <li><%= link_to "View My Profile", user_path(current_user) %></li>
-              <li><%#= link_to "Chage my password", edit_user_registration_path %></li>
+              <li><%= link_to "Change my password", edit_user_registration_path %></li>
               <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
             </ul>
           </li>

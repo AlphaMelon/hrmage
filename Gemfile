@@ -58,6 +58,7 @@ gem 'countries', github: 'hexorx/countries'
 gem 'devise'
 
 gem 'zurb-foundation'
+#gem 'foundation-rails'
 gem 'foundation-icons-sass-rails', github: 'zaiste/foundation-icons-sass-rails'
 
 # Use ActiveModel has_secure_password

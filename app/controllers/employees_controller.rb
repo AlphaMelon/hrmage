@@ -1,10 +1,11 @@
-class Admin::EmployeesController < ApplicationController
+class EmployeesController < ApplicationController
 	before_action :set_employee, only: [:show, :edit, :update]
 	before_filter :authenticate_user!
 	
   def index
     @employees = Employee.all.order(:id)
   end
+  
   def show
   end
   
@@ -34,7 +35,7 @@ class Admin::EmployeesController < ApplicationController
   
   def update
 		if @employee.update(employee_params)
-			redirect_to admin_employees_path, notice: 'Employee successfully updated'
+			redirect_to employees_path, notice: 'Employee successfully updated'
 		else
 			render action: 'edit'
 		end

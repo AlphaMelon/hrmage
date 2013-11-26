@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "[Admin Login]" do
+feature "[Home]" do
   background do
     admin_login("spree@example.com", "spree123")
   end

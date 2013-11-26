@@ -9,7 +9,9 @@ Hrmage::Application.routes.draw do
     get 'dashboard' => 'dashboard#index'
     get '/' => 'dashboard#index'
     resources :users
-    resources :employees
+    resources :employees do
+      resources :documents
+    end
   end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

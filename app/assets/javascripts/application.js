@@ -15,7 +15,6 @@
 //= require foundation
 //= require turbolinks
 //= require_tree .
-
 var t;
 function ready(){
   t = setTimeout(function(){$(document).foundation()},500);

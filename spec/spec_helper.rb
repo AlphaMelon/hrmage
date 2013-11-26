@@ -44,6 +44,7 @@ RSpec.configure do |config|
   config.order = "random"
   Capybara.javascript_driver = :webkit
   config.include(UserMacros)
+  config.include(DocumentMacros)
   config.before(:each) do
     Employee.delete_all
     User.delete_all
@@ -51,5 +52,6 @@ RSpec.configure do |config|
     Document.delete_all
     
     create_admin_user
+    create_document
   end
 end

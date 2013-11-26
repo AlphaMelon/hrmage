@@ -9,6 +9,7 @@
         <th>Mobile Contact</th>
         <th>Address</th>
         <th></th>
+        <th></th>
       </tr>
       <% @employees.each do |employee|%>
         <tr>
@@ -18,6 +19,7 @@
           <td><%= employee.mobile_contact%></td>
           <td><%= employee.address%></td>
           <td><%= link_to "Show", admin_employee_path(employee)%></td>
+          <td><%= link_to "Edit", edit_admin_employee_path(employee)%></td>
         </tr>
       <% end %>
     </table>

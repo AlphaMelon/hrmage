@@ -2,10 +2,10 @@ module UserMacros
 
   def create_admin_user
     @user_attr = FactoryGirl.attributes_for(:user)
-    user = User.create!(@user_attr)
+    @user = User.create!(@user_attr)
     @employee_attr = FactoryGirl.attributes_for(:employee)
     employee = Employee.create!(@employee_attr)
-    employee.user_id = user.id
+    employee.user_id = @user.id
     employee.save
   end
   

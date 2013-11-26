@@ -1,10 +1,18 @@
 Hrmage::Application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  devise_for :users
+  resources :users, :only => [:show]
+  root 'home#index'
 
+
+  namespace :admin do
+    get 'dashboard' => 'dashboard#index'
+    get '/' => 'dashboard#index'
+    resources :users
+    resources :employees do
+      resources :documents
+    end
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

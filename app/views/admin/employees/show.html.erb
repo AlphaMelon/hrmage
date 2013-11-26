@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="large-6 columns">
+    <table>
+      <tr>
+        <th>Last Name</th>
+        <td><%= @employee.last_name%></td>
+      </tr>
+      <tr>
+        <th>First Name</th>
+        <td><%= @employee.first_name%></td>
+      </tr>
+      <tr>
+        <th>E-mail</th>
+        <td><%= @employee.user.email%></td>
+      </tr>
+      <tr>
+        <th>Mobile Contact</th>
+        <td><%= @employee.mobile_contact%></td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td><%= @employee.address%></td>
+      </tr>
+      
+    </table>
+  </div>
+  <div class="large-6 columns">
+    <h5>Photo</h5>
+    <% if @employee.photo? %>
+      <%= image_tag @employee.photo_url(:larger_thumb) %>
+    <% else %>
+      <%= image_tag("default-profile-photo.png")%>
+    <% end %>
+  </div>
+ 
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <h5><%=@employee.last_name %>'s Documents</h5>
+    <ul class="small-block-grid-2 large-block-grid-4">
+      <% @employee.documents.each do |document| %>
+        <li><%= image_tag(document.image_url(:larger_thumb), class: "th") %><%= document.name %></li>
+      <% end %>
+    </ul>
+    <%= link_to "New Document", new_admin_employee_document_path(@employee)%>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <%= link_to "Back", :back %>
+  </div>
+</div>

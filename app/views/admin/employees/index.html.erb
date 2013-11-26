@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h2>Employee's List</h2>
+    <table>
+      <tr>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>E-mail</th>
+        <th>Mobile Contact</th>
+        <th>Address</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <% @employees.each do |employee|%>
+        <tr>
+          <td><%= employee.last_name%></td>
+          <td><%= employee.first_name%></td>
+          <td><%= employee.user.email%></td>
+          <td><%= employee.mobile_contact%></td>
+          <td><%= employee.address%></td>
+          <td><%= link_to "Show", admin_employee_path(employee)%></td>
+          <td><%= link_to "Edit", edit_admin_employee_path(employee)%></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to "New Employee", new_admin_employee_path %>
+  </div>
+</div>

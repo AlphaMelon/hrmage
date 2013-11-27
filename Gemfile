@@ -46,6 +46,10 @@ group :development do
 end
 
 
+gem 'compass-rails' # you need this or you get an err
+
+
+
 gem 'carrierwave'
 gem 'money-rails'
 gem 'sidekiq'
@@ -57,7 +61,7 @@ gem 'simple_form', :github => 'plataformatec/simple_form'
 gem 'countries', github: 'hexorx/countries'
 gem 'devise'
 
-gem 'zurb-foundation'
+gem 'zurb-foundation', '~> 4.0.0'
 #gem 'foundation-rails'
 gem 'foundation-icons-sass-rails', github: 'zaiste/foundation-icons-sass-rails'
 

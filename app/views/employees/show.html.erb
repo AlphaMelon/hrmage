@@ -39,10 +39,19 @@
     <h5><%=@employee.last_name %>'s Documents</h5>
     <ul class="small-block-grid-2 large-block-grid-4">
       <% @employee.documents.each do |document| %>
-        <li><%= image_tag(document.image_url(:larger_thumb), class: "th") %><%= document.name %></li>
+        <li>
+          <% if document.image? %>
+            <%= link_to image_tag(document.image_url(:larger_thumb), class: "th"), image_path(document.image) %><br />
+          <% else %>
+            <%= image_tag("not_available.jpg", size: "200x200", class: "th")%><br />
+          <% end %>
+          <%= document.name %> | 
+          <%= link_to "Edit", edit_employee_document_path(@employee, document)%> |
+          <%= link_to "Delete", employee_document_path(@employee, document), method: :delete, data: { confirm: 'Are you sure?' }%>
+        </li>
       <% end %>
     </ul>
-    <%= link_to "New Document", new_admin_employee_document_path(@employee)%>
+    <%= link_to "New Document", new_employee_document_path(@employee)%>
   </div>
 </div>
 <div class="row">

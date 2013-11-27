@@ -24,7 +24,7 @@ class EmployeesController < ApplicationController
     @employee.user = @user
     
     if @employee.save
-      redirect_to admin_employees_path, notice: "Employee successfully created"
+      redirect_to employees_path, notice: "Employee successfully created"
     else
       render action: 'new'
     end
@@ -39,6 +39,24 @@ class EmployeesController < ApplicationController
 		else
 			render action: 'edit'
 		end
+  end
+  
+  def edit_login_info
+    @user = Employee.find(params[:employee_id]).user
+  end
+  
+  def update_login_info
+    @user = Employee.find(params[:employee_id]).user
+    @user.password = params[:user][:password] if !params[:user][:password].blank?
+    @user.email = params[:user][:email]
+    @user.role = params[:user][:role]
+    
+		if @user.save
+			redirect_to employees_path, notice: 'User successfully updated'
+		else
+			render action: 'edit'
+		end
+		
   end
   
   private

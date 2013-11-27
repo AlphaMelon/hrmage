@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :department do
-    name "MyString"
+    name "Account"
   end
 end

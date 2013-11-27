@@ -7,17 +7,14 @@ feature "[Admin Employee]" do
   
   scenario "Show Employee" do
     visit root_path
-    click_on "Admin Panel"
-    click_on "Manage Employees"
+    click_on "View Employees"
     click_on "Show"
     page.should have_content("spree@example.com")
   end 
   
   scenario "Add New Employee" do
     visit root_path
-    click_on "Admin Panel"
-    click_on "Manage Employees"
-    click_on "New Employee"
+    click_on "Add New Employee"
 		fill_in 'Last name', with: 'Lee'
 		fill_in 'First name', with: 'Alan'
 		fill_in 'Mobile contact', with: '016-3134415'
@@ -32,8 +29,7 @@ feature "[Admin Employee]" do
 
   scenario "Edit Employee" do
     visit root_path
-    click_on "Admin Panel"
-    click_on "Manage Employees"
+    click_on "View Employees"
     click_on "Edit"
 		fill_in 'Last name', with: 'Edited Wong'
 		click_on "Update Employee"
@@ -43,8 +39,7 @@ feature "[Admin Employee]" do
 
   scenario "Edit login info" do
     visit root_path
-    click_on "Admin Panel"
-    click_on "Manage Employees"
+    click_on "View Employees"
     click_on "Edit"
     click_on "Edit Login Info"
 		fill_in 'Email', with: 'edited@example.dev'

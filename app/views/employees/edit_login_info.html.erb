@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="large-12 columns">
+    <div class="row">
+      <div class="large-6 columns">
+
+        <%= simple_form_for(@user, url: employee_edit_login_info_path) do |f| %>
+          <%= f.input :email %>
+          <%= f.input :password, placeholder: "leave blank if don't want update" %>
+          <%= f.input :role, collection: ["Admin", "Employee"], selected: "Employee"%>
+          <%= f.button :submit %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

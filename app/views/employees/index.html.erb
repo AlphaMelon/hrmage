@@ -18,11 +18,11 @@
           <td><%= employee.user.email%></td>
           <td><%= employee.mobile_contact%></td>
           <td><%= employee.address%></td>
-          <td><%= link_to "Show", admin_employee_path(employee)%></td>
-          <td><%= link_to "Edit", edit_admin_employee_path(employee)%></td>
+          <td><%= link_to "Show", employee_path(employee)%></td>
+          <td><%= link_to "Edit", edit_employee_path(employee)%></td>
         </tr>
       <% end %>
     </table>
-    <%= link_to "New Employee", new_admin_employee_path %>
+    <%= link_to "New Employee", new_employee_path %>
   </div>
 </div>

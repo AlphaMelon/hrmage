@@ -7,10 +7,9 @@ feature "[Admin Employee's Document]" do
    
   scenario "Add New Document for employee" do
     visit root_path
-    click_on "Admin Panel"
-    click_on "Manage Employees"
+    click_on "View Employees"
     click_on "Show"
-    click_on "Add Document"
+    click_on "New Document"
 		fill_in 'Name', with: 'IC'
 		click_on "Create Document"
     page.should have_content("Document successfully created")
@@ -19,14 +18,22 @@ feature "[Admin Employee's Document]" do
 
   scenario "Edit Document" do
     visit root_path
-    click_on "Admin Panel"
-    click_on "Manage Employees"
+    click_on "View Employees"
     click_on "Show"
-    click_on "Edit Document"
+    click_on "Edit"
 		fill_in 'Name', with: 'Edited IC'
 		click_on "Update Document"
     page.should have_content("Document successfully updated")
     page.should have_content("Edited IC")
+  end
+  
+  scenario "Delete Document" do
+    visit root_path
+    click_on "View Employees"
+    click_on "Show"
+    click_on "Delete"
+    page.should have_content("Document successfully deleted")
+    page.should_not have_content("Passport")
   end
 
 end

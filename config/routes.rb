@@ -3,15 +3,10 @@ Hrmage::Application.routes.draw do
   devise_for :users
   resources :users, :only => [:show]
   root 'home#index'
-
-
-  namespace :admin do
-    get 'dashboard' => 'dashboard#index'
-    get '/' => 'dashboard#index'
-    resources :users
-    resources :employees do
-      resources :documents
-    end
+  resources :employees do
+    resources :documents
+    get 'edit_login_info' => 'employees#edit_login_info'
+    patch 'edit_login_info' => 'employees#update_login_info'
   end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

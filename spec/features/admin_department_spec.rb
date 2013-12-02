@@ -25,7 +25,7 @@ feature "[Admin Department]" do
     visit root_path
     click_on "View Department"
     click_on "Edit"
-		fill_in 'Last name', with: 'Edited Sales'
+		fill_in 'Name', with: 'Edited Sales'
 		click_on "Update Department"
     page.should have_content("Department successfully updated")
     page.should have_content("Edited Sales")

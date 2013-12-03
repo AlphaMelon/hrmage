@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_one :employee
   
   def set_default_values
-    self.role = "Employee" if self.role.blank?
+    self.role = "Super Admin" if self.role.blank?
   end
   
 end

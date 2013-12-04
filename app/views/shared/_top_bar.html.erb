@@ -28,10 +28,16 @@
             </li>
             
             <li class="has-dropdown">
-              <a href="#">Manage Department</a>
+              <a href="#">Manage Organization</a>
               <ul class="dropdown">
-                <li><%= link_to "View Departments", departments_path %></li>
-                <li><%= link_to "Add New Department", new_department_path %></li>
+                <% if !current_user.organization.nil? %>
+                  <li><%= link_to current_user.organization.name, organization_path %></li>
+                  <li><%= link_to "View Departments", departments_path %></li>
+                  <li><%= link_to "Add New Department", new_department_path %></li>
+                <% else %>
+                  <li><%= link_to "Create New Organization", new_organization_path %></li>
+                <% end %>
+
               </ul>
             </li>
           <% end %>

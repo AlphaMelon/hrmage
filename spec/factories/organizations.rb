@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :organization do
-    name "MyString"
-    domain "MyString"
+    name "Alpha Melon"
+    domain "alphamelon.com"
   end
 end

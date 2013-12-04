@@ -46,6 +46,7 @@ RSpec.configure do |config|
   config.include(UserMacros)
   config.include(DocumentMacros)
   config.include(DepartmentMacros)
+  config.include(OrganizationMacros)
   config.before(:each) do
     Employee.delete_all
     User.delete_all

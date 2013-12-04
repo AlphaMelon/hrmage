@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
   def index
-    render layout: "marketing"
+    if !user_signed_in?
+      render layout: "marketing"
+    end
   end
 end

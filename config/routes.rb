@@ -10,7 +10,9 @@ Hrmage::Application.routes.draw do
     patch 'edit_login_info' => 'employees#update_login_info'
   end
   
-  resources :departments
+  resources :organizations do
+    resources :departments
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -52,8 +52,10 @@ RSpec.configure do |config|
     User.delete_all
     Department.delete_all
     Document.delete_all
+    Organization.delete_all
     
     create_admin_user
+    create_organization
     create_document
     create_department
   end

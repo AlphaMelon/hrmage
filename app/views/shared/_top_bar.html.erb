@@ -19,19 +19,21 @@
         
         <% if user_signed_in? %>
           <% if current_user.role != "Employee" %>
-            <li class="has-dropdown">
-              <a href="#">Manage Employee</a>
-              <ul class="dropdown">
-                <li><%= link_to "View Employees", employees_path %></li>
-                <li><%= link_to "Add New Employee", new_employee_path %></li>
-              </ul>
-            </li>
+            <% if !current_user.organization.nil?%>
+              <li class="has-dropdown">
+                <a href="#">Manage Employee</a>
+                <ul class="dropdown">
+                  <li><%= link_to "View Employees", employees_path %></li>
+                  <li><%= link_to "Add New Employee", new_employee_path %></li>
+                </ul>
+              </li>
+            <% end %>
             
             <li class="has-dropdown">
               <a href="#">Manage Organization</a>
               <ul class="dropdown">
                 <% if !current_user.organization.nil? %>
-                  <li><%= link_to current_user.organization.name, organization_path %></li>
+                  <li><%= link_to current_user.organization.name, organization_path(current_user.organization) %></li>
                   <li><%= link_to "View Departments", departments_path %></li>
                   <li><%= link_to "Add New Department", new_department_path %></li>
                 <% else %>

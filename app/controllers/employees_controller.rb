@@ -3,7 +3,7 @@ class EmployeesController < ApplicationController
 	before_filter :authenticate_user!
 	
   def index
-    @employees = Employee.all.order(:id)
+    @users = current_user.organization.users.order(:id)
   end
   
   def show
@@ -16,9 +16,9 @@ class EmployeesController < ApplicationController
 
   def create
     @user = User.where(email: params[:email]).first_or_initialize
-    authorize! :manage, @employee
     @user.password = params[:password]
     @user.role = params[:role]
+    @user.organization_id = current_user.organization_id
     @user.save
     
     @employee = Employee.new(employee_params)

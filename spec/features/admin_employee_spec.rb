@@ -3,6 +3,7 @@ require 'spec_helper'
 feature "[Admin Employee]" do
   background do
     admin_login("spree@example.com", "spree123")
+    create_organization
   end
   
   scenario "Show Employee" do

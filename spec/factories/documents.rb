@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :document do
-    name "Passport"
+    name "Passport_photostat"
   end
 end

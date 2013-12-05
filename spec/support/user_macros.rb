@@ -18,14 +18,13 @@ module UserMacros
     page.should have_content("Signed in successfully.")
   end
   
-  def create_user(name, email, password)
+  def sign_up_user(email, password)
     visit new_user_registration_path
-    fill_in "Name", with: name
     fill_in "Email", with: email
-    fill_in "Password", with: password
-    fill_in "Password confirmation", with: password
+    fill_in "user_password", with: password
+    fill_in "user_password_confirmation", with: password
     click_on "Sign up"
-    page.should have_content("Please tell us more about you.")
+    page.should have_content("Welcome! You have signed up successfully.")
   end
   
 end

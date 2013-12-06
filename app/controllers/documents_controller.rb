@@ -5,11 +5,12 @@ class DocumentsController < ApplicationController
   
   def new
     @document = @employee.documents.new
+    authorize! :manage, @document
   end 
 
   def create
     @document = @employee.documents.new(document_params)
-    
+    authorize! :manage, @document
     if @document.save
       redirect_to employee_path(@employee), notice: "Document successfully created"
     else
@@ -21,6 +22,7 @@ class DocumentsController < ApplicationController
   end
   
   def update
+    authorize! :manage, @document
 		if @document.update(document_params)
 			redirect_to employee_path(@employee), notice: 'Document successfully updated'
 		else
@@ -29,6 +31,7 @@ class DocumentsController < ApplicationController
   end
 
 	def destroy
+	  authorize! :manage, @document
 		@document.destroy
 		redirect_to employee_path(@employee), notice: 'Document successfully deleted'
 	end

@@ -45,13 +45,18 @@ RSpec.configure do |config|
   Capybara.javascript_driver = :webkit
   config.include(UserMacros)
   config.include(DocumentMacros)
+  config.include(DepartmentMacros)
+  config.include(OrganizationMacros)
   config.before(:each) do
     Employee.delete_all
     User.delete_all
     Department.delete_all
     Document.delete_all
+    Organization.delete_all
     
     create_admin_user
+    create_organization
     create_document
+    create_department
   end
 end

@@ -6,6 +6,7 @@
       <%= f.input :first_name %>
       <%= f.input :mobile_contact %>
       <%= f.input :address %>
+      <%= f.input :department_id, collection: Department.all %>
       <%= f.input :photo, as: :file %>
       <% if @employee.new_record? %>
         <%= label_tag :email %>

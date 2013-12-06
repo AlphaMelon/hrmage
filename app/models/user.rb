@@ -6,9 +6,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   before_save :set_default_values
   has_one :employee
+  belongs_to :organization
   
   def set_default_values
-    self.role = "Employee" if self.role.blank?
+    self.role = "Super Admin" if self.role.blank?
   end
   
 end

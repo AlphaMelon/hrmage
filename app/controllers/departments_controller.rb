@@ -3,18 +3,18 @@ class DepartmentsController < ApplicationController
 	before_filter :authenticate_user!
 	
   def index
-    @department = Department.all.order(:id)
+    @departments = current_user.organization.departments.order(:id)
   end
   
   def show
   end
   
   def new
-    @department = Department.new
+    @department = current_user.organization.departments.new
   end 
 
   def create
-    @department = Department.new(department_params)
+    @department = current_user.organization.departments.new(department_params)
     
     if @department.save
       redirect_to departments_path, notice: "Department successfully created"

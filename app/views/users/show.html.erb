@@ -1,18 +1,58 @@
 <div class="row">
-  <div class="large-12 columns">
+  <div class="large-6 columns">
     <table>
       <tr>
-        <th>Last Name</th><td><%= @employee.last_name %></td>
+        <th>Last Name</th>
+        <td><%= current_user.employee.last_name%></td>
       </tr>
       <tr>
-        <th>First Name</th><td><%= @employee.first_name %></td>
+        <th>First Name</th>
+        <td><%= current_user.employee.first_name%></td>
       </tr>
       <tr>
-        <th>Email</th><td><%= @user.email %></td>
+        <th>E-mail</th>
+        <td><%= current_user.email%></td>
       </tr>
       <tr>
-        <th></th><td></td>
+        <th>Mobile Contact</th>
+        <td><%= current_user.employee.mobile_contact%></td>
       </tr>
+      <tr>
+        <th>Address</th>
+        <td><%= current_user.employee.address%></td>
+      </tr>
+      
     </table>
+  </div>
+  <div class="large-6 columns">
+    <h5>Photo</h5>
+    <% if current_user.employee.photo? %>
+      <%= image_tag current_user.employee.photo_url(:larger_thumb) %>
+    <% else %>
+      <%= image_tag("default-profile-photo.png")%>
+    <% end %>
+  </div>
+ 
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <h5><%=current_user.employee.last_name %>'s Documents</h5>
+    <ul class="small-block-grid-2 large-block-grid-4">
+      <% current_user.employee.documents.each do |document| %>
+        <li>
+          <% if document.image? %>
+            <%= link_to image_tag(document.image_url(:larger_thumb), class: "th"), image_path(document.image) %><br />
+          <% else %>
+            <%= image_tag("not_available.jpg", size: "200x200", class: "th")%><br />
+          <% end %>
+          <%= document.name %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <%= link_to "Back", :back %>
   </div>
 </div>

@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h2>Department's List</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <% @departments.each do |department|%>
+        <tr>
+          <td><%= department.name%></td>
+          <td><%= link_to "Show", department_path(department)%></td>
+          <td><%= link_to "Edit", edit_department_path(department)%></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to "New Department", new_department_path %>
+  </div>
+</div>

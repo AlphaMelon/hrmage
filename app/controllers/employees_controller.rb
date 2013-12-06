@@ -3,7 +3,7 @@ class EmployeesController < ApplicationController
 	before_filter :authenticate_user!
 	
   def index
-    @employees = Employee.all.order(:id)
+    @users = current_user.organization.users.order(:id)
   end
   
   def show
@@ -11,13 +11,14 @@ class EmployeesController < ApplicationController
   
   def new
     @employee = Employee.new
+    authorize! :manage, @employee
   end 
 
   def create
-
     @user = User.where(email: params[:email]).first_or_initialize
     @user.password = params[:password]
     @user.role = params[:role]
+    @user.organization_id = current_user.organization_id
     @user.save
     
     @employee = Employee.new(employee_params)
@@ -34,6 +35,7 @@ class EmployeesController < ApplicationController
   end
   
   def update
+    authorize! :manage, @employee
 		if @employee.update(employee_params)
 			redirect_to employees_path, notice: 'Employee successfully updated'
 		else
@@ -43,14 +45,15 @@ class EmployeesController < ApplicationController
   
   def edit_login_info
     @user = Employee.find(params[:employee_id]).user
+    authorize! :manage, @user
   end
   
   def update_login_info
     @user = Employee.find(params[:employee_id]).user
+    authorize! :manage, @user
     @user.password = params[:user][:password] if !params[:user][:password].blank?
     @user.email = params[:user][:email]
     @user.role = params[:user][:role]
-    
 		if @user.save
 			redirect_to employees_path, notice: 'User successfully updated'
 		else
@@ -67,6 +70,6 @@ class EmployeesController < ApplicationController
 
 	def employee_params
 		params.require(:employee).permit(:first_name, :last_name, :mobile_contact, 
-		:address, :photo, :properties)
+		:address, :photo, :properties, :department_id)
 	end
 end

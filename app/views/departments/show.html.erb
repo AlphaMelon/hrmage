@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="large-12 columns">
+     <h1><%= @department.name%> Department</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <h4>Employees of <%= @department.name%> Department</h4>
+    <table>
+      <tr>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>E-mail</th>
+        <th>Mobile Contact</th>
+        <th>Address</th>
+        <th>Department</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <% @department.employees.each do |employee|%>
+        <tr>
+          <td><%= employee.last_name%></td>
+          <td><%= employee.first_name%></td>
+          <td><%= employee.user.email%></td>
+          <td><%= employee.mobile_contact%></td>
+          <td><%= employee.address%></td>
+          <td><%= !employee.department.nil? ? employee.department.name : "No Department Assigned"%>
+          <td><%= link_to "Show", employee_path(employee)%></td>
+          <td><%= link_to "Edit", edit_employee_path(employee)%></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

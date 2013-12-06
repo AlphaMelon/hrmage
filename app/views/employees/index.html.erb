@@ -8,18 +8,20 @@
         <th>E-mail</th>
         <th>Mobile Contact</th>
         <th>Address</th>
+        <th>Department</th>
         <th></th>
         <th></th>
       </tr>
-      <% @employees.each do |employee|%>
+      <% @users.each do |user|%>
         <tr>
-          <td><%= employee.last_name%></td>
-          <td><%= employee.first_name%></td>
-          <td><%= employee.user.email%></td>
-          <td><%= employee.mobile_contact%></td>
-          <td><%= employee.address%></td>
-          <td><%= link_to "Show", employee_path(employee)%></td>
-          <td><%= link_to "Edit", edit_employee_path(employee)%></td>
+          <td><%= user.employee.last_name%></td>
+          <td><%= user.employee.first_name%></td>
+          <td><%= user.email%></td>
+          <td><%= user.employee.mobile_contact%></td>
+          <td><%= user.employee.address%></td>
+          <td><%= !user.employee.department.nil? ? user.employee.department.name : "No Department Assigned"%>
+          <td><%= link_to "Show", employee_path(user.employee)%></td>
+          <td><%= link_to "Edit", edit_employee_path(user.employee)%></td>
         </tr>
       <% end %>
     </table>

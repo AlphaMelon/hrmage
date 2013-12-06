@@ -22,6 +22,16 @@
         <td><%= @employee.address%></td>
       </tr>
       
+      <tr>
+        <th>Departments</th>
+        <td>
+          <%= @employee.departments.each do |d|%>
+            <%= d.name %>
+          <% end %>
+        </td>
+      </tr>
+
+
     </table>
   </div>
   <div class="large-6 columns">
@@ -37,13 +47,13 @@
 <div class="row">
   <div class="large-12 columns">
     <h5><%=@employee.last_name %>'s Documents</h5>
-    <ul class="small-block-grid-2 large-block-grid-4">
+    <ul class="clearing-thumbs small-block-grid-2 large-block-grid-4" data-clearing>
       <% @employee.documents.each do |document| %>
         <li>
           <% if document.image? %>
             <%= link_to image_tag(document.image_url(:larger_thumb), class: "th"), image_path(document.image) %><br />
           <% else %>
-            <%= image_tag("not_available.jpg", size: "200x200", class: "th")%><br />
+            <%= image_tag("not_available.jpg", size: "200x200", class: "th")%>
           <% end %>
           <%= document.name %> | 
           <%= link_to "Edit", edit_employee_document_path(@employee, document)%> |
@@ -51,11 +61,11 @@
         </li>
       <% end %>
     </ul>
-    <%= link_to "New Document", new_employee_document_path(@employee)%>
   </div>
 </div>
 <div class="row">
   <div class="large-12 columns">
+    <%= link_to "New Document", new_employee_document_path(@employee)%><br />
     <%= link_to "Back", :back %>
   </div>
 </div>

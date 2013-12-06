@@ -11,6 +11,7 @@ class EmployeesController < ApplicationController
   
   def new
     @employee = Employee.new
+    @department_select_data = Department.all.collect{|d| [d.name, d.id]}
     authorize! :manage, @employee
   end 
 
@@ -32,6 +33,7 @@ class EmployeesController < ApplicationController
   end
   
   def edit
+    @department_select_data = Department.all.collect{|d| [d.name, d.id]}
   end
   
   def update
@@ -70,6 +72,6 @@ class EmployeesController < ApplicationController
 
 	def employee_params
 		params.require(:employee).permit(:first_name, :last_name, :mobile_contact, 
-		:address, :photo, :properties, :department_id)
+		:address, :photo, :properties, :department_ids)
 	end
 end

@@ -6,7 +6,9 @@
       <%= f.input :first_name %>
       <%= f.input :mobile_contact %>
       <%= f.input :address %>
-      <%= f.input :department_id, collection: Department.all %>
+      <%#= f.input :department_id, collection: Department.all %>
+      <%= label_tag "departments. ctrl + click to select multiple department"%>
+      <%= f.select(:department_ids, @department_select_data, {}, {:multiple => true, :size => 5}) %>
       <%= f.input :photo, as: :file %>
       <% if @employee.new_record? %>
         <%= label_tag :email %>

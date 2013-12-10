@@ -5,3 +5,47 @@
     <%= link_to "Edit", edit_organization_path(@organization) %>
   </div>
 </div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <h2><%= @organization.name %>'s Departments</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <% @organization.departments.each do |department|%>
+        <tr>
+          <td><%= department.name%></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <h2><%= @organization.name %>'s Employees</h2>
+    <table>
+      <tr>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>E-mail</th>
+        <th>Mobile Contact</th>
+        <th>Address</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <% @organization.users.each do |user|%>
+        <tr>
+          <td><%= user.employee.last_name if !user.employee.nil? %></td>
+          <td><%= user.employee.first_name if !user.employee.nil? %></td>
+          <td><%= user.email%></td>
+          <td><%= user.employee.mobile_contact if !user.employee.nil? %></td>
+          <td><%= user.employee.address if !user.employee.nil? %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

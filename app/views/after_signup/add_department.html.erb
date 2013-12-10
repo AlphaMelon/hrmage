@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="large-6 columns">
+    <h3>Add departments for your organization </h3>
+    <%= simple_form_for @department, url: wizard_path, method: "put" do |f| %>
+      <%= label_tag :department_1 %>
+      <%= text_field_tag :department_1 %>
+      <%= label_tag :department_2 %>
+      <%= text_field_tag :department_2 %>
+      <%= label_tag :department_3 %>
+      <%= text_field_tag :department_3 %>
+      <%= label_tag :department_4 %>
+      <%= text_field_tag :department_4 %>
+      <%= label_tag :department_5%>
+      <%= text_field_tag :department_5 %>
+
+      <%= f.button :submit, "Next Step" %>
+    <% end %>
+
+  </div>
+</div>

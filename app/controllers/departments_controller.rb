@@ -1,23 +1,24 @@
 class DepartmentsController < ApplicationController
 	before_action :set_department, only: [:show, :edit, :update]
-	before_filter :authenticate_user!
+	before_action :set_organization
+	before_filter :authenticate_account!
 	
   def index
-    @departments = current_user.organization.departments.order(:id)
+    @departments = @organization.departments.order(:id)
   end
   
   def show
   end
   
   def new
-    @department = current_user.organization.departments.new
+    @department = @organization.departments.new
   end 
 
   def create
-    @department = current_user.organization.departments.new(department_params)
+    @department = @organization.departments.new(department_params)
     
     if @department.save
-      redirect_to departments_path, notice: "Department successfully created"
+      redirect_to organization_departments_path(@organization), notice: "Department successfully created"
     else
       render action: 'new'
     end
@@ -28,7 +29,7 @@ class DepartmentsController < ApplicationController
   
   def update
 		if @department.update(department_params)
-			redirect_to departments_path, notice: 'Department successfully updated'
+			redirect_to organization_departments_path(@organization), notice: 'Department successfully updated'
 		else
 			render action: 'edit'
 		end
@@ -36,7 +37,7 @@ class DepartmentsController < ApplicationController
   
 	def destroy
 		@department.destroy
-		redirect_to departments_path, notice: 'Department successfully deleted'
+		redirect_to organization_departments_path(@organization), notice: 'Department successfully deleted'
 	end
   
   private
@@ -44,7 +45,11 @@ class DepartmentsController < ApplicationController
 	def set_department
 		@department = Department.find(params[:id])
 	end
-
+	
+	def set_organization
+		@organization = Organization.find(params[:organization_id])
+	end
+	
 	def department_params
 		params.require(:department).permit(:name)
 	end

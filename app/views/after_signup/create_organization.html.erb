@@ -4,6 +4,10 @@
     <%= simple_form_for @organization, url: wizard_path, method: "put" do |f| %>
       <%= f.input :name %>
       <%= f.input :domain %>
+      
+      <%= label_tag :role %>
+      <%= select_tag :role, options_for_select(['Admin', 'Employee'], selected: 'Employee') %>
+      
       <%= f.button :submit, "Next Step" %>
     <% end %>
 

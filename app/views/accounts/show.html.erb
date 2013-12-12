@@ -1,0 +1,68 @@
+<% if !current_account.profile.nil?%>
+  <div class="row">
+    <div class="large-6 columns">
+      <h4>Account details</h4>
+      <table>
+        <tr>
+          <th>Last Name</th>
+          <td><%= current_account.profile.last_name%></td>
+        </tr>
+        <tr>
+          <th>First Name</th>
+          <td><%= current_account.profile.first_name%></td>
+        </tr>
+        <tr>
+          <th>E-mail</th>
+          <td><%= current_account.email%></td>
+        </tr>
+        <tr>
+          <th>Mobile Contact</th>
+          <td><%= current_account.profile.mobile_contact%></td>
+        </tr>
+        <tr>
+          <th>Address</th>
+          <td><%= current_account.profile.address%></td>
+        </tr>
+        
+      </table>
+    </div>
+    <div class="large-6 columns">
+      <h5>Photo</h5>
+      <% if current_account.profile.photo? %>
+        <%= image_tag current_account.profile.photo_url(:larger_thumb) %>
+      <% else %>
+        <%= image_tag("default-profile-photo.png")%>
+      <% end %>
+    </div>
+   
+  </div>
+  <div class="row">
+    <div class="large-12 columns">
+      <h5><%=current_account.profile.last_name %>'s Documents</h5>
+      <ul class="small-block-grid-2 large-block-grid-4">
+        <% current_account.profile.documents.each do |document| %>
+          <li>
+            <% if document.image? %>
+              <%= link_to image_tag(document.image_url(:larger_thumb), class: "th"), image_path(document.image) %><br />
+            <% else %>
+              <%= image_tag("not_available.jpg", size: "200x200", class: "th")%><br />
+            <% end %>
+            <%= document.name %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-12 columns">
+      <%= link_to "Back", :back %>
+    </div>
+  </div>
+<% else %>
+  <div class="row">
+    <div class="large-6 columns">
+      <%= current_account.email%> <br />
+      This account is not linked to any profile yet
+    </div>
+  </div>
+<% end %>

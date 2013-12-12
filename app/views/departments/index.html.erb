@@ -10,11 +10,11 @@
       <% @departments.each do |department|%>
         <tr>
           <td><%= department.name%></td>
-          <td><%= link_to "Show", department_path(department)%></td>
-          <td><%= link_to "Edit", edit_department_path(department)%></td>
+          <td><%= link_to "Show", organization_department_path(@organization, department)%></td>
+          <td><%= link_to "Edit", edit_organization_department_path(@organization, department)%></td>
         </tr>
       <% end %>
     </table>
-    <%= link_to "New Department", new_department_path %>
+    <%= link_to "New Department", new_organization_department_path %>
   </div>
 </div>

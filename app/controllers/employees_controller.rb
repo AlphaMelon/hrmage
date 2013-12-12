@@ -1,9 +1,10 @@
 class EmployeesController < ApplicationController
 	before_action :set_employee, only: [:show, :edit, :update]
-	before_filter :authenticate_user!
+	before_action :set_organization
+	before_filter :authenticate_account!
 	
   def index
-    @users = current_user.organization.users.order(:id)
+    @employees = @organization.employees.order(:id)
   end
   
   def show
@@ -11,35 +12,25 @@ class EmployeesController < ApplicationController
   
   def new
     @employee = Employee.new
-    @department_select_data = Department.all.collect{|d| [d.name, d.id]}
-    authorize! :manage, @employee
   end 
 
   def create
-    @user = User.where(email: params[:email]).first_or_initialize
-    @user.password = params[:password]
-    @user.role = params[:role]
-    @user.organization_id = current_user.organization_id
-    @user.save
-    
-    @employee = Employee.new(employee_params)
-    @employee.user = @user
+    @employee = @organization.employees.new(employee_params)
     
     if @employee.save
-      redirect_to employees_path, notice: "Employee successfully created"
+      redirect_to organization_employees_path(@organization), notice: "Employee successfully created"
     else
-      render action: 'new'
+      render action: 'new', alert: "Please fill in the required field"
     end
   end
   
   def edit
-    @department_select_data = Department.all.collect{|d| [d.name, d.id]}
+
   end
   
   def update
-    authorize! :manage, @employee
 		if @employee.update(employee_params)
-			redirect_to employees_path, notice: 'Employee successfully updated'
+			redirect_to organization_employees_path(@organization), notice: 'Employee successfully updated'
 		else
 			render action: 'edit'
 		end
@@ -57,7 +48,7 @@ class EmployeesController < ApplicationController
     @user.email = params[:user][:email]
     @user.role = params[:user][:role]
 		if @user.save
-			redirect_to employees_path, notice: 'User successfully updated'
+			redirect_to organization_employees_path(@organization), notice: 'User successfully updated'
 		else
 			render action: 'edit'
 		end
@@ -68,6 +59,10 @@ class EmployeesController < ApplicationController
   
 	def set_employee
 		@employee = Employee.find(params[:id])
+	end
+
+	def set_organization
+		@organization = Organization.find(params[:organization_id])
 	end
 
 	def employee_params

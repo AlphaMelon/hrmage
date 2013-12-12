@@ -1,7 +1,11 @@
 class OrganizationsController < ApplicationController
 	before_action :set_organization, only: [:show, :edit, :update]
-	before_filter :authenticate_user!
+	before_filter :authenticate_account!
 	
+	def index
+	  @organizations = current_account.organizations
+	end
+  
   def show
   end
   
@@ -13,9 +17,13 @@ class OrganizationsController < ApplicationController
     @organization = Organization.new(organization_params)
     
     if @organization.save
-      @user = current_user
-      @user.organization_id = @organization.id
-      @user.save
+    
+      account_organization = AccountOrganization.new
+      account_organization.organization_id = @organization.id
+      account_organization.account_id = current_account.id
+      account_organization.role = params[:role]
+      account_organization.save
+      
       redirect_to organization_path(@organization), notice: "Organization successfully created"
     else
       render action: 'new'

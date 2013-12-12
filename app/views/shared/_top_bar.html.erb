@@ -17,42 +17,24 @@
       <!-- Right Nav Section -->
       <ul class="right">
         
-        <% if user_signed_in? %>
-          <% if current_user.role != "Employee" %>
-            <% if !current_user.organization.nil?%>
-              <li class="has-dropdown">
-                <a href="#">Manage Employee</a>
-                <ul class="dropdown">
-                  <li><%= link_to "View Employees", employees_path %></li>
-                  <li><%= link_to "Add New Employee", new_employee_path %></li>
-                </ul>
-              </li>
-            <% end %>
-            
-            <li class="has-dropdown">
-              <a href="#">Manage Organization</a>
-              <ul class="dropdown">
-                <% if !current_user.organization.nil? %>
-                  <li><%= link_to current_user.organization.name, organization_path(current_user.organization) %></li>
-                  <li><%= link_to "View Departments", departments_path %></li>
-                  <li><%= link_to "Add New Department", new_department_path %></li>
-                <% else %>
-                  <li><%= link_to "Create New Organization", new_organization_path %></li>
-                <% end %>
-
-              </ul>
-            </li>
-          <% end %>
+        <% if account_signed_in? %>
+          <li class="has-dropdown">
+            <a href="#">Manage Organization</a>
+            <ul class="dropdown">
+              <li><%= link_to "Manage Organization", organizations_path %></li>
+              <li><%= link_to "Create New Organization", new_organization_path %></li>
+            </ul>
+          </li>
           <li class="has-dropdown">
             <a href="#">My Account</a>
             <ul class="dropdown">
-              <li><%= link_to "View My Profile", user_path(current_user) %></li>
-              <li><%= link_to "Change my password", edit_user_registration_path %></li>
-              <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to "View My Profile", account_path(current_account) %></li>
+              <li><%= link_to "Change my password", edit_account_registration_path %></li>
+              <li><%= link_to "Logout", destroy_account_session_path, method: :delete %></li>
             </ul>
           </li>
         <% else %>
-          <li><%= link_to "Sign In", user_session_path%></li>
+          <li><%= link_to "Sign In", account_session_path%></li>
         <% end %>
       </ul>
     </section>

@@ -18,9 +18,11 @@
       <% @organization.departments.each do |department|%>
         <tr>
           <td><%= department.name%></td>
+          <td><%= link_to "Edit", edit_organization_department_path(@organization, department)%></td>
         </tr>
       <% end %>
     </table>
+    <%= link_to "Department list", organization_departments_path(@organization) %>
   </div>
 </div>
 
@@ -37,15 +39,17 @@
         <th></th>
         <th></th>
       </tr>
-      <% @organization.users.each do |user|%>
+      <% @organization.employees.each do |employee|%>
         <tr>
-          <td><%= user.employee.last_name if !user.employee.nil? %></td>
-          <td><%= user.employee.first_name if !user.employee.nil? %></td>
-          <td><%= user.email%></td>
-          <td><%= user.employee.mobile_contact if !user.employee.nil? %></td>
-          <td><%= user.employee.address if !user.employee.nil? %></td>
+          <td><%= employee.last_name %></td>
+          <td><%= employee.first_name%></td>
+          <td><%= employee.account.email if !employee.account.nil?%></td>
+          <td><%= employee.mobile_contact %></td>
+          <td><%= employee.address%></td>
+          <td><%= link_to "Edit", edit_organization_employee_path(@organization, employee)%></td>
         </tr>
       <% end %>
     </table>
+    <%= link_to "Employee list", organization_employees_path(@organization) %>
   </div>
 </div>

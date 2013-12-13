@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="large-12 columns">
+    <div class="row">
+      <div class="large-6 columns">
+
+        <%= simple_form_for(@account, url: organization_employee_new_login_path) do |f| %>
+          <%= f.input :email %>
+          <%= f.input :password, placeholder: "minimum 8 characters" %>
+          <%= f.input :role, collection: ["Admin", "Employee"], selected: "Employee" %>
+          <%= f.button :submit %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

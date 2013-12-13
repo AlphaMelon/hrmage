@@ -43,18 +43,18 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
   Capybara.javascript_driver = :webkit
-  config.include(UserMacros)
+  config.include(AccountMacros)
   config.include(DocumentMacros)
   config.include(DepartmentMacros)
   config.include(OrganizationMacros)
   config.before(:each) do
     Employee.delete_all
-    User.delete_all
+    Account.delete_all
     Department.delete_all
     Document.delete_all
     Organization.delete_all
     
-    create_admin_user
+    create_admin_account
     create_organization
     create_document
     create_department

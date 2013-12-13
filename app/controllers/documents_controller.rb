@@ -1,18 +1,17 @@
 class DocumentsController < ApplicationController
+  before_action :set_organization
 	before_action :set_employee
 	before_action :set_document, only: [:edit, :update, :destroy]
-	before_filter :authenticate_user!
+	before_filter :authenticate_account!
   
   def new
     @document = @employee.documents.new
-    authorize! :manage, @document
   end 
 
   def create
     @document = @employee.documents.new(document_params)
-    authorize! :manage, @document
     if @document.save
-      redirect_to employee_path(@employee), notice: "Document successfully created"
+      redirect_to organization_employee_path(@organization, @employee), notice: "Document successfully created"
     else
       render action: 'new'
     end
@@ -22,22 +21,24 @@ class DocumentsController < ApplicationController
   end
   
   def update
-    authorize! :manage, @document
 		if @document.update(document_params)
-			redirect_to employee_path(@employee), notice: 'Document successfully updated'
+			redirect_to organization_employee_path(@organization, @employee), notice: 'Document successfully updated'
 		else
 			render action: 'edit'
 		end
   end
 
 	def destroy
-	  authorize! :manage, @document
 		@document.destroy
-		redirect_to employee_path(@employee), notice: 'Document successfully deleted'
+		redirect_to organization_employee_path(@organization, @employee), notice: 'Document successfully deleted'
 	end
 
   private
   
+	def set_organization
+		@organization = Organization.find(params[:organization_id])
+	end
+	
 	def set_employee
 		@employee = Employee.find(params[:employee_id])
 	end

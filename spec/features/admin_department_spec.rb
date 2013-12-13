@@ -6,15 +6,18 @@ feature "[Admin Department]" do
   end
   
   scenario "Show Department" do
-    visit root_path
-    click_on "View Departments"
+    visit organizations_path
+    click_on "Show"
+    click_on "Department list"
     click_on "Show"
     page.should have_content("Account")
   end 
   
   scenario "Add New Department" do
-    visit root_path
-    click_on "Add New Department"
+    visit organizations_path
+    click_on "Show"
+    click_on "Department list"
+    click_on "New Department"
 		fill_in 'Name', with: 'Sales'
 		click_on "Create Department"
     page.should have_content("Department successfully created")
@@ -22,8 +25,9 @@ feature "[Admin Department]" do
   end
 
   scenario "Edit Department" do
-    visit root_path
-    click_on "View Department"
+    visit organizations_path
+    click_on "Show"
+    click_on "Department list"
     click_on "Edit"
 		fill_in 'Name', with: 'Edited Sales'
 		click_on "Update Department"

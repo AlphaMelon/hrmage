@@ -1,7 +1,7 @@
 <div class="row">
   <div class="large-6 columns">
 
-    <%= simple_form_for [@employee, @document] do |f| %>
+    <%= simple_form_for [@organization, @employee, @document] do |f| %>
       <%= f.input :name %>
       <%= f.input :image, as: :file %>
       <%= f.button :submit %>

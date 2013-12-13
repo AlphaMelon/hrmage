@@ -10,6 +10,8 @@ Hrmage::Application.routes.draw do
       resources :documents
       get 'edit_login_info' => 'employees#edit_login_info'
       patch 'edit_login_info' => 'employees#update_login_info'
+      get 'new_login' => 'employees#new_login'
+      post 'new_login' => 'employees#create_login'
     end
   end
   resources :after_signup

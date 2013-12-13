@@ -14,9 +14,9 @@ feature "[Home]" do
   scenario "Change My Password" do
     visit root_path
     click_on "Change my password"
-		fill_in 'user_password', with: 'spree1234'
-		fill_in 'user_password_confirmation', with: 'spree1234'
-		fill_in 'user_current_password', with: 'spree123'
+		fill_in 'account_password', with: 'spree1234'
+		fill_in 'account_password_confirmation', with: 'spree1234'
+		fill_in 'account_current_password', with: 'spree123'
 		click_on "Update"
     page.should have_content("You updated your account successfully.")
   end 

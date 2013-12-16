@@ -5,3 +5,8 @@
     color: #fff;
   }
 }
+.alert-box.notice {
+  background-color: #4793fd;
+  border-color: #457a1a;
+  color: white;
+}

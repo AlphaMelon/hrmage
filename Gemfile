@@ -63,8 +63,8 @@ gem 'devise'
 gem 'ancestry'
 gem 'wicked'
 
-gem 'zurb-foundation', '~> 4.0.0'
-#gem 'foundation-rails'
+#gem 'zurb-foundation', '~> 4.0.0'
+gem 'foundation-rails'
 gem 'foundation-icons-sass-rails', github: 'zaiste/foundation-icons-sass-rails'
 
 

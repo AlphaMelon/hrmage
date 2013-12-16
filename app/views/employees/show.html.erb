@@ -66,6 +66,6 @@
 <div class="row">
   <div class="large-12 columns">
     <%= link_to "New Document", new_organization_employee_document_path(@organization, @employee)%><br />
-    <%= link_to "Back", :back %>
+    <%= link_to "Back", organization_employees_path(@organization) %>
   </div>
 </div>

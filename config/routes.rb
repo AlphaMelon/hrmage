@@ -7,6 +7,7 @@ Hrmage::Application.routes.draw do
   resources :organizations do
     resources :departments
     resources :employees do
+      resources :employee_departments
       resources :documents
       get 'edit_login_info' => 'employees#edit_login_info'
       patch 'edit_login_info' => 'employees#update_login_info'

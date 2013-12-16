@@ -2,9 +2,19 @@
   <div class="large-12 columns">
   <%= render 'form' %>
   <% if !@employee.account.nil? %>
-    <%= link_to "Edit Login Info", organization_employee_edit_login_info_path(@organization, @employee)%>
+    <%= link_to "Edit Login Info", organization_employee_edit_login_info_path(@organization, @employee), class: "button"%>
   <% else %>
-    <%= link_to "Add Login", organization_employee_new_login_path(@organization, @employee)%>
+    <%= link_to "Add Login", organization_employee_new_login_path(@organization, @employee), class: "button"%>
   <% end %>
+  
+  
+  <h3>Departments</h3>
+  <ul class="no-bullet">
+    <% @employee.employee_departments.each do |d|%>
+      <li><%= d.department.name %> - <%= d.leader ? "Leader" : "Employee" %></li>
+    <% end %>
+  </ul>
+  
+  <%= link_to "Add department to this employee", new_organization_employee_employee_department_path(@organization, @employee), class: "button"%>
   </div>
 </div>

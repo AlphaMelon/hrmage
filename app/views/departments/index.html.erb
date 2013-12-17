@@ -1,12 +1,18 @@
 <div class="row">
-  <div class="large-12 columns">
+  <div class="large-6 columns">
+    <div class="department-container">
+      <ul class="breadcrumbs">
+        <li><%=link_to "organization", organizations_path %></li>
+        <li class="current">Department List</li>
+      </ul>
+    </div>
     <h2>Department's List</h2>
     <table>
-      <tr>
+      <thead>
         <th>Name</th>
         <th></th>
         <th></th>
-      </tr>
+      </thead>
       <% @departments.each do |department|%>
         <tr>
           <td><%= department.name%></td>

@@ -2,12 +2,12 @@
   <div class="large-12 columns">
     <h2>Organization's List</h2>
     <table>
-      <tr>
+      <thead>
         <th>Name</th>
         <th>Domain</th>
         <th></th>
         <th></th>
-      </tr>
+      </thead>
       <% @organizations.each do |organization|%>
         <tr>
           <td><%= organization.name %></td>

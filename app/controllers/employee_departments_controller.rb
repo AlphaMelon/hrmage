@@ -1,7 +1,7 @@
 class EmployeeDepartmentsController < ApplicationController
 	before_action :set_employee
 	before_action :set_organization
-	#before_action :set_employee_department, only: [:show, :edit, :update, :destroy]
+	before_action :set_employee_department, only: [:destroy]
 	before_filter :authenticate_account!
 	
   def new
@@ -13,14 +13,15 @@ class EmployeeDepartmentsController < ApplicationController
     @employee_department = EmployeeDepartment.new(employee_department_params)
     @employee_department.employee_id = @employee.id
     if @employee_department.save
-      redirect_to organization_employee_path(@organization, @employee), notice: "Department successfully linked"
+      redirect_to edit_organization_employee_path(@organization, @employee), notice: "Department successfully linked"
     else
       render action: 'new'
     end
   end
   
   def destroy
-  
+    @employee_department.delete
+    redirect_to edit_organization_employee_path(@organization, @employee), notice: "Department link removed from employee"
   end
   
   private
@@ -34,7 +35,7 @@ class EmployeeDepartmentsController < ApplicationController
 	end
 	
 	def set_employee_department
-		@organization = Organization.find(params[:id])
+		@employee_department = EmployeeDepartment.find(params[:id])
 	end
 	
 	def employee_department_params

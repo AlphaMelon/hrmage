@@ -71,5 +71,20 @@ feature "[Admin Employee]" do
 		click_on "Create Account"
     page.should have_content("Login successfully added")
     page.should have_content("newlogin@example.dev")
-  end 
+  end
+  
+  scenario "Link Department to employee" do
+    visit organizations_path
+    click_on "Show"
+    click_on "Employee list"
+    click_on "Edit"
+    click_on "Add department to this employee"
+    page.should have_content("Linking department")
+    click_on "Link to employee"
+    page.should have_content("Department successfully linked")
+    
+    click_on "Remove link"
+    page.should have_content("Department link removed from employee")
+  end
+  
 end

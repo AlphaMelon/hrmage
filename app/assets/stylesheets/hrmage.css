@@ -10,3 +10,12 @@
   border-color: #457a1a;
   color: white;
 }
+
+.wizard-breadcrumbs > *:before {
+  content: "=>";
+}
+
+.wizard-breadcrumbs > *.current {
+  color: red;
+}
+

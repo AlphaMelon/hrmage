@@ -32,7 +32,7 @@ class AfterSignupController < ApplicationController
       account_organization = AccountOrganization.new
       account_organization.organization_id = @organization.id
       account_organization.account_id = current_account.id
-      account_organization.role = params[:role]
+      account_organization.role = "Admin"#params[:role]
       account_organization.save
       
       redirect_to "/after_signup/add_department", notice: "Organization saved!"

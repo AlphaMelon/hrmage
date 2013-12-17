@@ -10,8 +10,12 @@
   
   <h3>Departments</h3>
   <ul class="no-bullet">
-    <% @employee.employee_departments.each do |d|%>
-      <li><%= d.department.name %> - <%= d.leader ? "Leader" : "Employee" %></li>
+    <% @employee.employee_departments.each do |ed|%>
+      <li>
+        <%= ed.department.name %> - 
+        <%= ed.leader ? "Leader" : "Employee" %> - 
+        <%= link_to "Remove link", organization_employee_employee_department_path(@organization, @employee, ed), method: :delete, data: { confirm: 'Are you sure?' }%>
+      </li>
     <% end %>
   </ul>
   

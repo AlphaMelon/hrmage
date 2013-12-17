@@ -6,7 +6,7 @@
         Linking department to <%= @employee.last_name %> <br /><br /><br />
         <%= f.input :department_id, collection: @departments, include_blank: false %><br />
         <%= f.input :leader %>
-        <%= f.button :submit %>
+        <%= f.button :submit, "Link to employee" %>
       <% end %>
     <% else %>
       This organization got no department yet, please add department at <%= link_to "here", organization_departments_path(@organization) %>

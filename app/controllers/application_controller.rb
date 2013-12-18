@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_filter :setup_domains
+  helper_method :current_organization
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   def configure_permitted_parameters
@@ -11,4 +13,15 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation) }
   end
   
+  def current_organization
+    @current_organization
+  end
+
+  private
+  def setup_domains
+    @current_organization = Organization.find_by(domain: request.host)
+    if !@current_organization
+      @current_organization = Organization.new
+    end
+  end
 end

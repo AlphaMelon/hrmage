@@ -1,10 +1,31 @@
 <div class="row">
+  <div class="large-6 small-12 columns">
+    <div class="employees-container">
+      <ul class="breadcrumbs">
+        <li><%=link_to "organization", organizations_path %></li>
+        <li><%= link_to @organization.name, organization_path(@organization)%></li>
+        <li><%= link_to "Employee list", organization_employees_path(@organization) %></li>
+        <li class="current">edit employee</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row">
   <div class="large-12 columns">
   <%= render 'form' %>
   <% if !@employee.account.nil? %>
     <%= link_to "Edit Login Info", organization_employee_edit_login_info_path(@organization, @employee), class: "button"%>
   <% else %>
-    <%= link_to "Add Login", organization_employee_new_login_path(@organization, @employee), class: "button"%>
+    <div class="row">
+      <div class="large-6 small-12 columns">
+        <div class="row">
+          <div class="large-3 small-4 columns"></div>
+          <div class="large-9 small-8 columns">
+            <%= link_to "Add Login", organization_employee_new_login_path(@organization, @employee), class: "button"%>
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
   
   

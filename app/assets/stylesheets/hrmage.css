@@ -10,7 +10,7 @@
   border-color: #457a1a;
   color: white;
 }
-<<<<<<< HEAD
+
 .devise-container{
 	margin-top: 1em;
 }
@@ -20,7 +20,9 @@
 .department-container{
 	margin-top: 1em;
 }
-=======
+.employees-container{
+	margin-top: 1em;
+}
 
 .wizard-breadcrumbs > *:before {
   content: "=>";
@@ -29,5 +31,3 @@
 .wizard-breadcrumbs > *.current {
   color: red;
 }
-
->>>>>>> 0ec321a702cfedb9939bede86ba788b15de32982

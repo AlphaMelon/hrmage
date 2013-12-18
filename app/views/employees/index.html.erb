@@ -1,8 +1,20 @@
 <div class="row">
+  <div class="large-6 columns">
+    <div class="employees-container">
+      <ul class="breadcrumbs">
+        <li><%=link_to "organization", organizations_path %></li>
+        <li><%= link_to @organization.name, organization_path(@organization)%></li>
+        <li class="cureent">Employee list</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row">
   <div class="large-12 columns">
     <h2>Employee's List</h2>
     <table>
-      <tr>
+      <thead>
         <th>Last Name</th>
         <th>First Name</th>
         <th>E-mail</th>
@@ -10,9 +22,9 @@
         <th>Address</th>
         <th></th>
         <th></th>
-      </tr>
+      </thead>
       <% @employees.each do |employee|%>
-        <tr>
+        <tbody>
           <td><%= employee.last_name%></td>
           <td><%= employee.first_name%></td>
           <td><%= employee.account.email if !employee.account.nil?%></td>
@@ -20,7 +32,7 @@
           <td><%= employee.address%></td>
           <td><%= link_to "Show", organization_employee_path(@organization, employee)%></td>
           <td><%= link_to "Edit", edit_organization_employee_path(@organization, employee)%></td>
-        </tr>
+        </tbody>
       <% end %>
     </table>
     <%= link_to "New Employee", new_organization_employee_path %>

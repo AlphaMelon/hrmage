@@ -1,12 +1,32 @@
 <div class="row">
+  <div class="large-6 small-12 columns">
+    <div class="employees-container">
+      <ul class="breadcrumbs">
+        <li><%=link_to "organization", organizations_path %></li>
+        <li><%= link_to @organization.name, organization_path(@organization)%></li>
+        <li><%= link_to "Employee list", organization_employees_path(@organization) %></li>
+        <li class="current"><%= link_to "Edit", edit_organization_employee_path(@organization, @employee)%></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row">
   <div class="large-6 columns">
 
     <% if @departments.count != 0%>
       <%= simple_form_for [@organization, @employee, @employee_department] do |f| %>
-        Linking department to <%= @employee.last_name %> <br /><br /><br />
-        <%= f.input :department_id, collection: @departments, include_blank: false %><br />
-        <%= f.input :leader %>
-        <%= f.button :submit, "Link to employee" %>
+        <p>Linking department to <%= @employee.last_name %></p>
+        <div class="row">
+          <div class="large-3 small-3 columns">
+            <%= label_tag(:department_id, "Department", class: "select optional left inline", for: "employee_department_department_id") %>
+          </div>
+          <div class="large-9 small-9 columns">
+            <%= f.input_field :department_id, collection: @departments, include_blank: false %>
+            <%= f.input :leader %>
+            <%= f.button :submit, "Link to employee" %>
+          </div>
+        </div>
       <% end %>
     <% else %>
       This organization got no department yet, please add department at <%= link_to "here", organization_departments_path(@organization) %>

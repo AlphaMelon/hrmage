@@ -3,6 +3,7 @@
     <div class="department-container">
       <ul class="breadcrumbs">
         <li><%=link_to "organization", organizations_path %></li>
+        <li><%= link_to @organization.name, organization_path(@organization)%></li>
         <li class="current">Department List</li>
       </ul>
     </div>

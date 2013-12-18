@@ -10,4 +10,5 @@ class Employee < ActiveRecord::Base
   
   mount_uploader :photo, ImageUploader
   
+  validates :last_name, presence: true
 end

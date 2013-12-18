@@ -4,4 +4,7 @@ class Organization < ActiveRecord::Base
   has_many :accounts, :through => :account_organizations
   
   has_many :employees
+  
+  validates :domain, uniqueness: true
+  validates :name, presence: true
 end

@@ -2,6 +2,19 @@
   <div class="large-6 columns">
 
     <%= simple_form_for [@organization, @department] do |f| %>
+
+      <% if @department.errors.any? %>
+        <div id="error_explanation">
+	        <h2><%= pluralize(@department.errors.count, "error") %> prohibited this worksheet from being saved:</h2>
+
+	        <ul>
+		        <% @department.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		        <% end %>
+	        </ul>
+        </div>
+      <% end %>
+
       <div class="row">
         <div class="large-3 small-3 columns">
           <%= label_tag(:name, "Name", class: "string optional left inline", for: "department_name") %>

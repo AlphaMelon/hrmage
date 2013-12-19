@@ -16,7 +16,14 @@
 
     <%= render "shared/top_bar"%>
     <%= render "layouts/notifications" %>
-    <%= yield %>
+    <div class="row">
+      <div class="large-2 columns">
+        <%= render "shared/side_bar"%>
+      </div>
+      <div class="large-10 columns">
+        <%= yield %>
+      </div>
+    </div>
     <%= javascript_include_tag "application" %>
   </body>
 </html>

@@ -17,7 +17,7 @@
       <ul class="right">
         <% if account_signed_in? %>
           <li class="has-dropdown">
-            <a href="#">My Account</a>
+            <a href="#">Welcome, <%= current_organization.name || "Organization" %></a>
             <ul class="dropdown">
               <li><%= link_to "View My Profile", account_path(current_account) %></li>
               <li><%= link_to "Change my password", edit_account_registration_path %></li>

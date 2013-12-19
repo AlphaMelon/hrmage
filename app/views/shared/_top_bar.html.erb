@@ -28,6 +28,7 @@
           <li><%= link_to "Sign In", account_session_path %></li>
         <% end %>
       </ul>
+      <!-- Left Nav Section -->
       <ul class="left">
         <%if account_signed_in? %>
           <li class="has-dropdown">
@@ -38,7 +39,15 @@
               <%end%>
             </ul>
           </li>
-        <%end%>
+          <% if !current_account.profile.nil?%>
+            <li class="has-dropdown">
+              <%= link_to "Apply Leave", new_organization_leave_path(current_organization)%>
+              <ul class="dropdown">
+                <li><%= link_to "My Leaves", my_leaves_path %></li>
+              </ul>
+            </li>
+          <% end %>
+        <% end %>
       </ul>
     </section>
   </nav>

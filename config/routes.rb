@@ -3,9 +3,10 @@ Hrmage::Application.routes.draw do
   devise_for :accounts, :controllers => { :registrations => "registrations" }
   resources :accounts, :only => [:show]
   root 'home#index'
-  
+  get 'my_leaves' => "home#my_leaves"
   resources :organizations do
     resources :departments
+    resources :leaves
     resources :employees do
       resources :employee_departments
       resources :documents

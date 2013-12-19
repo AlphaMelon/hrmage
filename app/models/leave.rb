@@ -1,7 +1,10 @@
 class Leave < ActiveRecord::Base
   belongs_to :employee
+  belongs_to :organization
   before_save :set_default_values
   validate :start_date_cannot_be_later_than_end_date
+  validates :start_date, presence: true
+  validates :end_date, presence: true
 
   def set_default_values
     self.status = "Pending" if self.status.blank?

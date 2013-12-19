@@ -1,25 +1,23 @@
 <div class="row">
   <div class="large-12 columns">
-    <center>
-      <h2>Organization's List</h2>
-      <table>
-        <thead>
-          <th>Name</th>
-          <th>Domain</th>
-          <th></th>
-          <th></th>
-        </thead>
-        <% @organizations.each do |organization|%>
-          <tr>
-            <td><%= organization.name %></td>
-            <td><%= organization.domain %></td>
-            <td><%= link_to "Show", organization_path(organization)%></td>
-            <td><%= link_to "Edit", edit_organization_path(organization) %></td>
-          </tr>
-        <% end %>
-      </table>
-      <%= link_to "New Organization", new_organization_path, class: "button" %>
-    </center>
+    <h2>Organization's List</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Domain</th>
+        <th></th>
+        <th></th>
+      </thead>
+      <% @organizations.each do |organization|%>
+        <tr>
+          <td><%= organization.name %></td>
+          <td><%= organization.domain %></td>
+          <td><%= link_to "Show", organization_path(organization)%></td>
+          <td><%= link_to "Edit", edit_organization_path(organization) %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to "New Organization", new_organization_path, class: "button" %>
   </div>
 </div>
 

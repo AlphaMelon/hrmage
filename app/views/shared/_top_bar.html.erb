@@ -34,7 +34,7 @@
             <%= link_to current_organization.name || "Organization", organizations_path %>
             <ul class="dropdown">
               <% current_account.organizations.each do |org| %>
-                <li><%= link_to org.name.capitalize, organization_path(org) %></li>
+                <li><%= link_to org.name.capitalize, :host => org.domain %></li>
               <%end%>
             </ul>
           </li>

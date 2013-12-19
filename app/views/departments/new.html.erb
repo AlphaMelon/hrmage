@@ -1,12 +1,10 @@
 <div class="row">
-  <div class="large-6 columns">
+  <div class="large-12 columns">
     <div class="department-container">
       <ul class="breadcrumbs">
-            <li><%=link_to "organization", organizations_path %></li>
-            <li><%= link_to @organization.name, organization_path(@organization)%></li>
-            <li><%= link_to "department list", organization_departments_path(@organization)%></li>
-            <li class="current">Create New Department</li>
-          </ul>
+        <li><%= link_to "department list", organization_departments_path(@organization)%></li>
+        <li class="current">Create New Department</li>
+      </ul>
     </div>
   </div>
 </div>

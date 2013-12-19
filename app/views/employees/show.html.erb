@@ -32,7 +32,7 @@
 <div class="row">
   <div class="large-12 columns">
     <h5><%=@employee.last_name.capitalize %>'s Documents</h5>
-    <ul class="clearing-thumbs small-block-grid-2 large-block-grid-4" data-clearing>
+    <ul class="clearing-thumbs " data-clearing>
       <% @employee.documents.each do |document| %>
         <li>
           <% if document.image? %>
@@ -40,7 +40,7 @@
           <% else %>
             <%= image_tag("not_available.jpg", size: "200x200", class: "th")%>
           <% end %>
-          <%= document.name %> | 
+          <%= document.name.capitalize %> | 
           <%= link_to "Edit", edit_organization_employee_document_path(@organization, @employee, document)%> |
           <%= link_to "Delete", organization_employee_document_path(@organization, @employee, document), method: :delete, data: { confirm: 'Are you sure?' }%>
         </li>
@@ -50,7 +50,7 @@
 </div>
 <div class="row">
   <div class="large-12 columns">
-    <%= link_to "New Document", new_organization_employee_document_path(@organization, @employee)%><br />
-    <%= link_to "Back", organization_employees_path(@organization) %>
+    <%= link_to "Add New Document", new_organization_employee_document_path(@organization, @employee), class: "button" %><br>
+    <%= link_to "Back", :back %>
   </div>
 </div>

@@ -1,20 +1,23 @@
 class LeavesController < ApplicationController
-	#before_action :set_employee
-	before_action :set_leaves, only: [:show, :edit, :update, :destroy]
+	before_action :set_organization
+	before_action :set_leave, only: [:show, :edit, :update, :destroy]
 	before_filter :authenticate_account!
   
   def index
-    #@pending_leaves = 
+    @pending_leaves = @organization.leaves.where(status: "Pending")
+    @approved_leaves = @organization.leaves.where(status: "Approved")
+    @rejected_leaves = @organization.leaves.where(status: "Rejected")
   end
   
   def new
-    @leave = current_account.leaves.new
+    @leave = current_organization.leaves.new
   end 
 
   def create
-    @leave = current_account.leaves.new(leave_params)
+    @leave = current_organization.leaves.new(leave_params)
+    @leave.employee_id = current_account.profile.id
     if @leave.save
-      redirect_to leaves_path, notice: "Leave successfully created"
+      redirect_to my_leaves_path, notice: "Leave successfully applied, please wait for admin to approve"
     else
       render action: 'new'
     end
@@ -25,7 +28,7 @@ class LeavesController < ApplicationController
   
   def update
 		if @leave.update(leave_params)
-			redirect_to leaves_path, notice: 'Leaves status changed'
+			redirect_to organization_leaves_path(current_organization), notice: 'Leaves status changed'
 		else
 			render action: 'edit'
 		end
@@ -42,7 +45,11 @@ class LeavesController < ApplicationController
 	  @leave = Leave.find(params[:id])
 	end
 
-	def document_params
+	def set_organization
+	  @organization = Organization.find(params[:organization_id])
+	end
+
+	def leave_params
 		params.require(:leave).permit(:start_date, :end_date, :comment, :leave_type, :status)
 	end
 end

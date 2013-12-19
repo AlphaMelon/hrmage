@@ -31,7 +31,7 @@
       <ul class="left">
         <%if account_signed_in? %>
           <li class="has-dropdown">
-            <%= link_to current_organization.name || "Organization", organizations_path %>
+            <%= link_to current_account.organizations.first.name, organization_path(current_account.organizations.first) %>
             <ul class="dropdown">
               <li><%= link_to "Manage Organization", organizations_path %></li>
               <li><%= link_to "Create New Organization", new_organization_path %></li>

@@ -1,8 +1,8 @@
 <div class="contain-to-grid sticky">
   <nav class="top-bar" data-topbar>
     <ul class="title-area">
-      <li class="name">
-        <h1><%= link_to "HR Mage", root_path%></h1>
+      <li class="name hide-for-large">
+        <h1><%= link_to current_organization.name || "Organization" %></h1>
       </li>
       <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
       <li class="toggle-topbar menu-icon">
@@ -16,8 +16,16 @@
       <!-- Right Nav Section -->
       <ul class="right">
         <% if account_signed_in? %>
+          
           <li class="has-dropdown">
-            <a href="#">Welcome, <%= current_organization.name || "Organization" %></a>
+            <a href="#"><i class="fi-lightbulb large"></i></a>
+            <ul class="dropdown">
+              <li><a href="">test</a></li>
+            </ul>
+          </li>
+
+          <li class="has-dropdown">
+            <a href="#">Hello, <%= current_organization.name || "Organization" %></a>
             <ul class="dropdown">
               <li><%= link_to "View My Profile", account_path(current_account) %></li>
               <li><%= link_to "Change my password", edit_account_registration_path %></li>

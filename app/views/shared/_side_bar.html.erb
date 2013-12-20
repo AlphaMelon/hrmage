@@ -1,14 +1,18 @@
 <% if !current_organization.id.nil? %>
-    <div class="side-bar">
-      <ul class="side-nav">
-        <li><h6><%= current_organization.name.capitalize %>'s Organization</h6></li>
-        <li><%= link_to "Organization", organizations_path %></li>
-        <li class="divider"></li>
-        <li><%= link_to "Department", organization_departments_path(current_organization) %></li>
-        <li class="divider"></li>
-        <li><%= link_to "Employee", organization_employees_path(current_organization) %></li>
-        <li class="divider"></li>
-        <li><%= link_to "Leave", organization_leaves_path(current_organization) %></li>
-      </ul>
-    </div>
+  <div class="logo hide-for-small">
+    <%= link_to root_path do %>
+      <%= image_tag('logo/hrmerge-logo.jpg') %>
+    <%end%>
+  </div>
+  <ul class="side-nav">
+    <li><h6><%= current_organization.name.capitalize %>'s Organization</h6></li>
+    <li><%= link_to "Organization", organizations_path %></li>
+    <li class="divider"></li>
+    <li><%= link_to "Department", organization_departments_path(current_organization) %></li>
+    <li class="divider"></li>
+    <li><%= link_to "Employee", organization_employees_path(current_organization) %></li>
+    <li class="divider"></li>
+    <li><%= link_to "Leave", organization_leaves_path(current_organization) %></li>
+  </ul>
 <% end %>
+

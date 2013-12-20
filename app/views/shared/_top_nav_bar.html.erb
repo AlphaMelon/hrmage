@@ -1,9 +1,31 @@
 <% if !current_organization.id.nil? %>
-  <div class="top-nav-bar">
-    <ul class="side-nav">
-      <li><%= link_to "Leave", organization_leaves_path(current_organization) %></li>
-      <li><a href="#">Salary</a></li>
-      <li><a href="#">Claim</a></li>
-    </ul>
+  <div class="row">
+
+    <div class="large-2 hide-for-small columns">
+      <div class="logo">
+        <%= link_to root_path do %>
+          <%= image_tag('logo/hrmerge-logo.jpg') %>
+        <%end%>
+      </div>
+    </div>
+
+    <div class="large-8 columns">
+      <div class="top-nav-bar">
+        <ul class="side-nav">
+          <li><%= link_to "Leave", organization_leaves_path(current_organization) %></li>
+          <li><a href="#">Salary</a></li>
+          <li><a href="#">Claim</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="large-2 columns">
+      <div class="user-panel">
+        <ul class="side-nav">
+          <li><%= link_to "Admin" %></li>
+          <li><%= link_to "Normal" %></li>
+        </ul>
+      </div>
+    </div>
   </div>
 <%end%>

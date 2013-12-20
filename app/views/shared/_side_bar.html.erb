@@ -1,9 +1,4 @@
 <% if !current_organization.id.nil? %>
-  <div class="logo hide-for-small">
-    <%= link_to root_path do %>
-      <%= image_tag('logo/hrmerge-logo.jpg') %>
-    <%end%>
-  </div>
   <ul class="side-nav">
     <li><h6><%= current_organization.name.capitalize %>'s Organization</h6></li>
     <li><%= link_to "Organization", organizations_path %></li>
@@ -16,3 +11,12 @@
   </ul>
 <% end %>
 
+<%if %>
+  <ul class="side-nav">
+    <li><h6>My Leaves</h6></li>
+    <li>
+      <%= link_to "Apply Leave", new_organization_leave_path(current_organization)%>
+    </li>
+    <li><%= link_to "My Leaves", my_leaves_path %></li>
+  </ul>
+<%end %>

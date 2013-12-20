@@ -15,23 +15,23 @@
     <section class="top-bar-section">     
       <!-- Right Nav Section -->
       <ul class="right">
+        <li class="divider"></li>
         <% if account_signed_in? %>
-          
           <li class="has-dropdown">
             <a href="#"><i class="fi-lightbulb large"></i></a>
             <ul class="dropdown">
-              <li><a href="">test</a></li>
+              <li><a href="#">test</a></li>
             </ul>
           </li>
-     
-          <% if !current_account.profile.nil? && !current_organization.id.nil? %>
-            <li class="has-dropdown">
+          <li class="divider"></li>
+          <%if !current_account.profile.nil? && !current_organization.id.nil? %>
+            <!-- <li class="has-dropdown">
               <%= link_to "Apply Leave", new_organization_leave_path(current_organization)%>
               <ul class="dropdown">
                 <li><%= link_to "My Leaves", my_leaves_path %></li>
               </ul>
-            </li>
-          <% end %>
+            </li> -->
+          <%end %>
           
           <li class="has-dropdown">
             <a href="#">Hello <%= !current_account.profile.nil? ? current_account.profile.last_name : "new user" %></a>
@@ -46,6 +46,7 @@
           <li><%= link_to "Sign In", account_session_path %></li>
         <% end %>
       </ul>
+
       <!-- Left Nav Section -->
       <ul class="left">
         <%if account_signed_in? %>
@@ -57,6 +58,7 @@
               <%end%>
             </ul>
           </li>
+          <li class="divider"></li>
         <% end %>
       </ul>
     </section>

@@ -43,3 +43,10 @@
     padding-right: 0.83em;
   }
 }
+
+.user-panel{
+  ul,li{
+    display: inline-block;
+    padding-right: 0.83em;
+  }
+}

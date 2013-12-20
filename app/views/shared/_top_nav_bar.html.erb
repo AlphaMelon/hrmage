@@ -1,7 +1,9 @@
-<div class="top-nav-bar">
-  <ul class="side-nav">
-    <li><a href="#">Leaves</a></li>
-    <li><a href="#">Salary</a></li>
-    <li><a href="#">Claim</a></li>
-  </ul>
-</div>
+<% if !current_organization.id.nil? %>
+  <div class="top-nav-bar">
+    <ul class="side-nav">
+      <li><%= link_to "Leave", organization_leaves_path(current_organization) %></li>
+      <li><a href="#">Salary</a></li>
+      <li><a href="#">Claim</a></li>
+    </ul>
+  </div>
+<%end%>

@@ -37,6 +37,7 @@
   margin-top: 1em;
 }
 .top-nav-bar{
+  margin-top: 5em;
   ul,li{
     display: inline-block;
     padding-right: 0.83em;

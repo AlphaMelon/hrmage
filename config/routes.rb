@@ -5,6 +5,7 @@ Hrmage::Application.routes.draw do
   root 'home#index'
   get 'my_leaves' => "home#my_leaves"
   resources :organizations do
+    resources :account_organizations
     resources :departments
     resources :leaves
     resources :employees do

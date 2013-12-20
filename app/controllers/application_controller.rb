@@ -13,6 +13,20 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation) }
   end
   
+  def after_sign_in_path_for(resource)
+    if request.host == "localhost" || request.host == "hrmage.com" || request.host.nil?
+    
+      if resource.organizations.count != 0 #account with at least one organization
+        resource.organizations.first.domain
+      else
+        root_path #account with 0 organizations
+      end
+      
+    else
+      root_path #user already in his own domain
+    end
+  end
+  
   def current_organization
     @current_organization
   end

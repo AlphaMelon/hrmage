@@ -16,14 +16,25 @@
       <!-- Right Nav Section -->
       <ul class="right">
         <% if account_signed_in? %>
+        
+          <% if !current_account.profile.nil? && !current_organization.id.nil? %>
+            <li class="has-dropdown">
+              <%= link_to "Apply Leave", new_organization_leave_path(current_organization)%>
+              <ul class="dropdown">
+                <li><%= link_to "My Leaves", my_leaves_path %></li>
+              </ul>
+            </li>
+          <% end %>
+          
           <li class="has-dropdown">
-            <a href="#">Welcome, <%= current_organization.name || "Organization" %></a>
+            <a href="#">Welcome, <%= !current_account.profile.nil? ? current_account.profile.last_name : "new user" %></a>
             <ul class="dropdown">
               <li><%= link_to "View My Profile", account_path(current_account) %></li>
               <li><%= link_to "Change my password", edit_account_registration_path %></li>
               <li><%= link_to "Logout", destroy_account_session_path, method: :delete %></li>
             </ul>
           </li>
+          
         <% else %>
           <li><%= link_to "Sign In", account_session_path %></li>
         <% end %>
@@ -35,18 +46,10 @@
             <%= link_to current_organization.name || "Organization", organizations_path %>
             <ul class="dropdown">
               <% current_account.organizations.each do |org| %>
-                <li><%= link_to org.name.capitalize, :host => org.domain %></li>
+                <li><%= link_to org.name.capitalize, host: org.domain %></li>
               <%end%>
             </ul>
           </li>
-          <% if !current_account.profile.nil?%>
-            <li class="has-dropdown">
-              <%= link_to "Apply Leave", new_organization_leave_path(current_organization)%>
-              <ul class="dropdown">
-                <li><%= link_to "My Leaves", my_leaves_path %></li>
-              </ul>
-            </li>
-          <% end %>
         <% end %>
       </ul>
     </section>

@@ -44,6 +44,26 @@
     <%= link_to "Department list", organization_departments_path(@organization) %>
   </div>
 </div>
+<div class="row">
+  <div class="large-12 columns">
+    <h2>Accounts with access to <%= @organization.name %></h2>
+    <table>
+      <tr>
+        <th>Email</th>
+        <th>Role</th>
+        <th></th>
+      </tr>
+      <% @organization.account_organizations.each do |acc_org|%>
+        <tr>
+          <td><%= acc_org.account.email %></td>
+          <td><%= acc_org.role %></td>
+          <th><%= link_to "Remove link", organization_account_organization_path(@organization, acc_org), method: :delete, data: { confirm: 'Are you sure?' }%></th>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to "Add more account to #{@organization.name}", new_organization_account_organization_path(@organization)%>
+  </div>
+</div>  
 
 <div class="row">
   <div class="large-12 columns">

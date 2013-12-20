@@ -20,7 +20,7 @@
           <div class="large-3 small-4 columns"></div>
           <div class="large-9 small-8 columns">
             <%= link_to "Add Login", organization_employee_new_login_path(@organization, @employee), class: "button"%>
-            <%= link_to "Link this profile to my account", organization_employee_path(@organization, @employee, employee: {account_id: current_account.id}, method: :patch) if current_account.profile.nil? %>
+            <%= link_to "Link this profile to my account", organization_employee_path(@organization, @employee, employee: {account_id: current_account.id}), method: :patch ,class: "button" if current_account.profile.nil? %>
           </div>
         </div>
       </div>

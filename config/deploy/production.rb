@@ -15,7 +15,7 @@ role :db,  %w{deployer@himeragi.collectskin.com}
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server 'himeragi.collectskin.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
+server 'himeragi.collectskin.com', user: 'deployer', roles: %w{web app}, my_property: :my_value
 
 set :branch, 'master'
 set :ssh_options, forward_agent: true, port: 20022

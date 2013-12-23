@@ -1,3 +1,5 @@
+require 'capistrano/rbenv'
+require 'capistrano/bundler'
 require 'capistrano/puma'
 set :application, 'hrmage'
 set :repo_url, 'git@github.com:AlphaMelon/hrmage.git'
@@ -16,6 +18,19 @@ set :linked_files, %w{config/database.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
 
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :bundle_bins, fetch(:bundle_bins, [])
+set :bundle_roles, :all                                  # this is default
+set :bundle_binstubs, -> { shared_path.join('bin') }     # this is default
+set :bundle_gemfile, -> { release_path.join('MyGemfile') } # default: nil
+set :bundle_path, -> { shared_path.join('bundle') }      # this is default
+set :bundle_without, %w{development test}.join(' ')      # this is default
+set :bundle_flags, '--deployment --quiet'                # this is default
+
+set :rbenv_type, :user # or :system, depends on your rbenv setup
+set :rbenv_ruby, '2.0.0-p247'
+set :rbenv_prefix, "RBENV_ROOT=/home/deployer/.rbenv RBENV_VERSION=#{fetch(:rbenv_ruby)} /home/deployer/.rbenv/bin/rbenv exec"
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+set :rbenv_roles, :all # default value
 # set :keep_releases, 5
 
 namespace :deploy do

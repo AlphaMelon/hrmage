@@ -78,7 +78,8 @@ gem 'puma'
 
 # Use Capistrano for deployment
 gem 'capistrano', '~> 3.0', group: :development
-gem 'capistrano-rbenv', '~> 2.0'
+gem 'capistrano-bundler', github: 'capistrano/bundler'
+gem 'capistrano-rbenv', github: 'capistrano/rbenv'
 
 gem 'capistrano3-puma'
 # Use debugger

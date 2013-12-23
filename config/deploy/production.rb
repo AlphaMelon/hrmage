@@ -19,5 +19,3 @@ server 'himeragi.collectskin.com', user: 'deployer', roles: %w{web app}, my_prop
 
 set :branch, 'master'
 set :ssh_options, forward_agent: true, port: 20022
-
-

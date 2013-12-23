@@ -18,6 +18,6 @@ role :db,  %w{deployer@himeragi.collectskin.com}
 server 'himeragi.collectskin.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
 
 set :branch, 'master'
-set :ssh_options, forward_agent: true
+set :ssh_options, forward_agent: true, port: 20022
 
 

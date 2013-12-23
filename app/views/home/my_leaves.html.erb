@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="large-12 columns">
+    
+    <h1>My Leaves</h1>
+    
+    <h2>Pending Leaves</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Leave Type</th>
+        <th>Comment</th>
+        <th></th>
+        <th></th>
+      </thead>
+      <% @pending_leaves.each do |leave|%>
+        <tr>
+          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.end_date.to_date %></td>
+          <td><%= leave.leave_type %></td>
+          <td><%= leave.comment %></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <h2>Approved Leaves</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Leave Type</th>
+        <th>Comment</th>
+      </thead>
+      <% @approved_leaves.each do |leave|%>
+        <tr>
+          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.end_date.to_date %></td>
+          <td><%= leave.leave_type %></td>
+          <td><%= leave.comment %></td>
+        </tr>
+      <% end %>
+    </table>
+    
+    <h2>Rejected Leaves</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Leave Type</th>
+        <th>Comment</th>
+      </thead>
+      <% @rejected_leaves.each do |leave|%>
+        <tr>
+          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.end_date.to_date %></td>
+          <td><%= leave.leave_type %></td>
+          <td><%= leave.comment %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

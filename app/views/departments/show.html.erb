@@ -1,12 +1,12 @@
 <div class="row">
   <div class="large-12 columns">
-     <h1><%= @department.name%> Department</h1>
+     <h2><%= @department.name.capitalize %> Department</h2>
   </div>
 </div>
 
 <div class="row">
   <div class="large-12 columns">
-    <h4>Employees of <%= @department.name%> Department</h4>
+    <h5>Employees of <%= @department.name%> Department</h5>
     <table>
       <tr>
         <th>Last Name</th>
@@ -22,12 +22,12 @@
         <tr>
           <td><%= employee.last_name%></td>
           <td><%= employee.first_name%></td>
-          <td><%= employee.user.email%></td>
+          <td><%= employee.account.email if !employee.account.nil? %></td>
           <td><%= employee.mobile_contact%></td>
           <td><%= employee.address%></td>
-          <td><%= !employee.department.nil? ? employee.department.name : "No Department Assigned"%>
-          <td><%= link_to "Show", employee_path(employee)%></td>
-          <td><%= link_to "Edit", edit_employee_path(employee)%></td>
+          <td><%= !employee.departments.blank? ? ("in " + employee.departments.count.to_s + " department") : "No Department Assigned"%>
+          <td><%= link_to "Show", organization_employee_path(@organization, employee)%></td>
+          <td><%= link_to "Edit", edit_organization_employee_path(@organization,employee)%></td>
         </tr>
       <% end %>
     </table>

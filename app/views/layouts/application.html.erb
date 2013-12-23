@@ -1,22 +1,39 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title><%= content_for?(:title) ? yield(:title) : "HR Mage" %></title>
-    
-    
-  	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "vendor/custom.modernizr" %>
     <%#= javascript_include_tag "vendor/modernizr" %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
-    
   </head>
 
   <body>
+
     <%= render "shared/top_bar"%>
     <%= render "layouts/notifications" %>
-    <%= yield %>
+    <div class="row">
+
+      <div class="large-12 small-12 columns">
+        <%= render "shared/top_nav_bar" %>
+      </div>
+
+      <div class="large-12 small-12 columns">
+        <div class="row">
+          <div class="large-2 small-12 columns">
+            <%= render "shared/side_bar"%>
+          </div>
+          <div class="large-10 small-12 columns">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%= javascript_include_tag "application" %>
   </body>
 </html>

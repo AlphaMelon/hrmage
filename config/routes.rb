@@ -1,17 +1,24 @@
 Hrmage::Application.routes.draw do
 
-  devise_for :users
-  resources :users, :only => [:show]
+  devise_for :accounts, :controllers => { :registrations => "registrations" }
+  resources :accounts, :only => [:show]
   root 'home#index'
-  
-  resources :employees do
-    resources :documents
-    get 'edit_login_info' => 'employees#edit_login_info'
-    patch 'edit_login_info' => 'employees#update_login_info'
+  get 'my_leaves' => "home#my_leaves"
+  resources :organizations do
+    resources :account_organizations
+    resources :departments
+    resources :leaves
+    resources :employees do
+      resources :employee_departments
+      resources :documents
+      get 'edit_login_info' => 'employees#edit_login_info'
+      patch 'edit_login_info' => 'employees#update_login_info'
+      get 'new_login' => 'employees#new_login'
+      post 'new_login' => 'employees#create_login'
+    end
   end
+  resources :after_signup
   
-  resources :organizations
-  resources :departments
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

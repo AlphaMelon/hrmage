@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :organization do
-    name "Alpha Melon"
-    domain "alphamelon.com"
+    sequence(:name, 1000) { |n| "organization#{n}" }
+    sequence(:domain, 1000) { |n| "domain#{n}" }
   end
 end

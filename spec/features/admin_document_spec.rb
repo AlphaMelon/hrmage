@@ -3,12 +3,12 @@ require 'spec_helper'
 feature "[Admin Employee's Document]" do
   background do
     admin_login("spree@example.com", "spree123")
-    create_organization
   end
    
   scenario "Add New Document for employee" do
-    visit root_path
-    click_on "View Employees"
+    visit organizations_path
+    click_on "Show"
+    click_on "Employee list"
     click_on "Show"
     click_on "New Document"
 		fill_in 'Name', with: 'IC'
@@ -18,8 +18,9 @@ feature "[Admin Employee's Document]" do
   end
 
   scenario "Edit Document" do
-    visit root_path
-    click_on "View Employees"
+    visit organizations_path
+    click_on "Show"
+    click_on "Employee list"
     click_on "Show"
     click_on "Edit"
 		fill_in 'Name', with: 'Edited IC'
@@ -29,8 +30,9 @@ feature "[Admin Employee's Document]" do
   end
   
   scenario "Delete Document" do
-    visit root_path
-    click_on "View Employees"
+    visit organizations_path
+    click_on "Show"
+    click_on "Employee list"
     click_on "Show"
     click_on "Delete"
     page.should have_content("Document successfully deleted")

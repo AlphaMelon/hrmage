@@ -1,24 +1,54 @@
 <div class="row">
-  <div class="large-6 columns">
+  <div class="large-12 small-12 columns">
 
-    <%= simple_form_for @employee do |f| %>
-      <%= f.input :last_name %>
-      <%= f.input :first_name %>
-      <%= f.input :mobile_contact %>
-      <%= f.input :address %>
-      <%= f.input :department_id, collection: Department.all %>
-      <%= f.input :photo, as: :file %>
-      <% if @employee.new_record? %>
-        <%= label_tag :email %>
-        <%= text_field_tag :email %>
-        
-        <%= label_tag :password %>
-        <%= password_field_tag :password %>
-        
-        <%= label_tag :role %>
-        <%= select_tag :role, options_for_select(['Admin', 'Employee'], selected: 'Employee') %>
+    <%= simple_form_for [@organization, @employee] do |f| %>
+    
+      <% if @employee.errors.any? %>
+        <div id="error_explanation">
+	        <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this worksheet from being saved:</h2>
+
+	        <ul>
+		        <% @employee.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		        <% end %>
+	        </ul>
+        </div>
       <% end %>
-      <%= f.button :submit %>
+      
+      <div class="row">
+        <div class="large-3 small-4 columns">
+          <%= label_tag(:last_name, "Last name", class: "string optional left inline", for: "employee_last_name") %>
+        </div>
+        <div class="large-9 small-8 columns">
+          <%= f.input_field :last_name %>
+        </div>
+        <div class="large-3 small-4 columns">
+          <%= label_tag(:first_name, "First name", class: "string optional left inline", for: "employee_first_name") %>
+        </div>
+        <div class="large-9 small-8 columns">
+          <%= f.input_field :first_name %>
+        </div>
+        <div class="large-3 small-4 columns">
+          <%= label_tag(:mobile_contact, "Mobile contact", class: "string optional left inline", for: "employee_mobile_contact") %>
+        </div>
+        <div class="large-9 small-8 columns">
+          <%= f.input_field :mobile_contact %>
+        </div>
+        <div class="large-3 small-4 columns">
+          <%= label_tag(:address, "Address", class: "string optional left inline", for: "employee_address")%>
+        </div>
+        <div class="large-9 small-8 columns">
+          <%= f.input_field :address %>
+        </div>
+        <div class="large-3 small-4 columns">
+          <%= label_tag(:photo, "Photo", class: "file optional left inline", for: "employee_photo") %>
+        </div>
+        <div class="large-9 small-8 columns">
+          <%= f.input_field :photo, as: :file %>
+          <%= f.button :submit %>
+        </div>
+      </div> 
+      
     <% end %>
 
   </div>

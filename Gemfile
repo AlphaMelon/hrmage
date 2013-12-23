@@ -61,12 +61,14 @@ gem 'simple_form', :github => 'plataformatec/simple_form'
 gem 'countries', github: 'hexorx/countries'
 gem 'devise'
 gem 'ancestry'
+gem 'wicked'
 
-gem 'zurb-foundation', '~> 4.0.0'
-#gem 'foundation-rails'
+#gem 'zurb-foundation', '~> 4.0.0'
+gem 'foundation-rails'
 gem 'foundation-icons-sass-rails', github: 'zaiste/foundation-icons-sass-rails'
 
 
+gem 'puma'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
@@ -75,7 +77,7 @@ gem 'foundation-icons-sass-rails', github: 'zaiste/foundation-icons-sass-rails'
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
+gem 'capistrano', group: :development
+gem 'capistrano3-puma'
 # Use debugger
 # gem 'debugger', group: [:development, :test]

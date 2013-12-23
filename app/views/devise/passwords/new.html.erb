@@ -1,19 +1,31 @@
 <div class="row">
-  <div class="large-12 columns">
-    <h2>Forgot your password?</h2>
+  <div class="large-6 large-centered columns">
+    <div class="devise-container">
+      <h2>Forgot your password?</h2>
 
-    <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-      <%= f.error_notification %>
+      <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+        <%= f.error_notification %>
 
-      <div class="form-inputs">
-        <%= f.input :email, :required => true, :autofocus => true %>
-      </div>
+        <div class="form-inputs">
+          <div class="row">
+            <div class="large-3 small-3 columns">
+              <%= label_tag(:email, "Email", class: "email optional left inline", for: "account_email") %>
+            </div>
+            <div class="large-9 small-9 columns">
+              <%= f.input_field :email, :autofocus => true %>
+            </div>
 
-      <div class="form-actions">
-        <%= f.button :submit, "Send me reset password instructions" %>
-      </div>
-    <% end %>
+            <div class="large-3 small-3 columns"></div>
+            <div class="large-9 small-9 columns">
+              <div class="form-actions">
+                <%= f.button :submit, "Send me reset password instructions" %>
+              </div>
+              <%= render "devise/shared/links" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-    <%= render "devise/shared/links" %>
   </div>
 </div>

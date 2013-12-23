@@ -1,6 +1,6 @@
 class CreateEmployees < ActiveRecord::Migration
   def change
-    execute "create extension hstore"
+    #execute "create extension hstore"
     create_table :employees do |t|
       t.string :first_name
       t.string :last_name

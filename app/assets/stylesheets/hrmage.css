@@ -5,3 +5,48 @@
     color: #fff;
   }
 }
+.alert-box.notice {
+  background-color: #4793fd;
+  border-color: #457a1a;
+  color: white;
+}
+
+.devise-container{
+  margin-top: 1em;
+}
+.organ-container{
+  margin-top: 1em;
+}
+.department-container{
+  margin-top: 1em;
+}
+
+.employees-container{
+  margin-top: 1em;
+}
+
+.wizard-breadcrumbs > *:before {
+  content: "=>";
+}
+
+.wizard-breadcrumbs > *.current {
+  color: red;
+}
+
+.logo{
+  margin-top: 1em;
+}
+.top-nav-bar{
+  margin-top: 5em;
+  ul,li{
+    display: inline-block;
+    padding-right: 0.83em;
+  }
+}
+
+.user-panel{
+  ul,li{
+    display: inline-block;
+    padding-right: 0.83em;
+  }
+}

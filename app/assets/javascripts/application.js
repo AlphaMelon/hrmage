@@ -15,15 +15,16 @@
 //= require foundation
 //= require turbolinks
 //= require_tree .
-var t;
-function ready(){
-  t = setTimeout(function(){$(document).foundation()},500);
-}
 
-$(document).ready(ready)
-$(document).on('page:load', ready)
-$(document).on('page:fetch', function(){
-  clearTimeout(t);
-})
+// var t;
+// function ready(){
+//   t = setTimeout(function(){$(document).foundation()},500);
+// }
+
+// $(document).ready(ready)
+// $(document).on('page:load', ready)
+// $(document).on('page:fetch', function(){
+//   clearTimeout(t);
+// })
 
 $(function(){ $(document).foundation(); });

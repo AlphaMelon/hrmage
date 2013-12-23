@@ -1,0 +1,140 @@
+<div class="row">
+  <div class="large-12 small-12 columns">
+    <h1>My Leaves</h1>
+  </div>
+  
+  <hr>
+
+  <div class="large-12 small-12 columns">
+    <h6>Available Paid Leaves</h6>
+  </div>
+  <div class="large12 columns">
+    <div class="large-2 small-2 columns">
+      <h5 class="text-left">DATE</h5>
+    </div>
+    <div class=" progress success large-10 small-10 columns">
+      <span class="meter"></span>
+    </div>
+  </div>
+
+  <div class="large-12 columns">
+    <h6>Available Sick Leaves</h6>
+  </div>
+  <div class="large12 columns">
+    <div class="large-2 small-2 columns">
+      <h5 class="text-left">DATE</h5>
+    </div>
+    <div class=" progress alert large-10 small-10 columns">
+      <span class="meter"></span>
+    </div>
+  </div>
+
+  <div class="large-12 columns">
+    <h6>Available Overtimes</h6>
+  </div>
+  <div class="large12 columns">
+    <div class="large-2 small-2 columns">
+      <h5 class="text-left">DATE</h5>
+    </div>
+    <div class=" progress large-10 small-10 columns">
+      <span class="meter"></span>
+    </div>
+  </div>
+
+  <hr>
+
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <h1>History</h1>
+  </div>
+  <div class="large-12 columns">
+    <table>
+      <thead>
+        <th>Type</th>
+        <th>Reason</th>
+        <th>Duration</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Status</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        <td></td>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-6 columns">    
+    <h2>Pending Leaves</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Leave Type</th>
+        <th>Comment</th>
+        <th></th>
+        <th></th>
+      </thead>
+      <% @pending_leaves.each do |leave|%>
+        <tr>
+          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.end_date.to_date %></td>
+          <td><%= leave.leave_type %></td>
+          <td><%= leave.comment %></td>
+          <td><%= link_to "Approve", organization_leave_path(current_organization, leave, leave: {status: "Approved"}), method: "patch"%></td>
+          <td><%= link_to "Reject", organization_leave_path(current_organization, leave, leave: {status: "Rejected"}), method: "patch"%></td>
+        
+        </tr>
+      <% end %>
+    </table>
+
+    <h2>Approved Leaves</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Leave Type</th>
+        <th>Comment</th>
+      </thead>
+      <% @approved_leaves.each do |leave|%>
+        <tr>
+          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.end_date.to_date %></td>
+          <td><%= leave.leave_type %></td>
+          <td><%= leave.comment %></td>
+        </tr>
+      <% end %>
+    </table>
+    
+    <h2>Rejected Leaves</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Leave Type</th>
+        <th>Comment</th>
+      </thead>
+      <% @rejected_leaves.each do |leave|%>
+        <tr>
+          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.end_date.to_date %></td>
+          <td><%= leave.leave_type %></td>
+          <td><%= leave.comment %></td>
+        </tr>
+      <% end %>
+    </table>
+    
+    calendar goes here?
+    
+  </div>
+</div>

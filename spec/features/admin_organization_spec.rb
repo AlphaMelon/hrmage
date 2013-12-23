@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "[Admin Organization]" do
   background do
-    sign_up_user("second@example.dev", "spree123")
+    sign_up_account("second@example.dev", "spree123")
     
     #create organization first
     visit root_path
@@ -16,7 +16,7 @@ feature "[Admin Organization]" do
   
   scenario "Edit Organization" do
     visit root_path
-    click_on "Becon"
+    click_on "Manage Organization"
     click_on "Edit"
     fill_in 'Name', with: 'Becon EDITED'
     click_on "Update Organization"

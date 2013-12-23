@@ -1,61 +1,56 @@
 <div class="row">
-  <div class="large-6 columns">
-    <table>
-      <tr>
-        <th>Last Name</th>
-        <td><%= @employee.last_name%></td>
-      </tr>
-      <tr>
-        <th>First Name</th>
-        <td><%= @employee.first_name%></td>
-      </tr>
-      <tr>
-        <th>E-mail</th>
-        <td><%= @employee.user.email%></td>
-      </tr>
-      <tr>
-        <th>Mobile Contact</th>
-        <td><%= @employee.mobile_contact%></td>
-      </tr>
-      <tr>
-        <th>Address</th>
-        <td><%= @employee.address%></td>
-      </tr>
-      
-    </table>
+  <div class="large-6 small-12 columns">
+    <div class="employees-container">
+      <div class="row">
+       <div class="large-4 small-12  columns">
+          <h5><%= @employee.first_name.upcase %></h5>
+          <% if @employee.photo? %>
+            <%= image_tag @employee.photo_url(:larger_thumb) %>
+          <% else %>
+            <%= image_tag("default-profile-photo.png")%>
+          <% end %>
+       </div>
+      <div class="large-8 small-12 columns">
+        <h5><%= @employee.first_name.capitalize %> Information</h5>
+        <p>Last Name: <%= @employee.last_name%><br>
+        First Name: <%= @employee.first_name%><br>
+        Email: <%= @employee.account.email if !@employee.account.nil?%><br>
+        Mobile Contact: <%= @employee.mobile_contact%><br>
+        Address: <%= @employee.address%></p>
+        <h5>Departments</h5>
+        <p>
+          <% @employee.departments.each do |d|%>
+            <%= d.name %>, 
+          <% end %>
+        </p>
+      </div>
+     </div>
+    </div>
   </div>
-  <div class="large-6 columns">
-    <h5>Photo</h5>
-    <% if @employee.photo? %>
-      <%= image_tag @employee.photo_url(:larger_thumb) %>
-    <% else %>
-      <%= image_tag("default-profile-photo.png")%>
-    <% end %>
-  </div>
- 
 </div>
+
 <div class="row">
   <div class="large-12 columns">
-    <h5><%=@employee.last_name %>'s Documents</h5>
-    <ul class="small-block-grid-2 large-block-grid-4">
+    <h5><%=@employee.last_name.capitalize %>'s Documents</h5>
+    <ul class="clearing-thumbs " data-clearing>
       <% @employee.documents.each do |document| %>
         <li>
           <% if document.image? %>
             <%= link_to image_tag(document.image_url(:larger_thumb), class: "th"), image_path(document.image) %><br />
           <% else %>
-            <%= image_tag("not_available.jpg", size: "200x200", class: "th")%><br />
+            <%= image_tag("not_available.jpg", size: "200x200", class: "th")%>
           <% end %>
-          <%= document.name %> | 
-          <%= link_to "Edit", edit_employee_document_path(@employee, document)%> |
-          <%= link_to "Delete", employee_document_path(@employee, document), method: :delete, data: { confirm: 'Are you sure?' }%>
+          <%= document.name.capitalize %> | 
+          <%= link_to "Edit", edit_organization_employee_document_path(@organization, @employee, document)%> |
+          <%= link_to "Delete", organization_employee_document_path(@organization, @employee, document), method: :delete, data: { confirm: 'Are you sure?' }%>
         </li>
       <% end %>
     </ul>
-    <%= link_to "New Document", new_employee_document_path(@employee)%>
   </div>
 </div>
 <div class="row">
   <div class="large-12 columns">
+    <%= link_to "Add New Document", new_organization_employee_document_path(@organization, @employee), class: "button" %><br>
     <%= link_to "Back", :back %>
   </div>
 </div>

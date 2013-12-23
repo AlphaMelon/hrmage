@@ -11,12 +11,15 @@
   </ul>
 <% end %>
 
-<%if %>
+<%if request.env['PATH_INFO'] == "/organizations/#{current_organization.id}/leaves" %>
   <ul class="side-nav">
     <li><h6>My Leaves</h6></li>
     <li>
       <%= link_to "Apply Leave", new_organization_leave_path(current_organization)%>
     </li>
-    <li><%= link_to "My Leaves", my_leaves_path %></li>
+    <li><%= link_to "Apply Overtime" %></li>
+    <li class="divider"></li>
+    <li><%= link_to "Who's On Leave" %></li>
+    <li><%= link_to "Approvals" %></li>
   </ul>
 <%end %>

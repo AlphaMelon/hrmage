@@ -68,6 +68,8 @@ gem 'foundation-rails'
 gem 'foundation-icons-sass-rails', github: 'zaiste/foundation-icons-sass-rails'
 
 
+gem 'puma'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
@@ -75,7 +77,10 @@ gem 'foundation-icons-sass-rails', github: 'zaiste/foundation-icons-sass-rails'
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano', group: :development
+gem 'capistrano', '~> 3.0', group: :development
+gem 'capistrano-bundler', github: 'capistrano/bundler'
+gem 'capistrano-rbenv', github: 'capistrano/rbenv'
 
+gem 'capistrano3-puma'
 # Use debugger
 # gem 'debugger', group: [:development, :test]

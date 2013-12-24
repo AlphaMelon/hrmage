@@ -5,6 +5,7 @@
       <thead>
         <th>Last Name</th>
         <th>First Name</th>
+        <th>Position</th>
         <th>E-mail</th>
         <th>Mobile Contact</th>
         <th>Address</th>
@@ -15,6 +16,7 @@
         <tbody>
           <td><%= employee.last_name%></td>
           <td><%= employee.first_name%></td>
+          <td><%= employee.position.name if !employee.position.blank?%></td>
           <td><%= employee.account.email if !employee.account.nil?%></td>
           <td><%= employee.mobile_contact%></td>
           <td><%= employee.address%></td>

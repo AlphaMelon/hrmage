@@ -19,31 +19,38 @@
           <%= label_tag(:start_date, "Start date", class: "date required", for: "leave_start_date_1i") %>
         </div>
         <div class="large-9 columns">
-          <%= f.input_field :start_date, as: :date, start_year: Date.today.year, end_year: Date.today.year + 10 %>
+          <div class="large-5">
+            <%= date_field_tag(:start_date, as: :date, start_year: Date.today.year, end_year: Date.today.year + 10) %>
+          </div>
         </div>
         <div class="large-3 columns">
           <%= label_tag(:end_date, "End date", class: "date required", for: "leave_end_date_1i") %>
         </div>
         <div class="large-9 columns">
-          <%= f.input_field :end_date, as: :date, start_year: Date.today.year, end_year: Date.today.year + 10  %>
+          <div class="large-5">
+            <%= date_field_tag(:end_date, as: :date, start_year: Date.today.year, end_year: Date.today.year + 10 ) %>
+          </div>
         </div>
         <div class="large-3 columns">
           <%= label_tag(:leave_type, "Leave type", class: "select optional", for: "leave_leave_type") %>
         </div>
         <div class="large-9 columns">
-          <%= f.input_field :leave_type, collection: ["Annual", "Medical"], include_blank: false %>
+          <div class="large-5">
+            <%= f.input_field :leave_type, collection: ["Annual", "Medical"], include_blank: false %>
+          </div>
         </div>
         <div class="large-3 columns">
           <%= label_tag(:comment, "Comment", class: "string optional", for: "leave_comment") %>
         </div>
         <div class="large-9 columns">
-          <%= f.input_field :comment %>
+          <div class="large-5">
+            <%= f.text_area :comment %>
+          </div>
         </div>
         <div class="large-3 columns"></div>
         <div class="large-9 columns">
           <%= f.button :submit, "Apply Leave" %>
         </div>
-        <input type="text" class="span2" value="02-16-2012" id="dp1">
 
       </div>        
     <% end %>

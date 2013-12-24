@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h2>Position's List</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Max Leaves</th>
+        <th></th>
+      </thead>
+      <% @positions.each do |position|%>
+        <tr>
+          <td><%= position.name %></td>
+          <td><%= position.max_leaves %></td>
+          <td><%= link_to "Edit", edit_organization_position_path(current_organization, position) %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to "Add New Position", new_organization_position_path(current_organization), class: "button" %>
+  </div>
+</div>

@@ -29,6 +29,18 @@
           <%= f.input_field :first_name %>
         </div>
         <div class="large-3 small-4 columns">
+          <%= label_tag(:position_id, "Position", class: "string optional left inline", for: "employee_position_id") %>
+        </div>
+        <div class="large-9 small-8 columns">
+          <%= f.input_field :position_id, collection: current_organization.positions, include_blank: false %>
+        </div>
+        <div class="large-3 small-4 columns">
+          <%= label_tag(:available_leaves, "Available Leaves", class: "string optional left inline", for: "employee_available_leaves") %>
+        </div>
+        <div class="large-9 small-8 columns">
+          <%= f.input_field :available_leaves, placeholder: "leave blank to set to default amount of leaves according to position" %>
+        </div>
+        <div class="large-3 small-4 columns">
           <%= label_tag(:mobile_contact, "Mobile contact", class: "string optional left inline", for: "employee_mobile_contact") %>
         </div>
         <div class="large-9 small-8 columns">

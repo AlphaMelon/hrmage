@@ -50,3 +50,22 @@
     padding-right: 0.83em;
   }
 }
+.back-footer{
+  background-color: whiteSmoke;
+  border: 1px solid #DADADA;
+  padding-left: 1em;
+  ul{
+    padding-bottom: 0em;
+    margin-bottom: 0em;
+  }
+  h5{
+    margin-bottom: 1em;
+  }
+  .top-nav-bar{
+    margin-top: 0em;
+  }
+}
+.footer{
+  padding-top: 1em;
+  padding-bottom: 1em;
+}

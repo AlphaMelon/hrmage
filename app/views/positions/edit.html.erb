@@ -1,15 +1,5 @@
 <div class="row">
   <div class="large-12 columns">
-    <div class="organ-container">
-    <ul class="breadcrumbs">
-        <li><%=link_to "organization", organization_positions_path(current_organization) %></li>
-        <li class="current"><%=link_to "create organization", edit_organization_position_path(current_organization, @position) %></li>
-      </ul>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="large-12 columns">
       <%= render 'form' %>
   </div>
 </div>

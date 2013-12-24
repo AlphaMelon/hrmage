@@ -20,7 +20,8 @@
         </div>
         <div class="large-9 columns">
           <div class="large-5">
-            <%= date_field_tag(:start_date, as: :date, start_year: Date.today.year, end_year: Date.today.year + 10) %>
+            <%= date_field_tag(:start_date) %>
+
           </div>
         </div>
         <div class="large-3 columns">
@@ -28,7 +29,7 @@
         </div>
         <div class="large-9 columns">
           <div class="large-5">
-            <%= f.input_field :leave_type, collection: ["Annual", "Medical"], include_blank: false %>
+            <%= f.input_field :leave_type_id, collection: ["Annual", "Medical"], include_blank: false %>
           </div>
         </div>
         <div class="large-3 columns">

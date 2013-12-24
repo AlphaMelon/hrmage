@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.ui.all
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
@@ -28,3 +29,7 @@
 // })
 
 $(function(){ $(document).foundation(); });
+
+if(!Modernizr.inputtypes.date){
+  $("input[type='date']").datepicker();
+}

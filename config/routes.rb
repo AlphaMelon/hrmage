@@ -9,6 +9,7 @@ Hrmage::Application.routes.draw do
     resources :account_organizations
     resources :departments
     resources :leaves
+    resources :leave_types
     resources :employees do
       resources :employee_departments
       resources :documents

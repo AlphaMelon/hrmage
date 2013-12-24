@@ -3,6 +3,8 @@ class Leave < ActiveRecord::Base
   belongs_to :organization
   before_save :set_default_values
   validate :start_date_cannot_be_later_than_end_date
+  
+  belongs_to :leave
   validates :start_date, presence: true
   validates :end_date, presence: true
 
@@ -16,4 +18,7 @@ class Leave < ActiveRecord::Base
     end
   end
   
+  def approve
+    
+  end
 end

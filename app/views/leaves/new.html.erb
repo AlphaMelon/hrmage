@@ -3,20 +3,20 @@
     <h3>Applying Leaves</h3>
     <%= simple_form_for [@organization, @leave] do |f| %>
       <% if @leave.errors.any? %>
-        <div id="error_explanation">
-	        <h2><%= pluralize(@leave.errors.count, "error") %> prohibited this worksheet from being saved:</h2>
-
+        <div class="alert-box">
+	        <h6><%= pluralize(@leave.errors.count, "error") %> prohibited this worksheet from being saved:</h6>
 	        <ul>
 		        <% @leave.errors.full_messages.each do |msg| %>
 		        <li><%= msg %></li>
 		        <% end %>
 	        </ul>
+          <a href="#" class="close">&times;</a>
         </div>
       <% end %>
       
       <div class="row">
         <div class="large-3 columns">
-          <%= label_tag(:start_date, "Start date", class: "date required", for: "leave_start_date_1i") %>
+          <%= label_tag(:start_date, "Start date", class: "date required left inline", for: "start_date") %>
         </div>
         <div class="large-9 columns">
           <div class="large-5">
@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="large-3 columns">
-          <%= label_tag(:leave_type, "Leave type", class: "select optional", for: "leave_leave_type") %>
+          <%= label_tag(:leave_type_id, "Leave type", class: "select optional left inline", for: "leave_type_id") %>
         </div>
         <div class="large-9 columns">
           <div class="large-5">
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="large-3 columns">
-          <%= label_tag(:comment, "Comment", class: "string optional", for: "leave_comment") %>
+          <%= label_tag(:comment, "Comment", class: "string optional left inline", for: "leave_comment") %>
         </div>
         <div class="large-9 columns">
           <div class="large-5">

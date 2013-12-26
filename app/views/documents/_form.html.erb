@@ -14,10 +14,24 @@
 	        </ul>
         </div>
       <% end %>
+      <div class="row">
+        <div class="large-3 small-3 columns">
+          <%= label_tag(:name, "Name", class: "string required left inline", for: "document_name") %>
+        </div>
+        <div class="large-9 small-9 columns">
+          <%= f.input_field :name %>
+        </div>
+        <div class="large-3 small-3 columns">
+          <%= label_tag(:image, "Image", class: "file optional left inline", for: "document_image") %>
+        </div>
+        <div class="large-9 small-9 columns">
+          <%= f.input_field :image, as: :file %>
+          <%= f.button :submit %>
+        </div>
+      </div>
       
-      <%= f.input :name %>
-      <%= f.input :image, as: :file %>
-      <%= f.button :submit %>
+      
+      
     <% end %>
 
   </div>

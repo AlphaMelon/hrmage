@@ -1,7 +1,6 @@
 <div class="row">
   <div class="large-12 small-12 columns">
      <%= simple_form_for [current_organization, @position] do |f| %>
-     
       <% if @position.errors.any? %>
         <div data-alert class="alert-box warning">
 	        <h6><%= pluralize(@position.errors.count, "error") %> prohibited this worksheet from being saved:</h6>

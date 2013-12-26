@@ -13,7 +13,7 @@ class Leave < ActiveRecord::Base
   def approve
     self.status = "Approved"
     self.save
-    self.type.calculate(self.employee)
+    self.leave_type.calculate(self.employee)
   end
 
   def reject

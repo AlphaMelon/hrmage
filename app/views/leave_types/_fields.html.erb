@@ -1,0 +1,40 @@
+<% if @leave_type.errors.any? %>
+  <div data-alert class="alert-box warning">
+    <h6><%= pluralize(@leave_type.errors.count, "error") %> prohibited this worksheet from being saved:</h6>
+    <ul>
+      <% @leave_type.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+    <a href="#" class="close">&times;</a>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="large-3 small-3 columns">
+    <%= label_tag(:name, "Name", class: "string optional left inline", for: "position_name") %>
+  </div>
+  <div class="large-9 small-9 columns">
+    <%= f.input_field :name, :autofocus => true %>
+  </div>
+  <div class="large-3 small-3 columns">
+    <%= label_tag(:affected_entity, "Affected Entity", class: "string optional left inline", for: "position_affected_entity") %>
+  </div>
+  <div class="large-9 small-9 columns">
+    <%= f.input_field :affected_entity, collection: [["Leave",'count'], ["Salary","salary"], ["Leave & Salary",'"count","salary"']], include_blank: true %>
+  </div>
+  <div class="large-3 small-3 columns">
+    <%= label_tag(:type, "Type", class: "string optional left inline", for: "position_type") %>
+  </div>
+  <div class="large-9 small-9 columns">
+    <%= f.input_field :type, collection: [["Substraction","LeaveSubstraction"], ["Neutral", "LeaveNeutral"], ["Addition", "LeaveAddition"]], include_blank: false %>
+  </div>
+  <div class="large-3 small-3 columns">
+    <%= label_tag(:description, "Description", class: "string optional left inline", for: "position_description") %>
+  </div>
+  <div class="large-9 small-9 columns">
+    <%= f.input_field :description %>
+  </div>
+  <div class="large-3 small-3 columns"></div>
+  <div class="large-9 small-9 columns"><%= f.button :submit %></div>
+</div>

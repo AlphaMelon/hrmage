@@ -12,17 +12,9 @@ class LeaveTypesController < ApplicationController
   end 
 
   def create
-    if leave_type_params[:type] == "Neutral"
-      @leave_type = LeaveType::Neutral.new
-    elsif leave_type_params[:type] == "Addition"
-      @leave_type = LeaveType::Addition.new
-    else
-      @leave_type = LeaveType::Substraction.new
-    end
-    @leave_type.attributes = leave_type_params
-    @leave_type.affected_entity = [leave_type_params[:affected_entity]]
+    @leave_type = LeaveType.new(leave_type_params)
+    @leave_type.affected_entity = leave_type_params[:affected_entity].delete('\"').split(',')
     @leave_type.organization_id = current_organization.id
-    
     if @leave_type.save
       redirect_to organization_leave_types_path(current_organization), notice: "Leave type successfully created"
     else
@@ -35,6 +27,8 @@ class LeaveTypesController < ApplicationController
   
   def update
 		if @leave_type.update(leave_type_params)
+		  @leave_type.affected_entity = leave_type_params[:affected_entity].delete('\"').split(',')
+		  @leave_type.save
 			redirect_to organization_leave_types_path(current_organization), notice: 'Leaves type succesfully updated'
 		else
 			render action: 'edit'
@@ -57,6 +51,14 @@ class LeaveTypesController < ApplicationController
 	end
 
 	def leave_type_params
-		params.require(:leave_type).permit(:name, :description, :affected_entity, :type)
+	  if !params[:leave_substraction].nil?
+	    params.require(:leave_substraction).permit(:name, :description, :affected_entity, :type)
+		elsif !params[:leave_neutral].nil?
+		  params.require(:leave_neutral).permit(:name, :description, :affected_entity, :type)
+		elsif !params[:leave_addition].nil?
+		  params.require(:leave_addition).permit(:name, :description, :affected_entity, :type)
+		else
+		  params.require(:leave_type).permit(:name, :description, :affected_entity, :type)
+		end
 	end
 end

@@ -15,15 +15,15 @@
   </ul>
 <% end %>
 
-<%if %>
+<%if account_signed_in? %>
   <ul class="side-nav">
     <li><h6>My Leaves</h6></li>
     <li>
-      <%= link_to "Apply Leave", new_organization_leave_path(current_organization)%>
+      <%= link_to "Apply Leave", new_organization_leave_path(current_organization) if !current_organization.id.nil?%>
     </li>
     <li><%= link_to "Apply Overtime" %></li>
     <li class="divider"></li>
     <li><%= link_to "Who's On Leave" %></li>
     <li><%= link_to "Approvals" %></li>
   </ul>
-<%end %>
+<% end %>

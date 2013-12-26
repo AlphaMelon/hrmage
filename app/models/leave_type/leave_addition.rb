@@ -1,4 +1,4 @@
-class LeaveType::Addition < LeaveType
+class LeaveAddition < LeaveType
 
   def calculate(options)
   

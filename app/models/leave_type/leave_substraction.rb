@@ -1,4 +1,4 @@
-class LeaveType::Substraction < LeaveType
+class LeaveSubstraction < LeaveType
 
   def calculate(options)
   

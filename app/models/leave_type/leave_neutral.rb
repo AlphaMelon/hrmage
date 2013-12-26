@@ -1,4 +1,4 @@
-class LeaveType::Neutral < LeaveType
+class LeaveNeutral < LeaveType
 
   def calculate(options)
   

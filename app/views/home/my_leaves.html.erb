@@ -8,18 +8,14 @@
       <thead>
         <th>Name</th>
         <th>Start Date</th>
-        <th>End Date</th>
         <th>Leave Type</th>
         <th>Comment</th>
-        <th></th>
-        <th></th>
       </thead>
       <% @pending_leaves.each do |leave|%>
         <tr>
           <td><%= leave.employee.last_name %></td>
           <td><%= leave.start_date.to_date %></td>
-          <td><%= leave.end_date.to_date %></td>
-          <td><%= leave.leave_type %></td>
+          <td><%= leave.leave_type.name %></td>
           <td><%= leave.comment %></td>
         </tr>
       <% end %>
@@ -30,7 +26,6 @@
       <thead>
         <th>Name</th>
         <th>Start Date</th>
-        <th>End Date</th>
         <th>Leave Type</th>
         <th>Comment</th>
       </thead>
@@ -38,8 +33,7 @@
         <tr>
           <td><%= leave.employee.last_name %></td>
           <td><%= leave.start_date.to_date %></td>
-          <td><%= leave.end_date.to_date %></td>
-          <td><%= leave.leave_type %></td>
+          <td><%= leave.leave_type.name %></td>
           <td><%= leave.comment %></td>
         </tr>
       <% end %>
@@ -50,7 +44,6 @@
       <thead>
         <th>Name</th>
         <th>Start Date</th>
-        <th>End Date</th>
         <th>Leave Type</th>
         <th>Comment</th>
       </thead>
@@ -58,8 +51,7 @@
         <tr>
           <td><%= leave.employee.last_name %></td>
           <td><%= leave.start_date.to_date %></td>
-          <td><%= leave.end_date.to_date %></td>
-          <td><%= leave.leave_type %></td>
+          <td><%= leave.leave_type.name %></td>
           <td><%= leave.comment %></td>
         </tr>
       <% end %>

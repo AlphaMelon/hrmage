@@ -13,6 +13,9 @@
 //= require jquery
 //= require jquery.ui.all
 //= require jquery_ujs
+//= require jquery.timepicker
+//= require base
+//= require datepair
 //= require foundation
 //= require turbolinks
 //= require_tree .

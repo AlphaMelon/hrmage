@@ -124,8 +124,12 @@
     
     <h3>Leave Calendar</h3>
     
-    Year : <%= @year %><br />
-    Month : <%= Date::MONTHNAMES[@month] %>
+    <%= simple_form_for :date, url: organization_leaves_path(current_organization), method: :get do |f| %>
+      Year : <%= f.input_field :year, collection: (@year-3..@year+3), include_blank: false, selected: @year %>
+      Month : <%= f.input_field :month, collection: @month_collection, include_blank: false, selected: @month %>
+      <%= f.submit "Change Date", class: "button"%>
+    <% end %> 
+  
     <table>
       <tr>
         <th></th>

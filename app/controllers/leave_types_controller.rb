@@ -3,6 +3,8 @@ class LeaveTypesController < ApplicationController
 	before_action :set_leave_type, only: [:show, :edit, :update, :destroy]
 	before_filter :authenticate_account!
   
+  load_and_authorize_resource
+  
   def index
     @leave_types = current_organization.leave_types.all
   end

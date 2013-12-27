@@ -3,6 +3,8 @@ class DepartmentsController < ApplicationController
 	before_action :set_organization
 	before_filter :authenticate_account!
 	
+	load_and_authorize_resource
+	
   def index
     @departments = @organization.departments.order(:id)
   end

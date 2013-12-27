@@ -7,12 +7,16 @@ class Ability
 
     account ||= Account.new # guest user (not logged in)
     organization ||= Organization.new
-    raise current_account.inspect
-    #if user.role == "Admin" || user.role == "Super Admin"
-    # can :manage, :all
-    #else
-    # can :read, :all
-    #end
+    
+    acc_org = AccountOrganization.where(account_id: account.id, organization_id: organization.id).first
+    
+    if acc_org.role == "Admin" || acc_org.role == "Super Admin"
+      can :manage, :all
+    elsif acc_org.role == "Employee"
+      can :create, Leave
+    else
+      cannot :manage, :all
+    end
     #
     # The first argument to `can` is the action you are giving the user 
     # permission to do.

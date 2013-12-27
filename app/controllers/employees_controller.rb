@@ -3,9 +3,11 @@ class EmployeesController < ApplicationController
 	before_action :set_organization
 	before_filter :authenticate_account!
 	
+	load_and_authorize_resource
+	
   def index
-    #authorize! :manage, @employees
     @employees = @organization.employees.order(:id)
+    #authorize! :manage, @employee
   end
   
   def show

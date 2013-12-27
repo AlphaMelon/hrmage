@@ -3,6 +3,8 @@ class PositionsController < ApplicationController
 	before_action :set_position, only: [:show, :edit, :update, :destroy]
 	before_filter :authenticate_account!
   
+  load_and_authorize_resource
+  
   def index
     @positions = current_organization.positions
   end

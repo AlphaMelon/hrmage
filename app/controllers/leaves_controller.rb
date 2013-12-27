@@ -2,11 +2,19 @@ class LeavesController < ApplicationController
 	before_action :set_organization
 	before_action :set_leave, only: [:show, :edit, :update, :destroy]
 	before_filter :authenticate_account!
+	
+	load_and_authorize_resource
   
   def index
     @pending_leaves = @organization.leaves.where(status: "Pending")
     @approved_leaves = @organization.leaves.where(status: "Approved")
     @rejected_leaves = @organization.leaves.where(status: "Rejected")
+    
+    @month = !params[:month].blank? ? params[:month] : DateTime.now.month
+    @year = !params[:year].blank? ? params[:year] : DateTime.now.year
+    @date = DateTime.new(@year, @month)
+    
+    @employees = current_organization.employees.order(:id)
   end
   
   def new

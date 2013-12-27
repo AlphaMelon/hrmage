@@ -28,6 +28,7 @@
         <th>Start Date</th>
         <th>Leave Type</th>
         <th>Comment</th>
+        <th>Approved By</th>
       </thead>
       <% @approved_leaves.each do |leave|%>
         <tr>
@@ -35,6 +36,7 @@
           <td><%= leave.start_date.to_date %></td>
           <td><%= leave.leave_type.name %></td>
           <td><%= leave.comment %></td>
+          <td><%= !leave.action_by.profile.nil? ? leave.action_by.profile.last_name : leave.action_by.email %></td>
         </tr>
       <% end %>
     </table>
@@ -46,6 +48,7 @@
         <th>Start Date</th>
         <th>Leave Type</th>
         <th>Comment</th>
+        <th>Rejected By</th>
       </thead>
       <% @rejected_leaves.each do |leave|%>
         <tr>
@@ -53,6 +56,7 @@
           <td><%= leave.start_date.to_date %></td>
           <td><%= leave.leave_type.name %></td>
           <td><%= leave.comment %></td>
+          <td><%= !leave.action_by.profile.nil? ? leave.action_by.profile.last_name : leave.action_by.email %></td>
         </tr>
       <% end %>
     </table>

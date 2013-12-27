@@ -30,6 +30,7 @@ class LeavesController < ApplicationController
   end
   
   def update
+    @leave.update(action_by_id: current_account.id)
 		if leave_params[:status] == "Approved"
 		  @leave.approve
 			redirect_to organization_leaves_path(current_organization), notice: 'Leaves request approved'

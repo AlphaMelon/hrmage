@@ -4,6 +4,7 @@ class EmployeesController < ApplicationController
 	before_filter :authenticate_account!
 	
   def index
+    #authorize! :manage, @employees
     @employees = @organization.employees.order(:id)
   end
   

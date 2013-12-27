@@ -10,8 +10,8 @@ class LeavesController < ApplicationController
     @approved_leaves = @organization.leaves.where(status: "Approved")
     @rejected_leaves = @organization.leaves.where(status: "Rejected")
     
-    @month = !params[:date][:month].blank? ? params[:date][:month].to_i : DateTime.now.month
-    @year = !params[:date][:year].blank? ? params[:date][:year].to_i : DateTime.now.year
+    @month = !params[:date].blank? ? params[:date][:month].to_i : DateTime.now.month
+    @year = !params[:date].blank? ? params[:date][:year].to_i : DateTime.now.year
     @date = DateTime.new(@year, @month)
     @month_collection = [
     ["January", 1], 

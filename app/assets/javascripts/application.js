@@ -12,10 +12,11 @@
 //
 //= require jquery
 //= require jquery.ui.all
-//= require jquery-ui-timepicker-addon
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
+//= require jquery-ui-timepicker-addon
+//= require jquery-ui-sliderAccess
 //= require_tree .
 
 // var t;
@@ -30,3 +31,8 @@
 // })
 
 $(function(){ $(document).foundation(); });
+
+$(function() {
+    $('#start_date').datetimepicker();
+  });
+

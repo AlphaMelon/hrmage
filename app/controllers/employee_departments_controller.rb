@@ -4,6 +4,8 @@ class EmployeeDepartmentsController < ApplicationController
 	before_action :set_employee_department, only: [:destroy]
 	before_filter :authenticate_account!
 	
+	load_and_authorize_resource
+	
   def new
     @employee_department = EmployeeDepartment.new
     @departments = @organization.departments

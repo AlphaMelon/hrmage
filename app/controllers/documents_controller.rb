@@ -4,6 +4,8 @@ class DocumentsController < ApplicationController
 	before_action :set_document, only: [:edit, :update, :destroy]
 	before_filter :authenticate_account!
   
+  load_and_authorize_resource
+  
   def new
     @document = @employee.documents.new
   end 

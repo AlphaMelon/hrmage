@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation) }
   end
   
+  def current_ability
+    @current_ability ||= Ability.new(current_account, current_organization)
+  end
+  
   def current_organization
     @current_organization
   end

@@ -68,7 +68,7 @@
 </div>
 
 <div class="row">
-  <div class="large-6 columns">    
+  <div class="large-12 columns">    
     <h2>Pending Leaves</h2>
     <table>
       <thead>
@@ -123,52 +123,68 @@
     </table>
     
     <h3>Leave Calendar</h3>
-    
-    <%= simple_form_for :date, url: organization_leaves_path(current_organization), method: :get do |f| %>
-      Year : <%= f.input_field :year, collection: (@year-3..@year+3), include_blank: false, selected: @year %>
-      Month : <%= f.input_field :month, collection: @month_collection, include_blank: false, selected: @month %>
-      <%= f.submit "Change Date", class: "button"%>
-    <% end %> 
-  
-    <table>
-      <tr>
-        <th></th>
-        <% (1..@date.end_of_month.day).each do |d|%>
-          <th><%= d%></th>
-        <% end %>
-      </tr>
-      
-      <% @employees.each do |employee|%>
-        <tr>
-          <th><%= employee.last_name%></th>
-          <% count = 1 %>
-          <% while count <= @date.end_of_month.day%>
-            <% got_leave = false %>
-            <% duration = 0 %>
-            <% employee.leaves.each do |emp_lea|%>
-              <% if emp_lea.start_date.to_date == Date.new(@year,@month,count)%>
-                <% got_leave = true %>
-                <% duration = emp_lea.duration_seconds/24/60/60 %>
-                <% break %>
-              <% else %>
-                <% got_leave = false %>
-              <% end %>
-            <% end %>
-            
-            <% if got_leave %>
-              <%(1..duration).each do |du|%>
-                <th>X</th>
-              <% end %>
-              <% count = count + duration%>
-            <% else %>
-              <th>O</th>
-              <% count = count + 1 %>
-            <% end %>
-            <% puts count%>
+
+    <div class="row">
+      <%= simple_form_for :date, url: organization_leaves_path(current_organization), method: :get do |f| %>
+        <div class="large-3 small-3 columns">
+          <%= label_tag(:year, "Year", class: "select required left inline", for: "date_year") %>
+        </div>
+        <div class="large-9 small-9 columns">
+          <%= f.input_field :year, collection: (@year-3..@year+3), include_blank: false, selected: @year %>
+        </div>
+        <div class="large-3 small-3 columns">
+          <%= label_tag(:month, "Month", class: "select required left inline", for: "date_month") %>
+        </div>
+        <div class="large-9 small-9 columns">
+          <%= f.input_field :month, collection: @month_collection, include_blank: false, selected: @month %>
+           <%= f.submit "Change Date", class: "button"%>
+        </div>
+      <% end %> 
+    </div>
+
+    <div class="table-overflow">
+      <table>
+        <thead>
+          <th></th>
+          <% (1..@date.end_of_month.day).each do |d|%>
+            <th><%= d%></th>
           <% end %>
-        </tr>
-      <% end %>
-    </table>
+        </thead>
+        
+        <tbody>
+        <% @employees.each do |employee|%>
+          <tr>
+            <td><%= employee.last_name%></td>
+            <% count = 1 %>
+            <% while count <= @date.end_of_month.day%>
+              <% got_leave = false %>
+              <% duration = 0 %>
+              <% employee.leaves.each do |emp_lea|%>
+                <% if emp_lea.start_date.to_date == Date.new(@year,@month,count)%>
+                  <% got_leave = true %>
+                  <% duration = emp_lea.duration_seconds/24/60/60 %>
+                  <% break %>
+                <% else %>
+                  <% got_leave = false %>
+                <% end %>
+              <% end %>
+              
+              <% if got_leave %>
+                <%(1..duration).each do |du|%>
+                  <td class="absent"></td>
+                <% end %>
+                <% count = count + duration%>
+              <% else %>
+                <td class="present"></td>
+                <% count = count + 1 %>
+              <% end %>
+              <% puts count%>
+            <% end %>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
     
   </div>
 </div>

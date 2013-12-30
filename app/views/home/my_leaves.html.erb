@@ -20,7 +20,25 @@
         </tr>
       <% end %>
     </table>
-
+    
+    <h2>Waiting for Verification Leaves</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>Leave Type</th>
+        <th>Comment</th>
+      </thead>
+      <% @verification_needed_leaves.each do |leave|%>
+        <tr>
+          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.leave_type.name %></td>
+          <td><%= leave.comment %></td>
+        </tr>
+      <% end %>
+    </table>
+    
     <h2>Approved Leaves</h2>
     <table>
       <thead>

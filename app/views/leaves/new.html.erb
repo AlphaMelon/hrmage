@@ -20,9 +20,7 @@
           </div>
           <div class="large-9 columns">
             <div class="large-5">
-              <%#= date_field_tag(:start_date) %>
-             <!--  <input type="text" id="date_start"> -->
-              <%= text_field_tag :start_date %>
+              <%= f.input_field :start_date, as: :string, autocomplete: :off %>
             </div>
           </div>
           <div class="large-3 columns">

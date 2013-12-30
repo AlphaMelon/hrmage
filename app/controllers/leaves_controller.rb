@@ -7,8 +7,9 @@ class LeavesController < ApplicationController
   
   def index
     @pending_leaves = @organization.leaves.where(status: "Pending")
-    @approved_leaves = @organization.leaves.where(status: "Approved")
-    @rejected_leaves = @organization.leaves.where(status: "Rejected")
+    @verification_needed_leaves = @organization.leaves.where(status: "Verification Needed")
+    @approved_leaves = @organization.leaves.where(status: "Approved").last(3)
+    @rejected_leaves = @organization.leaves.where(status: "Rejected").last(3)
     
     @month = !params[:date].blank? ? params[:date][:month].to_i : DateTime.now.month
     @year = !params[:date].blank? ? params[:date][:year].to_i : DateTime.now.year
@@ -40,8 +41,8 @@ class LeavesController < ApplicationController
   def create
     @leave = current_organization.leaves.new(leave_params)
     @leave.employee_id = current_account.profile.id
-    @leave.start_date = params[:start_date]
     @leave.duration_seconds = @leave.duration_seconds.days
+    @leave.status = "Verification Needed" if !@leave.leave_type.approval_needed
     if @leave.save
       redirect_to my_leaves_path, notice: "Leave successfully applied, please wait for admin to approve"
     else

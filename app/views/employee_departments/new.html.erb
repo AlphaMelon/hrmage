@@ -1,17 +1,4 @@
 <div class="row">
-  <div class="large-6 small-12 columns">
-    <div class="employees-container">
-      <ul class="breadcrumbs">
-        <li><%=link_to "organization", organizations_path %></li>
-        <li><%= link_to @organization.name, organization_path(@organization)%></li>
-        <li><%= link_to "Employee list", organization_employees_path(@organization) %></li>
-        <li class="current"><%= link_to "Edit", edit_organization_employee_path(@organization, @employee)%></li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="row">
   <div class="large-6 columns">
 
     <% if @departments.count != 0%>

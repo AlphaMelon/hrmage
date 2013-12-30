@@ -9,5 +9,6 @@ class HomeController < ApplicationController
     @pending_leaves = current_account.profile.leaves.where(status: "Pending")
     @approved_leaves = current_account.profile.leaves.where(status: "Approved")
     @rejected_leaves = current_account.profile.leaves.where(status: "Rejected")
+    @verification_needed_leaves = current_account.profile.leaves.where(status: "Verification Needed")
   end
 end

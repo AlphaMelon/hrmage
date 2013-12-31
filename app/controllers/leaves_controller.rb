@@ -6,6 +6,7 @@ class LeavesController < ApplicationController
 	load_and_authorize_resource
   
   def index
+    @leaves = @organization.leaves.all
     @pending_leaves = @organization.leaves.where(status: "Pending")
     @verification_needed_leaves = @organization.leaves.where(status: "Verification Needed")
     @approved_leaves = @organization.leaves.where(status: "Approved").last(3)

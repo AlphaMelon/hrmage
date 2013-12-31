@@ -12,14 +12,22 @@
     <table>
       <thead>
         <th>Name</th>
-        <th></th>
-        <th></th>
+        <th>Action</th>
       </thead>
       <% @departments.each do |department|%>
         <tr>
           <td><%= department.name%></td>
-          <td><%= link_to "Show", organization_department_path(@organization, department)%></td>
-          <td><%= link_to "Edit", edit_organization_department_path(@organization, department)%></td>
+          <td>
+            <a href="#" data-dropdown="drop_<%= department.id %>" class="tiny button dropdown">Details</a>
+            <ul id="drop_<%= department.id %>" data-dropdown-content class="f-dropdown">
+              <li>
+                <%= link_to "Show", organization_department_path(@organization, department)%>
+              </li>
+              <li>
+                <%= link_to "Edit", edit_organization_department_path(@organization, department)%>
+              </li>
+            </ul>
+          </td>
         </tr>
       <% end %>
     </table>

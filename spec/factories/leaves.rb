@@ -1,11 +1,9 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :leafe, :class => 'Leave' do
-    start_date ""
-    end_date ""
-    comment ""
-    leave_type ""
-    properties ""
+  factory :leave do
+    start_date "2014-01-15 00:00:00"
+    comment "vacation"
+    duration_seconds 172800
   end
 end

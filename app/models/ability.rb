@@ -4,18 +4,20 @@ class Ability
   def initialize(account, organization)
     # Define abilities for the passed in user here. For example:
     #
-
     account ||= Account.new # guest user (not logged in)
     organization ||= Organization.new
-    
     acc_org = AccountOrganization.where(account_id: account.id, organization_id: organization.id).first
+    
+    if acc_org.nil?
+      acc_org = AccountOrganization.new
+    end
     
     if acc_org.role == "Admin" || acc_org.role == "Super Admin"
       can :manage, :all
     elsif acc_org.role == "Employee"
       can :create, Leave
     else
-      cannot :manage, :all
+      can :create, Organization
     end
     #
     # The first argument to `can` is the action you are giving the user 

@@ -11,10 +11,10 @@ feature "[Admin Employee's Document]" do
     click_on "Employee list"
     click_on "Show"
     click_on "New Document"
-		fill_in 'Name', with: 'IC'
+		fill_in 'Name', with: 'Ic'
 		click_on "Create Document"
     page.should have_content("Document successfully created")
-    page.should have_content("IC")
+    page.should have_content("Ic")
   end
 
   scenario "Edit Document" do
@@ -23,10 +23,10 @@ feature "[Admin Employee's Document]" do
     click_on "Employee list"
     click_on "Show"
     click_on "Edit"
-		fill_in 'Name', with: 'Edited IC'
+		fill_in 'Name', with: 'Edited ic'
 		click_on "Update Document"
     page.should have_content("Document successfully updated")
-    page.should have_content("Edited IC")
+    page.should have_content("Edited ic")
   end
   
   scenario "Delete Document" do

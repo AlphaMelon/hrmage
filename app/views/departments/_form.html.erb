@@ -1,0 +1,25 @@
+<%= simple_form_for [@organization, @department] do |f| %>
+
+  <% if @department.errors.any? %>
+    <div data-alert class="alert-box warning">
+      <h6><%= pluralize(@department.errors.count, "error") %> prohibited this worksheet from being saved:</h6>
+
+      <ul>
+        <% @department.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+      <a href="#" class="close">&times;</a>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="large-3 small-3 columns">
+      <%= label_tag(:name, "Name", class: "string optional left inline", for: "department_name") %>
+    </div>
+    <div class="large-9 small-9 columns">
+      <%= f.input_field :name %>
+      <%= f.button :submit %>
+    </div>
+  </div>
+<% end %>

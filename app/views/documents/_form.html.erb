@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="large-6 columns">
+
+    <%= simple_form_for [@organization, @employee, @document] do |f| %>
+    
+      <% if @document.errors.any? %>
+        <div id="error_explanation">
+	        <h2><%= pluralize(@document.errors.count, "error") %> prohibited this worksheet from being saved:</h2>
+
+	        <ul>
+		        <% @document.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		        <% end %>
+	        </ul>
+        </div>
+      <% end %>
+      <div class="row">
+        <div class="large-3 small-3 columns">
+          <%= label_tag(:name, "Name", class: "string required left inline", for: "document_name") %>
+        </div>
+        <div class="large-9 small-9 columns">
+          <%= f.input_field :name %>
+        </div>
+        <div class="large-3 small-3 columns">
+          <%= label_tag(:image, "Image", class: "file optional left inline", for: "document_image") %>
+        </div>
+        <div class="large-9 small-9 columns">
+          <%= f.input_field :image, as: :file %>
+          <%= f.button :submit %>
+        </div>
+      </div>
+      
+      
+      
+    <% end %>
+
+  </div>
+</div>

@@ -1,0 +1,80 @@
+.alert-box.account{
+  background-color: #c17d11;
+  a{
+    text-decoration: underline;
+    color: #fff;
+  }
+}
+.alert-box.notice {
+  background-color: #4793fd;
+  border-color: #457a1a;
+  color: white;
+}
+
+.devise-container{
+  margin-top: 1em;
+}
+.organ-container{
+  margin-top: 1em;
+}
+.department-container{
+  margin-top: 1em;
+}
+
+.employees-container{
+  margin-top: 1em;
+}
+
+.wizard-breadcrumbs > *:before {
+  content: "=>";
+}
+
+.wizard-breadcrumbs > *.current {
+  color: red;
+}
+
+.logo{
+  margin-top: 1em;
+}
+.top-nav-bar{
+  margin-top: 5em;
+  ul,li{
+    display: inline-block;
+    padding-right: 0.83em;
+  }
+}
+
+.user-panel{
+  ul,li{
+    display: inline-block;
+    padding-right: 0.83em;
+  }
+}
+.back-footer{
+  background-color: whiteSmoke;
+  border: 1px solid #DADADA;
+  padding-left: 1em;
+  ul{
+    padding-bottom: 0em;
+    margin-bottom: 0em;
+  }
+  h5{
+    margin-bottom: 1em;
+  }
+  .top-nav-bar{
+    margin-top: 0em;
+  }
+}
+.footer{
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+.present{
+  background-color: #0084b3;
+}
+.absent{
+  background-color: #da1337;
+}
+.table-overflow{
+  overflow-x:auto;
+}

@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="large-12 columns">
+    
+    <h1>My Leaves</h1>
+    
+    <h2>Pending Leaves</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>Leave Type</th>
+        <th>Comment</th>
+      </thead>
+      <% @pending_leaves.each do |leave|%>
+        <tr>
+          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.leave_type.name %></td>
+          <td><%= leave.comment %></td>
+        </tr>
+      <% end %>
+    </table>
+    
+    <h2>Waiting for Verification Leaves</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>Leave Type</th>
+        <th>Comment</th>
+      </thead>
+      <% @verification_needed_leaves.each do |leave|%>
+        <tr>
+          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.leave_type.name %></td>
+          <td><%= leave.comment %></td>
+        </tr>
+      <% end %>
+    </table>
+    
+    <h2>Approved Leaves</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>Leave Type</th>
+        <th>Comment</th>
+        <th>Approved By</th>
+      </thead>
+      <% @approved_leaves.each do |leave|%>
+        <tr>
+          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.leave_type.name %></td>
+          <td><%= leave.comment %></td>
+          <td><%= !leave.action_by.profile.nil? ? leave.action_by.profile.last_name : leave.action_by.email %></td>
+        </tr>
+      <% end %>
+    </table>
+    
+    <h2>Rejected Leaves</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>Leave Type</th>
+        <th>Comment</th>
+        <th>Rejected By</th>
+      </thead>
+      <% @rejected_leaves.each do |leave|%>
+        <tr>
+          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.leave_type.name %></td>
+          <td><%= leave.comment %></td>
+          <td><%= !leave.action_by.profile.nil? ? leave.action_by.profile.last_name : leave.action_by.email %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

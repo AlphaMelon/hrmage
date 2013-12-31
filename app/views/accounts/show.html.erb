@@ -1,0 +1,58 @@
+<% if !current_account.profile.nil?%>
+<div class="row">
+  <div class="large-6 small-12 columns">
+    <div class="employees-container">
+      <div class="row">
+       <div class="large-4 small-12  columns">
+          <h5><%= current_account.profile.first_name.upcase %></h5>
+          <% if current_account.profile.photo? %>
+            <%= image_tag current_account.profile.photo_url(:larger_thumb) %>
+          <% else %>
+            <%= image_tag("default-profile-photo.png") %>
+          <% end %>
+       </div>
+      <div class="large-8 small-12 columns">
+        <h5><%= current_account.profile.first_name.capitalize %> Information</h5>
+        <p>Last Name: <%= current_account.profile.last_name %><br>
+        First Name: <%= current_account.profile.first_name %><br>
+        Email: <%= current_account.email %><br>
+        Mobile Contact: <%= current_account.profile.mobile_contact %><br>
+        Address: <%= current_account.profile.address%><br>
+        Leave Remaining : <%= current_account.profile.available_leaves %> Days</p>
+      </div>
+     </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <h5><%=current_account.profile.last_name.capitalize %>'s Documents</h5>
+    <ul class="clearing-thumbs " data-clearing>
+      <% current_account.profile.documents.each do |document| %>
+        <li>
+          <% if document.image? %>
+            <%= link_to image_tag(document.image_url(:larger_thumb), class: "th"), image_path(document.image) %><br />
+          <% else %>
+            <%= image_tag("not_available.jpg", size: "200x200", class: "th")%>
+          <% end %>
+          <%= document.name %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <%= link_to "Back", :back %>
+  </div>
+</div>
+
+<% else %>
+  <div class="row">
+    <div class="large-6 columns">
+      <%= current_account.email%> <br />
+      This account is not linked to any profile yet
+    </div>
+  </div>
+<% end %>

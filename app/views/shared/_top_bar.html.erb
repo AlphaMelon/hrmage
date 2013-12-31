@@ -1,0 +1,67 @@
+<div class="contain-to-grid sticky">
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name hide-for-large">
+        <h1><%= link_to current_organization.name || "Organization" %></h1>
+      </li>
+      <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+      <li class="toggle-topbar menu-icon">
+        <a href="#">
+          <span>Menu</span>
+        </a>
+      </li>
+    </ul>
+
+    <section class="top-bar-section">     
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li class="divider"></li>
+        <% if account_signed_in? %>
+          <li class="has-dropdown">
+            <a href="#"><i class="fi-lightbulb large"></i></a>
+            <ul class="dropdown">
+              <li><%= link_to "My Leaves", my_leaves_path %></li>
+            </ul>
+          </li>
+          <li class="divider"></li>
+          <%if !current_account.profile.nil? && !current_organization.id.nil? %>
+            <!-- <li class="has-dropdown">
+              <%= link_to "Apply Leave", new_organization_leave_path(current_organization)%>
+              <ul class="dropdown">
+                <li><%= link_to "My Leaves", my_leaves_path %></li>
+              </ul>
+            </li> -->
+          <%end %>
+          
+          <li class="has-dropdown">
+            <a href="#">Hello <%= !current_account.profile.nil? ? current_account.profile.last_name : "new user" %></a>
+            <ul class="dropdown">
+              <li><%= link_to "View My Profile", account_path(current_account) %></li>
+              <li><%= link_to "Change my password", edit_account_registration_path %></li>
+              <li><%= link_to "Logout", destroy_account_session_path, method: :delete %></li>
+            </ul>
+          </li>
+          
+        <% else %>
+          <li><%= link_to "Sign In", account_session_path %></li>
+        <% end %>
+      </ul>
+
+      <!-- Left Nav Section -->
+      <ul class="left">
+        <%if account_signed_in? %>
+          <li class="has-dropdown">
+            <%= link_to current_organization.name || "Organization", organizations_path %>
+            <ul class="dropdown">
+              <% current_account.organizations.each do |org| %>
+                <li><%= link_to org.name.capitalize, host: org.domain %></li>
+              <% end %>
+              <li><%= link_to "Add New Organization", new_organization_path %></li>
+            </ul>
+          </li>
+          <li class="divider"></li>
+        <% end %>
+      </ul>
+    </section>
+  </nav>
+</div>

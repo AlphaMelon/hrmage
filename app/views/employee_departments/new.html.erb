@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="large-6 columns">
+
+    <% if @departments.count != 0%>
+      <%= simple_form_for [@organization, @employee, @employee_department] do |f| %>
+      
+        <% if @employee_department.errors.any? %>
+          <div id="error_explanation">
+	          <h2><%= pluralize(@employee_department.errors.count, "error") %> prohibited this worksheet from being saved:</h2>
+
+	          <ul>
+		          <% @employee_department.errors.full_messages.each do |msg| %>
+		          <li><%= msg %></li>
+		          <% end %>
+	          </ul>
+          </div>
+        <% end %>
+        
+        <p>Linking department to <%= @employee.last_name %></p>
+        <div class="row">
+          <div class="large-3 small-3 columns">
+            <%= label_tag(:department_id, "Department", class: "select optional left inline", for: "employee_department_department_id") %>
+          </div>
+          <div class="large-9 small-9 columns">
+            <%= f.input_field :department_id, collection: @departments, include_blank: false %>
+            <%= f.input :leader %>
+            <%= f.button :submit, "Link to employee" %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      This organization got no department yet, please add department at <%= link_to "here", organization_departments_path(@organization) %>
+    <% end %>
+
+  </div>
+</div>

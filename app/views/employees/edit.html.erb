@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="large-12 columns">
+  <%= render 'form' %>
+  <% if !@employee.account.nil? %>
+    <div class="row">
+      <div class="large-3 small-4 columns"></div>
+      <div class="large-9 small-8 columns">
+        <%= link_to "Edit Login Info", organization_employee_edit_login_info_path(@organization, @employee), class: "button"%>
+      </div>
+    </div>
+  <% else %>
+    <div class="row">
+      <div class="large-12 small-12 columns">
+        <div class="row">
+          <div class="large-3 small-4 columns"></div>
+          <div class="large-9 small-8 columns">
+            <%= link_to "Add Login", organization_employee_new_login_path(@organization, @employee), class: "button"%>
+            <%= link_to "Link this profile to my account", organization_employee_path(@organization, @employee, employee: {account_id: current_account.id}), method: :patch ,class: "button" if current_account.profile.nil? %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  
+  
+  <h3>Departments</h3>
+  <ul class="no-bullet">
+    <% @employee.employee_departments.each do |ed|%>
+      <li>
+        <%= ed.department.name %> - 
+        <%= ed.leader ? "Leader" : "Employee" %> - 
+        <%= link_to "Remove link", organization_employee_employee_department_path(@organization, @employee, ed), method: :delete, data: { confirm: 'Are you sure?' }%>
+      </li>
+    <% end %>
+  </ul>
+  
+  <%= link_to "Add department to this employee", new_organization_employee_employee_department_path(@organization, @employee), class: "button"%>
+  </div>
+</div>

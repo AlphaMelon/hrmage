@@ -1,0 +1,27 @@
+<% if !current_organization.id.nil? %>
+  <ul class="side-nav">
+    <li><h6><%= current_organization.name.capitalize %>'s Organization</h6></li>
+    <li><%= link_to "Department", organization_departments_path(current_organization) %></li>
+    <li class="divider"></li>
+    <li><%= link_to "Employee", organization_employees_path(current_organization) %></li>
+    <li class="divider"></li>
+    <li><%= link_to "Leave", organization_leaves_path(current_organization) , id: "organization_leaves"%></li>
+    <li class="divider"></li>
+    <li><%= link_to "Leave Types", organization_leave_types_path(current_organization) %></li>
+    <li class="divider"></li>
+    <li><%= link_to "Position", organization_positions_path(current_organization) %></li>  
+  </ul>
+<% end %>
+
+<%if account_signed_in? %>
+  <ul class="side-nav">
+    <li><h6>My Leaves</h6></li>
+    <li>
+      <%= link_to "Apply Leave", new_organization_leave_path(current_organization) if !current_organization.id.nil?%>
+    </li>
+    <li><%= link_to "Apply Overtime" %></li>
+    <li class="divider"></li>
+    <li><%= link_to "Who's On Leave" %></li>
+    <li><%= link_to "Approvals" %></li>
+  </ul>
+<% end %>

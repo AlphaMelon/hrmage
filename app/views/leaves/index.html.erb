@@ -1,0 +1,237 @@
+<div class="row">
+  <div class="large-12 small-12 columns">
+    <h1>My Leaves</h1>
+  </div>
+  
+  <hr>
+
+  <div class="large-12 small-12 columns">
+    <h6>Available Paid Leaves</h6>
+  </div>
+  <div class="large12 columns">
+    <div class="large-2 small-2 columns">
+      <h5 class="text-left">DATE</h5>
+    </div>
+    <div class=" progress success large-10 small-10 columns">
+      <span class="meter"></span>
+    </div>
+  </div>
+
+  <div class="large-12 columns">
+    <h6>Available Sick Leaves</h6>
+  </div>
+  <div class="large12 columns">
+    <div class="large-2 small-2 columns">
+      <h5 class="text-left">DATE</h5>
+    </div>
+    <div class=" progress alert large-10 small-10 columns">
+      <span class="meter"></span>
+    </div>
+  </div>
+
+  <div class="large-12 columns">
+    <h6>Available Overtimes</h6>
+  </div>
+  <div class="large12 columns">
+    <div class="large-2 small-2 columns">
+      <h5 class="text-left">DATE</h5>
+    </div>
+    <div class=" progress large-10 small-10 columns">
+      <span class="meter"></span>
+    </div>
+  </div>
+
+  <hr>
+
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <h1>History</h1>
+  </div>
+  <div class="large-12 columns">
+    <table>
+      <thead>
+        <th>Type</th>
+        <th>Reason</th>
+        <th>Duration</th>
+        <th>When</th>
+        <th>Status</th>
+        <th>Action</th>
+      </thead>
+      <% @leaves.each do |history|%>
+      <tbody>
+        <td><%= history.leave_type.name %></td>
+        <td><%= history.comment %></td>
+        <td><%= (history.duration_seconds)/60/60/24 %> Days</td>
+        <td><%= history.start_date.to_date.strftime("%d/%m/%Y") %> - <%= (history.start_date.to_date + ((history.duration_seconds)/60/60/24).days).strftime("%d/%m/%Y") %></td>
+        <td><%= history.status %></td>
+        <td>
+        <a href="#" data-dropdown="drop2" class="tiny button dropdown">Details</a>
+          <ul id="drop2" data-dropdown-content class="f-dropdown">
+            <li><a href="#">test</a></li>
+          </ul>
+        </td>
+      </tbody>
+      <%end%>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">    
+    <h2>Pending Leaves</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>Comment</th>
+        <th>Action</th>
+      </thead>
+      <% @pending_leaves.each do |leave|%>
+        <tr>
+          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.comment %></td>
+          <td>
+          <a href="#" data-dropdown="drop_<%=leave.id %>" class="tiny button dropdown">Details</a>
+            <ul id="drop_<%=leave.id %>" data-dropdown-content class="f-dropdown">
+              <li>
+                <%= link_to "Approve", organization_leave_path(current_organization, leave, leave: {status: "Approved"}), method: "patch"%>
+              </li>
+              <li>
+                <%= link_to "Reject", organization_leave_path(current_organization, leave, leave: {status: "Rejected"}), method: "patch"%>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    
+    <h2>Waiting for Verification Leaves</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>Leave Type</th>
+        <th>Comment</th>
+        <th>Action</th>
+      </thead>
+      <% @verification_needed_leaves.each do |leave|%>
+        <tr>
+          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.leave_type.name %></td>
+          <td><%= leave.comment %></td>
+          <td>
+            <a href="#" data-dropdown="drop_<%= leave.id %>" class="tiny button dropdown">Details</a>
+            <ul id="drop_<%= leave.id %>" data-dropdown-content class="f-dropdown">
+              <li>
+                <%= link_to "Verify", organization_leave_path(current_organization, leave, leave: {status: "Approved"}), method: "patch"%>
+              </li>
+              <li>
+                <%= link_to "Reject", organization_leave_path(current_organization, leave, leave: {status: "Rejected"}), method: "patch"%>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    
+    <h2>Approved Leaves</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>Comment</th>
+      </thead>
+      <% @approved_leaves.each do |leave|%>
+        <tr>
+          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.comment %></td>
+        </tr>
+      <% end %>
+    </table>
+    
+    <h2>Rejected Leaves</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>Comment</th>
+      </thead>
+      <% @rejected_leaves.each do |leave|%>
+        <tr>
+          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.comment %></td>
+        </tr>
+      <% end %>
+    </table>
+    
+    <h3>Leave Calendar</h3>
+
+    <div class="row">
+      <%= simple_form_for :date, url: organization_leaves_path(current_organization), method: :get do |f| %>
+        <div class="large-3 small-3 columns">
+          <%= label_tag(:year, "Year", class: "select required left inline", for: "date_year") %>
+        </div>
+        <div class="large-9 small-9 columns">
+          <%= f.input_field :year, collection: (@year-3..@year+3), include_blank: false, selected: @year %>
+        </div>
+        <div class="large-3 small-3 columns">
+          <%= label_tag(:month, "Month", class: "select required left inline", for: "date_month") %>
+        </div>
+        <div class="large-9 small-9 columns">
+          <%= f.input_field :month, collection: @month_collection, include_blank: false, selected: @month %>
+           <%= f.submit "Change Date", class: "button"%>
+        </div>
+      <% end %> 
+    </div>
+
+    <div class="table-overflow">
+      <table>
+        <thead>
+          <th></th>
+          <% (1..@date.end_of_month.day).each do |d|%>
+            <th><%= d%></th>
+          <% end %>
+        </thead>
+        
+        <tbody>
+        <% @employees.each do |employee|%>
+          <tr>
+            <td><%= employee.last_name%></td>
+            <% count = 1 %>
+            <% while count <= @date.end_of_month.day%>
+              <% got_leave = false %>
+              <% duration = 0 %>
+              <% employee.leaves.where(status: "Approved").each do |emp_lea|%>
+                <% if emp_lea.start_date.to_date == Date.new(@year,@month,count)%>
+                  <% got_leave = true %>
+                  <% duration = emp_lea.duration_seconds/24/60/60 %>
+                  <% break %>
+                <% else %>
+                  <% got_leave = false %>
+                <% end %>
+              <% end %>
+              
+              <% if got_leave %>
+                <%(1..duration).each do |du|%>
+                  <td class="absent"></td>
+                <% end %>
+                <% count = count + duration%>
+              <% else %>
+                <td class="present"></td>
+                <% count = count + 1 %>
+              <% end %>
+            <% end %>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="large-6 columns">
+    <%= render "breadcrumbs", breadcrumbs_step: "yourself"%>
+    <h3>Please tell us more about yourself.</h3>
+    <%= simple_form_for @employee, url: wizard_path, method: "put" do |f| %>
+      <%= f.input :last_name %>
+      <%= f.input :first_name %>
+      <%= f.input :mobile_contact %>
+      <%= f.input :address %>
+      <%= f.input :photo, as: :file %>
+      <%= f.button :submit, "Next Step" %>
+      <%#= link_to 'Next Step', wizard_path(:create_organization), class: "button" %>
+    <% end %>
+
+  </div>
+</div>

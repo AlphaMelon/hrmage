@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="large-12 columns">
+     <h2><%= @department.name.capitalize %> Department</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <h5>Employees of <%= @department.name%> Department</h5>
+    <table>
+      <thead>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>E-mail</th>
+        <th>Mobile Contact</th>
+        <th>Address</th>
+        <th>Department</th>
+        <th>Action</th>
+      </thead>
+      <% @department.employees.each do |employee|%>
+        <tr>
+          <td><%= employee.last_name%></td>
+          <td><%= employee.first_name%></td>
+          <td><%= employee.account.email if !employee.account.nil? %></td>
+          <td><%= employee.mobile_contact%></td>
+          <td><%= employee.address%></td>
+          <td><%= !employee.departments.blank? ? ("in " + employee.departments.count.to_s + " department") : "No Department Assigned"%>
+          <td>
+            <a href="#" data-dropdown="drop_<%=employee.id%>" class="tiny button dropdown">Details</a>
+            <ul id="drop_<%=employee.id%>" data-dropdown-content class="f-dropdown">
+              <li><%= link_to "Show", organization_employee_path(@organization, employee)%></li>
+              <li><%= link_to "Edit", edit_organization_employee_path(@organization,employee)%></li>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

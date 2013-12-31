@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="large-12 small-12 columns">
+    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+    <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%#= f.input :email, :required => true, :autofocus => true %>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <% end %>
+
+        <div class="row">
+          <div class="large-3 small-5 columns">
+            <%= label_tag(:password, "Password", class: "password optional left inline", for: "account_password") %>
+          </div>
+          <div class="large-9 small-7 columns">
+            <%= f.input_field :password, :autocomplete => "off", :required => false %>
+          </div>
+
+          <div class="large-3 small-5 columns">
+            <%= label_tag(:password_confirmation, "Password confirmation ", class: "password optional left inline", for: "account_password_confirmation") %>
+          </div>
+          <div class="large-9 small-7 columns">
+            <%= f.input_field :password_confirmation, :required => false %>
+          </div>
+
+          <div class="large-3 small-5 columns">
+            <%= label_tag(:current_password, "Current password", class: "password required left inline", for: "account_current_password") %>
+          </div>
+          <div class="large-9 small-7 columns">
+            <%= f.input_field :current_password, :placeholder => "we need your current password to confirm your changes", :required => true %>
+            <div class="form-actions">
+              <%= f.button :submit, "Update" %>
+            </div>
+            <%= link_to "Back", :back %>
+          </div>
+
+        </div>
+
+        
+        
+        
+      </div>
+
+    <% end %>
+
+    <%#= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>
+
+    
+
+  </div>
+</div>

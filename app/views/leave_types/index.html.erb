@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h2>Leave Type's List</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Approval Needed</th>
+        <th>Description</th>
+        <th>Affected Entity</th>
+        <th>Type</th>
+        <th></th>
+      </thead>
+      <% @leave_types.each do |leave_type|%>
+        <tr>
+          <td><%= leave_type.name %></td>
+          <td><%= leave_type.approval_needed %></td>
+          <td><%= leave_type.description %></td>
+          <td><%= leave_type.affected_entity %></td>
+          <td><%= leave_type.type %></td>
+          <td><%= link_to "Edit", edit_organization_leave_type_path(current_organization, leave_type) %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to "Add New Leave Type", new_organization_leave_type_path(current_organization), class: "button" %>
+  </div>
+</div>

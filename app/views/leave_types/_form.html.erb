@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="large-12 small-12 columns">
+    <% if !@leave_type.new_record? %>
+      <%= simple_form_for [current_organization, @leave_type], url: organization_leave_type_path(current_organization, @leave_type) do |f| %>
+        <%= render 'fields', f: f %>
+      <% end %>
+    <% else %>
+      <%= simple_form_for [current_organization, @leave_type] do |f| %>
+        <%= render 'fields', f: f %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

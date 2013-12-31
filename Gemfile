@@ -20,6 +20,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -47,7 +48,7 @@ end
 
 
 gem 'compass-rails' # you need this or you get an err
-gem 'zurb-foundation', '~> 4.0.0'
+
 
 
 gem 'carrierwave'
@@ -59,6 +60,17 @@ gem 'roo'
 gem 'cancan'
 gem 'simple_form', :github => 'plataformatec/simple_form'
 gem 'countries', github: 'hexorx/countries'
+gem 'devise'
+gem 'ancestry'
+gem 'wicked'
+
+#gem 'zurb-foundation', '~> 4.0.0'
+gem 'foundation-rails'
+gem 'foundation-icons-sass-rails', github: 'zaiste/foundation-icons-sass-rails'
+
+
+gem 'puma'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
@@ -66,7 +78,10 @@ gem 'countries', github: 'hexorx/countries'
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano', group: :development
+gem 'capistrano', '~> 3.0', group: :development
+gem 'capistrano-bundler', github: 'capistrano/bundler'
+gem 'capistrano-rbenv', github: 'capistrano/rbenv'
 
+gem 'capistrano3-puma'
 # Use debugger
 # gem 'debugger', group: [:development, :test]

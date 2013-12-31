@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h3>Applying Leaves</h3>
+    <% if current_organization.leave_types.count != 0 %>
+      <%= simple_form_for [@organization, @leave] do |f| %>
+        <% if @leave.errors.any? %>
+          <div id="error_explanation">
+              <h2><%= pluralize(@leave.errors.count, "error") %> prohibited this worksheet from being saved:</h2>
+              <ul>
+                <% @leave.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+          </div>
+        <% end %>
+        
+        <div class="row">
+          <div class="large-3 columns">
+            <%= label_tag(:start_date, "Start date", class: "date required left inline", for: "start_date") %>
+          </div>
+          <div class="large-9 columns">
+            <div class="large-5">
+              <%= f.input_field :start_date, as: :string, autocomplete: :off %>
+            </div>
+          </div>
+          <div class="large-3 columns">
+            <%= label_tag(:duration_seconds, "For how long", class: "date required left inline", for: "leave_duration_seconds") %>
+          </div>
+          <div class="large-9 columns">
+            <div class="large-5">
+              <%= f.input_field :duration_seconds %>
+            </div>
+          </div>
+          <div class="large-3 columns">
+            <%= label_tag(:leave_type_id, "Leave type", class: "select optional left inline", for: "leave_leave_type") %>
+          </div>
+          <div class="large-9 columns">
+            <div class="large-5">
+              <%= f.input_field :leave_type_id, collection: @leave_types, include_blank: false %>
+            </div>
+          </div>
+          <div class="large-3 columns">
+            <%= label_tag(:comment, "Comment", class: "string optional left inline", for: "leave_comment") %>
+          </div>
+          <div class="large-9 columns">
+            <div class="large-5">
+              <%= f.text_area :comment %>
+            </div>
+          </div>
+          <div class="large-3 columns"></div>
+          <div class="large-9 columns">
+            <%= f.button :submit, "Apply Leave" %>
+          </div>
+
+        </div>        
+      <% end %>
+    <% else %>
+      there is no leave type added yet, please contact your admin to add leave type.
+    <% end %>
+  </div>
+</div>

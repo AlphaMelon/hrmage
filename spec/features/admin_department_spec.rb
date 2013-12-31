@@ -3,6 +3,7 @@ require 'spec_helper'
 feature "[Admin Department]" do
   background do
     admin_login("spree@example.com", "spree123")
+    #click_on "Alphamelon"
   end
   
   scenario "Show Department" do

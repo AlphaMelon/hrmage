@@ -7,7 +7,7 @@ module AccountMacros
   
   def admin_login(email, password)
     visit new_account_session_path
-    click_on "Sign In"
+    #click_on "Sign In"
     fill_in "Email", with: email
     fill_in "Password", with: password
     click_on "Sign in"

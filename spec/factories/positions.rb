@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :position do
     name "Executive"
+    max_leaves 14
   end
 end

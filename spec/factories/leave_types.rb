@@ -2,10 +2,11 @@
 
 FactoryGirl.define do
   factory :leave_type do
-    name "MyString"
-    description "MyText"
-    affected_entity ""
-    type ""
+    name "Annual leave"
+    approval_needed true
+    description "yearly leaves"
+    affected_entity ["count", "salary"]
+    type "LeaveSubstraction"
     organization_id 1
   end
 end

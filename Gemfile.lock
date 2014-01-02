@@ -30,6 +30,13 @@ GIT
       activemodel (>= 4.0.0, < 4.1)
 
 GIT
+  remote: git://github.com/seuros/capistrano-puma.git
+  revision: 171622257c4543396ce6d8878af7e53e9bb9e37d
+  specs:
+    capistrano-puma (0.1.2)
+      capistrano (~> 3.0.0)
+
+GIT
   remote: git://github.com/zaiste/foundation-icons-sass-rails.git
   revision: 14554ad963c7258e5d40a460a0a12b0b1c0ce351
   specs:
@@ -80,8 +87,6 @@ GEM
       i18n
       rake (>= 10.0.0)
       sshkit (>= 0.0.23)
-    capistrano3-puma (0.1.0)
-      capistrano (~> 3.0.0)
     capybara (2.2.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -274,8 +279,8 @@ DEPENDENCIES
   cancan
   capistrano (~> 3.0)
   capistrano-bundler!
+  capistrano-puma!
   capistrano-rbenv!
-  capistrano3-puma
   capybara
   capybara-webkit
   carrierwave

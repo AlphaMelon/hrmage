@@ -49,10 +49,11 @@ RSpec.configure do |config|
   config.include(PositionMacros)
   config.include(LeaveTypeMacros)
   config.include(LeaveMacros)
+  config.include(EmployeeMacros)
   config.before(:each) do
     Capybara.javascript_driver = :webkit
     #Capybara.always_include_port = true
-    #Capybara.app_host = "alphamelontest.hrmage.dev"
+    Capybara.app_host = "http://alphamelontest.hrmage.dev:#{Capybara.server_port}"
     Employee.delete_all
     Account.delete_all
     Department.delete_all
@@ -66,9 +67,10 @@ RSpec.configure do |config|
     
     create_admin_account
     create_organization
-    create_document
     create_department
     create_position
+    create_employee
+    create_document
     create_leave_type
     create_leave
   end

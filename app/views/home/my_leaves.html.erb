@@ -1,82 +1,61 @@
-<div class="row">
-  <div class="large-12 columns">
+<% if !current_account.profile.nil? && !current_account.profile.position.nil?%>
+  <div class="row">
+    <div class="large-12 small-12 columns">
+      <h1>My Leaves</h1>
+    </div>
     
-    <h1>My Leaves</h1>
-    
-    <h2>Pending Leaves</h2>
-    <table>
-      <thead>
-        <th>Name</th>
-        <th>Start Date</th>
-        <th>Leave Type</th>
-        <th>Comment</th>
-      </thead>
-      <% @pending_leaves.each do |leave|%>
-        <tr>
-          <td><%= leave.employee.last_name %></td>
-          <td><%= leave.start_date.to_date %></td>
-          <td><%= leave.leave_type.name %></td>
-          <td><%= leave.comment %></td>
-        </tr>
-      <% end %>
-    </table>
-    
-    <h2>Waiting for Verification Leaves</h2>
-    <table>
-      <thead>
-        <th>Name</th>
-        <th>Start Date</th>
-        <th>Leave Type</th>
-        <th>Comment</th>
-      </thead>
-      <% @verification_needed_leaves.each do |leave|%>
-        <tr>
-          <td><%= leave.employee.last_name %></td>
-          <td><%= leave.start_date.to_date %></td>
-          <td><%= leave.leave_type.name %></td>
-          <td><%= leave.comment %></td>
-        </tr>
-      <% end %>
-    </table>
-    
-    <h2>Approved Leaves</h2>
-    <table>
-      <thead>
-        <th>Name</th>
-        <th>Start Date</th>
-        <th>Leave Type</th>
-        <th>Comment</th>
-        <th>Approved By</th>
-      </thead>
-      <% @approved_leaves.each do |leave|%>
-        <tr>
-          <td><%= leave.employee.last_name %></td>
-          <td><%= leave.start_date.to_date %></td>
-          <td><%= leave.leave_type.name %></td>
-          <td><%= leave.comment %></td>
-          <td><%= !leave.action_by.profile.nil? ? leave.action_by.profile.last_name : leave.action_by.email %></td>
-        </tr>
-      <% end %>
-    </table>
-    
-    <h2>Rejected Leaves</h2>
-    <table>
-      <thead>
-        <th>Name</th>
-        <th>Start Date</th>
-        <th>Leave Type</th>
-        <th>Comment</th>
-        <th>Rejected By</th>
-      </thead>
-      <% @rejected_leaves.each do |leave|%>
-        <tr>
-          <td><%= leave.employee.last_name %></td>
-          <td><%= leave.start_date.to_date %></td>
-          <td><%= leave.leave_type.name %></td>
-          <td><%= leave.comment %></td>
-          <td><%= !leave.action_by.profile.nil? ? leave.action_by.profile.last_name : leave.action_by.email %></td>
-        </tr>
-      <% end %>
-    </table>
+    <hr>
+
+    <div class="large-12 small-12 columns">
+      <h6>Available Leaves</h6>
+    </div>
+    <div class="large12 columns">
+      <div class="large-2 small-2 columns">
+        <h5 class="text-left"><%= current_account.profile.available_leaves%>/<%= current_account.profile.position.max_leaves%></h5>
+      </div>
+      <div class=" progress success large-10 small-10 columns">
+        <span class="meter" style="width: <%= @leaves_remaining_percentage%>%"></span>
+      </div>
+    </div>
+    <hr>
+
   </div>
-</div>
+
+  <div class="row">
+    <div class="large-12 columns">
+      <h2>History</h2>
+      <table>
+        <thead>
+          <td>Type</td>
+          <td>Reason</td>
+          <td>Duration</td>
+          <td>When</td>
+          <td>Status</td>
+          <td>Action</td>
+        </thead>
+        <% @my_leaves.each do |leave| %>
+        <tbody>
+          <td><%= leave.leave_type.name %></td>
+          <td><%= leave.comment %></td>
+          <td><%= (leave.duration_seconds)/60/60/24 %> Days</td>
+          <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %> - <%= (leave.start_date.to_date + ((leave.duration_seconds)/60/60/24).days).strftime("%d/%m/%Y") %></td>
+          <td><%= leave.status %></td>
+          <td>
+            <a href="#" data-dropdown="drop2" class="tiny button dropdown">Details</a>
+            <ul id="drop2" data-dropdown-content class="f-dropdown">
+              <li><a href="#">test</a></li>
+            </ul>
+          </td>
+        </tbody>
+        <%end%>
+      </table>
+    </div>
+  </div>
+
+<% else %>
+  <div class="row">
+    <div class="large-12 columns">
+      <p>Your profile is not ready</p>
+    </div>
+  </div>
+<% end %>

@@ -24,7 +24,7 @@
           <div class="large-9 small-9 columns">
             <%= f.input_field :department_id, collection: @departments, include_blank: false %>
             <%= f.input :leader %>
-            <%= f.button :submit, "Link to employee" %>
+            <%= f.button :submit, "Link to employee", class: "button success" %>
           </div>
         </div>
       <% end %>

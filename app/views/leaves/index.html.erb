@@ -178,14 +178,18 @@
           <%= label_tag(:year, "Year", class: "select required left inline", for: "date_year") %>
         </div>
         <div class="large-9 small-9 columns">
-          <%= f.input_field :year, collection: (@year-3..@year+3), include_blank: false, selected: @year %>
+          <div class="large-5 columns">
+            <%= f.input_field :year, collection: (@year-3..@year+3), include_blank: false, selected: @year %>
+          </div>
         </div>
         <div class="large-3 small-3 columns">
           <%= label_tag(:month, "Month", class: "select required left inline", for: "date_month") %>
         </div>
         <div class="large-9 small-9 columns">
-          <%= f.input_field :month, collection: @month_collection, include_blank: false, selected: @month %>
-           <%= f.submit "Change Date", class: "button"%>
+          <div class="large-5 columns">
+            <%= f.input_field :month, collection: @month_collection, include_blank: false, selected: @month %>
+            <%= f.submit "Change Date", class: "button success"%>
+          </div>
         </div>
       <% end %> 
     </div>

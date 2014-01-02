@@ -13,7 +13,7 @@
   </ul>
 <% end %>
 
-<%if account_signed_in? %>
+<%if account_signed_in?%>
   <ul class="side-nav">
     <li><h6>My Leaves</h6></li>
     <li>
@@ -25,3 +25,9 @@
     <li><%= link_to "Approvals" %></li>
   </ul>
 <% end %>
+
+<ul class="side-nav">
+  <li><%= link_to "Leave Category" %></li>
+  <li><%= link_to "Role Allocation" %></li>
+  <li><%= link_to "Report" %></li>
+</ul>

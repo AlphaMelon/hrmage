@@ -49,6 +49,7 @@ RSpec.configure do |config|
   config.include(PositionMacros)
   config.include(LeaveTypeMacros)
   config.include(LeaveMacros)
+  config.include(EmployeeMacros)
   config.before(:each) do
     Capybara.javascript_driver = :webkit
     #Capybara.always_include_port = true
@@ -66,9 +67,10 @@ RSpec.configure do |config|
     
     create_admin_account
     create_organization
-    create_document
     create_department
     create_position
+    create_employee
+    create_document
     create_leave_type
     create_leave
   end

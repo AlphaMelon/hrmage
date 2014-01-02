@@ -5,6 +5,6 @@ FactoryGirl.define do
     first_name "David"
     last_name "Wong"
     mobile_contact "016123214"
-    available_leaves 100
+    available_leaves 12
   end
 end

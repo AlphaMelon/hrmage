@@ -1,53 +1,103 @@
+
+
 <div class="row">
-  <div class="large-12 small-12 columns">
-    <h1>My Leaves</h1>
-  </div>
-  
-  <hr>
-
-  <div class="large-12 small-12 columns">
-    <h6>Available Paid Leaves</h6>
-  </div>
-  <div class="large12 columns">
-    <div class="large-2 small-2 columns">
-      <h5 class="text-left">DATE</h5>
-    </div>
-    <div class=" progress success large-10 small-10 columns">
-      <span class="meter"></span>
-    </div>
-  </div>
-
   <div class="large-12 columns">
-    <h6>Available Sick Leaves</h6>
+    <h1><%= current_organization.name %>'s employee's leaves</h1>
+    <h3>Pending Leaves</h3>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>Comment</th>
+        <th>Action</th>
+      </thead>
+      <% @pending_leaves.each do |leave|%>
+        <tr>
+          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.comment %></td>
+          <td>
+          <a href="#" data-dropdown="drop_<%=leave.id %>" class="tiny button dropdown">Details</a>
+            <ul id="drop_<%=leave.id %>" data-dropdown-content class="f-dropdown">
+              <li>
+                <%= link_to "Approve", organization_leave_path(current_organization, leave, leave: {status: "Approved"}), method: "patch"%>
+              </li>
+              <li>
+                <%= link_to "Reject", organization_leave_path(current_organization, leave, leave: {status: "Rejected"}), method: "patch"%>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    
+    <h3>Waiting for Verification Leaves</h3>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>Leave Type</th>
+        <th>Comment</th>
+        <th>Action</th>
+      </thead>
+      <% @verification_needed_leaves.each do |leave|%>
+        <tr>
+          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.leave_type.name %></td>
+          <td><%= leave.comment %></td>
+          <td>
+            <a href="#" data-dropdown="drop_<%= leave.id %>" class="tiny button dropdown">Details</a>
+            <ul id="drop_<%= leave.id %>" data-dropdown-content class="f-dropdown">
+              <li>
+                <%= link_to "Verify", organization_leave_path(current_organization, leave, leave: {status: "Approved"}), method: "patch"%>
+              </li>
+              <li>
+                <%= link_to "Reject", organization_leave_path(current_organization, leave, leave: {status: "Rejected"}), method: "patch"%>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    
+    <h3>Approved Leaves</h3>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>Comment</th>
+      </thead>
+      <% @approved_leaves.each do |leave|%>
+        <tr>
+          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.comment %></td>
+        </tr>
+      <% end %>
+    </table>
+    
+    <h3>Rejected Leaves</h3>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>Comment</th>
+      </thead>
+      <% @rejected_leaves.each do |leave|%>
+        <tr>
+          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.comment %></td>
+        </tr>
+      <% end %>
+    </table>
   </div>
-  <div class="large12 columns">
-    <div class="large-2 small-2 columns">
-      <h5 class="text-left">DATE</h5>
-    </div>
-    <div class=" progress alert large-10 small-10 columns">
-      <span class="meter"></span>
-    </div>
-  </div>
-
-  <div class="large-12 columns">
-    <h6>Available Overtimes</h6>
-  </div>
-  <div class="large12 columns">
-    <div class="large-2 small-2 columns">
-      <h5 class="text-left">DATE</h5>
-    </div>
-    <div class=" progress large-10 small-10 columns">
-      <span class="meter"></span>
-    </div>
-  </div>
-
-  <hr>
-
 </div>
 
 <div class="row">
   <div class="large-12 columns">
-    <h1>History</h1>
+    <h3>History</h3>
   </div>
   <div class="large-12 columns">
     <table>
@@ -79,97 +129,7 @@
 </div>
 
 <div class="row">
-  <div class="large-12 columns">    
-    <h2>Pending Leaves</h2>
-    <table>
-      <thead>
-        <th>Name</th>
-        <th>Start Date</th>
-        <th>Comment</th>
-        <th>Action</th>
-      </thead>
-      <% @pending_leaves.each do |leave|%>
-        <tr>
-          <td><%= leave.employee.last_name %></td>
-          <td><%= leave.start_date.to_date %></td>
-          <td><%= leave.comment %></td>
-          <td>
-          <a href="#" data-dropdown="drop_<%=leave.id %>" class="tiny button dropdown">Details</a>
-            <ul id="drop_<%=leave.id %>" data-dropdown-content class="f-dropdown">
-              <li>
-                <%= link_to "Approve", organization_leave_path(current_organization, leave, leave: {status: "Approved"}), method: "patch"%>
-              </li>
-              <li>
-                <%= link_to "Reject", organization_leave_path(current_organization, leave, leave: {status: "Rejected"}), method: "patch"%>
-              </li>
-            </ul>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-    
-    <h2>Waiting for Verification Leaves</h2>
-    <table>
-      <thead>
-        <th>Name</th>
-        <th>Start Date</th>
-        <th>Leave Type</th>
-        <th>Comment</th>
-        <th>Action</th>
-      </thead>
-      <% @verification_needed_leaves.each do |leave|%>
-        <tr>
-          <td><%= leave.employee.last_name %></td>
-          <td><%= leave.start_date.to_date %></td>
-          <td><%= leave.leave_type.name %></td>
-          <td><%= leave.comment %></td>
-          <td>
-            <a href="#" data-dropdown="drop_<%= leave.id %>" class="tiny button dropdown">Details</a>
-            <ul id="drop_<%= leave.id %>" data-dropdown-content class="f-dropdown">
-              <li>
-                <%= link_to "Verify", organization_leave_path(current_organization, leave, leave: {status: "Approved"}), method: "patch"%>
-              </li>
-              <li>
-                <%= link_to "Reject", organization_leave_path(current_organization, leave, leave: {status: "Rejected"}), method: "patch"%>
-              </li>
-            </ul>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-    
-    <h2>Approved Leaves</h2>
-    <table>
-      <thead>
-        <th>Name</th>
-        <th>Start Date</th>
-        <th>Comment</th>
-      </thead>
-      <% @approved_leaves.each do |leave|%>
-        <tr>
-          <td><%= leave.employee.last_name %></td>
-          <td><%= leave.start_date.to_date %></td>
-          <td><%= leave.comment %></td>
-        </tr>
-      <% end %>
-    </table>
-    
-    <h2>Rejected Leaves</h2>
-    <table>
-      <thead>
-        <th>Name</th>
-        <th>Start Date</th>
-        <th>Comment</th>
-      </thead>
-      <% @rejected_leaves.each do |leave|%>
-        <tr>
-          <td><%= leave.employee.last_name %></td>
-          <td><%= leave.start_date.to_date %></td>
-          <td><%= leave.comment %></td>
-        </tr>
-      <% end %>
-    </table>
-    
+  <div class="large-12 columns">
     <h3>Leave Calendar</h3>
 
     <div class="row">

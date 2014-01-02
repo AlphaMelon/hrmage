@@ -6,6 +6,8 @@ class HomeController < ApplicationController
   end
   
   def my_leaves
+    authenticate_account!
+    @leaves_remaining_percentage = current_account.profile.available_leaves*100/current_account.profile.position.max_leaves
     @pending_leaves = current_account.profile.leaves.where(status: "Pending")
     @approved_leaves = current_account.profile.leaves.where(status: "Approved")
     @rejected_leaves = current_account.profile.leaves.where(status: "Rejected")

@@ -82,9 +82,13 @@ feature "[Admin Employee]" do
     page.should have_content("Linking department")
     click_on "Link to employee"
     page.should have_content("Department successfully linked")
-    
+  end
+  scenario "Remove department link from employee" do
+    visit organizations_path
+    click_on "Show"
+    click_on "Employee list"
+    click_on "Edit"
     click_on "Remove link"
     page.should have_content("Department link removed from employee")
   end
-  
 end

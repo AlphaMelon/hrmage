@@ -33,7 +33,6 @@ class ApplicationController < ActionController::Base
     @current_organization = Organization.find_by(domain: request.host)
     if !@current_organization
       @current_organization = Organization.new
-      @current_organization = Organization.last if Rails.env.test?
     end
   end
 end

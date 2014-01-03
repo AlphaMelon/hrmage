@@ -28,8 +28,8 @@
           <td>
             <a href="#" data-dropdown="drop_<%=employee.id%>" class="tiny button dropdown">Details</a>
             <ul id="drop_<%=employee.id%>" data-dropdown-content class="f-dropdown">
-              <li><%= link_to "Show", organization_employee_path(@organization, employee)%></li>
-              <li><%= link_to "Edit", edit_organization_employee_path(@organization,employee)%></li>
+              <li><%= link_to " Show", organization_employee_path(@organization, employee), class: "fi-eye" %></li>
+              <li><%= link_to " Edit", edit_organization_employee_path(@organization,employee), class: "fi-pencil" %></li>
             </ul>
           </td>
         </tr>

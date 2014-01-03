@@ -16,7 +16,8 @@
         First Name: <%= @employee.first_name%><br>
         Email: <%= @employee.account.email if !@employee.account.nil?%><br>
         Mobile Contact: <%= @employee.mobile_contact%><br>
-        Address: <%= @employee.address%></p>
+        Address: <%= @employee.address%><br>
+        Available Leave: <%= @employee.available_leaves%></p>
         <h5>Departments</h5>
         <p>
           <% @employee.departments.each do |d|%>
@@ -36,13 +37,17 @@
       <% @employee.documents.each do |document| %>
         <li>
           <% if document.image? %>
-            <%= link_to image_tag(document.image_url(:larger_thumb), class: "th"), image_path(document.image) %><br />
+            <%= link_to image_tag(document.image_url(:larger_thumb), class: "th"), image_path(document.image) %><br>
           <% else %>
             <%= image_tag("not_available.jpg", size: "200x200", class: "th")%>
           <% end %>
-          <%= document.name.capitalize %> | 
-          <%= link_to "Edit", edit_organization_employee_document_path(@organization, @employee, document)%> |
-          <%= link_to "Delete", organization_employee_document_path(@organization, @employee, document), method: :delete, data: { confirm: 'Are you sure?' }%>
+          <%= document.name.capitalize %> - 
+          <%= link_to edit_organization_employee_document_path(@organization, @employee, document) do %>
+            <i class="fi-pencil"></i>
+          <%end%>
+          <%= link_to organization_employee_document_path(@organization, @employee, document), method: :delete, data: { confirm: 'Are you sure?' } do%>
+            <i class="fi-trash"></i>
+          <%end%>
         </li>
       <% end %>
     </ul>

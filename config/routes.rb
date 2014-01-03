@@ -18,6 +18,7 @@ Hrmage::Application.routes.draw do
       get 'new_login' => 'employees#new_login'
       post 'new_login' => 'employees#create_login'
     end
+    post 'end_of_year_action' => 'organizations#end_of_year_action'
   end
   resources :after_signup
   

@@ -16,7 +16,8 @@
         First Name: <%= @employee.first_name%><br>
         Email: <%= @employee.account.email if !@employee.account.nil?%><br>
         Mobile Contact: <%= @employee.mobile_contact%><br>
-        Address: <%= @employee.address%></p>
+        Address: <%= @employee.address%><br>
+        Available Leave: <%= @employee.available_leaves%></p>
         <h5>Departments</h5>
         <p>
           <% @employee.departments.each do |d|%>

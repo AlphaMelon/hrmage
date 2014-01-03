@@ -44,6 +44,32 @@ class OrganizationsController < ApplicationController
 		end
   end
   
+  def end_of_year_action
+    authorize! :manage, current_organization
+    
+    current_organization.employees.each do |emp|
+      if !emp.position.nil? && params[:forfeit]
+        emp.available_leaves = emp.position.max_leaves
+        emp.save
+      elsif emp.position.nil? && params[:forfeit]
+        emp.available_leaves = 0
+        emp.save
+      elsif !emp.position.nil? && params[:forward]
+        emp.available_leaves = emp.available_leaves + emp.position.max_leaves
+        emp.save
+      elsif emp.position.nil? && params[:forward]
+        emp.available_leaves = emp.available_leaves + 0
+        emp.save
+      end 
+    end
+    
+    if params[:forfeit]
+      redirect_to organization_leaves_path(current_organization), notice: "Employee's leaves reseted"
+    else
+      redirect_to organization_leaves_path(current_organization), notice: "Employee's leaves forwarded"
+    end
+  end
+  
   private
   
 	def set_organization

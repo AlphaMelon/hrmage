@@ -82,6 +82,6 @@ gem 'capistrano', '~> 3.0', group: :development
 gem 'capistrano-bundler', github: 'capistrano/bundler'
 gem 'capistrano-rbenv', github: 'capistrano/rbenv'
 
-gem 'capistrano3-puma'
+gem 'capistrano-puma', github: "seuros/capistrano-puma"
 # Use debugger
 # gem 'debugger', group: [:development, :test]

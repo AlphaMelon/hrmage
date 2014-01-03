@@ -2,13 +2,13 @@ require 'spec_helper'
 
 feature "[Admin Organization]" do
   background do
-    sign_up_account("second@example.dev", "spree123")
-    
     #create organization first
+    Capybara.app_host = "http://becon.dev:#{Capybara.server_port}"
+    sign_up_account("second@example.dev", "spree123")
     visit root_path
     click_on "Add New Organization"
     fill_in 'Name', with: 'Becon'
-    fill_in 'Domain', with: "becon.com"
+    fill_in 'Domain', with: "becon.dev"
     click_on "Create Organization"
     page.should have_content("Organization successfully created")
     page.should have_content("Becon")

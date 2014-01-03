@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 feature "[First Time Signup]" do
+  background do
+    Capybara.app_host = "http://microsoft.dev:#{Capybara.server_port}"
+  end
 
   
   scenario "Sign up for the first time" do
@@ -19,7 +22,7 @@ feature "[First Time Signup]" do
     fill_in "Domain", with: "microsoft.dev"
     click_on "Next Step"
     page.should have_content("Organization saved!")
-
+    
     #add department part
     page.should have_content("Add departments for your organization")
     fill_in "department_1", with: "Account"

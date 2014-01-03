@@ -123,6 +123,12 @@
       </tbody>
       <%end%>
     </table>
+    <a href="#" data-dropdown="end_of_year" class="tiny button dropdown">End of year?</a>
+    <ul id="end_of_year" data-dropdown-content class="f-dropdown">
+      <li><%= link_to "Reset Employee's Available Leaves", organization_end_of_year_action_path(forfeit: true), method: :post%></li>
+      <li><%= link_to "Carry Forward Employee's Available Leaves", organization_end_of_year_action_path(forward: true), method: :post%></li>
+    </ul>
+    
   </div>
 </div>
 

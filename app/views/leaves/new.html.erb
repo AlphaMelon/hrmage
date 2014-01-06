@@ -3,6 +3,7 @@
     <h3>Applying Leaves</h3>
     <% if current_organization.leave_types.count != 0 %>
       <%= simple_form_for [@organization, @leave] do |f| %>
+        <%= render '/shared/error_message', object: f.object %>
         <% if @leave.errors.any? %>
           <div id="error_explanation">
               <h2><%= pluralize(@leave.errors.count, "error") %> prohibited this worksheet from being saved:</h2>
@@ -13,7 +14,7 @@
               </ul>
           </div>
         <% end %>
-        
+
         <div class="row">
           <div class="large-3 columns">
             <%= label_tag(:start_date, "Start date", class: "date required left inline", for: "start_date") %>
@@ -52,7 +53,7 @@
             <%= f.button :submit, "Apply Leave", class: "button success" %>
           </div>
 
-        </div>        
+        </div>
       <% end %>
     <% else %>
       there is no leave type added yet, please contact your admin to add leave type.

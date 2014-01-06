@@ -5,11 +5,11 @@
 
       <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
-
+        <%= render '/shared/error_message', object: f.object %>
         <div class="form-inputs">
           <div class="row">
             <div class="large-3 small-3 columns">
-              <%= label_tag(:email, "Email", class: "email optional left inline", for: "account_email") %>
+              <%= label_tag(:email, "Email", class: "email left inline", for: "account_email") %>
             </div>
             <div class="large-9 small-9 columns">
               <div class="large-5">
@@ -17,7 +17,7 @@
               </div>
             </div>
             <div class="large-3 small-3 columns">
-              <%= label_tag(:password, "Password", class: "password optional left inline", for: "account_password")%>
+              <%= label_tag(:password, "Password", class: "password left inline", for: "account_password")%>
             </div>
             <div class="large-9 small-9 columns">
               <div class="large-5">
@@ -25,7 +25,7 @@
               </div>
             </div>
             <div class="large-3 small-3 columns">
-              <%= label_tag(:password_confirmation, "Password confirmation", class: "password optional", for: "account_password_confirmation") %>
+              <%= label_tag(:password_confirmation, "Password confirmation", class: "password", for: "account_password_confirmation") %>
             </div>
             <div class="large-9 small-9 columns">
               <div class="large-5">
@@ -33,14 +33,14 @@
               </div>
             </div>
           </div>
-          <div class="large-3 small-3 columns"></div>       
+          <div class="large-3 small-3 columns"></div>
           <div class="large-9 small-9 columns">
             <div class="form-actions">
               <%= f.button :submit, "Sign up" %>
-              or 
+              or
               <%= render "devise/shared/links" %>
             </div>
-          </div>       
+          </div>
         </div>
       <% end %>
 

@@ -3,6 +3,12 @@ class HomeController < ApplicationController
     if !account_signed_in?
       render layout: "marketing"
     end
+    params[:beta] = session[:beta] if session[:beta]
+    if !params[:beta]
+      session[:beta] = false
+      render '/home/coming_soon', layout: 'blank'
+      return
+    end
   end
   
   def my_leaves
@@ -13,5 +19,10 @@ class HomeController < ApplicationController
     # @approved_leaves = current_account.profile.leaves.where(status: "Approved")
     # @rejected_leaves = current_account.profile.leaves.where(status: "Rejected")
     # @verification_needed_leaves = current_account.profile.leaves.where(status: "Verification Needed")
+  end
+  
+  def my_claims
+    authenticate_account!
+    @my_claims = current_account.profile.claims.all
   end
 end

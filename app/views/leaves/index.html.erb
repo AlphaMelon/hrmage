@@ -12,7 +12,7 @@
       <% @pending_leaves.each do |leave|%>
         <tr>
           <td><%= leave.employee.last_name %></td>
-          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %></td>
           <td><%= leave.comment %></td>
           <td>
           <a href="#" data-dropdown="drop_<%=leave.id %>" class="tiny button dropdown">Details</a>
@@ -41,7 +41,7 @@
       <% @verification_needed_leaves.each do |leave|%>
         <tr>
           <td><%= leave.employee.last_name %></td>
-          <td><%= leave.start_date.to_date %></td>
+          <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %></td>
           <td><%= leave.leave_type.name %></td>
           <td><%= leave.comment %></td>
           <td>
@@ -55,38 +55,6 @@
               </li>
             </ul>
           </td>
-        </tr>
-      <% end %>
-    </table>
-    
-    <h3>Approved Leaves</h3>
-    <table>
-      <thead>
-        <th>Name</th>
-        <th>Start Date</th>
-        <th>Comment</th>
-      </thead>
-      <% @approved_leaves.each do |leave|%>
-        <tr>
-          <td><%= leave.employee.last_name %></td>
-          <td><%= leave.start_date.to_date %></td>
-          <td><%= leave.comment %></td>
-        </tr>
-      <% end %>
-    </table>
-    
-    <h3>Rejected Leaves</h3>
-    <table>
-      <thead>
-        <th>Name</th>
-        <th>Start Date</th>
-        <th>Comment</th>
-      </thead>
-      <% @rejected_leaves.each do |leave|%>
-        <tr>
-          <td><%= leave.employee.last_name %></td>
-          <td><%= leave.start_date.to_date %></td>
-          <td><%= leave.comment %></td>
         </tr>
       <% end %>
     </table>

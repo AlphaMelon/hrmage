@@ -38,10 +38,6 @@
 }
 .top-nav-bar{
   margin-top: 5em;
-  ul,li{
-    display: inline-block;
-    padding-right: 0.83em;
-  }
 }
 
 .user-panel{
@@ -54,15 +50,11 @@
   background-color: whiteSmoke;
   border: 1px solid #DADADA;
   padding-left: 1em;
-  ul{
-    padding-bottom: 0em;
-    margin-bottom: 0em;
-  }
   h5{
     margin-bottom: 1em;
   }
   .top-nav-bar{
-    margin-top: 0em;
+    margin-top: 1em;
   }
 }
 .footer{
@@ -77,4 +69,11 @@
 }
 .table-overflow{
   overflow-x:auto;
+}
+
+.coming-header{
+  margin-top: 8em;
+}
+.coming-color{
+  color: #008CBA;
 }

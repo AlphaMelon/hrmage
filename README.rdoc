@@ -1,7 +1,10 @@
 == README
 
-Branching model: http://nvie.com/posts/a-successful-git-branching-model/
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+== Testing
+ Rspec will be used for testing.
+
+ since this application is multidomain, the following needs to be entered into your hosts file
+
+127.0.0.1  staff.alphamelon.dev xyz.dev hrmage.dev

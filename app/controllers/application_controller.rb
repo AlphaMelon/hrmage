@@ -6,6 +6,17 @@ class ApplicationController < ActionController::Base
   helper_method :current_organization
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :can_can_compability_to_strong_paramater
+
+  # before_filter :beta
+
+  # def beta
+  #   params[:beta] = session[:beta] if session[:beta]
+  #   if !params[:beta]
+  #     session[:beta] = false
+  #     render '/home/coming_soon', layout: 'blank'
+  #     return
+  #   end
+  # end
   
   def can_can_compability_to_strong_paramater
     resource = controller_name.singularize.to_sym

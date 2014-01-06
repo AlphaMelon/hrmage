@@ -4,11 +4,11 @@ class HomeController < ApplicationController
       render layout: "marketing"
     end
     params[:beta] = session[:beta] if session[:beta]
-      if !params[:beta]
-        session[:beta] = false
-        render 'coming_soon',layout: 'blank'
-        return
-      end
+    if !params[:beta]
+      session[:beta] = false
+      render '/home/coming_soon', layout: 'blank'
+      return
+    end
   end
   
   def my_leaves

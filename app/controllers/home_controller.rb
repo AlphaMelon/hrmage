@@ -20,4 +20,9 @@ class HomeController < ApplicationController
     # @rejected_leaves = current_account.profile.leaves.where(status: "Rejected")
     # @verification_needed_leaves = current_account.profile.leaves.where(status: "Verification Needed")
   end
+  
+  def my_claims
+    authenticate_account!
+    @my_claims = current_account.profile.claims.all
+  end
 end

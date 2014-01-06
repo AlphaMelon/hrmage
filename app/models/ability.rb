@@ -16,8 +16,10 @@ class Ability
       can :manage, :all
     elsif acc_org.role == "Employee"
       can :create, Leave
+      can :create, Claim
     else
       can :create, Organization
+      can :create, Employee
     end
     #
     # The first argument to `can` is the action you are giving the user 

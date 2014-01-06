@@ -38,4 +38,9 @@ $(function() {
       minDate: -1
     });
   });
-
+  
+$(function() {
+    $('.date_only').datepicker({
+      dateFormat: "yy-mm-dd",
+    });
+  });

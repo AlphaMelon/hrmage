@@ -6,6 +6,7 @@ class Organization < ActiveRecord::Base
   has_many :leaves
   has_many :positions
   has_many :leave_types
+  has_many :claims
   
   validates :domain, uniqueness: true
   validates :domain, presence: true

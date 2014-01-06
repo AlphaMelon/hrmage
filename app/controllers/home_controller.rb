@@ -3,6 +3,12 @@ class HomeController < ApplicationController
     if !account_signed_in?
       render layout: "marketing"
     end
+    params[:beta] = session[:beta] if session[:beta]
+     if !params[:beta]
+       session[:beta] = false
+       render 'coming_soon',layout: 'blank'
+       return
+    end
   end
   
   def my_leaves

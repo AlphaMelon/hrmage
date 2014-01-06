@@ -4,7 +4,9 @@ Hrmage::Application.routes.draw do
   resources :accounts, :only => [:show]
   root 'home#index'
   get 'my_leaves' => "home#my_leaves"
+  get 'my_claims' => "home#my_claims"
   resources :organizations do
+    resources :claims
     resources :positions
     resources :account_organizations
     resources :departments

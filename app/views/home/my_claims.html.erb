@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h2>History</h2>
+    <table>
+      <thead>
+        <td>Subject</td>
+        <td>Date</td>
+        <td>Amount</td>
+        <td>Comment</td>
+        <td>Status</td>
+        <td>Action by</td>
+        <td></td>
+      </thead>
+      <% @my_claims.each do |claim| %>
+      <tbody>
+        <td><%= claim.subject %></td>
+        <td><%= claim.date.to_date.strftime("%d/%m/%Y") %></td>
+        <td><%= number_to_currency(claim.amount, precision: 2) %></td>
+        <td><%= claim.comment %></td>
+        <td><%= claim.status %></td>
+        <td><%= claim.action_by.nil? ? "No Action Yet" : claim.action_by.profile.last_name %></td>
+        <td>
+          <a href="#" data-dropdown="drop2" class="tiny button dropdown">Details</a>
+          <ul id="drop2" data-dropdown-content class="f-dropdown">
+            <li><a href="#">test</a></li>
+          </ul>
+        </td>
+      </tbody>
+      <%end%>
+    </table>
+  </div>
+</div>

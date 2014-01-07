@@ -44,6 +44,7 @@ class ApplicationController < ActionController::Base
     @current_organization = Organization.find_by(domain: request.host)
     if !@current_organization
       @current_organization = Organization.new
+      #redirect_to root_path(host: "hrmage.dev")
     end
   end
 end

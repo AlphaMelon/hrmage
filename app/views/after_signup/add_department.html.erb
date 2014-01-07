@@ -3,18 +3,51 @@
     <%= render "breadcrumbs", breadcrumbs_step: "department"%>
     <h3>Add departments for your organization </h3>
     <%= simple_form_for @department, url: wizard_path, method: "put" do |f| %>
-      <%= label_tag :department_1 %>
-      <%= text_field_tag :department_1 %>
-      <%= label_tag :department_2 %>
-      <%= text_field_tag :department_2 %>
-      <%= label_tag :department_3 %>
-      <%= text_field_tag :department_3 %>
-      <%= label_tag :department_4 %>
-      <%= text_field_tag :department_4 %>
-      <%= label_tag :department_5%>
-      <%= text_field_tag :department_5 %>
+      <div class="row">
+        <div class="large-3 small-3 columns">
+          <%= label_tag(:department_1, "Department 1", class: "left inline") %>
+        </div>
+        <div class="large-9 small-9 columns">
+          <%= text_field_tag :department_1 %>
+        </div>
+        <div class="large-3 small-3 columns">
+          <%= label_tag(:department_2, "Department 2", class: "left inline") %>
+        </div>
+        <div class="large-9 small-9 columns">
+          <%= text_field_tag :department_2 %>
+        </div>
+        <div class="large-3 small-3 columns">
+          <%= label_tag(:department_3, "Department 3", class: "left inline") %>
+        </div>
+        <div class="large-9 small-9 columns">
+          <%= text_field_tag :department_3 %>
+        </div>
+        <div class="large-3 small-3 columns">
+          <%= label_tag(:department_4, "Department 4", class: "left inline") %>
+        </div>
+        <div class="large-9 small-9 columns">
+          <%= text_field_tag :department_4 %>
+        </div>
+        <div class="large-3 small-3 columns">
+          <%= label_tag(:department_5, "Department 5", class: "left inline")%>
+        </div>
+        <div class="large-9 small-9 columns">
+          <%= text_field_tag :department_5 %>
+          <%= f.button :submit, "Next Step" %>
+        </div>
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+     
+      
 
-      <%= f.button :submit, "Next Step" %>
+      
     <% end %>
 
   </div>

@@ -25,14 +25,6 @@
   margin-top: 1em;
 }
 
-.wizard-breadcrumbs > *:before {
-  content: "=>";
-}
-
-.wizard-breadcrumbs > *.current {
-  color: red;
-}
-
 .logo{
   margin-top: 1em;
 }

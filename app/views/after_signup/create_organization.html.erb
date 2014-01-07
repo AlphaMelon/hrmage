@@ -1,15 +1,29 @@
 <div class="row">
   <div class="large-6 columns">
     <%= render "breadcrumbs", breadcrumbs_step: "organization"%>
-    <h2>Add your organization</h3>
+    <h3>Add your organization</h3>
     <%= simple_form_for @organization, url: wizard_path, method: "put" do |f| %>
-      <%= f.input :name %>
-      <%= f.input :domain %>
-      
-      <%#= label_tag :role %>
-      <%#= select_tag :role, options_for_select(['Admin', 'Employee'], selected: 'Employee') %>
-      
-      <%= f.button :submit, "Next Step" %>
+      <div class="row">
+        <div class="large-3 small-3 columns">
+          <%= label_tag(:name, "Name", class: "string required left inline", for: "organization_name") %>
+        </div>
+        <div class="large-9 small-9 columns">
+          <%= f.input_field :name %>
+        </div>
+        <div class="large-3 small-3 columns">
+          <%= label_tag(:domain, "Domain", class: "string required left inline", for: "organization_domain") %>
+        </div>
+        <div class="large-9 small-9 columns">
+          <%= f.input_field :domain %>
+          <%= f.button :submit, "Next Step" %>
+        </div>
+        <div class="large-3 small-3 columns">
+          <%= label_tag :role %>
+        </div>
+        <div class="large-9 small-9 columns">
+          <%= select_tag :role, options_for_select(['Admin', 'Employee'], selected: 'Employee') %>
+        </div>
+      </div>
     <% end %>
 
   </div>

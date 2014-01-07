@@ -1,13 +1,13 @@
 class HomeController < ApplicationController
   def index
-    if !account_signed_in?
-      render layout: "marketing"
-    end
     params[:beta] = session[:beta] if session[:beta]
     if !params[:beta]
       session[:beta] = false
-      render '/home/coming_soon', layout: 'blank'
+      render 'coming_soon', layout: 'blank'
       return
+    end
+    if !account_signed_in?
+      render layout: "marketing"
     end
   end
   

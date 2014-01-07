@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :claim do
     subject "MyString"
     date "2014-01-14"
-    amount "77.81"
+    amount_cents 7781
     comment "Gone to Tropicana"
     status "Pending"
   end

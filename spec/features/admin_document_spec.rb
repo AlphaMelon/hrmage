@@ -6,9 +6,8 @@ feature "[Admin Employee's Document]" do
   end
    
   scenario "Add New Document for employee" do
-    visit organizations_path
-    click_on "Show"
-    click_on "Employee list"
+    visit root_path
+    click_on "Employee"
     click_on "Show"
     click_on "New Document"
 		fill_in 'Name', with: 'Ic'
@@ -18,11 +17,10 @@ feature "[Admin Employee's Document]" do
   end
 
   scenario "Edit Document" do
-    visit organizations_path
+    visit root_path
+    click_on "Employee"
     click_on "Show"
-    click_on "Employee list"
-    click_on "Show"
-    click_on "Edit"
+    click_on "edit_document"
 		fill_in 'Name', with: 'Edited ic'
 		click_on "Update Document"
     page.should have_content("Document successfully updated")
@@ -30,11 +28,10 @@ feature "[Admin Employee's Document]" do
   end
   
   scenario "Delete Document" do
-    visit organizations_path
+    visit root_path
+    click_on "Employee"
     click_on "Show"
-    click_on "Employee list"
-    click_on "Show"
-    click_on "Delete"
+    click_on "delete_document"
     page.should have_content("Document successfully deleted")
     #page.should_not have_content("Passport_photostat")
   end

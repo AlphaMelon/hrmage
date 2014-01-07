@@ -6,18 +6,16 @@ feature "[Admin Employee]" do
   end
   
   scenario "Show Employee" do
-    visit organizations_path
-    click_on "Show"
-    click_on "Employee list"
+    visit root_path
+    click_on "Employee"
     click_on "Show"
     page.should have_content("spree@example.com")
   end 
   
   scenario "Add New Employee" do
-    visit organizations_path
-    click_on "Show"
-    click_on "Employee list"
-    click_on "New Employee"
+    visit root_path
+    click_on "Employee"
+    click_on "Add New Employee"
 		fill_in 'Last name', with: 'Lee'
 		fill_in 'First name', with: 'Alan'
 		fill_in 'Mobile contact', with: '016-3134415'
@@ -28,9 +26,8 @@ feature "[Admin Employee]" do
   end
 
   scenario "Edit Employee" do
-    visit organizations_path
-    click_on "Show"
-    click_on "Employee list"
+    visit root_path
+    click_on "Employee"
     click_on "Edit"
 		fill_in 'Last name', with: 'Edited Wong'
 		click_on "Update Employee"
@@ -39,9 +36,8 @@ feature "[Admin Employee]" do
   end
 
   scenario "Edit login info" do
-    visit organizations_path
-    click_on "Show"
-    click_on "Employee list"
+    visit root_path
+    click_on "Employee"
     click_on "Edit"
     click_on "Edit Login Info"
 		fill_in 'Email', with: 'edited@example.dev'
@@ -51,10 +47,9 @@ feature "[Admin Employee]" do
   end 
 
   scenario "Add login info" do
-    visit organizations_path
-    click_on "Show"
-    click_on "Employee list"
-    click_on "New Employee"
+    visit root_path
+    click_on "Employee"
+    click_on "Add New Employee"
 		fill_in 'Last name', with: 'Lee'
 		fill_in 'First name', with: 'Alan'
 		fill_in 'Mobile contact', with: '016-3134415'
@@ -63,8 +58,12 @@ feature "[Admin Employee]" do
     page.should have_content("Employee successfully created")
     page.should have_content("Lee")
 
-    #click_on "Edit"
-    find(:xpath, "(//a[text()='Edit'])[2]").click
+    #click_link "edit_employee"
+    #find(:xpath, "(//a[id='edit_employee'])[2]").click
+    #first(:link, "Edit").click
+    #page.all('Edit')[1].click
+    all('#edit_employee')[1].click
+    
     click_on "Add Login"
 		fill_in 'Email', with: 'newlogin@example.dev'
 		fill_in 'Password', with: 'spree123'
@@ -74,9 +73,8 @@ feature "[Admin Employee]" do
   end
   
   scenario "Link Department to employee" do
-    visit organizations_path
-    click_on "Show"
-    click_on "Employee list"
+    visit root_path
+    click_on "Employee"
     click_on "Edit"
     click_on "Add department to this employee"
     page.should have_content("Linking department")
@@ -84,9 +82,8 @@ feature "[Admin Employee]" do
     page.should have_content("Department successfully linked")
   end
   scenario "Remove department link from employee" do
-    visit organizations_path
-    click_on "Show"
-    click_on "Employee list"
+    visit root_path
+    click_on "Employee"
     click_on "Edit"
     click_on "Remove link"
     page.should have_content("Department link removed from employee")

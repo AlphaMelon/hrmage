@@ -33,9 +33,9 @@ feature "[First Time Signup]" do
     
     #tell us more about yourself part
     page.should have_content("Please tell us more about yourself.")
-    fill_in "Last name", with: "Wong"
-    fill_in "First name", with: "David"
-    fill_in "Mobile contact", with: "016-31413254"
+    fill_in "Last Name", with: "Wong"
+    fill_in "First Name", with: "David"
+    fill_in "Mobile Contact", with: "016-31413254"
     fill_in "Address", with: "Klang"
     click_on "Next Step"
     page.should have_content("Congratulation! Have a look at your Organization!")

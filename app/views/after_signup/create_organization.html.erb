@@ -17,12 +17,6 @@
           <%= f.input_field :domain %>
           <%= f.button :submit, "Next Step" %>
         </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag :role %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <%= select_tag :role, options_for_select(['Admin', 'Employee'], selected: 'Employee') %>
-        </div>
       </div>
     <% end %>
 

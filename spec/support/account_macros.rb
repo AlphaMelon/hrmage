@@ -7,7 +7,7 @@ module AccountMacros
   
   def admin_login(email, password)
     visit new_account_session_path
-    #click_on "Sign In"
+    click_on "Sign In"
     fill_in "Email", with: email
     fill_in "Password", with: password
     click_on "Sign in"
@@ -16,6 +16,8 @@ module AccountMacros
   
   def sign_up_account(email, password)
     visit new_account_registration_path
+    click_on "Sign In"
+    click_on "Sign up"
     fill_in "Email", with: email
     fill_in "account_password", with: password
     fill_in "account_password_confirmation", with: password

@@ -17,24 +17,30 @@
             <%= label_tag(:password, "Password", class: "password optional left inline", for: "account_password") %>
           </div>
           <div class="large-9 small-7 columns">
-            <%= f.input_field :password, :autocomplete => "off", :required => false %>
+            <div class="large-7">
+              <%= f.input_field :password, :autocomplete => "off", :required => false %>
+            </div>
           </div>
 
           <div class="large-3 small-5 columns">
             <%= label_tag(:password_confirmation, "Password confirmation ", class: "password optional left inline", for: "account_password_confirmation") %>
           </div>
           <div class="large-9 small-7 columns">
-            <%= f.input_field :password_confirmation, :required => false %>
+            <div class="large-7">
+              <%= f.input_field :password_confirmation, :required => false %>
+            </div>
           </div>
 
           <div class="large-3 small-5 columns">
             <%= label_tag(:current_password, "Current password", class: "password required left inline", for: "account_current_password") %>
           </div>
           <div class="large-9 small-7 columns">
-            <%= f.input_field :current_password, :placeholder => "we need your current password to confirm your changes", :required => true %>
-            <div class="form-actions">
-              <%= f.button :submit, "Update", class: "button success" %>
-              <%= link_to "Back", :back, class: "button success" %>
+            <div class="large-7">
+              <%= f.input_field :current_password, :placeholder => "we need your current password to confirm your changes", :required => true %>
+              <div class="form-actions">
+                <%= f.button :submit, "Update", class: "button success" %>
+                <%= link_to "Back", :back, class: "button success" %>
+              </div>
             </div>
           </div>
 

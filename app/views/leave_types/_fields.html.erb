@@ -5,31 +5,41 @@
     <%= label_tag(:name, "Name", class: "string optional left inline", for: "leave_type_name") %>
   </div>
   <div class="large-9 small-9 columns">
-    <%= f.input_field :name, :autofocus => true %>
+    <div class="large-7">
+      <%= f.input_field :name, :autofocus => true %>
+    </div>
   </div>
   <div class="large-3 small-3 columns">
     <%= label_tag(:approval_needed, "Approval Needed", class: "string optional left inline", for: "leave_type_approval_needed") %>
   </div>
   <div class="large-9 small-9 columns">
-    <%= f.input_field :approval_needed, as: :select, include_blank: false%>
+    <div class="large-7">
+      <%= f.input_field :approval_needed, as: :select, include_blank: false%>
+    </div>
   </div>
   <div class="large-3 small-3 columns">
     <%= label_tag(:affected_entity, "Affected Entity", class: "string optional left inline", for: "leave_type_affected_entity") %>
   </div>
   <div class="large-9 small-9 columns">
-    <%= f.input_field :affected_entity, collection: [["Leave",'count'], ["Salary","salary"], ["Leave & Salary",'"count","salary"']], include_blank: true %>
+    <div class="large-7">
+      <%= f.input_field :affected_entity, collection: [["Leave",'count'], ["Salary","salary"], ["Leave & Salary",'"count","salary"']], include_blank: true %>
+    </div>
   </div>
   <div class="large-3 small-3 columns">
     <%= label_tag(:type, "Type", class: "string optional left inline", for: "leave_type_type") %>
   </div>
   <div class="large-9 small-9 columns">
-    <%= f.input_field :type, collection: [["Substraction","LeaveSubstraction"], ["Neutral", "LeaveNeutral"], ["Addition", "LeaveAddition"]], include_blank: false %>
+    <div class="large-7">
+      <%= f.input_field :type, collection: [["Substraction","LeaveSubstraction"], ["Neutral", "LeaveNeutral"], ["Addition", "LeaveAddition"]], include_blank: false %>
+    </div>
   </div>
   <div class="large-3 small-3 columns">
     <%= label_tag(:description, "Description", class: "string optional left inline", for: "leave_type_description") %>
   </div>
   <div class="large-9 small-9 columns">
-    <%= f.input_field :description %>
+    <div class="large-7">
+      <%= f.input_field :description %>
+    </div>
   </div>
   <div class="large-3 small-3 columns"></div>
   <div class="large-9 small-9 columns"><%= f.button :submit, class: "button success" %></div>

@@ -1,35 +1,25 @@
 <div class="row">
   <div class="large-12 small-12 columns">
-     <%= simple_form_for @organization do |f| %>
-     
-      <% if @organization.errors.any? %>
-        <div data-alert class="alert-box warning">
-	        <h6><%= pluralize(@organization.errors.count, "error") %> prohibited this worksheet from being saved:</h6>
-	        <ul>
-		        <% @organization.errors.full_messages.each do |msg| %>
-		        <li><%= msg %></li>
-		        <% end %>
-	        </ul>
-          <a href="#" class="close">&times;</a>
-        </div>
-      <% end %>
-      
-      <div class="row">
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:name, "Name", class: "string optional left inline", for: "organization_name") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <%= f.input_field :name, :autofocus => true %>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:domain, "Domain", class: "string optional left inline", for: "organization_domain") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <%= f.input_field :domain %>
-        </div>
-        <div class="large-3 small-3 columns"></div>
-        <div class="large-9 small-9 columns"><%= f.button :submit, class: "button success" %></div>
+    <%= simple_form_for @organization do |f| %>
+
+    <%= render '/shared/error_message', object: f.object %>
+
+    <div class="row">
+      <div class="large-3 small-3 columns">
+        <%= label_tag(:name, "Name", class: "string optional left inline", for: "organization_name") %>
       </div>
+      <div class="large-9 small-9 columns">
+        <%= f.input_field :name, :autofocus => true %>
+      </div>
+      <div class="large-3 small-3 columns">
+        <%= label_tag(:domain, "Domain", class: "string optional left inline", for: "organization_domain") %>
+      </div>
+      <div class="large-9 small-9 columns">
+        <%= f.input_field :domain %>
+      </div>
+      <div class="large-3 small-3 columns"></div>
+      <div class="large-9 small-9 columns"><%= f.button :submit, class: "button success" %></div>
+    </div>
     <% end %>
 
   </div>

@@ -32,8 +32,10 @@ class Leave < ActiveRecord::Base
   end
   
   def duration_cannot_be_more_than_available_leaves
-    if self.employee.available_leaves < (self.duration_seconds/24/60/60)
-      errors.add(:duration_seconds, "is more than your available leaves")
-    end 
+    if !self.duration_seconds.nil?
+      if self.employee.available_leaves < (self.duration_seconds/24/60/60)
+        errors.add(:duration_seconds, "is more than your available leaves")
+      end
+    end
   end
 end

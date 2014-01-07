@@ -1,61 +1,54 @@
 <div class="row">
   <div class="large-12 columns">
-    <%= simple_form_for [@organization, @claim] do |f| %>
+    <% if !current_account.profile.nil? %>
+      <%= simple_form_for [@organization, @claim] do |f| %>
 
-      <% if @claim.errors.any? %>
-        <div data-alert class="alert-box warning">
-          <h6><%= pluralize(@claim.errors.count, "error") %> prohibited this worksheet from being saved:</h6>
+        <%= render '/shared/error_message', object: f.object %>
 
-          <ul>
-            <% @claim.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-            <% end %>
-          </ul>
-          <a href="#" class="close">&times;</a>
+        <div class="row">
+          <div class="large-3 small-3 columns">
+            <%= label_tag(:subject, "Subject", class: "string optional left inline", for: "claim_subject") %>
+          </div>
+          <div class="large-9 small-9 columns">
+            <%= f.input_field :subject, collection: ["Mileage","Petrol","Accommodation"], include_blank: false %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-3 small-3 columns">
+            <%= label_tag(:date, "Date", class: "string optional left inline", for: "claim_date") %>
+          </div>
+          <div class="large-9 small-9 columns">
+            <%= f.input_field :date, as: :string, autocomplete: :off, class: "date_only" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-3 small-3 columns">
+            <%= label_tag(:amount_cents, "Amount", class: "string optional left inline", for: "claim_amount_cents") %>
+          </div>
+          <div class="large-9 small-9 columns">
+            <%= f.input_field :amount_cents, placeholder: "Amount in cents" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-3 small-3 columns">
+            <%= label_tag(:comment, "Comment", class: "string optional left inline", for: "claim_comment") %>
+          </div>
+          <div class="large-9 small-9 columns">
+            <%= f.input_field :comment %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-3 small-3 columns">
+            <%= label_tag(:image, "Receipt/Invoice/Bill", class: "string optional left inline", for: "claim_image") %>
+          </div>
+          <div class="large-9 small-9 columns">
+            <%= f.input_field :image, as: :file %>
+            <%= f.button :submit, "Apply Claim", class: "button success" %>
+          </div>
         </div>
       <% end %>
-
-      <div class="row">
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:subject, "Subject", class: "string optional left inline", for: "claim_subject") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <%= f.input_field :subject, collection: ["Mileage","Petrol","Accommodation"], include_blank: false %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:date, "Date", class: "string optional left inline", for: "claim_date") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <%= f.input_field :date, as: :string, autocomplete: :off, class: "date_only" %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:amount, "Amount", class: "string optional left inline", for: "claim_amount") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <%= f.input_field :amount %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:comment, "Comment", class: "string optional left inline", for: "claim_comment") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <%= f.input_field :comment %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:image, "Receipt/Invoice/Bill", class: "string optional left inline", for: "claim_image") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <%= f.input_field :image, as: :file %>
-          <%= f.button :submit, "Apply Claim", class: "button success" %>
-        </div>
-      </div>
+    <% else %>
+      <p>Your profile is not ready yet, please contact administrator to link your profile before making claim application.</p>
     <% end %>
   </div>
 </div>

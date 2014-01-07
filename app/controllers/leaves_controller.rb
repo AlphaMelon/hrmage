@@ -42,7 +42,7 @@ class LeavesController < ApplicationController
   def create
     @leave = current_organization.leaves.new(leave_params)
     @leave.employee_id = current_account.profile.id
-    @leave.duration_seconds = @leave.duration_seconds.days
+    @leave.duration_seconds = @leave.duration_seconds.days if !@leave.duration_seconds.nil?
     @leave.status = "Verification Needed" if !@leave.leave_type.approval_needed
     if @leave.save
       redirect_to my_leaves_path, notice: "Leave successfully applied, please wait for admin to approve"

@@ -8,17 +8,7 @@
 
     <%= simple_form_for [@organization, @account_organization] do |f| %>
     
-      <% if @account_organization.errors.any? %>
-        <div id="error_explanation">
-	        <h2><%= pluralize(@account_organization.errors.count, "error") %> prohibited this worksheet from being saved:</h2>
-
-	        <ul>
-		        <% @account_organization.errors.full_messages.each do |msg| %>
-		        <li><%= msg %></li>
-		        <% end %>
-	        </ul>
-        </div>
-      <% end %>
+      <%= render '/shared/error_message', object: f.object %>
       
       <p>Add account to <%= @organization.name %></p>
       <div class="row">

@@ -5,5 +5,7 @@ module OrganizationMacros
     organization = Organization.create!(organization_attr)
   end
 
-  
+  def create_organization_with_parameter()
+  def
+    
 end

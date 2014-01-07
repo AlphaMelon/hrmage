@@ -15,7 +15,7 @@
       <tbody>
         <td><%= claim.subject %></td>
         <td><%= claim.date.to_date.strftime("%d/%m/%Y") %></td>
-        <td><%= number_to_currency(claim.amount, precision: 2) %></td>
+        <td><%= number_to_currency(claim.amount_cents.to_f/100, precision: 2) %></td>
         <td><%= claim.comment %></td>
         <td><%= claim.status %></td>
         <td><%= claim.action_by.nil? ? "No Action Yet" : claim.action_by.profile.last_name %></td>

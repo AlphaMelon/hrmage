@@ -54,7 +54,7 @@ RSpec.configure do |config|
   config.before(:each) do
     Capybara.javascript_driver = :webkit
     #Capybara.always_include_port = true
-    Capybara.app_host = "http://alphamelontest.hrmage.dev:#{Capybara.server_port}"
+    Capybara.app_host = "http://alphamelontest.hrmage.dev:#{Capybara.server_port}/?beta=1"
     Employee.delete_all
     Account.delete_all
     Department.delete_all

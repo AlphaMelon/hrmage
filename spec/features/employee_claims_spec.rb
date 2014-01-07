@@ -10,7 +10,7 @@ feature "[Employee Claims]" do
     click_on "Apply Claim"
     select "Petrol", from: "Subject"
     fill_in "Date", with: "2014-01-27"
-    fill_in "Amount", with: "88.1"
+    fill_in "claim_amount_cents", with: "88.1"
     click_button "Apply Claim"
     page.should have_content("Claim successfully applied, please wait for approval")
   end

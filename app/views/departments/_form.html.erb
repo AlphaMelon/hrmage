@@ -7,8 +7,10 @@
       <%= label_tag(:name, "Name", class: "string optional left inline", for: "department_name") %>
     </div>
     <div class="large-9 small-9 columns">
-      <%= f.input_field :name %>
-      <%= f.button :submit, class: "button success" %>
+      <div class="large-7">
+        <%= f.input_field :name %>
+        <%= f.button :submit, class: "button success" %>
+      </div>
     </div>
   </div>
 <% end %>

@@ -4,17 +4,7 @@
     <% if @departments.count != 0%>
       <%= simple_form_for [@organization, @employee, @employee_department] do |f| %>
       
-        <% if @employee_department.errors.any? %>
-          <div id="error_explanation">
-	          <h2><%= pluralize(@employee_department.errors.count, "error") %> prohibited this worksheet from being saved:</h2>
-
-	          <ul>
-		          <% @employee_department.errors.full_messages.each do |msg| %>
-		          <li><%= msg %></li>
-		          <% end %>
-	          </ul>
-          </div>
-        <% end %>
+        <%= render '/shared/error_message', object: f.object %>
         
         <p>Linking department to <%= @employee.last_name %></p>
         <div class="row">

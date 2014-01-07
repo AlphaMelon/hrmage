@@ -1,6 +1,7 @@
 <div class="row">
   <div class="large-12 columns">
     <%= simple_form_for(@account, url: organization_employee_edit_login_info_path) do |f| %>
+      <%= render '/shared/error_message', object: f.object %>
       <div class="row">
         <div class="large-3 small-3 columns">
           <%= label_tag(:email, "Email", class: "email optional left inline", for: "account_email") %>

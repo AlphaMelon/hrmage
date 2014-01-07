@@ -63,6 +63,7 @@ gem 'countries', github: 'hexorx/countries'
 gem 'devise'
 gem 'ancestry'
 gem 'wicked'
+gem 'money-rails'
 
 #gem 'zurb-foundation', '~> 4.0.0'
 gem 'foundation-rails'

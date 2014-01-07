@@ -1,21 +1,11 @@
 <div class="row">
   <div class="large-12 columns">
-    <%= simple_form_for [@organization, @claim] do |f| %>
+    <% if !current_account.profile.nil? %>
+      <%= simple_form_for [@organization, @claim] do |f| %>
+      <fieldset class="large-8">
+        <legend>Submit Claim</legend>
 
-    <fieldset class="large-8">
-      <legend>Submit Claim</legend>
-        <% if @claim.errors.any? %>
-          <div data-alert class="alert-box warning">
-            <h6><%= pluralize(@claim.errors.count, "error") %> prohibited this worksheet from being saved:</h6>
-
-            <ul>
-              <% @claim.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-              <% end %>
-            </ul>
-            <a href="#" class="close">&times;</a>
-          </div>
-        <% end %>
+        <%= render '/shared/error_message', object: f.object %>
 
         <div class="row">
           <div class="large-3 small-3 columns">
@@ -39,11 +29,11 @@
         </div>
         <div class="row">
           <div class="large-3 small-3 columns">
-            <%= label_tag(:amount, "Amount", class: "string optional left inline", for: "claim_amount") %>
+            <%= label_tag(:amount_cents, "Amount", class: "string optional left inline", for: "claim_amount") %>
           </div>
           <div class="large-9 small-9 columns">
             <div class="large-12">
-              <%= f.input_field :amount %>
+              <%= f.input_field :amount_cents, placeholder: "Amount in cents" %>
             </div>
           </div>
         </div>
@@ -69,6 +59,9 @@
           </div>
         </div>
       <% end %>
+      <% else %>
+      <p>Your profile is not ready yet, please contact administrator to link your profile before making claim application.</p>
+      <%end%>
     </fieldset>
 
   </div>

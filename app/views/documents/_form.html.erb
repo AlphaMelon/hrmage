@@ -3,17 +3,7 @@
 
     <%= simple_form_for [@organization, @employee, @document] do |f| %>
     
-      <% if @document.errors.any? %>
-        <div id="error_explanation">
-	        <h2><%= pluralize(@document.errors.count, "error") %> prohibited this worksheet from being saved:</h2>
-
-	        <ul>
-		        <% @document.errors.full_messages.each do |msg| %>
-		        <li><%= msg %></li>
-		        <% end %>
-	        </ul>
-        </div>
-      <% end %>
+      <%= render '/shared/error_message', object: f.object %>
       <div class="row">
         <div class="large-3 small-3 columns">
           <%= label_tag(:name, "Name", class: "string required left inline", for: "document_name") %>

@@ -4,16 +4,6 @@
     <% if current_organization.leave_types.count != 0 %>
       <%= simple_form_for [@organization, @leave] do |f| %>
         <%= render '/shared/error_message', object: f.object %>
-        <% if @leave.errors.any? %>
-          <div id="error_explanation">
-              <h2><%= pluralize(@leave.errors.count, "error") %> prohibited this worksheet from being saved:</h2>
-              <ul>
-                <% @leave.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
-                <% end %>
-              </ul>
-          </div>
-        <% end %>
 
         <div class="row">
           <div class="large-3 columns">

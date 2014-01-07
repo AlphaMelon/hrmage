@@ -1,4 +1,4 @@
-<div class="row">
+              <div class="row">
   <div class="large-12 columns">
     <h1><%= current_organization.name.capitalize %>'s employee's claims</h1>
     <h3>Pending Claims</h3>
@@ -9,21 +9,21 @@
         <th>Date</th>
         <th>Amount</th>
         <th>Comment</th>
-        <th>Image</th>
+        <th>Recipit</th>
         <th>Action</th>
       </thead>
       <% @pending_claims.each do |pending_claim|%>
         <tr>
-          <td><%= pending_claim.employee.last_name %></td>
+          <td><%= pending_claim.employee.last_name.capitalize %></td>
           <td><%= pending_claim.subject%></td>
-          <td><%= pending_claim.date.to_date %></td>
+          <td><%= pending_claim.date.to_date.strftime("%d/%m/%Y") %></td>
           <td><%= number_to_currency(pending_claim.amount, precision: 2) %></td>
           <td><%= pending_claim.comment %></td>
           <td>
             <% if pending_claim.image? %>
-              <%= link_to image_tag(pending_claim.image_url(:thumb)), image_path(pending_claim.image_url)  %>
+              <%= link_to image_tag(pending_claim.image_url(:thumb), class: "th"), image_path(pending_claim.image_url)  %>
             <% else %>
-              <%= image_tag("not_available.jpg", size: "50x50")%>
+              <%= image_tag("not_available.jpg", size: "50x50", class: "th")%>
             <% end %>
           </td>
           <td>
@@ -49,22 +49,22 @@
         <th>Date</th>
         <th>Amount</th>
         <th>Comment</th>
-        <th>Image</th>
+        <th>Recipit</th>
         <th>Status</th>
-        <th>Action_by</th>
+        <th>Action by</th>
       </thead>
       <% @claims.each do |claim|%>
         <tr>
-          <td><%= claim.employee.last_name %></td>
+          <td><%= claim.employee.last_name.capitalize %></td>
           <td><%= claim.subject%></td>
-          <td><%= claim.date.to_date %></td>
+          <td><%= claim.date.to_date.strftime("%d/%m/%Y") %></td>
           <td><%= number_to_currency(claim.amount, precision: 2) %></td>
           <td><%= claim.comment %></td>
           <td>
             <% if claim.image? %>
-              <%= link_to image_tag(claim.image_url(:thumb)), image_path(claim.image_url)  %>
+              <%= link_to image_tag(claim.image_url(:thumb), class: "th"), image_path(claim.image_url)  %>
             <% else %>
-              <%= image_tag("not_available.jpg", size: "50x50")%>
+              <%= image_tag("not_available.jpg", size: "50x50", class: "th")%>
             <% end %>
           </td>
           <td><%= claim.status %></td>

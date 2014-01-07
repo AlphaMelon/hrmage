@@ -10,15 +10,13 @@
     <li><%= link_to "Leave", organization_leaves_path(current_organization) , id: "organization_leaves"%></li>
     <li class="divider"></li>
     <li><%= link_to "Leave Types", organization_leave_types_path(current_organization) %></li>
-    <li class="divider"></li>
-    <li><%= link_to "Claims",  organization_claims_path(current_organization), id: "organization_claims"%></li>
      
   </ul>
 <% end %>
 
 <%if account_signed_in?%>
   <ul class="side-nav">
-    <li><h6>Actions</h6></li>
+    <li><h6>My Leaves</h6></li>
     <li>
       <%= link_to "Apply Leave", new_organization_leave_path(current_organization) if !current_organization.id.nil?%>
     </li>
@@ -26,7 +24,6 @@
     <li class="divider"></li>
     <li><%= link_to "Who's On Leave" %></li>
     <li><%= link_to "Approvals" %></li>
-    <li><%= link_to "Apply Claim", new_organization_claim_path(current_organization) if !current_organization.id.nil?%></li>
   </ul>
 <% end %>
 
@@ -35,5 +32,12 @@
   <li><%= link_to "Leave Category" %></li>
   <li><%= link_to "Role Allocation" %></li>
   <li><%= link_to "Report" %></li>
+</ul>
+<% end %>
+
+<%if account_signed_in?%>
+<ul class="side-nav">
+  <li><h6>My Claims</h6></li>
+  <li><%= link_to "Apply Claim", new_organization_claim_path(current_organization) if !current_organization.id.nil?%></li>
 </ul>
 <% end %>

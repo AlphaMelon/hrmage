@@ -1,4 +1,4 @@
-<% if !current_organization.id.nil? %>
+<% if !current_organization.id.nil? && (can? :manage, current_organization) %>
   <div class="row">
 
     <div class="large-2 hide-for-small columns">
@@ -24,6 +24,28 @@
         <ul class="side-nav">
           <li><%= link_to "Admin" %></li>
           <li><%= link_to "Normal" %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<% else %>
+  <div class="row">
+
+    <div class="large-2 hide-for-small columns">
+      <div class="logo">
+        <%= link_to root_path do %>
+          <%= image_tag('logo/hrmerge-logo.jpg') %>
+        <%end%>
+      </div>
+    </div>
+
+    <div class="large-10 columns">
+      <div class="top-nav-bar">
+        <ul class="inline-list">
+          <li><%= link_to "Leave", organization_leaves_path(current_organization) %></li>
+          <li><a href="#">Salary</a></li>
+          <li><%= link_to "Claims",  organization_claims_path(current_organization), id: "organization_claims"%></li>
         </ul>
       </div>
     </div>

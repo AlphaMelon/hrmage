@@ -44,7 +44,8 @@ class ApplicationController < ActionController::Base
     @current_organization = Organization.find_by(domain: request.host)
     if !@current_organization
       @current_organization = Organization.new
-      #redirect_to root_path(host: "hrmage.dev")
+      #flash[:notice] = 'Domain not found' if request.host != "hrmage.dev"
+      #redirect_to host: "hrmage.dev", port: 3000 if request.host != "hrmage.dev"
     end
   end
 end

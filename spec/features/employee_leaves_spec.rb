@@ -33,7 +33,7 @@ feature "[Employee Leaves]" do
     
     #progress bar should be 10 out of 14 leaves days
     #visit my_leaves_path
-    click_on "My Leaves"
+    click_on "my_leaves_top_bar"
     page.should have_content("10/14")
   end
 

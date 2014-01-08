@@ -32,7 +32,8 @@ feature "[Employee Leaves]" do
     page.should have_content("Leaves request approved")
     
     #progress bar should be 10 out of 14 leaves days
-    visit my_leaves_path
+    #visit my_leaves_path
+    click_on "My Leaves"
     page.should have_content("10/14")
   end
 

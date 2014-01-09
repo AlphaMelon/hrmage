@@ -16,7 +16,7 @@ class AfterSignupController < ApplicationController
     when :add_staff
       @employee = Employee.new
     when :finish
-      @organizations=current_account.organizations
+      @organization=current_account.organizations.first
     end
     render_wizard
     
@@ -27,7 +27,7 @@ class AfterSignupController < ApplicationController
     case step
     when :create_organization
       @organization = Organization.new
-      organization_params = params.require(:organization).permit(:name, :domain)
+      organization_params = params.require(:organization).permit(:name, :domain, :default_currency)
       @organization.update_attributes(organization_params)
       @organization.save
       
@@ -64,7 +64,7 @@ class AfterSignupController < ApplicationController
       #redirect_to wizard_path(:create_organization)
       #redirect_to "/after_signup/create_organization", notice: "Details saved!"
       #redirect_to organization_path(current_account.organizations.first), notice: "Congratulation! Have a look at your Organization!"
-      
+      redirect_to "/after_signup/finish", notice: "Congratulation! Have a look at your Organization!"
     when :add_staff
       user = User.where(email: params[:email]).first_or_initialize
       user.password = params[:password]

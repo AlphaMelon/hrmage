@@ -15,6 +15,13 @@
         </div>
         <div class="large-9 small-9 columns">
           <%= f.input_field :domain %>
+          
+        </div>
+      <div class="large-3 small-3 columns">
+          <%= label_tag(:default_currency, "Currency", class: "string optional left inline", for: "organization_default_currency") %>
+        </div>
+        <div class="large-9 small-9 columns">
+          <%= currency_select("organization", :default_currency, ["myr","usd"]) %>
           <%= f.button :submit, "Next Step" %>
         </div>
       </div>

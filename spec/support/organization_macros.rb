@@ -5,10 +5,11 @@ module OrganizationMacros
     organization = Organization.create!(organization_attr)
   end
 
-  def create_organization_with_parameter(domain, name)
+  def create_organization_with_parameter(domain, name, currency)
     organization = Organization.new
     organization.name = name
     organization.domain = domain
+    organization.default_currency = "myr"
     organization.save
   end
     

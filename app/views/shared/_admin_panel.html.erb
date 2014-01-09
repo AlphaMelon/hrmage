@@ -1,10 +1,13 @@
-<ul class="side-nav">
-  <li><h6><%= current_organization.name.capitalize %>'s Organization</h6></li>
-  <li><%= link_to "Department", organization_departments_path(current_organization) %></li>
-  <li class="divider"></li>
-  <li><%= link_to "Position", organization_positions_path(current_organization) %></li> 
-  <li class="divider"></li>
-  <li><%= link_to "Employee", organization_employees_path(current_organization) %></li>
-  <li class="divider"></li>
-  <li><%= link_to "Leave Types", organization_leave_types_path(current_organization) %></li> 
-</ul>
+<% if !current_organization.id.nil? %>
+
+  <ul class="side-nav">
+    <li><h6><%= current_organization.name.capitalize%>'s Organization</h6></li>
+    <li><%= link_to "Department", organization_departments_path(current_organization) %></li>
+    <li class="divider"></li>
+    <li><%= link_to "Position", organization_positions_path(current_organization) %></li> 
+    <li class="divider"></li>
+    <li><%= link_to "Employee", organization_employees_path(current_organization) %></li>
+    <li class="divider"></li>
+    <li><%= link_to "Leave Types", organization_leave_types_path(current_organization) %></li> 
+  </ul>
+<% end %>

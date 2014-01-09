@@ -30,6 +30,9 @@
 }
 .top-nav-bar{
   margin-top: 5em;
+  .panel{
+    margin-top: -3em;
+  }
 }
 
 .user-panel{

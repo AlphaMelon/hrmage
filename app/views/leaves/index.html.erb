@@ -12,7 +12,7 @@
       </thead>
       <% @pending_leaves.each do |leave|%>
         <tr>
-          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.employee.name_with_initial %></td>
           <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %></td>
           <td><%= leave.duration_seconds/24/60/60%> Days</td>
           <td><%= leave.comment %></td>
@@ -43,7 +43,7 @@
       </thead>
       <% @verification_needed_leaves.each do |leave|%>
         <tr>
-          <td><%= leave.employee.last_name %></td>
+          <td><%= leave.employee.name_with_initial %></td>
           <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %></td>
           <td><%= leave.duration_seconds/24/60/60%> Days</td>
           <td><%= leave.leave_type.name %></td>
@@ -72,15 +72,17 @@
   <div class="large-12 columns">
     <table>
       <thead>
+        <th><%= sort_link @search, :last_name, "Name" %></th>
         <th>Type</th>
-        <th>Reason</th>
-        <th>Duration</th>
-        <th>When</th>
-        <th>Status</th>
+        <th><%= sort_link @search, :comment, "Comment" %></th>
+        <th><%= sort_link @search, :duration_seconds, "Duration" %></th>
+        <th><%= sort_link @search, :date, "When" %></th>
+        <th><%= sort_link @search, :status, "Status" %></th>
         <th>Action</th>
       </thead>
       <% @leaves.each do |history|%>
       <tbody>
+        <td><%= history.employee.name_with_initial %></td>
         <td><%= history.leave_type.name %></td>
         <td><%= history.comment %></td>
         <td><%= (history.duration_seconds)/60/60/24 %> Days</td>
@@ -95,6 +97,7 @@
       </tbody>
       <%end%>
     </table>
+    <%= paginate @leaves%>
     <a href="#" data-dropdown="end_of_year" class="tiny button dropdown">End of year?</a>
     <ul id="end_of_year" data-dropdown-content class="f-dropdown">
       <li><%= link_to "Reset Employee's Available Leaves", organization_end_of_year_action_path(forfeit: true), method: :post%></li>
@@ -142,14 +145,18 @@
         <tbody>
         <% @employees.each do |employee|%>
           <tr>
-            <td><%= employee.last_name%></td>
+            <td><%= employee.name_with_initial%></td>
             <% count = 1 %>
             <% while count <= @date.end_of_month.day%>
               <% got_leave = false %>
+              <% type = nil %>
+              <% pending = false %>
               <% duration = 0 %>
-              <% employee.leaves.where(status: "Approved").each do |emp_lea|%>
+              <% employee.leaves.each do |emp_lea|%>
                 <% if emp_lea.start_date.to_date == Date.new(@year,@month,count)%>
                   <% got_leave = true %>
+                  <% type = emp_lea.leave_type %>
+                  <% pending = true if emp_lea.status == "Pending" %>
                   <% duration = emp_lea.duration_seconds/24/60/60 %>
                   <% break %>
                 <% else %>
@@ -158,8 +165,14 @@
               <% end %>
               
               <% if got_leave %>
-                <%(1..duration).each do |du|%>
-                  <td class="absent"></td>
+                <% if pending%>
+                  <%(1..duration).each do |du|%>
+                    <td bgcolor="#000000"></td>
+                  <% end %>
+                <% else %>
+                  <%(1..duration).each do |du|%>
+                    <td bgcolor="<%= type.colour %>"></td>
+                  <% end %>
                 <% end %>
                 <% count = count + duration%>
               <% else %>
@@ -173,5 +186,20 @@
       </table>
     </div>
     
+  </div>
+  <div class="large-12 columns">
+    <table>
+      <tr>
+        <th>No Leave</th><td bgcolor="#E7E7E7"></td>
+      </tr>
+      <tr>
+        <th>Pending</th><td  bgcolor="#000000"></td>
+      </tr>
+      <% @leave_types.each do |leave_type|%>
+        <tr>
+          <th><%=leave_type.name%></th><td bgcolor="<%=leave_type.colour%>"></td>
+        </tr>
+      <% end %>
+    </table>
   </div>
 </div>

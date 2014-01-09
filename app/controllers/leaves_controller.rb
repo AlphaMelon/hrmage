@@ -6,11 +6,17 @@ class LeavesController < ApplicationController
 	load_and_authorize_resource
   
   def index
-    @leaves = @organization.leaves.all
+
+    @search = @organization.leaves.search(params[:q])
+    if params[:q].nil?
+      @leaves = @organization.leaves.order(id: :desc).page(params[:page]).per(5)
+    else
+      @leaves = @search.result.order(id: :desc).page(params[:page]).per(5)
+    end
+    
+    @leave_types = @organization.leave_types
     @pending_leaves = @organization.leaves.where(status: "Pending")
     @verification_needed_leaves = @organization.leaves.where(status: "Verification Needed")
-    @approved_leaves = @organization.leaves.where(status: "Approved").last(3)
-    @rejected_leaves = @organization.leaves.where(status: "Rejected").last(3)
     
     @month = !params[:date].blank? ? params[:date][:month].to_i : DateTime.now.month
     @year = !params[:date].blank? ? params[:date][:year].to_i : DateTime.now.year

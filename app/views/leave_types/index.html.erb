@@ -8,6 +8,7 @@
         <th>Description</th>
         <th>Affected Entity</th>
         <th>Type</th>
+        <th>Colour</th>
         <th>Action</th>
       </thead>
       <% @leave_types.each do |leave_type|%>
@@ -17,10 +18,15 @@
           <td><%= leave_type.description %></td>
           <td><%= leave_type.affected_entity %></td>
           <td><%= leave_type.type %></td>
+          <td bgcolor="<%= leave_type.colour %>"></td>
           <td><%= link_to "Edit", edit_organization_leave_type_path(current_organization, leave_type) %></td>
         </tr>
       <% end %>
     </table>
+    <span class="minicolors-swatch">
+<span class="minicolors-swatch-color" style="background-color: rgb(224, 49, 49);">adsfasdf</span>
+</span>
     <%= link_to "Add New Leave Type", new_organization_leave_type_path(current_organization), class: "button success" %>
   </div>
 </div>
+

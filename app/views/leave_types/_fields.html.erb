@@ -41,6 +41,14 @@
       <%= f.input_field :description %>
     </div>
   </div>
+  <div class="large-3 small-3 columns">
+    <%= label_tag(:colour, "Colour", class: "string optional left inline", for: "leave_colour") %>
+  </div>
+  <div class="large-9 small-9 columns">
+    <div class="large-7">
+      <%= f.input_field :colour, include_blank: false, as: :minicolors %>
+    </div>
+  </div>
   <div class="large-3 small-3 columns"></div>
   <div class="large-9 small-9 columns"><%= f.button :submit, class: "button success" %></div>
 </div>

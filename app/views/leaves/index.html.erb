@@ -6,6 +6,7 @@
       <thead>
         <th>Name</th>
         <th>Start Date</th>
+        <th>Duration</th>
         <th>Comment</th>
         <th>Action</th>
       </thead>
@@ -13,6 +14,7 @@
         <tr>
           <td><%= leave.employee.last_name %></td>
           <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %></td>
+          <td><%= leave.duration_seconds/24/60/60%> Days</td>
           <td><%= leave.comment %></td>
           <td>
           <a href="#" data-dropdown="drop_<%=leave.id %>" class="tiny button dropdown">Details</a>
@@ -34,6 +36,7 @@
       <thead>
         <th>Name</th>
         <th>Start Date</th>
+        <th>Duration</th>
         <th>Leave Type</th>
         <th>Comment</th>
         <th>Action</th>
@@ -42,6 +45,7 @@
         <tr>
           <td><%= leave.employee.last_name %></td>
           <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %></td>
+          <td><%= leave.duration_seconds/24/60/60%> Days</td>
           <td><%= leave.leave_type.name %></td>
           <td><%= leave.comment %></td>
           <td>

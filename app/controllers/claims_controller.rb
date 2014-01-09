@@ -62,7 +62,7 @@ class ClaimsController < ApplicationController
 	end
 	
 	def claim_params
-		params.require(:claim).permit(:subject, :date, :amount_cents, :comment, :image, :status)
+		params.require(:claim).permit(:subject, :date, :amount_cents, :comment, :image, :status, :amount)
 	end
 
 end

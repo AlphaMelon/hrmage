@@ -11,4 +11,13 @@ class Organization < ActiveRecord::Base
   validates :domain, uniqueness: true
   validates :domain, presence: true
   validates :name, presence: true
+  validates :default_currency, presence: true
+  
+  before_save :setup_currency
+  
+  def setup_currency
+    ::MoneyRails.configure do |config|
+      config.default_currency = self.default_currency.to_sym if !self.default_currency.nil?
+    end
+  end
 end

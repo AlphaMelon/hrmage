@@ -2,7 +2,7 @@ class AfterSignupController < ApplicationController
   include Wicked::Wizard
   before_filter :authenticate_account!
   
-  steps :about_yourself, :create_organization, :add_department, :add_staff
+  steps :about_yourself, :create_organization, :add_department, :add_staff, :finish
   
   def show
 
@@ -15,6 +15,8 @@ class AfterSignupController < ApplicationController
       @employee = current_account.build_profile
     when :add_staff
       @employee = Employee.new
+    when :finish
+      @organizations=current_account.organizations
     end
     render_wizard
     
@@ -61,7 +63,7 @@ class AfterSignupController < ApplicationController
       @employee.save
       #redirect_to wizard_path(:create_organization)
       #redirect_to "/after_signup/create_organization", notice: "Details saved!"
-      redirect_to organization_path(current_account.organizations.first), notice: "Congratulation! Have a look at your Organization!"
+      #redirect_to organization_path(current_account.organizations.first), notice: "Congratulation! Have a look at your Organization!"
       
     when :add_staff
       user = User.where(email: params[:email]).first_or_initialize

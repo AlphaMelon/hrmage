@@ -122,6 +122,8 @@ GEM
       compass (>= 0.12.2)
     connection_pool (1.2.0)
     currencies (0.4.2)
+    currency_select (0.1.4)
+      money (~> 5.1.1)
     debug_inspector (0.0.2)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
@@ -291,6 +293,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   compass-rails
   countries!
+  currency_select
   devise
   factory_girl_rails
   foundation-icons-sass-rails!

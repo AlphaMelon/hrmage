@@ -9,7 +9,7 @@ class Claim < ActiveRecord::Base
   validates :subject, presence: true
   validates :date, presence: true
   validates :amount_cents, presence: true
-  monetize :amount_cents
+  monetize :amount_cents, as: "amount"
   
   mount_uploader :image, ImageUploader
   

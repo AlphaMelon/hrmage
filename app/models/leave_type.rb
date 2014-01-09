@@ -3,6 +3,7 @@ class LeaveType < ActiveRecord::Base
   belongs_to :organization
   has_many :leaves
   validates :name, presence: true
+  validates :colour, presence: true
   before_save :set_default_values
   
   def set_default_values

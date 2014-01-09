@@ -54,13 +54,13 @@ class LeaveTypesController < ApplicationController
 
 	def leave_type_params
 	  if !params[:leave_substraction].nil?
-	    params.require(:leave_substraction).permit(:name, :description, :affected_entity, :type, :approval_needed)
+	    params.require(:leave_substraction).permit(:name, :description, :affected_entity, :type, :approval_needed, :colour)
 		elsif !params[:leave_neutral].nil?
-		  params.require(:leave_neutral).permit(:name, :description, :affected_entity, :type, :approval_needed)
+		  params.require(:leave_neutral).permit(:name, :description, :affected_entity, :type, :approval_needed, :colour)
 		elsif !params[:leave_addition].nil?
-		  params.require(:leave_addition).permit(:name, :description, :affected_entity, :type, :approval_needed)
+		  params.require(:leave_addition).permit(:name, :description, :affected_entity, :type, :approval_needed, :colour)
 		else
-		  params.require(:leave_type).permit(:name, :description, :affected_entity, :type, :approval_needed)
+		  params.require(:leave_type).permit(:name, :description, :affected_entity, :type, :approval_needed, :colour)
 		end
 	end
 end

@@ -77,6 +77,6 @@ class OrganizationsController < ApplicationController
 	end
 
 	def organization_params
-		params.require(:organization).permit(:name, :domain)
+		params.require(:organization).permit(:name, :domain, :default_currency)
 	end
 end

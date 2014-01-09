@@ -6,5 +6,6 @@ FactoryGirl.define do
     #sequence(:domain, 1000) { |n| "domain#{n}" }
     name "AlphaMelon"
     domain "alphamelontest.hrmage.dev"
+    default_currency "myr"
   end
 end

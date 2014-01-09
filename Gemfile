@@ -59,16 +59,18 @@ gem 'wicked'
 gem 'roo'
 gem 'cancan'
 gem 'simple_form', :github => 'plataformatec/simple_form'
+gem 'jquery-minicolors-rails'
 gem 'countries', github: 'hexorx/countries'
 gem 'devise'
 gem 'ancestry'
 gem 'wicked'
 gem 'money-rails'
-
+gem 'currency_select'
 #gem 'zurb-foundation', '~> 4.0.0'
 gem 'foundation-rails'
 gem 'foundation-icons-sass-rails', github: 'zaiste/foundation-icons-sass-rails'
-
+gem 'kaminari'
+gem 'ransack'
 
 gem 'puma'
 

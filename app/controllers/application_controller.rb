@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_organization
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :can_can_compability_to_strong_paramater
+  before_filter :admin_or_employee_session
 
   # before_filter :beta
 
@@ -17,6 +18,14 @@ class ApplicationController < ActionController::Base
   #     return
   #   end
   # end
+  
+  def admin_or_employee_session
+    session[:admin] = true if params[:admin]
+    session[:employee] = true if params[:employee]
+    if !session[:admin] && !session[:employee]
+      session[:employee] = true
+    end
+  end
   
   def can_can_compability_to_strong_paramater
     resource = controller_name.singularize.to_sym

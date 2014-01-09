@@ -1,30 +1,18 @@
 <% if !@departments.nil? || !@department.nil? %>
   <%= render "shared/admin_panel" %>
-<%end%>
-
-<% if !@positions.nil? || !@position.nil? %>
+<% elsif !@positions.nil? || !@position.nil? %>
   <%= render "shared/admin_panel" %>
-<%end%>
-
-<% if !@employees.nil? || !@employee.nil? %>
+<% elsif !@employees.nil? || !@employee.nil? %>
  <%= render "shared/admin_panel" %>
-<%end%>
-
-<% if !@leave_types.nil? || !@leave_type.nil? %>
+<% elsif !@leave_types.nil? || !@leave_type.nil? %>
  <%= render "shared/admin_panel" %>
-<%end%>
-
-<% if !@leaves.nil? || !@leave.nil? %>
+<% elsif !@leaves.nil? || !@leave.nil? %>
   <%= render "shared/leaves_panel" %>
   <%= render "shared/admin_leaves_panel" %>
-<%end%>
-
-<% if !@my_leaves.nil? || !@my_leave.nil? %>
+<% elsif !@my_leaves.nil? || !@my_leave.nil? %>
   <%= render "shared/leaves_panel" %>
   <%= render "shared/admin_leaves_panel" %>
-<%end%>
-
-<% if !@claims.nil? || !@claim.nil? %>
+<% elsif !@claims.nil? || !@claim.nil? %>
   <%= render "shared/claims_panel" %>
   <%= render "shared/admin_claims_panel" %>
 <% end %>

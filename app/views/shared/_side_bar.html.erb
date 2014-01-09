@@ -36,7 +36,12 @@
 
 <%if account_signed_in? %>
 <ul class="side-nav">
-  <li><h6>My Claims</h6></li>
+  <li><%= link_to "My Claims", my_claims_path %></li>
   <li><%= link_to "Apply Claim", new_organization_claim_path(current_organization) if !current_organization.id.nil?%></li>
 </ul>
 <% end %>
+
+<ul class="side-nav">
+  <li><%= link_to "Claims Category" %></li>
+  <li><%= link_to "Role Allocation" %></li>
+</ul>

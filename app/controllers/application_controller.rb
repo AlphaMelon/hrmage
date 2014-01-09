@@ -21,7 +21,9 @@ class ApplicationController < ActionController::Base
   
   def admin_or_employee_session
     session[:admin] = true if params[:admin]
+    session[:admin] = false if params[:employee]
     session[:employee] = true if params[:employee]
+    session[:employee] = false if params[:admin]
     if !session[:admin] && !session[:employee]
       session[:employee] = true
     end

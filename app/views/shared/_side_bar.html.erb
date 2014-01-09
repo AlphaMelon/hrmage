@@ -1,47 +1,30 @@
-<% if !current_organization.id.nil? && (can? :manage, current_organization) %>
-  <ul class="side-nav">
-    <li><h6><%= current_organization.name.capitalize %>'s Organization</h6></li>
-    <li><%= link_to "Department", organization_departments_path(current_organization) %></li>
-    <li class="divider"></li>
-    <li><%= link_to "Position", organization_positions_path(current_organization) %></li> 
-    <li class="divider"></li>
-    <li><%= link_to "Employee", organization_employees_path(current_organization) %></li>
-    <li class="divider"></li>
-    <li><%= link_to "Leave", organization_leaves_path(current_organization) , id: "organization_leaves"%></li>
-    <li class="divider"></li>
-    <li><%= link_to "Leave Types", organization_leave_types_path(current_organization) %></li> 
-  </ul>
-<% end %>
+<% if !@departments.nil? || !@department.nil? %>
+  <%= render "shared/admin_panel" %>
+<%end%>
 
-<%if account_signed_in?%>
-  <ul class="side-nav">
-    <li><%= link_to "My Leaves", my_leaves_path %></li>
-    <li>
-      <%= link_to "Apply Leave", new_organization_leave_path(current_organization) if !current_organization.id.nil?%>
-    </li>
-    <li><%= link_to "Apply Overtime" %></li>
-    <li class="divider"></li>
-    <li><%= link_to "Who's On Leave" %></li>
-    <li><%= link_to "Approvals" %></li>
-  </ul>
-<% end %>
+<% if !@positions.nil? || !@position.nil? %>
+  <%= render "shared/admin_panel" %>
+<%end%>
 
-<%if account_signed_in? %>
-<ul class="side-nav">
-  <li><%= link_to "Leave Category" %></li>
-  <li><%= link_to "Role Allocation" %></li>
-  <li><%= link_to "Report" %></li>
-</ul>
-<% end %>
+<% if !@employees.nil? || !@employee.nil? %>
+ <%= render "shared/admin_panel" %>
+<%end%>
 
-<%if account_signed_in? %>
-<ul class="side-nav">
-  <li><%= link_to "My Claims", my_claims_path %></li>
-  <li><%= link_to "Apply Claim", new_organization_claim_path(current_organization) if !current_organization.id.nil?%></li>
-</ul>
-<% end %>
+<% if !@leave_types.nil? || !@leave_type.nil? %>
+ <%= render "shared/admin_panel" %>
+<%end%>
 
-<ul class="side-nav">
-  <li><%= link_to "Claims Category" %></li>
-  <li><%= link_to "Role Allocation" %></li>
-</ul>
+<% if !@leaves.nil? || !@leave.nil? %>
+  <%= render "shared/leaves_panel" %>
+  <%= render "shared/admin_leaves_panel" %>
+<%end%>
+
+<% if !@my_leaves.nil? || !@my_leave.nil? %>
+  <%= render "shared/leaves_panel" %>
+  <%= render "shared/admin_leaves_panel" %>
+<%end%>
+
+<% if !@claims.nil? || !@claim.nil? %>
+  <%= render "shared/claims_panel" %>
+  <%= render "shared/admin_claims_panel" %>
+<% end %>

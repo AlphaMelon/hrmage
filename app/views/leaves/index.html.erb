@@ -184,22 +184,24 @@
         <% end %>
         </tbody>
       </table>
-    </div>
-    
+    </div>   
   </div>
+
   <div class="large-12 columns">
-    <table>
-      <tr>
-        <th>No Leave</th><td bgcolor="#E7E7E7"></td>
-      </tr>
-      <tr>
-        <th>Pending</th><td  bgcolor="#000000"></td>
-      </tr>
-      <% @leave_types.each do |leave_type|%>
+    <table class="remark-leaves">
+      <tbody>
         <tr>
-          <th><%=leave_type.name%></th><td bgcolor="<%=leave_type.colour%>"></td>
+          <th>REMARK</th>
+          <th>No Leave</th>
+          <td bgcolor="#E7E7E7"></td>
+          <th>Pending</th>
+          <td bgcolor="#000000"></td>
+          <% @leave_types.each do |leave_type|%>
+            <th><%=leave_type.name%></th>
+            <td bgcolor="<%=leave_type.colour%>">
+          <%end%>
         </tr>
-      <% end %>
+      </tbody>
     </table>
   </div>
 </div>

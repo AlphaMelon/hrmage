@@ -15,6 +15,14 @@
           <%= render "shared/admin_nav_bar" %>
         <% elsif (!@organizations.nil? || !@organization.nil?) && session[:employee] %>
           <%= render "shared/normal_nav_bar" %>
+        <% elsif (!@my_leaves.nil? || !@my_leave.nil?) && session[:admin] %>
+          <%= render "shared/admin_nav_bar" %>
+        <% elsif (!@my_leaves.nil? || !@my_leave.nil?) && session[:employee] %>
+          <%= render "shared/normal_nav_bar" %>
+        <% elsif (!@my_claims.nil? || !@my_claim.nil?) && session[:admin] %>
+          <%= render "shared/admin_nav_bar" %>
+        <% elsif (!@my_claims.nil? || !@my_claim.nil?) && session[:employee] %>
+          <%= render "shared/normal_nav_bar" %>
         <%end%>
       </div>
     </div>

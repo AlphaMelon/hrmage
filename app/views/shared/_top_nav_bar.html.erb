@@ -5,15 +5,15 @@
       <div class="logo">
         <%= link_to root_path do %>
           <%= image_tag('logo/hrmerge-logo.jpg') %>
-        <%end%>
+        <% end %>
       </div>
     </div>
 
     <div class="large-8 columns">
       <div class="top-nav-bar">
-        <% if (!@organizations.nil? || !@organization.nil?) && session[:admin] %>
+        <% if (!current_organization.nil? || !current_organization.nil?) && session[:admin_session] %>
           <%= render "shared/admin_nav_bar" %>
-        <% elsif (!@organizations.nil? || !@organization.nil?) && session[:employee] %>
+        <% elsif (!current_organization.nil? || !current_organization.nil?) && session[:employee_session] %>
           <%= render "shared/normal_nav_bar" %>
         <% elsif (!@my_leaves.nil? || !@my_leave.nil?) && session[:admin] %>
           <%= render "shared/admin_nav_bar" %>
@@ -33,10 +33,12 @@
 
     <div class="large-2 columns">
       <div class="user-panel">
-        <ul class="side-nav">
-          <li><%= link_to "Admin", admin: true %></li>
-          <li><%= link_to "Normal", employee: true %></li>
-        </ul>
+        <% if can? :manage, :all %>
+          <ul class="side-nav">
+            <li><%= link_to "Admin", admin_session: true %></li>
+            <li><%= link_to "Normal", employee_session: true %></li>
+          </ul>
+        <% end %>
       </div>
     </div>
   </div>

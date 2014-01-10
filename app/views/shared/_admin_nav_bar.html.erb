@@ -1,9 +1,13 @@
-<div class="panel large-6">
+<div class="panel">
   <ul class="inline-list">
     <li><h6>Admin: </h6></li>
-    <li><%= link_to "Dashboard", organization_departments_path(current_organization) %></li>
-    <li><%= link_to "Leave", organization_leaves_path(current_organization) %></li>
-    <li><a href="#">Salary</a></li>
+    <li><%= link_to current_organization.name, organization_path(current_organization), id: "current_organization" %></li>
+    <li><%= link_to "Leaves", organization_leaves_path(current_organization), id: "organization_leaves" %></li>
     <li><%= link_to "Claims",  organization_claims_path(current_organization), id: "organization_claims"%></li>
+    <li><%= link_to "Departments", organization_departments_path(current_organization), id: "organization_departments" %></li>
+    <li><%= link_to "Positions", organization_positions_path(current_organization), id: "organization_positions" %></li> 
+    <li><%= link_to "Employee", organization_employees_path(current_organization), id: "organizaiton_employees" %></li>
+    <li><%= link_to "Leave Types", organization_leave_types_path(current_organization), id: "organizaiton_leave_types" %></li> 
+    <li><a href="#">Salary</a></li>
   </ul>
 </div>

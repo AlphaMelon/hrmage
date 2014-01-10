@@ -22,4 +22,13 @@ feature "[Employee Claims]" do
     page.should have_content("can't be blank")
   end
 
+  scenario "Applying claim more than your available claims" do
+    visit root_path
+    click_on "Apply Claim"
+    fill_in "claim_amount_cents", with: "9999999"
+    click_button "Apply Claim"
+    page.should have_content("is more than your available claims")
+  end
+
+
 end

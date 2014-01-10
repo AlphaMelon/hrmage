@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140109044907) do
+ActiveRecord::Schema.define(version: 20140110083147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(version: 20140109044907) do
     t.integer  "account_id"
     t.integer  "organization_id"
     t.integer  "available_leaves"
+    t.integer  "available_claims_cents"
+    t.boolean  "can_self_approve"
   end
 
   create_table "leave_types", force: true do |t|
@@ -137,6 +139,9 @@ ActiveRecord::Schema.define(version: 20140109044907) do
     t.datetime "updated_at"
     t.integer  "max_leaves"
     t.integer  "organization_id"
+    t.integer  "max_claims_cents"
+    t.boolean  "can_approve_leave"
+    t.boolean  "can_approve_claim"
   end
 
 end

@@ -1,4 +1,25 @@
 <div class="row">
+  <div class="large-12 small-12 columns">
+    <h1>My Claims</h1>
+  </div>
+  
+  <hr>
+
+  <div class="large-12 small-12 columns">
+    <h6>Available Claims</h6>
+  </div>
+  <div class="large12 columns">
+    <div class="large-2 small-2 columns">
+      <h5 class="text-left"><%= current_account.profile.available_claims%>/<%= current_account.profile.position.max_claims%></h5>
+    </div>
+    <div class=" progress success large-10 small-10 columns">
+      <span class="meter" style="width: <%= @claims_remaining_percentage%>%"></span>
+    </div>
+  </div>
+  <hr>
+</div>
+
+<div class="row">
   <div class="large-12 columns">
     <h2>History</h2>
     <table>

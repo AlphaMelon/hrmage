@@ -23,5 +23,6 @@ class HomeController < ApplicationController
   def my_claims
     authenticate_account!
     @my_claims = current_account.profile.claims.all
+    @claims_remaining_percentage = current_account.profile.available_claims_cents*100/current_account.profile.position.max_claims_cents if !current_account.profile.position.nil?
   end
 end

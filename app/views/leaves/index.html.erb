@@ -20,10 +20,10 @@
           <a href="#" data-dropdown="drop_<%=leave.id %>" class="tiny button dropdown">Details</a>
             <ul id="drop_<%=leave.id %>" data-dropdown-content class="f-dropdown">
               <li>
-                <%= link_to "Approve", organization_leave_path(current_organization, leave, leave: {status: "Approved"}), method: "patch"%>
+                <%= link_to " Approve", organization_leave_path(current_organization, leave, leave: {status: "Approved"}), method: "patch", class: "fi-check"%>
               </li>
               <li>
-                <%= link_to "Reject", organization_leave_path(current_organization, leave, leave: {status: "Rejected"}), method: "patch"%>
+                <%= link_to " Reject", organization_leave_path(current_organization, leave, leave: {status: "Rejected"}), method: "patch", class: "fi-x"%>
               </li>
             </ul>
           </td>

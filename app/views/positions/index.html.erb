@@ -5,12 +5,18 @@
       <thead>
         <th>Name</th>
         <th>Max Leaves</th>
+        <th>Max Claims</th>
+        <th>Approve Leaves</th>
+        <th>Aprovee Claims</th>
         <th>Action</th>
       </thead>
       <% @positions.each do |position|%>
         <tr>
           <td><%= position.name %></td>
           <td><%= position.max_leaves %></td>
+          <td><%= humanized_money_with_symbol position.max_claims %></td>
+          <td><%= position.can_approve_leave %></td>
+          <td><%= position.can_approve_claim %></td>
           <td><%= link_to " Edit", edit_organization_position_path(current_organization, position), class: "fi-pencil" %></td>
         </tr>
       <% end %>

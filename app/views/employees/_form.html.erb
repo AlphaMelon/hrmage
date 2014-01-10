@@ -31,14 +31,6 @@
           </div>
         </div>
         <div class="large-3 small-4 columns">
-          <%= label_tag(:available_leaves, "Available Leaves", class: "string optional left inline", for: "employee_available_leaves") %>
-        </div>
-        <div class="large-9 small-8 columns">
-          <div class="large-8">
-            <%= f.input_field :available_leaves, placeholder: "leave blank to set to default amount of leaves according to position" %>
-          </div>
-        </div>
-        <div class="large-3 small-4 columns">
           <%= label_tag(:mobile_contact, "Mobile contact", class: "string optional left inline", for: "employee_mobile_contact") %>
         </div>
         <div class="large-9 small-8 columns">
@@ -52,6 +44,22 @@
         <div class="large-9 small-8 columns">
           <div class="large-8">
             <%= f.input_field :address %>
+          </div>
+        </div>
+        <div class="large-3 small-4 columns">
+          <%= label_tag(:available_leaves, "Available Leaves", class: "string optional left inline", for: "employee_available_leaves") %>
+        </div>
+        <div class="large-9 small-8 columns">
+          <div class="large-8">
+            <%= f.input_field :available_leaves, placeholder: "leave blank to set to default amount of leaves according to position" %>
+          </div>
+        </div>
+        <div class="large-3 small-4 columns">
+          <%= label_tag(:available_claims, "Available Claims", class: "string optional left inline", for: "employee_available_claims") %>
+        </div>
+        <div class="large-9 small-8 columns">
+          <div class="large-8">
+            <%= f.input_field :available_claims, placeholder: "leave blank to set to default amount of claims according to position", type: :number %>
           </div>
         </div>
         <div class="large-3 small-4 columns">

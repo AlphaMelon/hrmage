@@ -19,7 +19,7 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = @organization.employees.new(employee_params)
-    
+    @employee.available_claims_cents = 0 if employee_params[:available_claims].blank?
     if @employee.save
       redirect_to organization_employees_path(@organization), notice: "Employee successfully created"
     else
@@ -32,9 +32,11 @@ class EmployeesController < ApplicationController
   end
   
   def update
+    
 		if @employee.update(employee_params)
 			redirect_to organization_employees_path(@organization), notice: 'Employee successfully updated'
 		else
+		  raise @employee.inspect
 			render action: 'edit'
 		end
   end
@@ -91,6 +93,6 @@ class EmployeesController < ApplicationController
 
 	def employee_params
 		params.require(:employee).permit(:first_name, :last_name, :mobile_contact, 
-		:address, :photo, :properties, :department_ids, :account_id, :position_id, :available_leaves)
+		:address, :photo, :properties, :department_ids, :account_id, :position_id, :available_leaves, :available_claims_cents, :available_claims)
 	end
 end

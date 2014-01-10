@@ -23,6 +23,10 @@
           <%= render "shared/admin_nav_bar" %>
         <% elsif (!@my_claims.nil? || !@my_claim.nil?) && session[:employee] %>
           <%= render "shared/normal_nav_bar" %>
+        <% elsif (@accounts.nil? || !@account.nil?) && session[:admin] %>
+          <%= render "shared/admin_nav_bar" %>
+        <% elsif (@accounts.nil? || !@account.nil?) && session[:employee] %>
+          <%= render "shared/normal_nav_bar" %>
         <%end%>
       </div>
     </div>

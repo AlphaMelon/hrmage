@@ -33,12 +33,10 @@ class ClaimsController < ApplicationController
   def update
     @claim.update(action_by_id: current_account.id)
 		if claim_params[:status] == "Approved"
-		  @claim.status = "Approved"
-		  @claim.save
+		  @claim.approve
 			redirect_to organization_claims_path(current_organization), notice: 'Claim application approved'
 		elsif claim_params[:status]  == "Rejected"
-		  @claim.status = "Rejected"
-		  @claim.save
+		  @claim.reject
 		  redirect_to organization_claims_path(current_organization), notice: 'Claim application rejected'
 		else
 			render action: 'edit'

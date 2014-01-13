@@ -6,5 +6,7 @@ FactoryGirl.define do
     last_name "Wong"
     mobile_contact "016123214"
     available_leaves 12
+    available_claims_cents 120000
+    can_self_approve true
   end
 end

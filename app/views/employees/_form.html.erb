@@ -51,7 +51,7 @@
         </div>
         <div class="large-9 small-8 columns">
           <div class="large-8">
-            <%= f.input_field :available_leaves, placeholder: "leave blank to set to default amount of leaves according to position" %>
+            <%= f.input_field :available_leaves, placeholder: "leave blank to set to default amount of leaves according to position", type: :number %>
           </div>
         </div>
         <div class="large-3 small-4 columns">
@@ -62,6 +62,14 @@
             <%= f.input_field :available_claims, placeholder: "leave blank to set to default amount of claims according to position", type: :number %>
           </div>
         </div>
+        <div class="large-3 small-4 columns">
+          <%= label_tag(:can_self_approve, "Can Self Approve", class: "string optional left inline", for: "employee_can_self_approve") %>
+        </div>
+        <div class="large-9 small-8 columns">
+          <div class="large-8">
+            <%= f.input_field :can_self_approve, as: :select, include_blank: false %>
+          </div>
+        </div>        
         <div class="large-3 small-4 columns">
           <%= label_tag(:photo, "Photo", class: "file optional left inline", for: "employee_photo") %>
         </div>

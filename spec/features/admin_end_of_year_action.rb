@@ -7,6 +7,7 @@ feature "[Admin end of year action]" do
   
   scenario "Carry forward leaves" do
     visit root_path
+    click_on "Admin"
     click_on "organization_leaves"
     click_on "Carry Forward Employee's Available Leaves"
     page.should have_content("Employee's leaves forwarded")
@@ -14,6 +15,7 @@ feature "[Admin end of year action]" do
   
   scenario "forfeit remaining leaves" do
     visit root_path
+    click_on "Admin"
     click_on "organization_leaves"
     click_on "Reset Employee's Available Leaves"
     page.should have_content("Employee's leaves reseted")

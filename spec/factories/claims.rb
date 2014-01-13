@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :claim do
-    subject "MyString"
+    subject "Petrol"
     date "2014-01-14"
     amount_cents 7781
     comment "Gone to Tropicana"

@@ -7,6 +7,7 @@ feature "[Admin approve leave]" do
   
   scenario "Approve Leave" do
     visit root_path
+    click_on "Admin"
     click_on "organization_leaves"
     click_on "Approve"
     page.should have_content("Leaves request approved")

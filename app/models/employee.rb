@@ -18,8 +18,7 @@ class Employee < ActiveRecord::Base
   validates :first_name, presence: true
   
   def set_default_values
-  
-    self.can_self_approve = false if !self.can_self_approve.nil?
+    self.can_self_approve = false if self.can_self_approve.blank?
     
     #default available leaves
     if self.available_leaves.blank? && !self.position.nil?

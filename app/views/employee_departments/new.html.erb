@@ -6,7 +6,7 @@
       
         <%= render '/shared/error_message', object: f.object %>
         
-        <p>Linking department to <%= @employee.last_name %></p>
+        <h3>Linking Department to <%= @employee.last_name.capitalize %></h3>
         <div class="row">
           <div class="large-3 small-3 columns">
             <%= label_tag(:department_id, "Department", class: "select optional left inline", for: "employee_department_department_id") %>

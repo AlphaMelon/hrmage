@@ -8,9 +8,9 @@
         <th>Position</th>
         <th>E-mail</th>
         <th>Mobile Contact</th>
-        <th>Address</th>
         <th>Available Leaves</th>
         <th>Available Claims</th>
+        <th>Can Self Approve</th>
         <th>Action</th>
       </thead>
       <% @employees.each do |employee|%>
@@ -20,9 +20,9 @@
           <td><%= employee.position.name if !employee.position.blank?%></td>
           <td><%= employee.account.email if !employee.account.nil?%></td>
           <td><%= employee.mobile_contact%></td>
-          <td><%= employee.address%></td>
           <td><%= employee.available_leaves%></td>
           <td><%= humanized_money_with_symbol employee.available_claims%></td>
+          <td><%= employee.can_self_approve%></td>
           <td>
             <a href="#" data-dropdown="drop_<%= employee.id %>" class="tiny button dropdown">Details</a><br>
             <ul id="drop_<%= employee.id %>" data-dropdown-content class="f-dropdown">

@@ -55,6 +55,7 @@ RSpec.configure do |config|
     Capybara.javascript_driver = :webkit
     #Capybara.always_include_port = true
     Capybara.app_host = "http://staff.alphamelon.dev:#{Capybara.server_port}/?beta=1"
+    
     Employee.delete_all
     Account.delete_all
     Department.delete_all
@@ -65,6 +66,7 @@ RSpec.configure do |config|
     LeaveType.delete_all
     AccountOrganization.delete_all
     EmployeeDepartment.delete_all
+    Claim.delete_all
     
     create_admin_account
     create_organization

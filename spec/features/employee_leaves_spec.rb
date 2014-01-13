@@ -27,13 +27,15 @@ feature "[Employee Leaves]" do
     #12 out of 14 leave days remaining
     #approve leave of 2 days
     visit root_path
+    click_on "Admin"
     click_on "organization_leaves"
     click_on "Approve"
     page.should have_content("Leaves request approved")
     
     #progress bar should be 10 out of 14 leaves days
     #visit my_leaves_path
-    click_on "my_leaves_top_bar"
+    click_on "Normal"
+    click_on "my_leaves"
     page.should have_content("10/14")
   end
 

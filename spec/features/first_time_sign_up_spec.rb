@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "[First Time Signup]" do
   background do
-    Capybara.app_host = "http://microsoft.dev:#{Capybara.server_port}"
+    Capybara.app_host = "http://xyz.dev:#{Capybara.server_port}"
   end
 
   
@@ -19,7 +19,7 @@ feature "[First Time Signup]" do
     #add your organization part
     page.should have_content("Add your organization")
     fill_in "Name", with: "Microsoft Sdn Bhd"
-    fill_in "Domain", with: "microsoft.dev"
+    fill_in "Domain", with: "xyz.dev"
     click_on "Next Step"
     page.should have_content("Organization saved!")
     

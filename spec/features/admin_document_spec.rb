@@ -7,6 +7,7 @@ feature "[Admin Employee's Document]" do
    
   scenario "Add New Document for employee" do
     visit root_path
+    click_on "Admin"
     click_on "Employee"
     click_on "Show"
     click_on "New Document"
@@ -18,6 +19,7 @@ feature "[Admin Employee's Document]" do
 
   scenario "Edit Document" do
     visit root_path
+    click_on "Admin"
     click_on "Employee"
     click_on "Show"
     click_on "edit_document"
@@ -29,6 +31,7 @@ feature "[Admin Employee's Document]" do
   
   scenario "Delete Document" do
     visit root_path
+    click_on "Admin"
     click_on "Employee"
     click_on "Show"
     click_on "delete_document"

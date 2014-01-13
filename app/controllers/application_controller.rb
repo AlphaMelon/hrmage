@@ -49,7 +49,12 @@ class ApplicationController < ActionController::Base
   def current_organization
     @current_organization
   end
-
+  
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:alert] = "Access denied."
+    redirect_to root_url
+  end
+  
   private
   def setup_domains
     @current_organization = Organization.find_by(domain: request.host)

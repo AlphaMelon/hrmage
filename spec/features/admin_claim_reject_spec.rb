@@ -7,8 +7,9 @@ feature "[Admin approve claim]" do
   
   scenario "Approve Claim" do
     visit root_path
+    click_on "Admin"
     click_on "organization_claims"
-    click_on "Reject"
+    click_on "reject_claim"
     page.should have_content("Claim application rejected")
   end
 

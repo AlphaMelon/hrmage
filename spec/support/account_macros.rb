@@ -15,7 +15,6 @@ module AccountMacros
   end
   
   def sign_up_account(email, password)
-    visit new_account_registration_path
     click_on "Sign In"
     click_on "Sign up"
     fill_in "Email", with: email

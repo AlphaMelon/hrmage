@@ -25,4 +25,17 @@ class Claim < ActiveRecord::Base
       end
     end
   end
+  
+  def approve
+    self.status = "Approved"
+    employee = self.employee
+    employee.available_claims_cents = employee.available_claims_cents - self.amount_cents
+    employee.save
+    self.save
+  end
+
+  def reject
+    self.status = "Rejected"
+    self.save
+  end
 end

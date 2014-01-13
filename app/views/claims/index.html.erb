@@ -9,7 +9,7 @@
         <th>Date</th>
         <th>Amount</th>
         <th>Comment</th>
-        <th>Recipit</th>
+        <th>Receipt</th>
         <th>Action</th>
       </thead>
       <% @pending_claims.each do |pending_claim|%>
@@ -30,10 +30,10 @@
           <a href="#" data-dropdown="drop_<%=pending_claim.id %>" class="tiny button dropdown">Details</a>
             <ul id="drop_<%=pending_claim.id %>" data-dropdown-content class="f-dropdown">
               <li>
-                <%= link_to " Approve", organization_claim_path(current_organization, pending_claim, claim: {status: "Approved"}), method: "patch", class: "fi-check"%>
+                <%= link_to " Approve", organization_claim_path(current_organization, pending_claim, claim: {status: "Approved"}), method: "patch", class: "fi-check", id: "approve_claim"%>
               </li>
               <li>
-                <%= link_to " Reject", organization_claim_path(current_organization, pending_claim, claim: {status: "Rejected"}), method: "patch", class: "fi-x"%>
+                <%= link_to " Reject", organization_claim_path(current_organization, pending_claim, claim: {status: "Rejected"}), method: "patch", class: "fi-x", id: "reject_claim"%>
               </li>
             </ul>
           </td>

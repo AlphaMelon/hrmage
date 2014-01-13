@@ -7,6 +7,7 @@ feature "[Admin Employee]" do
   
   scenario "Show Employee" do
     visit root_path
+    click_on "Admin"
     click_on "Employee"
     click_on "Show"
     page.should have_content("spree@example.com")
@@ -14,12 +15,14 @@ feature "[Admin Employee]" do
   
   scenario "Add New Employee" do
     visit root_path
+    click_on "Admin"
     click_on "Employee"
     click_on "Add New Employee"
 		fill_in 'Last name', with: 'Lee'
 		fill_in 'First name', with: 'Alan'
 		fill_in 'Mobile contact', with: '016-3134415'
 		fill_in 'Address', with: 'klang'
+		select "Executive", from: "Position"
 		click_on "Create Employee"
     page.should have_content("Employee successfully created")
     page.should have_content("Lee")
@@ -27,6 +30,7 @@ feature "[Admin Employee]" do
 
   scenario "Edit Employee" do
     visit root_path
+    click_on "Admin"
     click_on "Employee"
     click_on "Edit"
 		fill_in 'Last name', with: 'Edited Wong'
@@ -37,6 +41,7 @@ feature "[Admin Employee]" do
 
   scenario "Edit login info" do
     visit root_path
+    click_on "Admin"
     click_on "Employee"
     click_on "Edit"
     click_on "Edit Login Info"
@@ -48,12 +53,14 @@ feature "[Admin Employee]" do
 
   scenario "Add login info" do
     visit root_path
+    click_on "Admin"
     click_on "Employee"
     click_on "Add New Employee"
 		fill_in 'Last name', with: 'Lee'
 		fill_in 'First name', with: 'Alan'
 		fill_in 'Mobile contact', with: '016-3134415'
 		fill_in 'Address', with: 'klang'
+		select "Executive", from: "Position"
 		click_on "Create Employee"
     page.should have_content("Employee successfully created")
     page.should have_content("Lee")
@@ -74,6 +81,7 @@ feature "[Admin Employee]" do
   
   scenario "Link Department to employee" do
     visit root_path
+    click_on "Admin"
     click_on "Employee"
     click_on "Edit"
     click_on "Add department to this employee"
@@ -83,6 +91,7 @@ feature "[Admin Employee]" do
   end
   scenario "Remove department link from employee" do
     visit root_path
+    click_on "Admin"
     click_on "Employee"
     click_on "Edit"
     click_on "Remove link"

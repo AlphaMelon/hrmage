@@ -19,7 +19,7 @@
           <td><%= leave_type.affected_entity %></td>
           <td><%= leave_type.type %></td>
           <td bgcolor="<%= leave_type.colour %>"></td>
-          <td><%= link_to "Edit", edit_organization_leave_type_path(current_organization, leave_type) %></td>
+          <td><%= link_to " Edit", edit_organization_leave_type_path(current_organization, leave_type), class: "fi-pencil" %></td>
         </tr>
       <% end %>
     </table>

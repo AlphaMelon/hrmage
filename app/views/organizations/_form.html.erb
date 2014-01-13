@@ -9,19 +9,25 @@
         <%= label_tag(:name, "Name", class: "string optional left inline", for: "organization_name") %>
       </div>
       <div class="large-9 small-9 columns">
-        <%= f.input_field :name, :autofocus => true %>
+        <div class="large-5">
+          <%= f.input_field :name, :autofocus => true %>
+        </div>
       </div>
       <div class="large-3 small-3 columns">
         <%= label_tag(:domain, "Domain", class: "string optional left inline", for: "organization_domain") %>
       </div>
       <div class="large-9 small-9 columns">
-        <%= f.input_field :domain %>
+        <div class="large-5">
+          <%= f.input_field :domain %>
+        </div>
       </div>
       <div class="large-3 small-3 columns">
         <%= label_tag(:default_currency, "Currency", class: "string optional left inline", for: "organization_default_currency") %>
       </div>
       <div class="large-9 small-9 columns">
-        <%= currency_select("organization", :default_currency, ["myr","usd"]) %>
+        <div class="large-5">
+          <%= currency_select("organization", :default_currency, ["myr","usd"]) %>
+        </div>
       </div>
       <div class="large-3 small-3 columns"></div>
       <div class="large-9 small-9 columns"><%= f.button :submit, class: "button success" %></div>

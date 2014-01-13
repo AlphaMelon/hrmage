@@ -56,11 +56,15 @@
 
     <div class="large-10 columns">
       <div class="top-nav-bar">
-        <ul class="inline-list">
-          <li><%= link_to "Leave", organization_leaves_path(current_organization) %></li>
-          <li><a href="#">Salary</a></li>
-          <li><%= link_to "Claims",  organization_claims_path(current_organization), id: "organization_claims"%></li>
-        </ul>
+        <% if (!current_organization.nil? || !current_organization.nil?) && session[:employee_session] %>
+          <%= render "shared/normal_nav_bar" %>
+        <% elsif (!@my_leaves.nil? || !@my_leave.nil?) && session[:employee] %>
+          <%= render "shared/normal_nav_bar" %>
+        <% elsif (!@my_claims.nil? || !@my_claim.nil?) && session[:employee] %>
+          <%= render "shared/normal_nav_bar" %>
+        <% elsif (@accounts.nil? || !@account.nil?) && session[:employee] %>
+          <%= render "shared/normal_nav_bar" %>
+        <%end%>
       </div>
     </div>
   </div>

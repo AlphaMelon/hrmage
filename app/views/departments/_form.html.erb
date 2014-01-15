@@ -3,10 +3,10 @@
   <%= render '/shared/error_message', object: f.object %>
 
   <div class="row">
-    <div class="large-3 small-3 columns">
+    <div class="large-2 small-3 columns">
       <%= label_tag(:name, "Name", class: "string optional left inline", for: "department_name") %>
     </div>
-    <div class="large-9 small-9 columns">
+    <div class="large-10 small-9 columns">
       <div class="large-7">
         <%= f.input_field :name %>
         <%= f.button :submit, class: "button success" %>

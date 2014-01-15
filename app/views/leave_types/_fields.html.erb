@@ -13,7 +13,7 @@
     <%= label_tag(:approval_needed, "Approval Needed", class: "string optional left inline", for: "leave_type_approval_needed") %>
   </div>
   <div class="large-9 small-9 columns">
-    <div class="large-7">
+    <div class="large-4">
       <%= f.input_field :approval_needed, as: :select, include_blank: false%>
     </div>
   </div>
@@ -21,7 +21,7 @@
     <%= label_tag(:affected_entity, "Affected Entity", class: "string optional left inline", for: "leave_type_affected_entity") %>
   </div>
   <div class="large-9 small-9 columns">
-    <div class="large-7">
+    <div class="large-4">
       <%= f.input_field :affected_entity, collection: [["Leave",'count'], ["Salary","salary"], ["Leave & Salary",'"count","salary"']], include_blank: true %>
     </div>
   </div>
@@ -29,7 +29,7 @@
     <%= label_tag(:type, "Type", class: "string optional left inline", for: "leave_type_type") %>
   </div>
   <div class="large-9 small-9 columns">
-    <div class="large-7">
+    <div class="large-4">
       <%= f.input_field :type, collection: [["Substraction","LeaveSubstraction"], ["Neutral", "LeaveNeutral"], ["Addition", "LeaveAddition"]], include_blank: false %>
     </div>
   </div>
@@ -45,7 +45,7 @@
     <%= label_tag(:colour, "Colour", class: "string optional left inline", for: "leave_type_colour") %>
   </div>
   <div class="large-9 small-9 columns">
-    <div class="large-7">
+    <div class="large-7 color-panel">
       <%= f.input_field :colour, include_blank: false, as: :minicolors %>
     </div>
   </div>

@@ -4,12 +4,13 @@ feature "[Admin Organization]" do
   background do
     #create organization first
     Capybara.app_host = "http://xyz.dev:#{Capybara.server_port}/?beta=1"
+    visit "http://xyz.dev:#{Capybara.server_port}/accounts/sign_up"
     sign_up_account("second@example.dev", "spree123")
     click_on "Add New Organization"
     fill_in 'Name', with: 'Becon'
-    fill_in 'Domain', with: "becon.dev"
+    fill_in 'Domain', with: "xyz.dev"
     click_on "Create Organization"
-    page.should have_content("Organization successfully created")
+    visit "http://xyz.dev:#{Capybara.server_port}/organizations/?beta=1"
     page.should have_content("Becon")
   end
   

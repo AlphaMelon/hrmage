@@ -15,8 +15,6 @@ module AccountMacros
   end
   
   def sign_up_account(email, password)
-    click_on "Sign In"
-    click_on "Sign up"
     fill_in "Email", with: email
     fill_in "account_password", with: password
     fill_in "account_password_confirmation", with: password

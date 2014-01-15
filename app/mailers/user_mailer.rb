@@ -6,29 +6,28 @@ class UserMailer < ActionMailer::Base
   #
   #   en.user_mailer.signup_confirmation.subject
   #
-  def signup_confirmation(user)
-    @user = user
-    mail to: user.email, subject: "Sign Up Confirmation"
+  def apply_claim(account, claim)
+    @account = account
+    @claim = claim
+    mail to: account.email, subject: "Claim need approval"    
   end
 
-  def apply_claim(user)
-    @user = user
-    mail to: user.email, subject: "Claim need approval"    
+  def claim_approval(account, claim)
+    @account = account
+    @claim = claim
+    mail to: account.email, subject: "Your claim has been approved"    
   end
 
-  def claim_approval(user)
-    @user = user
-    mail to: user.email, subject: "Your claim has been approved"    
+  def apply_leave(account, leave)
+    @account = account
+    @leave = leave
+    mail to: account.email, subject: "Leave need approval"    
   end
 
-  def apply_leave(user)
-    @user = user
-    mail to: user.email, subject: "Leave need approval"    
-  end
-
-  def leave_approval(user)
-    @user = user
-    mail to: user.email, subject: "Your leave has been approved"    
+  def leave_approval(account, leave)
+    @account = account
+    @leave = leave
+    mail to: account.email, subject: "Your leave has been approved"    
   end
 
 end

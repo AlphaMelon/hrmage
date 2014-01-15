@@ -51,6 +51,11 @@ class LeavesController < ApplicationController
     @leave.duration_seconds = @leave.duration_seconds.days if !@leave.duration_seconds.nil?
     @leave.status = "Verification Needed" if !@leave.leave_type.approval_needed
     if @leave.save
+      @leave.employee.departments.each do |department|
+        department.employee_departments.where(leader: true).each do |employee_department|
+          UserMailer.apply_leave(employee_department.employee.account, @leave).deliver if !employee_department.employee.account.nil?
+        end
+      end
       redirect_to my_leaves_path, notice: "Leave successfully applied, please wait for admin to approve"
     else
       render action: 'new'
@@ -64,6 +69,7 @@ class LeavesController < ApplicationController
     @leave.update(action_by_id: current_account.id)
 		if leave_params[:status] == "Approved"
 		  @leave.approve
+		  UserMailer.leave_approval(@leave.employee.account, @leave).deliver if !@leave.employee.account.nil?
 			redirect_to organization_leaves_path(current_organization), notice: 'Leaves request approved'
 		elsif leave_params[:status]  == "Rejected"
 		  @leave.reject

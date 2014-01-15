@@ -15,7 +15,8 @@
         <th>E-mail</th>
         <th>Mobile Contact</th>
         <th>Address</th>
-        <th>Department</th>
+        <th>Leader</th>
+        
         <th>Action</th>
       </thead>
       <% @department.employees.each do |employee|%>
@@ -25,7 +26,7 @@
           <td><%= employee.account.email if !employee.account.nil? %></td>
           <td><%= employee.mobile_contact%></td>
           <td><%= employee.address%></td>
-          <td><%= !employee.departments.blank? ? ("in " + employee.departments.count.to_s + " department") : "No Department Assigned"%>
+          <td><%= EmployeeDepartment.where(department_id: @department.id, employee_id: employee.id).first.leader %>
           <td>
             <a href="#" data-dropdown="drop_<%=employee.id%>" class="tiny button dropdown">Details</a>
             <ul id="drop_<%=employee.id%>" data-dropdown-content class="f-dropdown">

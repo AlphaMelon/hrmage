@@ -18,7 +18,7 @@ class UserMailer < ActionMailer::Base
 
   def claim_approval(user)
     @user = user
-    mail to: user.email, subject: "Claim Approval"    
+    mail to: user.email, subject: "Your claim has been approved"    
   end
 
   def apply_leave(user)
@@ -28,7 +28,7 @@ class UserMailer < ActionMailer::Base
 
   def leave_approval(user)
     @user = user
-    mail to: user.email, subject: "Leave Approval"    
+    mail to: user.email, subject: "Your leave has been approved"    
   end
 
 end

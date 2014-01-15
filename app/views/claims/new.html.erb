@@ -22,7 +22,7 @@
             <%= label_tag(:date, "Date", class: "string optional left inline", for: "claim_date") %>
           </div>
           <div class="large-9 small-9 columns">
-            <div class="large-12">
+            <div class="large-5">
               <%= f.input_field :date, as: :string, autocomplete: :off, class: "date_only" %>
             </div>
           </div>
@@ -32,7 +32,7 @@
             <%= label_tag(:amount, "Amount", class: "string optional left inline", for: "claim_amount_cents") %>
           </div>
           <div class="large-9 small-9 columns">
-            <div class="large-12">
+            <div class="large-5">
               <%= f.input_field :amount, type: :number%>
             </div>
           </div>

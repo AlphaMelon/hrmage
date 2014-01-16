@@ -49,16 +49,16 @@ class OrganizationsController < ApplicationController
     
     current_organization.employees.each do |emp|
       if !emp.position.nil? && params[:forfeit]
-        emp.available_leaves = emp.position.max_leaves
+        emp.available_leaves_seconds = emp.position.max_leaves_seconds
         emp.save
       elsif emp.position.nil? && params[:forfeit]
-        emp.available_leaves = 0
+        emp.available_leaves_seconds = 0
         emp.save
       elsif !emp.position.nil? && params[:forward]
-        emp.available_leaves = emp.available_leaves + emp.position.max_leaves
+        emp.available_leaves_seconds = emp.available_leaves_seconds + emp.position.max_leaves_seconds
         emp.save
       elsif emp.position.nil? && params[:forward]
-        emp.available_leaves = emp.available_leaves + 0
+        emp.available_leaves_seconds = emp.available_leaves_seconds + 0
         emp.save
       end 
     end

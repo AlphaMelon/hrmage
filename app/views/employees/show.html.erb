@@ -43,10 +43,10 @@
           <% end %>
           <%= document.name.capitalize %> - 
           <%= link_to edit_organization_employee_document_path(@organization, @employee, document), id: 'edit_document' do %>
-            <i class="fi-pencil"></i>
+            <i class="fi-pencil" id="edit_document"></i>
           <%end%>
           <%= link_to organization_employee_document_path(@organization, @employee, document), id: 'delete_document', method: :delete, data: { confirm: 'Are you sure?' } do%>
-            <i class="fi-trash"></i>
+            <i class="fi-trash" id='delete_document'></i>
           <%end%>
         </li>
       <% end %>

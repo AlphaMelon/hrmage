@@ -5,6 +5,8 @@ Hrmage::Application.routes.draw do
   root 'home#index'
   get 'my_leaves' => "home#my_leaves"
   get 'my_claims' => "home#my_claims"
+  get 'sign_in' => "home#sign_in"
+  get 'sign_up' => "home#sign_up"
   resources :organizations do
     resources :claims
     resources :positions

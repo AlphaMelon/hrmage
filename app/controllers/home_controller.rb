@@ -25,4 +25,20 @@ class HomeController < ApplicationController
     @my_claims = current_account.profile.claims.order(id: :desc) if !current_account.profile.nil?
     @claims_remaining_percentage = current_account.profile.available_claims_cents*100/current_account.profile.position.max_claims_cents if !current_account.profile.position.nil?
   end
+
+  def sign_in
+    if !account_signed_in?
+      render layout: "marketing"
+    else
+      redirect_to root_path, notice: "You are already signed in."
+    end
+  end
+
+  def sign_up
+    if !account_signed_in?
+      render layout: "marketing"
+    else
+      redirect_to root_path, notice: "You are already signed in."
+    end
+  end
 end

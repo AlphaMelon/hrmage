@@ -14,10 +14,8 @@
     
   </head>
 
-  <body>
-    <%= render "shared/top_bar"%>
-    <%= render "layouts/notifications" %>
+  <body class="main-body">
     <%= yield %>
-     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "application" %>
   </body>
 </html>

@@ -1,1 +1,7 @@
-<p>THIS IS THE CONTAINER</p><%= current_organization.name if !current_organization.new_record?%>
+<h6>Welcome, your now in <%= current_organization.name.capitalize if !current_organization.new_record?%> Organization</h6>
+
+<% if account_signed_in? %>
+  <%= render "sign_in" %>
+<% else %>
+  <%= render "not_sign_in" %>
+<% end %>

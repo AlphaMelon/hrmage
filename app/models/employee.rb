@@ -3,7 +3,7 @@ class Employee < ActiveRecord::Base
   belongs_to :position
   belongs_to :organization
   
-  has_many :documents
+  has_many :documents, dependent: :destroy
   has_many :employee_departments
   has_many :leaves
   has_many :departments, through: :employee_departments

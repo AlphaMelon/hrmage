@@ -1,10 +1,6 @@
-<div class="panel">
-  <ul class="inline-list">
-    <li><h6>Employee: </h6></li>
-    <li><%= link_to "Apply Leave", new_organization_leave_path(current_organization), id: "new_organization_leave" %></li>
-    <li><%= link_to "Apply Claims",  new_organization_claim_path(current_organization), id: "new_organization_claim"%></li>
-    <li><%= link_to "My Leaves",  my_leaves_path, id: "my_leaves" %></li>
-    <li><%= link_to "My Claims",  my_claims_path, id: "my_claims" %></li>
-    <li><a href="#">Salary</a></li>
-  </ul>
-</div>
+<ul class="inline-list">
+  <li><%= link_to "Dashboard", root_path %></li>
+  <li><%= link_to "Leaves",  my_leaves_path, id: "my_leaves" %></li>
+  <li><%= link_to "Claims",  my_claims_path, id: "my_claims" %></li>
+  <li><%= link_to "Salary" %></li>
+</ul>

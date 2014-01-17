@@ -8,6 +8,14 @@
     <li class="divider"></li>
     <li><%= link_to "Employee", organization_employees_path(current_organization) %></li>
     <li class="divider"></li>
-    <li><%= link_to "Leave Types", organization_leave_types_path(current_organization) %></li> 
+    <li><%= link_to "Leave Types", organization_leave_types_path(current_organization) %></li>
+    <li class="divider"></li>
+    <li><%= link_to "Organization Settings", organization_organization_settings_path(current_organization) %></li> 
+    <% if !current_organization.organization_setting.nil?%>    
+      <% if !current_organization.organization_setting.id.nil?%>
+        <li class="divider"></li>
+        <li><%= link_to "Organization Holidays", organization_organization_setting_organization_holidays_path(current_organization, current_organization.organization_setting)%></li> 
+      <% end %>
+    <% end %>
   </ul>
 <% end %>

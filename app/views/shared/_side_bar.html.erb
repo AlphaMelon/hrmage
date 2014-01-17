@@ -28,6 +28,12 @@
 <% elsif (!@my_claims.nil? || !@my_claim.nil?) && session[:employee_session]  %>
   <%= render "shared/claims_panel" %>
 
+<%# organization plane %>
+<% elsif (!@organizations.nil? || !@organization.nil?) && session[:admin_session] %>
+  <%= render "shared/admin_panel" %>
+<% elsif (!@organizations.nil? || !@organization.nil?) && session[:employee_session] %>
+  <%# render what employee can see here %>
+
 <%# position plane %>
 <% elsif (!@positions.nil? || !@position.nil?) && session[:admin_session] %>
   <%= render "shared/admin_panel" %>

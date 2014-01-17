@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140116080635) do
+ActiveRecord::Schema.define(version: 20140117062543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,29 @@ ActiveRecord::Schema.define(version: 20140116080635) do
     t.integer  "leave_type_id"
     t.integer  "duration_seconds"
     t.integer  "action_by_id"
+  end
+
+  create_table "organization_holidays", force: true do |t|
+    t.string   "name"
+    t.date     "date"
+    t.integer  "organization_setting_id"
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "organization_settings", force: true do |t|
+    t.integer  "organization_id"
+    t.integer  "monday"
+    t.integer  "tuesday"
+    t.integer  "wednesday"
+    t.integer  "thursday"
+    t.integer  "friday"
+    t.integer  "saturday"
+    t.integer  "sunday"
+    t.integer  "minimum_leave"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "organizations", force: true do |t|

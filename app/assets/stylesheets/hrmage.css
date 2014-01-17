@@ -75,3 +75,8 @@
 .remark-leaves{
   margin-top: 1em;
 }
+.color-panel{
+  .minicolors-theme-default .minicolors-swatch{
+  top: 1px;
+  }
+}

@@ -35,7 +35,6 @@ class EmployeesController < ApplicationController
 		if @employee.update(employee_params)
 			redirect_to organization_employees_path(@organization), notice: 'Employee successfully updated'
 		else
-		  raise @employee.inspect
 			render action: 'edit'
 		end
   end

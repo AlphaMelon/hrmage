@@ -20,7 +20,10 @@
 //= require jquery-ui-timepicker-addon
 //= require jquery-ui-sliderAccess
 //= require_tree .
-
+//= require jquery-ui-timepicker-addon
+//= require jquery-ui-sliderAccess
+//= require jquery.slimscroll.min
+//= require jquery.fullPage
 // var t;
 // function ready(){
 //   t = setTimeout(function(){$(document).foundation()},500);
@@ -46,3 +49,11 @@ $(function() {
       dateFormat: "yy-mm-dd",
     });
   });
+
+$(document).ready(function() {
+  var pepe = $.fn.fullpage({
+    slidesColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
+    anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+    menu: '#menu'
+  });
+});

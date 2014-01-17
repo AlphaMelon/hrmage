@@ -14,6 +14,9 @@ Hrmage::Application.routes.draw do
     resources :departments
     resources :leaves
     resources :leave_types
+    resources :organization_settings do
+      resources :organization_holidays
+    end
     resources :employees do
       resources :employee_departments
       resources :documents

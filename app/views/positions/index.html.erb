@@ -13,7 +13,7 @@
       <% @positions.each do |position|%>
         <tr>
           <td><%= position.name %></td>
-          <td><%= position.max_leaves %></td>
+          <td><%= position.max_leaves_seconds %></td>
           <td><%= humanized_money_with_symbol position.max_claims %></td>
           <td><%= position.can_approve_leave %></td>
           <td><%= position.can_approve_claim %></td>

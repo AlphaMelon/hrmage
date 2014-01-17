@@ -12,7 +12,7 @@ feature "[Domain]" do
     
     visit "http://staff.alphamelon.dev:#{Capybara.server_port}/?beta=1" 
     page.should have_content("AlphaMelon")
-
+    
     #test no domain found
     visit "http://nodomain.dev:#{Capybara.server_port}/?beta=1"
     current_url.should == "http://hrmage.dev/"

@@ -35,7 +35,6 @@ class EmployeesController < ApplicationController
 		if @employee.update(employee_params)
 			redirect_to organization_employees_path(@organization), notice: 'Employee successfully updated'
 		else
-		  raise @employee.inspect
 			render action: 'edit'
 		end
   end
@@ -93,6 +92,6 @@ class EmployeesController < ApplicationController
 	def employee_params
 		params.require(:employee).permit(:first_name, :last_name, :mobile_contact, 
 		:address, :photo, :properties, :department_ids, :account_id, :position_id, 
-		:available_leaves, :available_claims_cents, :available_claims, :can_self_approve)
+		:available_leaves_seconds, :available_claims_cents, :available_claims, :can_self_approve)
 	end
 end

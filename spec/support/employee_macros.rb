@@ -32,10 +32,10 @@ module EmployeeMacros
     account_organization = AccountOrganization.new(account_id: account.id, organization_id: organization.id, role: "Employee")
     account_organization.save
     
-    position = Position.new(name: "Clerk", max_leaves: 14, max_claims_cents: 240000, can_approve_leave: can_approve_leave, can_approve_claim: can_approve_claim)
+    position = Position.new(name: "Clerk", max_leaves_seconds: 14, max_claims_cents: 240000, can_approve_leave: can_approve_leave, can_approve_claim: can_approve_claim)
     position.save
   
-    employee = Employee.new(first_name: "Test", last_name: "lee", available_leaves: 10, available_claims_cents: 150000, can_self_approve: true)
+    employee = Employee.new(first_name: "Test", last_name: "lee", available_leaves_seconds: 10, available_claims_cents: 150000, can_self_approve: true)
     employee.account_id = account.id
     employee.organization_id = organization.id
     employee.position_id = position.id

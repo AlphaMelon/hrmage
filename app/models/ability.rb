@@ -12,7 +12,7 @@ class Ability
       acc_org = AccountOrganization.new
     end
     
-    if (acc_org.role == "Admin" || acc_org.role == "Super Admin") && !account.profile.nil?
+    if acc_org.role == "Admin" || acc_org.role == "Super Admin"
       can :manage, :all
     elsif acc_org.role == "Employee" && !account.profile.nil? && account.profile.position.can_approve_leave
       can :create, Leave

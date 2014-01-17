@@ -3,7 +3,7 @@ class Employee < ActiveRecord::Base
   belongs_to :position
   belongs_to :organization
   
-  has_many :documents
+  has_many :documents, dependent: :destroy
   has_many :employee_departments
   has_many :leaves
   has_many :departments, through: :employee_departments
@@ -21,10 +21,10 @@ class Employee < ActiveRecord::Base
     self.can_self_approve = false if self.can_self_approve.blank?
     
     #default available leaves
-    if self.available_leaves.blank? && !self.position.nil?
-      self.available_leaves = self.position.max_leaves
-    elsif self.available_leaves.blank? && self.position.blank?
-      self.available_leaves = 0
+    if self.available_leaves_seconds.blank? && !self.position.nil?
+      self.available_leaves_seconds = self.position.max_leaves_seconds
+    elsif self.available_leaves_seconds.blank? && self.position.blank?
+      self.available_leaves_seconds = 0
     end
     
     #default available claims

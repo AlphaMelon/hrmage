@@ -2,9 +2,7 @@
 
 FactoryGirl.define do
   factory :organization_holiday do
-    name "MyString"
-    date "2014-01-17"
-    organization_setting_id 1
-    organization_id ""
+    name "Random Holiday"
+    date Date.today.to_s
   end
 end

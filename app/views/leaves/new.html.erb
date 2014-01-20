@@ -9,11 +9,9 @@
           <%= f.input :duration_seconds %>
           <%= f.input :leave_type_id, collection: @leave_types, include_blank: false %>
           <%= f.input :comment, as: :text %>
-          <div class="row">
-            <div class="large-3 columns"></div>
-            <div class="large-9 columns">
-              <%= f.button :submit, "Apply Leave", class: "button success" %>
-            </div>
+          <div class="large-9 columns">
+            <%= f.button :submit, "Apply Leave", class: "button success" %>
+          </div>
 
           </div>
         <% end %>

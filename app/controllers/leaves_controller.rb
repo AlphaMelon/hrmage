@@ -14,7 +14,6 @@ class LeavesController < ApplicationController
       @leaves = @search.result.order(id: :desc).page(params[:page]).per(5)
     end
     
-    @leave_types = @organization.leave_types
     @pending_leaves = @organization.leaves.where(status: "Pending")
     @verification_needed_leaves = @organization.leaves.where(status: "Verification Needed")
     
@@ -36,8 +35,6 @@ class LeavesController < ApplicationController
     ["December", 12]]
     
     @employees = current_organization.employees.order(:id)
-    
-    #raise params.inspect
   end
   
   def new

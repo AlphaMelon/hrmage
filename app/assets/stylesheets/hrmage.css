@@ -52,10 +52,6 @@
     margin-top: 1em;
   }
 }
-.footer{
-  padding-top: 1em;
-  padding-bottom: 1em;
-}
 .present{
   background-color: #E7E7E7;
 }
@@ -79,4 +75,10 @@
   .minicolors-theme-default .minicolors-swatch{
   top: 1px;
   }
+}
+.dashboard{
+  min-height: 350px;
+}
+.sign_in{
+  margin-top: 9em;
 }

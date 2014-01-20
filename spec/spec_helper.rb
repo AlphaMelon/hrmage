@@ -51,6 +51,9 @@ RSpec.configure do |config|
   config.include(LeaveMacros)
   config.include(EmployeeMacros)
   config.include(ClaimMacros)
+  config.include(OrganizationSettingMacros)
+  config.include(OrganizationHolidayMacros)
+  config.include(PageMacros)
   config.before(:each) do
     Capybara.javascript_driver = :webkit
     #Capybara.always_include_port = true
@@ -67,6 +70,8 @@ RSpec.configure do |config|
     AccountOrganization.delete_all
     EmployeeDepartment.delete_all
     Claim.delete_all
+    OrganizationSetting.delete_all
+    OrganizationHoliday.delete_all
     
     create_admin_account
     create_organization

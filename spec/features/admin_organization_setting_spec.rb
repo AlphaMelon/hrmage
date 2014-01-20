@@ -23,7 +23,7 @@ feature "[Admin Organization Setting]" do
     page.should have_content("24")
   end
   
-  scenario "delete and add New Position" do
+  scenario "delete and add new setting" do
     visit root_path
     click_on "Admin"
     click_on "My Organization"

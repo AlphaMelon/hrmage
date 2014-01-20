@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h2 data-holiday-index="header"><%= current_organization.name%>'s holiday list</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Date</th>
+        <th></th>
+        <th></th>
+      </thead>
+      <% @organization_holidays.each do |organization_holiday|%>
+        <tr>
+          <td><%= organization_holiday.name %></td>
+          <td><%= organization_holiday.date %></td>
+          <td><%= link_to "Edit", edit_organization_organization_setting_organization_holiday_path(current_organization, @organization_setting, organization_holiday) %></td>
+          <td><%= link_to "Delete", organization_organization_setting_organization_holiday_path(current_organization, @organization_setting, organization_holiday), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to "Add New Holiday", new_organization_organization_setting_organization_holiday_path(current_organization, @organization_setting), class: "button" %>
+  </div>
+</div>

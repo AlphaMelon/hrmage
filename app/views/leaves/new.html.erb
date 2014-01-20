@@ -24,11 +24,11 @@
               </div>
             </div>
             <div class="large-3 columns">
-              <%= label_tag(:leave_type_id, "Leave type", class: "select optional left inline", for: "leave_leave_type") %>
+              <%= label_tag(:leave_type, "Leave type", class: "select optional left inline") %>
             </div>
             <div class="large-9 columns">
               <div class="large-5">
-                <%= f.input_field :leave_type_id, collection: @leave_types, include_blank: false %>
+                <%= f.association :leave_type, collection: @organization.leave_types, include_blank: false %>
               </div>
             </div>
             <div class="large-3 columns">

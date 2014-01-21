@@ -112,25 +112,17 @@
     <h3><%= t :leave_calendar %></h3>
 
     <div class="row">
-      <%= simple_form_for :date, url: organization_leaves_path(current_organization), method: :get do |f| %>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:year, "Year", class: "select required left inline", for: "date_year") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <div class="large-5 columns">
-            <%= f.input_field :year, collection: (@year-3..@year+3), include_blank: false, selected: @year %>
+      <div class="large-8 columns">
+        <%= simple_form_for :date, wrapper: :custom, url: organization_leaves_path(current_organization), method: :get do |f| %>
+          <%= f.input :year, collection: (@year-3..@year+3), include_blank: false, selected: @year %>
+          <%= f.input :month, collection: @month_collection, include_blank: false, selected: @month %>
+            
+          <div class="large-3 small-3 columns"></div>
+          <div class="large-9 small-9 columns">
+            <%= f.submit t(:change_date), class: "button success"%>
           </div>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:month, "Month", class: "select required left inline", for: "date_month") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <div class="large-5 columns">
-            <%= f.input_field :month, collection: @month_collection, include_blank: false, selected: @month %>
-            <%= f.submit "Change Date", class: "button success"%>
-          </div>
-        </div>
-      <% end %> 
+        <% end %> 
+      </div>
     </div>
 
     <div class="table-overflow">
@@ -191,10 +183,10 @@
     <table class="remark-leaves">
       <tbody>
         <tr>
-          <th>REMARK</th>
-          <th>No Leave</th>
+          <th><%= t :remark %></th>
+          <th><%= t :no_leave %></th>
           <td bgcolor="#E7E7E7"></td>
-          <th>Pending</th>
+          <th><%= t :pending %></th>
           <td bgcolor="#000000"></td>
           <% @leave_types.each do |leave_type|%>
             <th><%=leave_type.name%></th>

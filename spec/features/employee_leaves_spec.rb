@@ -7,6 +7,7 @@ feature "[Employee Leaves]" do
   
   scenario "Apply Leave" do
     visit root_path
+    click_on "Leaves"
     click_on "Apply Leave"
     fill_in "leave_start_date", with: "2014-01-27 00:00"
     fill_in "leave_duration_seconds", with: 3
@@ -16,6 +17,7 @@ feature "[Employee Leaves]" do
   
   scenario "Applying leave more than your available leaves" do
     visit root_path
+    click_on "Leaves"
     click_on "Apply Leave"
     fill_in "leave_start_date", with: "2014-01-27 00:00"
     fill_in "leave_duration_seconds", with: 9999990

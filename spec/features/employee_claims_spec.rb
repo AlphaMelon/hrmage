@@ -7,6 +7,7 @@ feature "[Employee Claims]" do
   
   scenario "Apply Claim" do
     visit root_path
+    click_on "Claims"
     click_on "Apply Claim"
     select "Petrol", from: "Subject"
     fill_in "Date", with: "2014-01-27"
@@ -17,6 +18,7 @@ feature "[Employee Claims]" do
   
   scenario "Applying claim with blank field" do
     visit root_path
+    click_on "Claims"
     click_on "Apply Claim"
     click_button "Apply Claim"
     page.should have_content("can't be blank")
@@ -24,6 +26,7 @@ feature "[Employee Claims]" do
 
   scenario "Applying claim more than your available claims" do
     visit root_path
+    click_on "Claims"
     click_on "Apply Claim"
     fill_in "claim_amount", with: "9999999"
     click_button "Apply Claim"

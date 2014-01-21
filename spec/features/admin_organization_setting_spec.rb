@@ -38,7 +38,6 @@ feature "[Admin Organization Setting]" do
   end
   
   scenario "add new setting" do
-    create_organization_setting
     visit root_path
     click_on "Admin"
     click_on "My Organization"
@@ -51,6 +50,17 @@ feature "[Admin Organization Setting]" do
     page.should have_content("18")
     page.should have_content("17")
   end
+
+  scenario "Submit setting form without filling in anything" do
+    visit root_path
+    click_on "Admin"
+    click_on "My Organization"
+    click_on "Organization Settings"
+    click_on "Create Settings"
+		click_on "Create Organization setting"
+    page.should have_content("There must be at least one working day in a week")
+  end
+
 
   
 end

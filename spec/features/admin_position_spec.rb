@@ -8,6 +8,7 @@ feature "[Admin Position]" do
   scenario "Show Position" do
     visit root_path
     click_on "Admin"
+    click_on "My Organization"
     click_on "Position"
     page.should have_content("Executive")
   end 
@@ -15,6 +16,7 @@ feature "[Admin Position]" do
   scenario "Add New Position" do
     visit root_path
     click_on "Admin"
+    click_on "My Organization"
     click_on "Position"
     click_on "Add New Position"
 		fill_in 'Name', with: 'Manager'
@@ -28,6 +30,7 @@ feature "[Admin Position]" do
   scenario "Edit Position" do
     visit root_path
     click_on "Admin"
+    click_on "My Organization"
     click_on "Position"
     click_on "Edit"
 		fill_in 'Name', with: 'Edited manager'
@@ -36,5 +39,14 @@ feature "[Admin Position]" do
     page.should have_content("Edited manager")
   end
 
+  scenario "submit position form without filling in anything" do
+    visit root_path
+    click_on "Admin"
+    click_on "My Organization"
+    click_on "Position"
+    click_on "Add New Position"
+		click_on "Create Position"
+    page.should have_content("can't be blank")
+  end
 
 end

@@ -42,5 +42,14 @@ feature "[Admin Leave Type]" do
     page.should have_content("Edited leave")
   end
 
-
+  scenario "submit Leave Type form without filling in anything" do
+    visit root_path
+    click_on "Admin"
+    click_on "My Organization"
+    click_on "Leave Types"
+    click_on "Add New Leave Type"
+		click_on "Create Leave type"
+    page.should have_content("can't be blank")
+  end
+  
 end

@@ -8,10 +8,10 @@ feature "[Domain]" do
   scenario "View Organization using domain" do
     
     visit "http://xyz.dev:#{Capybara.server_port}/?beta=1"
-    page.should have_content("xyz test")
+    page.should have_content("Xyz test")
     
     visit "http://staff.alphamelon.dev:#{Capybara.server_port}/?beta=1" 
-    page.should have_content("AlphaMelon")
+    page.should have_content("Alphamelon")
     
     #test no domain found
     visit "http://nodomain.dev:#{Capybara.server_port}/?beta=1"

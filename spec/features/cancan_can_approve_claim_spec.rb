@@ -19,6 +19,7 @@ feature "[CanCan Ability Claims]" do
   
   scenario "Approve Own claim" do
     visit root_path
+    click_on "Claims"
     click_on "Apply Claim"
     select "Petrol", from: "Subject"
     fill_in "Date", with: "2014-01-27"
@@ -37,6 +38,7 @@ feature "[CanCan Ability Claims]" do
     employee.save
     
     visit root_path
+    click_on "Claims"
     click_on "Apply Claim"
     select "Petrol", from: "Subject"
     fill_in "Date", with: "2014-01-27"

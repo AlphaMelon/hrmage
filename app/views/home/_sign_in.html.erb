@@ -1,20 +1,29 @@
-<div class="row dashboard">
-  <div class="large-6 columns">
-    <h6>Available Leaves</h6>
-    <div class="large-3 small-2 columns">
-      <h5 class="text-left"><%= current_account.profile.available_leaves_seconds%>/<%= current_account.profile.position.max_leaves_seconds%></h5>
+<% if !current_account.profile.nil?%>
+  <% if !current_account.profile.position.nil?%>
+    <div class="row dashboard">
+      <div class="large-6 columns">
+        <h6>Available Leaves</h6>
+        <div class="large-3 small-2 columns">
+          <h5 class="text-left"><%= current_account.profile.available_leaves_seconds%>/<%= current_account.profile.position.max_leaves_seconds%></h5>
+        </div>
+        <div class=" progress success large-9 small-10 columns">
+          <span class="meter" style="width: <%= @leaves_remaining_percentage%>%"></span>
+        </div>
+      </div>
+      <div class="large-6 columns">
+        <h6>Available Claims</h6>
+        <div class="large-3 small-2 columns">
+          <h5 class="text-left"><%= current_account.profile.available_claims%>/<%= current_account.profile.position.max_claims%></h5>
+        </div>
+        <div class=" progress success large-9 small-10 columns">
+          <span class="meter" style="width: <%= @claims_remaining_percentage%>%"></span>
+        </div>
+      </div>
     </div>
-    <div class=" progress success large-9 small-10 columns">
-      <span class="meter" style="width: <%= @leaves_remaining_percentage%>%"></span>
-    </div>
-  </div>
-  <div class="large-6 columns">
-    <h6>Available Claims</h6>
-    <div class="large-3 small-2 columns">
-      <h5 class="text-left"><%= current_account.profile.available_claims%>/<%= current_account.profile.position.max_claims%></h5>
-    </div>
-    <div class=" progress success large-9 small-10 columns">
-      <span class="meter" style="width: <%= @claims_remaining_percentage%>%"></span>
-    </div>
-  </div>
-</div>
+  <% else %>
+    <p>You got no position yet, please contact your admin to assign a position to you</p>
+  <% end %>
+
+<% else %>
+  <p>You got no profile yet, please contact your admin to assign a profile to you.</p>
+<% end %>

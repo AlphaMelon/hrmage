@@ -7,7 +7,7 @@ class Employee < ActiveRecord::Base
   has_many :employee_departments
   has_many :leaves
   has_many :departments, through: :employee_departments
-  has_many :claims  
+  has_many :claims
     
   before_save :set_default_values
   

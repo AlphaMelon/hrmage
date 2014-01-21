@@ -16,6 +16,7 @@ class LeavesController < ApplicationController
     
     @pending_leaves = @organization.leaves.where(status: "Pending")
     @verification_needed_leaves = @organization.leaves.where(status: "Verification Needed")
+    @leave_types = @organization.leave_types
     
     @month = !params[:date].blank? ? params[:date][:month].to_i : DateTime.now.month
     @year = !params[:date].blank? ? params[:date][:year].to_i : DateTime.now.year

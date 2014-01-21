@@ -8,6 +8,7 @@ feature "[Admin Leave Type]" do
   scenario "Show Leave Type" do
     visit root_path
     click_on "Admin"
+    click_on "My Organization"
     click_on "Leave Types"
     page.should have_content("Annual leave")
   end 
@@ -15,6 +16,7 @@ feature "[Admin Leave Type]" do
   scenario "Add New Leave Type" do
     visit root_path
     click_on "Admin"
+    click_on "My Organization"
     click_on "Leave Types"
     click_on "Add New Leave Type"
 		fill_in 'Name', with: 'Medical leave'
@@ -31,6 +33,7 @@ feature "[Admin Leave Type]" do
   scenario "Edit Leave Type" do
     visit root_path
     click_on "Admin"
+    click_on "My Organization"
     click_on "Leave Types"
     click_on "Edit"
 		fill_in 'leave_substraction_name', with: 'Edited leave'

@@ -8,7 +8,8 @@ feature "[Admin Department]" do
   scenario "Show Department" do
     visit root_path
     click_on "Admin"
-    click_on "Departments"
+    click_on "My Organization"
+    click_on "Department"
     click_on "Show"
     page.should have_content("Account")
   end 
@@ -16,7 +17,8 @@ feature "[Admin Department]" do
   scenario "Add New Department" do
     visit root_path
     click_on "Admin"
-    click_on "Departments"
+    click_on "My Organization"
+    click_on "Department"
     click_on "Add New Department"
 		fill_in 'Name', with: 'Sales'
 		click_on "Create Department"
@@ -27,7 +29,8 @@ feature "[Admin Department]" do
   scenario "Edit Department" do
     visit root_path
     click_on "Admin"
-    click_on "Departments"
+    click_on "My Organization"
+    click_on "Department"
     click_on "Edit"
 		fill_in 'Name', with: 'Edited Sales'
 		click_on "Update Department"
@@ -35,5 +38,14 @@ feature "[Admin Department]" do
     page.should have_content("Edited Sales")
   end
 
-
+  scenario "submit department without filling form" do
+    visit root_path
+    click_on "Admin"
+    click_on "My Organization"
+    click_on "Department"
+    click_on "Add New Department"
+		click_on "Create Department"
+    page.should have_content("can't be blank")
+  end
+  
 end

@@ -6,16 +6,20 @@ feature "[Admin Organization Setting]" do
   end
   
   scenario "Show setting" do
+    create_organization_setting
     visit root_path
     click_on "Admin"
     click_on "My Organization"
+    click_on "Organization Settings"
     page.should have_content("Monday")
   end
   
   scenario "Edit setting" do
+    create_organization_setting
     visit root_path
     click_on "Admin"
     click_on "My Organization"
+    click_on "Organization Settings"
     click_on "Edit"
 		fill_in 'Monday', with: 24
 		click_on "Update Organization setting"
@@ -23,13 +27,22 @@ feature "[Admin Organization Setting]" do
     page.should have_content("24")
   end
   
-  scenario "delete and add new setting" do
+  scenario "delete setting" do
+    create_organization_setting
     visit root_path
     click_on "Admin"
     click_on "My Organization"
+    click_on "Organization Settings"
     click_on "Delete"
     page.should have_content("Organization settings successfully deleted")
-    
+  end
+  
+  scenario "add new setting" do
+    create_organization_setting
+    visit root_path
+    click_on "Admin"
+    click_on "My Organization"
+    click_on "Organization Settings"
     click_on "Create Settings"
 		fill_in 'Monday', with: 18
 		fill_in 'Tuesday', with: 17
@@ -39,7 +52,5 @@ feature "[Admin Organization Setting]" do
     page.should have_content("17")
   end
 
-
-
-
+  
 end

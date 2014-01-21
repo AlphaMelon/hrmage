@@ -38,7 +38,16 @@ feature "[Admin Employee]" do
     page.should have_content("Employee successfully updated")
     page.should have_content("Edited Wong")
   end
-
+  
+  scenario "submit employee form without filling anything" do
+    visit root_path
+    click_on "Admin"
+    click_on "Employee"
+    click_on "Add New Employee"
+		click_on "Create Employee"
+    page.should have_content("can't be blank")
+  end
+  
   scenario "Edit login info" do
     visit root_path
     click_on "Admin"
@@ -78,7 +87,28 @@ feature "[Admin Employee]" do
     page.should have_content("Login successfully added")
     page.should have_content("newlogin@example.dev")
   end
-  
+
+  scenario "submit login info without filling in anything" do
+    visit root_path
+    click_on "Admin"
+    click_on "Employee"
+    click_on "Add New Employee"
+		fill_in 'Last name', with: 'Lee'
+		fill_in 'First name', with: 'Alan'
+		fill_in 'Mobile contact', with: '016-3134415'
+		fill_in 'Address', with: 'klang'
+		select "Executive", from: "Position"
+		click_on "Create Employee"
+    page.should have_content("Employee successfully created")
+    page.should have_content("Lee")
+
+    all('#edit_employee')[1].click
+    
+    click_on "Add Login"
+		click_on "Create Account"
+    page.should have_content("Invalid email or password")
+  end
+
   scenario "Link Department to employee" do
     visit root_path
     click_on "Admin"

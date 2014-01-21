@@ -1,4 +1,4 @@
-<h5>Welcome, your now in <%= current_organization.name.capitalize if !current_organization.new_record?%> Organization</h5>
+<h5>Welcome, you are now in <%= current_organization.name.capitalize if !current_organization.new_record?%> Organization</h5>
 
 <% if account_signed_in? %>
   <%= render "sign_in" %>

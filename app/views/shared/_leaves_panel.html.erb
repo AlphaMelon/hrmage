@@ -1,10 +1,10 @@
 <ul class="side-nav">
-  <li><%= link_to "My Leaves", my_leaves_path %></li>
+  <li><%= link_to t(:my_leaves), my_leaves_path %></li>
   <li>
-    <%= link_to "Apply Leave", new_organization_leave_path(current_organization) if !current_organization.id.nil?%>
+    <%= link_to t(:apply_leave), new_organization_leave_path(current_organization) if !current_organization.id.nil?%>
   </li>
-  <li><%= link_to "Apply Overtime" %></li>
+  <li><%= link_to t(:apply_overtime) %></li>
   <li class="divider"></li>
-  <li><%= link_to "Who's On Leave" %></li>
-  <li><%= link_to "Approvals" %></li>
+  <li><%= link_to t(:whos_on_leave) %></li>
+  <li><%= link_to t(:approvals) %></li>
 </ul>

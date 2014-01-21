@@ -11,7 +11,7 @@ feature "[Admin Organization Holiday]" do
     click_on "Admin"
     click_on "My Organization"
     click_on "Organization Holidays"
-    data_obj('holiday-index','title').should_have "holiday list"
+    data_obj('holiday-index','header').should have_content("holiday list") 
     page.should have_content("holiday list")
   end
   

@@ -39,7 +39,7 @@ class OrganizationHolidaysController < ApplicationController
   
 	def destroy
 		@organization_holiday.destroy
-		redirect_to organization_organization_setting_organization_holidays_path(current_organization, @organization_setting), notice: 'Organization holidays successfully deleted'
+		redirect_to organization_organization_setting_organization_holidays_path(current_organization, @organization_setting), notice: 'Organization holiday successfully deleted'
 	end
 	
   private

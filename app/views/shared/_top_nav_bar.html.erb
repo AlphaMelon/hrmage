@@ -35,8 +35,8 @@
       <div class="user-panel">
         <% if can? :manage, :all %>
           <ul class="side-nav">
-            <li class="admin"><%= link_to "Admin", admin_session: true %></li>
-            <li class="normal"><%= link_to "Normal", employee_session: true %></li>
+            <li class="admin"><%= link_to t(:admin), admin_session: true %></li>
+            <li class="normal"><%= link_to t(:normal), employee_session: true %></li>
           </ul>
         <% end %>
       </div>

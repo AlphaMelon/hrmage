@@ -1,12 +1,12 @@
 <div class="row">
   <div class="large-8 small-12 columns">
-  <h3>Edit <%= @employee.first_name.capitalize %> <%= @employee.last_name.capitalize %> Information</h3>
+  <h3><%= t :edit %> <%= @employee.first_name.capitalize %> <%= @employee.last_name.capitalize %> <%= t :information %></h3>
   <%= render 'form' %>
   <% if !@employee.account.nil? %>
     <div class="row">
       <div class="large-3 small-4 columns"></div>
       <div class="large-9 small-8 columns">
-        <%= link_to "Edit Login Info", organization_employee_edit_login_info_path(@organization, @employee), class: "button success"%>
+        <%= link_to t(:edit_login_info), organization_employee_edit_login_info_path(@organization, @employee), class: "button success"%>
       </div>
     </div>
   <% else %>
@@ -15,8 +15,8 @@
         <div class="row">
           <div class="large-3 small-4 columns"></div>
           <div class="large-9 small-8 columns">
-            <%= link_to "Add Login", organization_employee_new_login_path(@organization, @employee), class: "button success"%>
-            <%= link_to "Link this profile to my account", organization_employee_path(@organization, @employee, employee: {account_id: current_account.id}), method: :patch ,class: "button success" if current_account.profile.nil? %>
+            <%= link_to t(:add_login), organization_employee_new_login_path(@organization, @employee), class: "button success"%>
+            <%= link_to t(:link_to_account), organization_employee_path(@organization, @employee, employee: {account_id: current_account.id}), method: :patch ,class: "button success" if current_account.profile.nil? %>
           </div>
         </div>
       </div>
@@ -24,17 +24,17 @@
   <% end %>
   
   
-  <h3>Departments</h3>
+  <h3><%= t :departments %></h3>
   <ul class="no-bullet">
     <% @employee.employee_departments.each do |ed|%>
       <li>
         <%= ed.department.name %> - 
-        <%= ed.leader ? "Leader" : "Employee" %> - 
-        <%= link_to "Remove link", organization_employee_employee_department_path(@organization, @employee, ed), method: :delete, data: { confirm: 'Are you sure?' }%>
+        <%= ed.leader ? t(:leader) : t(:employee) %> - 
+        <%= link_to t(:remove_link), organization_employee_employee_department_path(@organization, @employee, ed), method: :delete, data: { confirm: t(:are_you_sure) }%>
       </li>
     <% end %>
   </ul>
   
-  <%= link_to "Add department to this employee", new_organization_employee_employee_department_path(@organization, @employee), class: "button success"%>
+  <%= link_to t(:add_department_for_employee), new_organization_employee_employee_department_path(@organization, @employee), class: "button success"%>
   </div>
 </div>

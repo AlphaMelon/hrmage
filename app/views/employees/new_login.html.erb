@@ -6,7 +6,7 @@
         <%= simple_form_for(@account, url: organization_employee_new_login_path) do |f| %>
           <%= f.input :email %>
           <%= f.input :password, placeholder: "minimum 8 characters" %>
-          <%= f.input :role, collection: ["Admin", "Employee"], selected: "Employee" %>
+          <%= f.input :role, collection: [t(:admin), t(:employee)], selected: t(:employee) %>
           <%= f.button :submit %>
         <% end %>
 

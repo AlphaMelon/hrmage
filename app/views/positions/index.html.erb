@@ -1,14 +1,14 @@
 <div class="row">
   <div class="large-12 columns">
-    <h2>Position's List</h2>
+    <h2><%= t :positions_list %></h2>
     <table>
       <thead>
-        <th>Name</th>
-        <th>Max Leaves</th>
-        <th>Max Claims</th>
-        <th>Approve Leaves</th>
-        <th>Aprovee Claims</th>
-        <th>Action</th>
+        <th><%= t :name %></th>
+        <th><%= t :max_leaves %></th>
+        <th><%= t :max_claims %></th>
+        <th><%= t :approve_leaves %></th>
+        <th><%= t :approve_claims %></th>
+        <th><%= t :action %></th>
       </thead>
       <% @positions.each do |position|%>
         <tr>
@@ -17,10 +17,10 @@
           <td><%= humanized_money_with_symbol position.max_claims %></td>
           <td><%= position.can_approve_leave %></td>
           <td><%= position.can_approve_claim %></td>
-          <td><%= link_to " Edit", edit_organization_position_path(current_organization, position), class: "fi-pencil" %></td>
+          <td><%= link_to t(:edit), edit_organization_position_path(current_organization, position), class: "fi-pencil" %></td>
         </tr>
       <% end %>
     </table>
-    <%= link_to "Add New Position", new_organization_position_path(current_organization), class: "button success" %>
+    <%= link_to t(:add_new_position), new_organization_position_path(current_organization), class: "button success" %>
   </div>
 </div>

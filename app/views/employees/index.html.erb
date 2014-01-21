@@ -1,17 +1,17 @@
 <div class="row">
   <div class="large-12 columns">
-    <h2>Employee's List</h2>
+    <h2><%= t :employees_list %></h2>
     <table>
       <thead>
-        <th>Last Name</th>
-        <th>First Name</th>
-        <th>Position</th>
-        <th>E-mail</th>
-        <th>Mobile Contact</th>
-        <th>Available Leaves</th>
-        <th>Available Claims</th>
-        <th>Can Self Approve</th>
-        <th>Action</th>
+        <th><%= t :last_name %></th>
+        <th><%= t :first_name %></th>
+        <th><%= t :position %></th>
+        <th><%= t :e_mail %></th>
+        <th><%= t :mobile_no %></th>
+        <th><%= t :available_leaves %></th>
+        <th><%= t :available_claims %></th>
+        <th><%= t :Can_self_approve %></th>
+        <th><%= t :action %></th>
       </thead>
       <% @employees.each do |employee|%>
         <tbody>
@@ -27,17 +27,17 @@
             <a href="#" data-dropdown="drop_<%= employee.id %>" class="tiny button dropdown">Details</a><br>
             <ul id="drop_<%= employee.id %>" data-dropdown-content class="f-dropdown">
               <li>
-                <%= link_to " Show", organization_employee_path(@organization, employee), id: "show_employee", class: "fi-eye" %>
+                <%= link_to t(:show), organization_employee_path(@organization, employee), id: "show_employee", class: "fi-eye" %>
               </li>
               <li>
-                <%= link_to " Edit", edit_organization_employee_path(@organization, employee), id: "edit_employee", class: "fi-pencil" %>
+                <%= link_to t(:edit), edit_organization_employee_path(@organization, employee), id: "edit_employee", class: "fi-pencil" %>
               </li>
             </ul>
           </td>
         </tbody>
       <% end %>
     </table>
-    <%= link_to "Add New Employee", new_organization_employee_path, class: "button success" %>
+    <%= link_to t(:add_new_employee), new_organization_employee_path, class: "button success" %>
   </div>
 </div>
 

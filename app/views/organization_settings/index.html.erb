@@ -1,22 +1,22 @@
 <div class="row">
   <div class="large-12 columns">
-    <h2><%= current_organization.name%>'s settings</h2>
+    <h2><%= current_organization.name%>'s <%= t :settings %></h2>
     <% if !current_organization.organization_setting.nil?%>
       <table>
-        <tr><th>Monday</th><td><%= @organization_setting.monday %></td></tr>
-        <tr><th>Tuesday</th><td><%= @organization_setting.tuesday%></td></tr>
-        <tr><th>Wednesday</th><td><%= @organization_setting.wednesday%></td></tr>
-        <tr><th>Thursday</th><td><%= @organization_setting.thursday%></td></tr>
-        <tr><th>Friday</th><td><%= @organization_setting.friday%></td></tr>
-        <tr><th>Saturday</th><td><%= @organization_setting.saturday%></td></tr>
-        <tr><th>Sunday</th><td><%= @organization_setting.sunday%></td></tr>
-        <tr><th>Minimum Leave</th><td><%= @organization_setting.minimum_leave%></td>
+        <tr><th><%= t :monday %></th><td><%= @organization_setting.monday %></td></tr>
+        <tr><th><%= t :tuesday %></th><td><%= @organization_setting.tuesday%></td></tr>
+        <tr><th><%= t :wednesday %></th><td><%= @organization_setting.wednesday%></td></tr>
+        <tr><th><%= t :thursday %></th><td><%= @organization_setting.thursday%></td></tr>
+        <tr><th><%= t :friday %></th><td><%= @organization_setting.friday%></td></tr>
+        <tr><th><%= t :saturday %></th><td><%= @organization_setting.saturday%></td></tr>
+        <tr><th><%= t :sunday %></th><td><%= @organization_setting.sunday%></td></tr>
+        <tr><th><%= t :min_leave %></th><td><%= @organization_setting.minimum_leave%></td>
       </table>
-      <%= link_to "Edit", edit_organization_organization_setting_path(current_organization, @organization_setting), class: "button success"%>
-      <%= link_to "Delete", organization_organization_setting_path(current_organization, @organization_setting), method: :delete, data: { confirm: 'This will also delete organization holidays. Are you sure?' }, class: "button alert" %>
+      <%= link_to t(:edit), edit_organization_organization_setting_path(current_organization, @organization_setting), class: "button success"%>
+      <%= link_to t(:delete), organization_organization_setting_path(current_organization, @organization_setting), method: :delete, data: { confirm: t(:delete_organization_holidays) }, class: "button alert" %>
     <% else %>
       <p>Your organization do not have any settings yet, please click the button below to create setting</p>
-      <%= link_to "Create Settings", new_organization_organization_setting_path(current_organization), class: "button success" %>
+      <%= link_to t(:create_settings) , new_organization_organization_setting_path(current_organization), class: "button success" %>
     <% end%>
   </div>
 </div>

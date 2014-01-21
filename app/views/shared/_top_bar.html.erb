@@ -2,12 +2,12 @@
   <nav class="top-bar" data-topbar>
     <ul class="title-area">
       <li class="name hide-for-large">
-        <h1><%= link_to current_organization.name || "Organization" %></h1>
+        <h1><%= link_to current_organization.name || t(:organization) %></h1>
       </li>
       <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
       <li class="toggle-topbar menu-icon">
         <a href="#">
-          <span>Menu</span>
+          <span><%= t :menu %></span>
         </a>
       </li>
     </ul>
@@ -24,27 +24,18 @@
               <li><%= link_to "My B"%></li>
             </ul>
           </li>
-          <li class="divider"></li>
-          <%if !current_account.profile.nil? && !current_organization.id.nil? %>
-            <!-- <li class="has-dropdown">
-              <%= link_to "Apply Leave", new_organization_leave_path(current_organization)%>
-              <ul class="dropdown">
-                <li><%= link_to "My Leaves", my_leaves_path %></li>
-              </ul>
-            </li> -->
-          <%end %>
           
           <li class="has-dropdown">
-            <a href="#">Hello <%= !current_account.profile.nil? ? current_account.profile.last_name : "new user" %></a>
+            <a href="#"><%= t :hello %> <%= !current_account.profile.nil? ? current_account.profile.last_name : t(:new_user) %></a>
             <ul class="dropdown">
-              <li><%= link_to "View My Profile", account_path(current_account) %></li>
-              <li><%= link_to "Change my password", edit_account_registration_path %></li>
-              <li><%= link_to "Logout", destroy_account_session_path, method: :delete %></li>
+              <li><%= link_to t(:view_my_profile), account_path(current_account) %></li>
+              <li><%= link_to t(:change_my_password), edit_account_registration_path %></li>
+              <li><%= link_to t(:logout), destroy_account_session_path, method: :delete %></li>
             </ul>
           </li>
           
         <% else %>
-          <li><%= link_to "Sign In", account_session_path %></li>
+          <li><%= link_to t(:sign_in), account_session_path %></li>
         <% end %>
       </ul>
 
@@ -52,12 +43,12 @@
       <ul class="left">
         <%if account_signed_in? %>
           <li class="has-dropdown">
-            <%= link_to current_organization.name || "Organization", organizations_path %>
+            <%= link_to current_organization.name || t(:organization), organizations_path %>
             <ul class="dropdown">
               <% current_account.organizations.each do |org| %>
                 <li><%= link_to org.name.capitalize, host: org.domain %></li>
               <% end %>
-              <li><%= link_to "Add New Organization", new_organization_path %></li>
+              <li><%= link_to t(:add_new_organization), new_organization_path %></li>
             </ul>
           </li>
           <li class="divider"></li>

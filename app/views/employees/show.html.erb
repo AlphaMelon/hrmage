@@ -11,14 +11,14 @@
           <% end %>
        </div>
       <div class="large-8 small-12 columns">
-        <h5><%= @employee.first_name.capitalize %> Information</h5>
-        <p>Last Name: <%= @employee.last_name%><br>
-        First Name: <%= @employee.first_name%><br>
-        Email: <%= @employee.account.email if !@employee.account.nil?%><br>
-        Mobile Contact: <%= @employee.mobile_contact%><br>
-        Address: <%= @employee.address%><br>
-        Available Leave: <%= @employee.available_leaves_seconds%></p>
-        <h5>Departments</h5>
+        <h5><%= @employee.first_name.capitalize %> <%= t :information%></h5>
+        <p><%= t :last_name %>: <%= @employee.last_name%><br>
+        <%= t :first_name %>: <%= @employee.first_name%><br>
+        <%= t :e_mail %>: <%= @employee.account.email if !@employee.account.nil?%><br>
+        <%= t :mobile_no %>: <%= @employee.mobile_contact%><br>
+        <%= t :address %>: <%= @employee.address%><br>
+        <%= t :available_leaves %>: <%= @employee.available_leaves_seconds%></p>
+        <h5><%= t :departments %></h5>
         <p>
           <% @employee.departments.each do |d|%>
             <%= d.name %>, 
@@ -45,7 +45,7 @@
           <%= link_to edit_organization_employee_document_path(@organization, @employee, document), id: 'edit_document' do %>
             <i class="fi-pencil" id="edit_document"></i>
           <%end%>
-          <%= link_to organization_employee_document_path(@organization, @employee, document), id: 'delete_document', method: :delete, data: { confirm: 'Are you sure?' } do%>
+          <%= link_to organization_employee_document_path(@organization, @employee, document), id: 'delete_document', method: :delete, data: { confirm: t(:are_you_sure) } do%>
             <i class="fi-trash" id='delete_document'></i>
           <%end%>
         </li>
@@ -55,7 +55,7 @@
 </div>
 <div class="row">
   <div class="large-12 columns">
-    <%= link_to "Add New Document", new_organization_employee_document_path(@organization, @employee), class: "button success" %>
-    <%= link_to "Back", :back, class: "button success" %>
+    <%= link_to t(:add_new_document), new_organization_employee_document_path(@organization, @employee), class: "button success" %>
+    <%= link_to t(:back), :back, class: "button success" %>
   </div>
 </div>

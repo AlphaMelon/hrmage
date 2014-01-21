@@ -2,35 +2,35 @@
   <div class="large-12 columns">
     
     <h2>
-      <% if current_organization.id.nil? %>
-        Department's List
+      <% if current_organization.id.nil? %><%=t :departments_list %>
+        
       <% else %>
-        <%= current_organization.name.capitalize %> Department's List
+        <%= current_organization.name.capitalize %> <%=t :departments_list %>
       <% end %>
     </h2>
 
     <table>
       <thead>
-        <th>Name</th>
-        <th>Action</th>
+        <th><%=t :name %></th>
+        <th><%=t :action %></th>
       </thead>
       <% @departments.each do |department|%>
         <tr>
           <td><%= department.name%></td>
           <td>
-            <a href="#" data-dropdown="drop_<%= department.id %>" class="tiny button dropdown">Details</a>
+            <a href="#" data-dropdown="drop_<%= department.id %>" class="tiny button dropdown"><%=t :details%></a>
             <ul id="drop_<%= department.id %>" data-dropdown-content class="f-dropdown">
               <li>
-                <%= link_to " Show", organization_department_path(@organization, department), class: "fi-eye"%>
+                <%= link_to t(:show), organization_department_path(@organization, department), class: "fi-eye"%>
               </li>
               <li>
-                <%= link_to " Edit", edit_organization_department_path(@organization, department), class: "fi-pencil" %>
+                <%= link_to t(:edit), edit_organization_department_path(@organization, department), class: "fi-pencil" %>
               </li>
             </ul>
           </td>
         </tr>
       <% end %>
     </table>
-    <%= link_to "Add New Department", new_organization_department_path, class: "button success" %>
+    <%= link_to t(:add_new_department), new_organization_department_path, class: "button success" %>
   </div>
 </div>

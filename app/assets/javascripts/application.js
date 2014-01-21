@@ -45,7 +45,7 @@ $(function() {
   });
   
 $(function() {
-    $('.date_only').datepicker({
+    $('#organization_holiday_date').datepicker({
       dateFormat: "yy-mm-dd",
     });
   });

@@ -3,21 +3,25 @@
     <fieldset class="large-8">
       <legend>Applying Leaves</legend>
         <% if current_organization.leave_types.count != 0 %>
-        <%= simple_form_for [@organization, @leave], wrapper: :custom do |f| %>
-          <%= render '/shared/error_message', object: f.object %>
-          <%= f.input :start_date, as: :string, autocomplete: :off %>
-          <%= f.input :duration_seconds %>
-          <%= f.input :leave_type_id, collection: @leave_types, include_blank: false %>
-          <%= f.input :comment, as: :text %>
-          <div class="large-9 columns">
-            <%= f.button :submit, "Apply Leave", class: "button success" %>
-          </div>
+          <%= simple_form_for [@organization, @leave], wrapper: :custom do |f| %>
+            <%= render '/shared/error_message', object: f.object %>
+            <%= f.input :start_date, as: :string, autocomplete: :off %>
+            <%= f.input :duration_seconds %>
+            <%= f.input :leave_type_id, collection: @leave_types, include_blank: false %>
+            <%= f.input :comment, as: :text %>
+            
+            <div class="row">
+              <div class="large-3 small-3 columns"></div>
+              <div class="large-9 columns">
+                <%= f.button :submit, "Apply Leave", class: "button success" %>
+              </div>
+            </div>
 
-          </div>
+            </div>
+          <% end %>
+        <% else %>
+          <p>There is no leave type added yet, please contact your admin to add leave type.</p>
         <% end %>
-      <% else %>
-        there is no leave type added yet, please contact your admin to add leave type.
-      <% end %>
     </fieldset>
   </div>
 </div>

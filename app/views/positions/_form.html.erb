@@ -1,49 +1,14 @@
 <div class="row">
   <div class="large-12 small-12 columns">
-     <%= simple_form_for [current_organization, @position] do |f| %>
+     <%= simple_form_for [current_organization, @position], wrapper: :custom do |f| %>
       <%= render '/shared/error_message', object: f.object %>
+      <%= f.input :name, :autofocus => true %>
+      <%= f.input :max_leaves_seconds %>
+      <%= f.input :max_claims, type: :number %>
+      <%= f.input :can_approve_leave, as: :select, include_blank: false %>
+      <%= f.input :can_approve_claim, as: :select, include_blank: false %>
       
       <div class="row">
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:name, "Name", class: "string optional left inline", for: "position_name") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <div class="large-7">
-            <%= f.input_field :name, :autofocus => true %>
-          </div>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:max_leaves_seconds, "Max Leaves", class: "string optional left inline", for: "position_max_leaves_seconds") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <div class="large-7">
-            <%= f.input_field :max_leaves_seconds %>
-          </div>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:max_claims, "Max Claims", class: "string optional left inline", for: "position_max_claims") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <div class="large-4">
-            <%= f.input_field :max_claims, type: :number %>
-          </div>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:can_approve_leave, "Approve Leave", class: "string optional left inline", for: "position_can_approve_leave") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <div class="large-4">
-            <%= f.input_field :can_approve_leave, as: :select, include_blank: false %>
-          </div>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:can_approve_claim, "Approve Claim", class: "string optional left inline", for: "position_can_approve_claim") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <div class="large-4">
-            <%= f.input_field :can_approve_claim, as: :select, include_blank: false %>
-          </div>
-        </div>
         <div class="large-3 small-3 columns"></div>
         <div class="large-9 small-9 columns"><%= f.button :submit, class: "button success" %></div>
       </div>

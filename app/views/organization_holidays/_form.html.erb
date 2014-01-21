@@ -1,26 +1,12 @@
 <div class="row">
-  <div class="large-12 small-12 columns">
-    <%= simple_form_for [current_organization, @organization_setting, @organization_holiday] do |f| %>
+  <div class="large-8 small-12 columns">
+    <%= simple_form_for [current_organization, @organization_setting, @organization_holiday], wrapper: :custom do |f| %>
 
     <%= render '/shared/error_message', object: f.object %>
+    <%= f.input :name, :autofocus => true %>
+    <%= f.input :date, as: :string %>
 
     <div class="row">
-      <div class="large-3 small-3 columns">
-        <%= label_tag(:name, "Name", class: "string optional left inline", for: "organization_holiday_name") %>
-      </div>
-      <div class="large-9 small-9 columns">
-        <div class="large-5">
-          <%= f.input_field :name, :autofocus => true %>
-        </div>
-      </div>
-      <div class="large-3 small-3 columns">
-        <%= label_tag(:date, "Domain", class: "string optional left inline", for: "organization_holiday_date") %>
-      </div>
-      <div class="large-9 small-9 columns">
-        <div class="large-5">
-          <%= f.input_field :date, as: :string, class: "date_only" %>
-        </div>
-      </div>
       <div class="large-3 small-3 columns"></div>
       <div class="large-9 small-9 columns"><%= f.button :submit, class: "button success" %></div>
     </div>

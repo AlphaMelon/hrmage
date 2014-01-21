@@ -1,78 +1,17 @@
-<div class="row">
-  <div class="large-12 small-12 columns">
-     <%= simple_form_for [current_organization, @organization_setting] do |f| %>
-      <%= render '/shared/error_message', object: f.object %>
-      
-      <h5>Working hours</h5>
-      <div class="row">
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:monday, "Monday", class: "string optional left inline", for: "organization_setting_monday") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <div class="large-4">
-            <%= f.input_field :monday, :autofocus => true %>
-          </div>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:tuesday, "Tuesday", class: "string optional left inline", for: "organization_setting_tuesday") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <div class="large-4">
-            <%= f.input_field :tuesday %>
-          </div>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:wednesday, "Wednesday", class: "string optional left inline", for: "organization_setting_wednesday") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <div class="large-4">
-            <%= f.input_field :wednesday, type: :number %>
-          </div>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:thursday, "Thursday", class: "string optional left inline", for: "organization_setting_thursday") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <div class="large-4">
-            <%= f.input_field :thursday %>
-          </div>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:friday, "Friday", class: "string optional left inline", for: "organization_setting_friday") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <div class="large-4">
-            <%= f.input_field :friday %>
-          </div>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:saturday, "Saturday", class: "string optional left inline", for: "organization_setting_friday") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <div class="large-4">
-            <%= f.input_field :saturday %>
-          </div>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:sunday, "Sunday", class: "string optional left inline", for: "organization_setting_friday") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <div class="large-4">
-            <%= f.input_field :sunday %>
-          </div>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:minimum_leave, "Minimum leave", class: "string optional left inline", for: "organization_setting_minimum_leave") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <div class="large-4">
-            <%= f.input_field :minimum_leave %>
-          </div>
-        </div>
-        <div class="large-3 small-3 columns"></div>
-        <div class="large-9 small-9 columns"><%= f.button :submit, class: "button success" %></div>
-      </div>
-    <% end %>
+<%= simple_form_for [current_organization, @organization_setting], wrapper: :custom do |f| %>
+  <%= render '/shared/error_message', object: f.object %>
 
+  <h5>Working hours</h5>
+  <%= f.input :monday, :autofocus => true %>
+  <%= f.input :tuesday %>
+  <%= f.input :wednesday, type: :number %>
+  <%= f.input :thursday %>
+  <%= f.input :friday %>
+  <%= f.input :saturday %>
+  <%= f.input :sunday %>
+  <%= f.input :minimum_leave %>
+  <div class="row">
+    <div class="large-3 small-3 columns"></div>
+    <div class="large-9 small-9 columns"><%= f.button :submit, class: "button success" %></div>
   </div>
-</div>
+<% end %>

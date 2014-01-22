@@ -1,15 +1,14 @@
 <div class="row">
   <div class="large-12 columns">
+    <h1>Finish! Take a look at your organization!</h1>
     <table>
       <thead>
         <th>Name</th>
         <th>Domain</th>
-        <th></th>
       </thead>
       <tbody>
         <td><%= @organization.name%></td>
         <td><%= @organization.domain%></td>
-        <td><%= link_to "Edit", edit_organization_path(@organization) %></td>
       </tbody>
     </table>
   </div>
@@ -17,7 +16,7 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h2><%= @organization.name.capitalize %>'s Departments</h2>
+    <h4><%= @organization.name.capitalize %>'s Departments</h4>
     <table>
       <thead>
         <th>Name</th>
@@ -26,37 +25,32 @@
       <% @organization.departments.each do |department|%>
         <tr>
           <td><%= department.name%></td>
-          <td><%= link_to "Edit", edit_organization_department_path(@organization, department)%></td>
         </tr>
       <% end %>
     </table>
-    <%= link_to "Department list", organization_departments_path(@organization) %>
   </div>
 </div>
 <div class="row">
   <div class="large-12 columns">
-    <h2>Accounts with access to <%= @organization.name %></h2>
+    <h4>Accounts with access to <%= @organization.name %></h4>
     <table>
       <tr>
         <th>Email</th>
         <th>Role</th>
-        <th></th>
       </tr>
       <% @organization.account_organizations.each do |acc_org|%>
         <tr>
           <td><%= acc_org.account.email %></td>
           <td><%= acc_org.role %></td>
-          <th><%= link_to "Remove link", organization_account_organization_path(@organization, acc_org), method: :delete, data: { confirm: 'Are you sure?' }%></th>
         </tr>
       <% end %>
     </table>
-    <%= link_to "Add more account to #{@organization.name}", new_organization_account_organization_path(@organization)%>
   </div>
 </div>  
 
 <div class="row">
   <div class="large-12 columns">
-    <h2><%= @organization.name.capitalize %>'s Employees</h2>
+    <h4><%= @organization.name.capitalize %>'s Employees</h4>
     <table>
       <tr>
         <th>Last Name</th>
@@ -74,10 +68,67 @@
           <td><%= employee.account.email if !employee.account.nil?%></td>
           <td><%= employee.mobile_contact %></td>
           <td><%= employee.address%></td>
-          <td><%= link_to "Edit", edit_organization_employee_path(@organization, employee)%></td>
         </tr>
       <% end %>
     </table>
-    <%= link_to "Employee list", organization_employees_path(@organization) %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <h4><%= @organization.name.capitalize %>'s Positions</h4>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Max Leave</th>
+        <th>Max Claim</th>
+        <th>Can Approve Leave</th>
+        <th>Can Approve Claim</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <% @organization.positions.each do |position|%>
+        <tr>
+          <td><%= position.name %></td>
+          <td><%= position.max_leaves_seconds%></td>
+          <td><%= position.max_claims_cents%></td>
+          <td><%= position.can_approve_leave %></td>
+          <td><%= position.can_approve_claim %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <h2><%= t :leave_types_list %></h2>
+    <table>
+      <thead>
+        <th><%= t :name %></th>
+        <th><%= t :approval_needed %></th>
+        <th><%= t :description %></th>
+        <th><%= t :affected_entity %></th>
+        <th><%= t :type %></th>
+        <th><%= t :colour %></th>
+        <th><%= t :action %></th>
+      </thead>
+      <% @organization.leave_types.each do |leave_type|%>
+        <tr>
+          <td><%= leave_type.name %></td>
+          <td><%= leave_type.approval_needed %></td>
+          <td><%= leave_type.description %></td>
+          <td><%= leave_type.affected_entity %></td>
+          <td><%= leave_type.type %></td>
+          <td bgcolor="<%= leave_type.colour %>"></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <%= link_to "Click here to login in your new domain!", "http://"+@organization.domain%>
   </div>
 </div>

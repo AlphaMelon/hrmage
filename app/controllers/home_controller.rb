@@ -6,7 +6,11 @@ class HomeController < ApplicationController
       return
     end
     if !account_signed_in?
-      render layout: "marketing"
+      if current_organization.id.nil?
+        render layout: "marketing"
+      else
+        redirect_to new_account_session_path
+      end
     end
 
     if account_signed_in?

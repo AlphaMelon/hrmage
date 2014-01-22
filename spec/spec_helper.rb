@@ -54,6 +54,7 @@ RSpec.configure do |config|
   config.include(OrganizationSettingMacros)
   config.include(OrganizationHolidayMacros)
   config.include(PageMacros)
+  config.include(FirstTimeSignupMacros)
   config.before(:each) do
     Capybara.javascript_driver = :webkit
     #Capybara.always_include_port = true

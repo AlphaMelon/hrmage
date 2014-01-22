@@ -1,11 +1,16 @@
 <div class="row">
-  <div class="large-6 columns">
+  <div class="large-12 columns">
     <%= render "breadcrumbs", breadcrumbs_step: "department"%>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-6 columns">
     <h3>Add departments for your organization </h3>
     <%= simple_form_for @department, url: wizard_path, method: "put" do |f| %>
       <div class="row">
         <div class="large-3 small-3 columns">
-          <%= label_tag(:department_1, "Department 1", class: "left inline") %>
+          <%= label_tag(:department_1, "Department 1", class: "left required inline") %>
         </div>
         <div class="large-9 small-9 columns">
           <%= text_field_tag :department_1 %>
@@ -36,19 +41,6 @@
           <%= f.button :submit, "Next Step" %>
         </div>
       </div>
-      
-      
-      
-      
-      
-      
-      
-      
-     
-      
-
-      
     <% end %>
-
   </div>
 </div>

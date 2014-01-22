@@ -6,6 +6,10 @@ class LeaveType < ActiveRecord::Base
   validates :colour, presence: true
   before_save :set_default_values
   
+  def self.description
+    raise Exception, "Please override this method"
+  end
+  
   def set_default_values
     #self.approval_needed = false if self.approval_needed.blank?
   end

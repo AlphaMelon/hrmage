@@ -5,7 +5,7 @@
     
       <%= render '/shared/error_message', object: f.object %>
       
-      <p>Add account to <%= @organization.name %></p>
+      <p><%= t :add_account_to %> <%= @organization.name %></p>
       <div class="row">
         <div class="large-3 small-3 columns">
           <%= label_tag(:email, "Email", class: "left inline") %>

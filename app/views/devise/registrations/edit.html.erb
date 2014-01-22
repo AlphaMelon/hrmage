@@ -1,6 +1,6 @@
 <div class="row">
   <div class="large-8 small-12 columns">
-    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+    <h2><%= t :edit %> <%= resource_name.to_s.humanize %></h2>
 
     <%= simple_form_for(resource, wrapper: :custom, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
       <%= f.error_notification %>

@@ -41,6 +41,9 @@
     padding-right: 0.83em;
   }
 }
+.footer{
+  margin-top: 1em;
+}
 .back-footer{
   background-color: whiteSmoke;
   border: 1px solid #DADADA;
@@ -79,4 +82,9 @@
 }
 .sign_in{
   margin-top: 9em;
+}
+.boolean{
+  input{
+    margin-top: 0.8em;
+  }
 }

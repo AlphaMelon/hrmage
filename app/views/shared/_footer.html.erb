@@ -8,6 +8,7 @@
           <li><%= link_to t(:salary) %></li>
         </ul>
       </div>
+      <%= current_organization.name.capitalize if !current_organization.new_record? %>
       <h5>Office Mage - Copyright 2013 Alpha Melon Sdn Bhd</h5>
     </div>
   </div>

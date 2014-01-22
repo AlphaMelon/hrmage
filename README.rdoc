@@ -7,4 +7,4 @@
 
  since this application is multidomain, the following needs to be entered into your hosts file
 
-127.0.0.1  staff.alphamelon.dev xyz.dev hrmage.dev
+127.0.0.1  staff.alphamelon.dev xyz.dev hrmage.dev testing.hrmage.dev

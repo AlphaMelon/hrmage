@@ -1,12 +1,13 @@
 <div class="row">
-  <div class="large-6 columns">
+  <div class="large-12 columns">
     <%= render "breadcrumbs", breadcrumbs_step: "organization"%>
+
     <h3><%= t :add_your_organization %></h3>
     <%= simple_form_for @organization, wrapper: :custom , url: wizard_path, method: "put" do |f| %>
       <%= f.input :name %>
-      <%= f.input :domain %>
       <div class="row">
         <div class="large-3 small-3 columns">
+
           <%= label_tag(:default_currency, "Currency", class: "string optional left inline", for: "organization_default_currency") %>
         </div>
         <div class="large-9 small-9 columns">

@@ -13,6 +13,7 @@ class Organization < ActiveRecord::Base
   validates :domain, uniqueness: true
   validates :domain, presence: true
   validates :name, presence: true
+  validates :name, uniqueness: true
   validates :default_currency, presence: true
   
   before_save :setup_currency

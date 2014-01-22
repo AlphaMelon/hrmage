@@ -147,3 +147,8 @@ en:
   create_organization: "Create Organization"
   add_department: "Add Department"
   about_yourself: "About Yourself"
+  add_new_holiday: "Add New Holiday"
+  end_of_year: "End of year?"
+  reset_employees_available_leaves: "Reset Employee's Available Leaves"
+  carry_forward_employees_available_leaves: "Carry Forward Employee's Available Leaves"
+  linking_department_to: "Linking Department to"

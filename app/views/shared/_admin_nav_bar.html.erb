@@ -1,6 +1,6 @@
 <div class="panel">
   <ul class="inline-list">
-    <li><h6>Admin: </h6></li>
+    <li><h6><%= t :admin %>: </h6></li>
     <li><%= link_to t(:my_organization), organization_path(current_organization), id: "current_organization" %></li>
     <li><%= link_to t(:employee), organization_employees_path(current_organization), id: "organizaiton_employees" %></li>
     <li><%= link_to t(:leaves), organization_leaves_path(current_organization), id: "organization_leaves" %></li>

@@ -17,7 +17,7 @@
           <td><%= leave.duration_seconds/24/60/60%> Days</td>
           <td><%= leave.comment %></td>
           <td>
-          <a href="#" data-dropdown="drop_<%=leave.id %>" class="tiny button dropdown">Details</a>
+          <a href="#" data-dropdown="drop_<%=leave.id %>" class="tiny button dropdown"><%= t :details %></a>
             <ul id="drop_<%=leave.id %>" data-dropdown-content class="f-dropdown">
               <li>
                 <%= link_to t(:approve), organization_leave_path(current_organization, leave, leave: {status: "Approved"}), method: "patch", class: "fi-check", id: "approve_leave"%>
@@ -49,7 +49,7 @@
           <td><%= leave.leave_type.name %></td>
           <td><%= leave.comment %></td>
           <td>
-            <a href="#" data-dropdown="drop_<%= leave.id %>" class="tiny button dropdown">Details</a>
+            <a href="#" data-dropdown="drop_<%= leave.id %>" class="tiny button dropdown"><%= t :details %></a>
             <ul id="drop_<%= leave.id %>" data-dropdown-content class="f-dropdown">
               <li>
                 <%= link_to t(:verify), organization_leave_path(current_organization, leave, leave: {status: "Approved"}), method: "patch", class: "fi-check" %>
@@ -67,7 +67,7 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h3>History</h3>
+    <h3><%= t :history %></h3>
   </div>
   <div class="large-12 columns">
     <table>
@@ -98,10 +98,10 @@
       <%end%>
     </table>
     <%= paginate @leaves %>
-    <a href="#" data-dropdown="end_of_year" class="tiny button dropdown">End of year?</a>
+    <a href="#" data-dropdown="end_of_year" class="tiny button dropdown"><%= t :end_of_year%></a>
     <ul id="end_of_year" data-dropdown-content class="f-dropdown">
-      <li><%= link_to "Reset Employee's Available Leaves", organization_end_of_year_action_path(forfeit: true), method: :post%></li>
-      <li><%= link_to "Carry Forward Employee's Available Leaves", organization_end_of_year_action_path(forward: true), method: :post%></li>
+      <li><%= link_to t(:reset_employees_available_leaves), organization_end_of_year_action_path(forfeit: true), method: :post%></li>
+      <li><%= link_to t(:carry_forward_employees_available_leaves), organization_end_of_year_action_path(forward: true), method: :post%></li>
     </ul>
     
   </div>

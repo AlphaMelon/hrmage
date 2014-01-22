@@ -6,7 +6,7 @@
       
         <%= render '/shared/error_message', object: f.object %>
         
-        <h3>Linking Department to <%= @employee.last_name.capitalize %></h3>
+        <h3><%= t :linking_department_to %> <%= @employee.last_name.capitalize %></h3>
         <%= f.input :department_id, collection: @departments, include_blank: false %>
         <%= f.input :leader %>
         <div class="row">

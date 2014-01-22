@@ -1,7 +1,7 @@
 <div class="row">
   <div class="large-6 columns">
     <h2>Add a new staff</h2>
-    <%= simple_form_for @employee, url: wizard_path, method: "put" do |f| %>
+    <%= simple_form_for @employee, wrapper: :custom, url: wizard_path, method: "put" do |f| %>
       <%= f.input :last_name %>
       <%= f.input :first_name %>
       <%= f.input :mobile_contact %>

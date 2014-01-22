@@ -4,7 +4,7 @@
 
     <%= render '/shared/error_message', object: f.object %>
     <%= f.input :name, :autofocus => true %>
-    <%= f.input :date, as: :string %>
+    <%= f.input :date, as: :string, input_html: {class: 'date_only'} %>
 
     <div class="row">
       <div class="large-3 small-3 columns"></div>

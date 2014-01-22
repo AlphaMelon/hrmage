@@ -1,7 +1,7 @@
 <div class="row">
   <div class="large-6 columns">
     <%= render "breadcrumbs", breadcrumbs_step: "department"%>
-    <h3>Add departments for your organization </h3>
+    <h3><%= t :add_department_for_organization%> </h3>
     <%= simple_form_for @department, url: wizard_path, method: "put" do |f| %>
       <div class="row">
         <div class="large-3 small-3 columns">
@@ -33,21 +33,9 @@
         </div>
         <div class="large-9 small-9 columns">
           <%= text_field_tag :department_5 %>
-          <%= f.button :submit, "Next Step" %>
+          <%= f.button :submit, t(:next_step) %>
         </div>
       </div>
-      
-      
-      
-      
-      
-      
-      
-      
-     
-      
-
-      
     <% end %>
 
   </div>

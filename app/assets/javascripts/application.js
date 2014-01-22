@@ -43,11 +43,12 @@ $(function() {
       minDate: -1
     });
   });
-  
+
 $(function() {
-    $('#organization_holiday_date').datepicker({
+    $('.date_only').datepicker({
       dateFormat: "yy-mm-dd",
     });
   });
+
 
 

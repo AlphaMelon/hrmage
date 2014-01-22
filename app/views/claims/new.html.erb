@@ -7,7 +7,7 @@
 
         <%= render '/shared/error_message', object: f.object %>
         <%= f.input :subject, collection: ["Mileage","Petrol","Accommodation"], include_blank: false %>
-        <%= f.input :date, as: :string, autocomplete: :off, class: "date_only" %>
+        <%= f.input :date, as: :string, autocomplete: :off, input_html: {class: 'date_only'} %>
         <%= f.input :amount, type: :number%>
         <%= f.input :comment %>
         <%= f.input :image, as: :file %>

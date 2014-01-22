@@ -12,13 +12,13 @@
           <% end %>
        </div>
       <div class="large-8 small-12 columns">
-        <h5><%= current_account.profile.first_name.capitalize %> Information</h5>
-        <p>Last Name: <%= current_account.profile.last_name %><br>
-        First Name: <%= current_account.profile.first_name %><br>
-        Email: <%= current_account.email %><br>
-        Mobile Contact: <%= current_account.profile.mobile_contact %><br>
-        Address: <%= current_account.profile.address%><br>
-        Leave Remaining : <%= current_account.profile.available_leaves_seconds %> Days</p>
+        <h5><%= current_account.profile.first_name.capitalize %> <%= t :information%></h5>
+        <p><%= t :last_name %>: <%= current_account.profile.last_name %><br>
+        <%= t :first_name %>: <%= current_account.profile.first_name %><br>
+        <%= t :email %>: <%= current_account.email %><br>
+        <%= t :mobile_no %>: <%= current_account.profile.mobile_contact %><br>
+        <%= t :address %>: <%= current_account.profile.address%><br>
+        <%= t :available_leaves %> : <%= current_account.profile.available_leaves_seconds %> Days</p>
       </div>
      </div>
     </div>
@@ -44,7 +44,7 @@
 </div>
 <div class="row">
   <div class="large-12 columns">
-    <%= link_to "Back", :back, class: "button success" %>
+    <%= link_to t(:back), :back, class: "button success" %>
   </div>
 </div>
 

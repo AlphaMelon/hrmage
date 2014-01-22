@@ -1,13 +1,13 @@
 <% if !current_account.profile.nil? && !current_account.profile.position.nil?%>
   <div class="row">
     <div class="large-12 small-12 columns">
-      <h1>My Leaves</h1>
+      <h1><%= t :my_leaves %></h1>
     </div>
     
     <hr>
 
     <div class="large-12 small-12 columns">
-      <h6>Available Leaves</h6>
+      <h6><%= t :available_leaves %></h6>
     </div>
     <div class="large-12 columns">
       <div class="large-2 small-2 columns">
@@ -22,15 +22,15 @@
 
   <div class="row">
     <div class="large-12 columns">
-      <h2>History</h2>
+      <h2><%= t :history %></h2>
       <table>
         <thead>
-          <td>Type</td>
-          <td>Reason</td>
-          <td>Duration</td>
-          <td>When</td>
-          <td>Status</td>
-          <td>Action</td>
+          <td><%= t :type %></td>
+          <td><%= t :reason %></td>
+          <td><%= t :duration%></td>
+          <td><%= t :when %></td>
+          <td><%= t :status %></td>
+          <td><%= t :action %></td>
         </thead>
         <% @my_leaves.each do |leave| %>
         <tbody>
@@ -40,7 +40,7 @@
           <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %> - <%= (leave.start_date.to_date + ((leave.duration_seconds)/60/60/24).days).strftime("%d/%m/%Y") %></td>
           <td><%= leave.status %></td>
           <td>
-            <a href="#" data-dropdown="drop2" class="tiny button dropdown">Details</a>
+            <a href="#" data-dropdown="drop2" class="tiny button dropdown"><%= t :details %></a>
             <ul id="drop2" data-dropdown-content class="f-dropdown">
               <li><a href="#">test</a></li>
             </ul>

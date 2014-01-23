@@ -1,10 +1,10 @@
 <div class="row">
   <div class="large-12 columns">
-    <h2>Organization's List</h2>
+    <h2><%= t :organizations_list %></h2>
     <table>
       <thead>
-        <th>Name</th>
-        <th>Domain</th>
+        <th><%= t :name %></th>
+        <th><%= t :domain %></th>
         <th></th>
         <th></th>
       </thead>
@@ -12,12 +12,12 @@
         <tr>
           <td><%= organization.name %></td>
           <td><%= organization.domain %></td>
-          <td><%= link_to "Show", organization_path(organization)%></td>
-          <td><%= link_to "Edit", edit_organization_path(organization) %></td>
+          <td><%= link_to t(:show), organization_path(organization)%></td>
+          <td><%= link_to t(:edit), edit_organization_path(organization) %></td>
         </tr>
       <% end %>
     </table>
-    <%= link_to "Add New Organization", new_organization_path, class: "button" %>
+    <%= link_to t(:add_new_organization), new_organization_path, class: "button" %>
   </div>
 </div>
 

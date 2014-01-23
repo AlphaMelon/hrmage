@@ -2,14 +2,14 @@
   <div class="large-12 columns">
     <table>
       <thead>
-        <th>Name</th>
-        <th>Domain</th>
+        <th><%= t :name %></th>
+        <th><%= t :domain %></th>
         <th></th>
       </thead>
       <tbody>
         <td><%= @organization.name%></td>
         <td><%= @organization.domain%></td>
-        <td><%= link_to "Edit", edit_organization_path(@organization) %></td>
+        <td><%= link_to t(:edit), edit_organization_path(@organization) %></td>
       </tbody>
     </table>
   </div>
@@ -17,36 +17,36 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h2><%= @organization.name.capitalize %>'s Departments</h2>
+    <h2><%= @organization.name.capitalize %>'s <%= t :departments %></h2>
     <table>
       <thead>
-        <th>Name</th>
+        <th><%= t :name %></th>
         <th></th>
       </thead>
       <% @organization.departments.each do |department|%>
         <tr>
           <td><%= department.name%></td>
-          <td><%= link_to "Edit", edit_organization_department_path(@organization, department)%></td>
+          <td><%= link_to t(:edit), edit_organization_department_path(@organization, department)%></td>
         </tr>
       <% end %>
     </table>
-    <%= link_to "Department list", organization_departments_path(@organization) %>
+    <%= link_to t(:department_list), organization_departments_path(@organization) %>
   </div>
 </div>
 <div class="row">
   <div class="large-12 columns">
-    <h2>Accounts with access to <%= @organization.name %></h2>
+    <h2><%= t :account_with_access_to %> <%= @organization.name %></h2>
     <table>
       <tr>
-        <th>Email</th>
-        <th>Role</th>
+        <th><%= t :email %></th>
+        <th><%= t :role %></th>
         <th></th>
       </tr>
       <% @organization.account_organizations.each do |acc_org|%>
         <tr>
           <td><%= acc_org.account.email %></td>
           <td><%= acc_org.role %></td>
-          <th><%= link_to "Remove link", organization_account_organization_path(@organization, acc_org), method: :delete, data: { confirm: 'Are you sure?' }%></th>
+          <th><%= link_to t(:remove_link), organization_account_organization_path(@organization, acc_org), method: :delete, data: { confirm: t(:are_you_sure) }%></th>
         </tr>
       <% end %>
     </table>
@@ -56,14 +56,14 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h2><%= @organization.name.capitalize %>'s Employees</h2>
+    <h2><%= @organization.name.capitalize %>'s <%= t :employees %></h2>
     <table>
       <tr>
-        <th>Last Name</th>
-        <th>First Name</th>
-        <th>E-mail</th>
-        <th>Mobile Contact</th>
-        <th>Address</th>
+        <th><%= t :last_name %></th>
+        <th><%= t :first_name %></th>
+        <th><%= t :e_mail %></th>
+        <th><%= t :mobile_no %></th>
+        <th><%= t :address %></th>
         <th></th>
         <th></th>
       </tr>
@@ -74,10 +74,10 @@
           <td><%= employee.account.email if !employee.account.nil?%></td>
           <td><%= employee.mobile_contact %></td>
           <td><%= employee.address%></td>
-          <td><%= link_to "Edit", edit_organization_employee_path(@organization, employee)%></td>
+          <td><%= link_to t(:edit), edit_organization_employee_path(@organization, employee)%></td>
         </tr>
       <% end %>
     </table>
-    <%= link_to "Employee list", organization_employees_path(@organization) %>
+    <%= link_to t(:employee_list), organization_employees_path(@organization) %>
   </div>
 </div>

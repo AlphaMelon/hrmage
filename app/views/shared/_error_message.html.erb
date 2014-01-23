@@ -1,6 +1,6 @@
 <% if object.errors.any? %>
    <div class="alert-box alert">
-     <h3>The form contains <%= pluralize(object.errors.count, "error") %>.</h3>
+     <h3><%= t :the_form_contains %> <%= pluralize(object.errors.count, "error") %>.</h3>
 
       <ul class="disc">
        <% object.errors.full_messages.each do |msg| %>

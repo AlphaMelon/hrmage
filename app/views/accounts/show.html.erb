@@ -12,7 +12,7 @@
           <% end %>
        </div>
       <div class="large-8 small-12 columns">
-        <h5><%= current_account.profile.first_name.capitalize %> <%= t :information%></h5>
+        <h5><%= current_account.profile.first_name.capitalize %> <%= t :information %></h5>
         <p><%= t :last_name %>: <%= current_account.profile.last_name %><br>
         <%= t :first_name %>: <%= current_account.profile.first_name %><br>
         <%= t :email %>: <%= current_account.email %><br>
@@ -27,7 +27,7 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h5><%=current_account.profile.last_name.capitalize %>'s Documents</h5>
+    <h5><%=current_account.profile.last_name.capitalize %>'s <%= t :documents %></h5>
     <ul class="clearing-thumbs " data-clearing>
       <% current_account.profile.documents.each do |document| %>
         <li>

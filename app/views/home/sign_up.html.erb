@@ -1,50 +1,29 @@
 <div class="row sign_in">
   <div class="large-6 large-centered columns panel">
     <div class="devise-container">
-      <h2>Sign up</h2>
+      <h2><%= t :sign_up %></h2>
 
-      <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <%= simple_form_for(resource, wrapper: :custom, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
         <%= render '/shared/error_message', object: f.object %>
+
         <div class="form-inputs">
+          <%= f.input :email, :autofocus => true %>
+          <%= f.input :password %>
+          <%= f.input :password_confirmation %>
+
           <div class="row">
-            <div class="large-3 small-3 columns">
-              <%= label_tag(:email, "Email", class: "email left inline", for: "account_email") %>
-            </div>
+            <div class="large-3 small-3 columns"></div>
             <div class="large-9 small-9 columns">
-              <div class="large-12">
-                <%= f.input_field :email, :autofocus => true %>
-              </div>
-            </div>
-            <div class="large-3 small-3 columns">
-              <%= label_tag(:password, "Password", class: "password left inline", for: "account_password")%>
-            </div>
-            <div class="large-9 small-9 columns">
-              <div class="large-12">
-                <%= f.input_field :password %>
-              </div>
-            </div>
-            <div class="large-3 small-3 columns">
-              <%= label_tag(:password_confirmation, "Password confirmation", class: "password", for: "account_password_confirmation") %>
-            </div>
-            <div class="large-9 small-9 columns">
-              <div class="large-12">
-                <%= f.input_field :password_confirmation %>
-                <div class="form-actions">
-                  <%= f.button :submit, "Sign up" %>
-                </div>
+              <div class="form-actions">
+                <%= f.button :submit, "Sign up" %>
+                or
+                <%= render "devise/shared/links" %>
               </div>
             </div>
           </div>
         </div>
       <% end %>
-
-      <div class="row" style="display: none;">
-        <div class="large-3 small-3 columns"></div>
-        <div class="large-9 small-9 columns">
-          <%= render "devise/shared/links" %>
-        </div>
-      </div>
 
     </div>
 

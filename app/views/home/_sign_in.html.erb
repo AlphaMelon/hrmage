@@ -27,3 +27,12 @@
 <% else %>
   <p>You got no profile yet, please contact your admin to assign a profile to you.</p>
 <% end %>
+
+<% if current_organization.id.nil? %>
+  <h4>Please go to your own domain to make further changes</h4>
+  <ul>
+    <% current_account.organizations.each do |org| %>
+      <li><%= link_to org.name.capitalize, host: org.domain %></li>
+    <% end %>
+  </ul>
+<% end %>

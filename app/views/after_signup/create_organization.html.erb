@@ -3,6 +3,9 @@
     <%= render "breadcrumbs", breadcrumbs_step: "organization"%>
 
     <h3><%= t :add_your_organization %></h3>
+    <blockquote>Let us guide you to create your first organization, don't worry about mistake,
+    you can always edit it in the future!. This is the first step where you create your organization.
+    a subdomain will be given to you according to your organization's name</blockquote>
     <%= simple_form_for @organization, wrapper: :custom , url: wizard_path, method: "put" do |f| %>
       <%= f.input :name %>
       <div class="row">

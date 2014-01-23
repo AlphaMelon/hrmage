@@ -7,6 +7,7 @@
 <div class="row">
   <div class="large-6 columns">
     <h3><%= t :add_leave_type %></h3>
+    <blockquote>This is where you create leave types according to your organization's policy</blockquote>
     <%= simple_form_for @leave_type, url: wizard_path, method: "put" do |f| %>
       <%= f.input :name, :autofocus => true %>
       <%= f.input :approval_needed, as: :select, include_blank: false%>

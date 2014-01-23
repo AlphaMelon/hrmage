@@ -61,6 +61,16 @@ feature "[Admin Organization Setting]" do
     page.should have_content("There must be at least one working day in a week")
   end
 
-
-  
+  scenario "Submit setting form with negative number" do
+    visit root_path
+    click_on "Admin"
+    click_on "My Organization"
+    click_on "Organization Settings"
+    click_on "Create Settings"
+		fill_in 'Monday', with: -1
+		fill_in 'Tuesday', with: -1
+		click_on "Create Organization setting"
+    page.should have_content("Monday cannot be negative number or zero")
+    page.should have_content("Tuesday cannot be negative number or zero")
+  end
 end

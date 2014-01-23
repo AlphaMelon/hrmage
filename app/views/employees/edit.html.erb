@@ -1,6 +1,7 @@
 <div class="row">
   <div class="large-8 small-12 columns">
   <h3><%= t :edit %> <%= @employee.first_name.capitalize %> <%= @employee.last_name.capitalize %> <%= t :information %></h3>
+  <blockquote>This is where you edit your employee's details.</blockquote>
   <%= render 'form' %>
   <% if !@employee.account.nil? %>
     <div class="row">

@@ -64,7 +64,7 @@ feature "[First Time Signup]" do
     create_department_step
     create_position_step
     create_leave_type_step
-    page.should have_content("Please tell us more about yourself.")
+    page.should have_content("Please tell us more about yourself")
     click_on "Next Step"
     page.should have_content("Please fill in the required field")
   end 

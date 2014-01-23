@@ -2,13 +2,13 @@
   <%= render '/shared/error_message', object: f.object %>
 
   <h5>Working hours</h5>
-  <%= f.input :monday, :autofocus => true %>
-  <%= f.input :tuesday %>
-  <%= f.input :wednesday, type: :number %>
-  <%= f.input :thursday %>
-  <%= f.input :friday %>
-  <%= f.input :saturday %>
-  <%= f.input :sunday %>
+  <%= f.input :monday, autofocus: true, placeholder: "8" %>
+  <%= f.input :tuesday, placeholder: "8" %>
+  <%= f.input :wednesday, placeholder: "8" %>
+  <%= f.input :thursday, placeholder: "8" %>
+  <%= f.input :friday, placeholder: "8" %>
+  <%= f.input :saturday, placeholder: "4" %>
+  <%= f.input :sunday, placeholder: "leave blank if not working day" %>
   <%= f.input :minimum_leave %>
   <div class="row">
     <div class="large-3 small-3 columns"></div>

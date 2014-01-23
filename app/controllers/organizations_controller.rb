@@ -17,7 +17,11 @@ class OrganizationsController < ApplicationController
 
   def create
     @organization = Organization.new(organization_params)
-    
+    if Rails.env == "development" || Rails.env == "test"
+      @organization.domain = (@organization.name.downcase.delete(" ") + ".hrmage.dev")
+    elsif Rails.env == "production"
+      @organization.domain = (@organization.name.downcase.delete(" ") + ".officemage.com")
+    end
     if @organization.save
     
       account_organization = AccountOrganization.new
@@ -37,7 +41,9 @@ class OrganizationsController < ApplicationController
   end
   
   def update
-		if @organization.update(organization_params)
+		@organization.assign_attributes(organization_params)
+    
+		if @organization.save
 			redirect_to organization_path(@organization), notice: 'Organization successfully updated'
 		else
 			render action: 'edit'

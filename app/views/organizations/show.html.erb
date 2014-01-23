@@ -9,7 +9,7 @@
       <tbody>
         <td><%= @organization.name%></td>
         <td><%= @organization.domain%></td>
-        <td><%= link_to t(:edit), edit_organization_path(@organization) %></td>
+        <td><%= link_to t(:edit), edit_organization_path(@organization), id: "edit_organization" %></td>
       </tbody>
     </table>
   </div>

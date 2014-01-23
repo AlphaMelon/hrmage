@@ -124,7 +124,7 @@ feature "[Admin Employee]" do
     click_on "Admin"
     click_on "Employee"
     click_on "Edit"
-    click_on "Remove link"
+    click_on "Remove Link"
     page.should have_content("Department link removed from employee")
   end
 end

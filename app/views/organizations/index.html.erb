@@ -13,7 +13,7 @@
           <td><%= organization.name %></td>
           <td><%= organization.domain %></td>
           <td><%= link_to "Show", organization_path(organization)%></td>
-          <td><%= link_to "Edit", edit_organization_path(organization) %></td>
+          <td><%= link_to "Edit", edit_organization_path(organization), id: "edit_organization" %></td>
         </tr>
       <% end %>
     </table>

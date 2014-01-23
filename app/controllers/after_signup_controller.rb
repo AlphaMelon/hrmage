@@ -1,7 +1,7 @@
 class AfterSignupController < ApplicationController
   include Wicked::Wizard
   before_filter :authenticate_account!
-  layout "marketing"
+  layout "wizard"
   steps :create_organization, :add_department, :add_position, :add_leave_type, :about_yourself, :payment, :finish
   
   def show
@@ -33,9 +33,9 @@ class AfterSignupController < ApplicationController
       organization_params = params.require(:organization).permit(:name, :default_currency)
       @organization.assign_attributes(organization_params)
       if Rails.env == "development" || Rails.env == "test"
-        @organization.domain = (@organization.name + ".hrmage.dev")
+        @organization.domain = (@organization.name.downcase.delete(" ") + ".hrmage.dev")
       elsif Rails.env == "production"
-        @organization.domain = (@organization.name + ".officemage.com")
+        @organization.domain = (@organization.name.downcase.delete(" ") + ".officemage.com")
       end
       if @organization.save
         account_organization = AccountOrganization.new

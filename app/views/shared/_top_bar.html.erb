@@ -42,16 +42,19 @@
       <!-- Left Nav Section -->
       <ul class="left">
         <%if account_signed_in? %>
-          <li class="has-dropdown">
-            <%= link_to current_organization.name || t(:organization), organizations_path %>
-            <ul class="dropdown">
-              <% current_account.organizations.each do |org| %>
-                <li><%= link_to org.name.capitalize, host: org.domain %></li>
-              <% end %>
-              <li><%= link_to t(:add_new_organization), new_organization_path %></li>
-            </ul>
-          </li>
-          <li class="divider"></li>
+          <% if can? :manage, :all %>
+            <li class="has-dropdown">
+              <%= link_to current_organization.name || t(:organization), organizations_path %>
+              <ul class="dropdown">
+                <% current_account.organizations.each do |org| %>
+                  <li><%= link_to org.name.capitalize, host: org.domain %></li>
+                <% end %>
+                <li><%= link_to t(:add_new_organization), new_organization_path %></li>
+              </ul>
+            </li>
+          <% else %>
+            <li><%= link_to current_organization.name || t(:organization), root_path %></li>
+          <% end %>
         <% end %>
       </ul>
     </section>

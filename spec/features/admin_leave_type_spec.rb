@@ -20,8 +20,8 @@ feature "[Admin Leave Type]" do
     click_on "Leave Types"
     click_on "Add New Leave Type"
 		fill_in 'Name', with: 'Medical leave'
-		select "Yes", from: "Approval Needed"
-		select "Leave", from: "Affected Entity"
+		select "Yes", from: "leave_type_approval_needed"
+		select "Leave", from: "leave_type_affected_entity"
 		select "Substraction", from: "Type"
 		fill_in "Description", with: "Sick leaves"
 		fill_in "Colour", with: "#f4f4f4"

@@ -1,5 +1,6 @@
 <div class="row">
   <div class="large-12 columns">
+    <blockquote>This is where you create claims so your admin can see what you are claiming for.</blockquote>
     <% if !current_account.profile.nil? %>
       <%= simple_form_for [@organization, @claim], wrapper: :custom do |f| %>
       <fieldset class="large-8">

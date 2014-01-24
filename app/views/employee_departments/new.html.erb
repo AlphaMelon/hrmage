@@ -2,8 +2,7 @@
   <div class="large-6 columns">
 
     <% if @departments.count != 0%>
-      <blockquote>This is where you link department to employee. 
-      Employee can work in multiple department</blockquote>
+      <blockquote><%= t :employee_departments_add_new_description %></blockquote>
       <%= simple_form_for [@organization, @employee, @employee_department], wrapper: :custom do |f| %>
       
         <%= render '/shared/error_message', object: f.object %>
@@ -19,7 +18,7 @@
         </div>
       <% end %>
     <% else %>
-      This organization got no department yet, please add department at <%= link_to "here", organization_departments_path(@organization) %>
+      <%= t :employee_departments_add_new_error_msg%> <%= link_to "here", organization_departments_path(@organization) %>
     <% end %>
 
   </div>

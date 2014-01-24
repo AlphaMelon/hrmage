@@ -2,7 +2,7 @@
   <div class="large-12 columns">
     <div class="row">
       <div class="large-6 columns">
-        <blockquote>This is where you add login information for the employee.</blockquote>
+        <blockquote><%= t :employees_new_login_description %></blockquote>
         <%= simple_form_for(@account, url: organization_employee_new_login_path) do |f| %>
           <%= f.input :email %>
           <%= f.input :password, placeholder: "minimum 8 characters" %>

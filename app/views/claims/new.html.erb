@@ -1,6 +1,6 @@
 <div class="row">
   <div class="large-12 columns">
-    <blockquote>This is where you create claims so your admin can see what you are claiming for.</blockquote>
+    <blockquote><%= t :claims_description %></blockquote>
     <% if !current_account.profile.nil? %>
       <%= simple_form_for [@organization, @claim], wrapper: :custom do |f| %>
       <fieldset class="large-8">
@@ -22,7 +22,7 @@
         
       <% end %>
     <% else %>
-      <p>Your profile is not ready yet, please contact administrator to link your profile before making claim application.</p>
+      <p><%= t :claims_error_msg %></p>
     <%end%>
     </fieldset>
 

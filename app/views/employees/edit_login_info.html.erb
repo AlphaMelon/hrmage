@@ -1,8 +1,7 @@
 <div class="row">
   <div class="large-8 small-12 columns">
     <h3><%= t :edit_login_info %></h3>
-    <blockquote>This is where you edit your employee login's detail. 
-    This is the place to reset your employee password if she/he forgotten the password</blockquote>
+    <blockquote><%= t :employees_edit_login_info_description %></blockquote>
     <%= simple_form_for(@account, wrapper: :custom, url: organization_employee_edit_login_info_path) do |f| %>
       <%= render '/shared/error_message', object: f.object %>
       <%= f.input :email %>

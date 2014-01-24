@@ -1,8 +1,7 @@
 <div class="row">
   <div class="large-12 columns">
     <fieldset class="large-8">
-      <blockquote>This is where you create leaves so your admin 
-      can see when and why you are applying for leave</blockquote>
+      <blockquote><%= t :leaves_description %></blockquote>
       <legend><%= t :applying_leaves %></legend>
         <% if current_organization.leave_types.count != 0 %>
           <%= simple_form_for [@organization, @leave], wrapper: :custom do |f| %>
@@ -23,10 +22,9 @@
           <% end %>
         <% else %>
 
-          <p>There is no leave type added yet, please contact your administrator to add leave type.</p>
+          <p><%= t :leaves_error_msg %></p>
           <% if can? :manage, :all %>
-            <p>If you are admin, please click on the Admin link on top right and then click "My Organization".
-            And then click Leave types, in there you can add leave types depending on your organization's policy.</p>
+            <p><%= t :leaves_admin_error_msg %></p>
           <% end %>
         <% end %>
     </fieldset>

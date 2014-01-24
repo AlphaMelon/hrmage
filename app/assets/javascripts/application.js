@@ -17,8 +17,6 @@
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
-//= require jquery-ui-timepicker-addon
-//= require jquery-ui-sliderAccess
 //= require_tree .
 //= require jquery-ui-timepicker-addon
 //= require jquery-ui-sliderAccess

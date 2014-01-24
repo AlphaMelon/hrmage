@@ -1,7 +1,9 @@
 <div class="row">
   <div class="large-8 small-12 columns">
-    <h3><%= t :add_new_employee %></h3>
-    <blockquote><%= t :employees_add_new_description %></blockquote>
-    <%= render 'form' %>
+    <fieldset>
+      <legend><%= t :add_new_employee %></legend>
+      <div class="panel"><%= t :employees_add_new_description %></div>
+      <%= render 'form' %>
+    </fieldset>
   </div>
 </div>

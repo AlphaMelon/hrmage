@@ -1,16 +1,14 @@
 <div class="row">
-  <div class="large-12 columns">
-    <div class="row">
-      <div class="large-6 columns">
-        <blockquote><%= t :employees_new_login_description %></blockquote>
+  <div class="large-8 small-12 columns">
+    <fieldset>
+      <legend><%t :new_login %></legend>
+      <div class="panel"><%= t :employees_new_login_description %></div>
         <%= simple_form_for(@account, url: organization_employee_new_login_path) do |f| %>
           <%= f.input :email %>
           <%= f.input :password, placeholder: "minimum 8 characters" %>
           <%= f.input :role, collection: [t(:admin), t(:employee)], selected: t(:employee) %>
           <%= f.button :submit %>
         <% end %>
-
-      </div>
-    </div>
+    </fieldset>
   </div>
 </div>

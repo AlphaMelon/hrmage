@@ -5,22 +5,22 @@
 </div>
 
 <div class="row">
-  <div class="large-6 columns">
-    <h3><%= t :please_tell_us_more_about_yourself %></h3>
-    <%= simple_form_for @employee, wrapper: :custom, url: wizard_path, method: "put" do |f| %>
-      <%= f.input :last_name %>
-      <%= f.input :first_name %>
-      <%= f.input :mobile_contact %>
-      <%= f.input :address %>
-      <%= f.input :photo, as: :file %>
-
-          
-  <div class="large-3 small-3 columns"></div>
-  <div class="large-9 small-9 columns">
-    <%= f.button :submit, t(:next_step) %>
-    <%#= link_to 'Next Step', wizard_path(:create_organization), class: "button" %>
-  </div>
-    <% end %>
-
+  <div class="large-8 columns">
+    <fieldset>
+      <legend><%= t :about_yourself %></legend>
+      <h3><%= t :please_tell_us_more_about_yourself %></h3>
+      <%= simple_form_for @employee, wrapper: :custom, url: wizard_path, method: "put" do |f| %>
+        <%= f.input :last_name %>
+        <%= f.input :first_name %>
+        <%= f.input :mobile_contact %>
+        <%= f.input :address %>
+        <%= f.input :photo, as: :file %>
+        <div class="large-3 small-3 columns"></div>
+        <div class="large-9 small-9 columns">
+          <%= f.button :submit, t(:next_step) %>
+          <%#= link_to 'Next Step', wizard_path(:create_organization), class: "button" %>
+        </div>
+      <% end %>
+    </fieldset>
   </div>
 </div>

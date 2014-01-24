@@ -1,7 +1,9 @@
 <div class="row">
-  <div class="large-12 columns">
-    <h3><%= t :edit %> <%= @document.name.capitalize %> <%= t :documents %></h3>
-    <blockquote><%= t :documents_edit_description %></blockquote>
-    <%= render 'form' %>
+  <div class="large-8 small-12 columns">
+    <fieldset>
+      <legend><%= t :edit %> <%= @document.name.capitalize %> <%= t :documents %></legend>
+      <div class="panel"><%= t :documents_edit_description %></div>
+      <%= render 'form' %>
+    </fieldset>
   </div>
 </div>

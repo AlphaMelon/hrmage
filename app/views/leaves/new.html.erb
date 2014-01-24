@@ -1,32 +1,35 @@
 <div class="row">
   <div class="large-12 columns">
-    <fieldset class="large-8">
-      <blockquote><%= t :leaves_description %></blockquote>
-      <legend><%= t :applying_leaves %></legend>
-        <% if current_organization.leave_types.count != 0 %>
-          <%= simple_form_for [@organization, @leave], wrapper: :custom do |f| %>
-            <%= render '/shared/error_message', object: f.object %>
-            <%= f.input :start_date, as: :string, autocomplete: :off %>
-            <%= f.input :duration_seconds %>
-            <%= f.input :leave_type_id, collection: @leave_types, include_blank: false %>
-            <%= f.input :comment, as: :text %>
-            
-            <div class="row">
-              <div class="large-3 small-3 columns"></div>
-              <div class="large-9 columns">
-                <%= f.button :submit, t(:apply_leave), class: "button success" %>
-              </div>
+    
+    <% if current_organization.leave_types.count != 0 %>
+      <fieldset class="large-8">
+        <div class="panel"><%= t :leaves_description %></div>
+        <legend><%= t :applying_leaves %></legend>
+        <%= simple_form_for [@organization, @leave], wrapper: :custom do |f| %>
+          <%= render '/shared/error_message', object: f.object %>
+          <%= f.input :start_date, as: :string, autocomplete: :off %>
+          <%= f.input :duration_seconds %>
+          <%= f.input :leave_type_id, collection: @leave_types, include_blank: false %>
+          <%= f.input :comment, as: :text %>
+          
+          <div class="row">
+            <div class="large-3 small-3 columns"></div>
+            <div class="large-9 columns">
+              <%= f.button :submit, t(:apply_leave), class: "button success" %>
             </div>
-
-            </div>
-          <% end %>
-        <% else %>
-
-          <p><%= t :leaves_error_msg %></p>
-          <% if can? :manage, :all %>
-            <p><%= t :leaves_admin_error_msg %></p>
-          <% end %>
+          </div>
         <% end %>
-    </fieldset>
+      </fieldset>
+    <% else %>
+      <% if can? :manage, :all %>
+        <div data-alert class="alert-box warning">
+          <%= t :leaves_admin_error_msg %>
+        </div>
+      <% else %>
+        <div data-alert class="alert-box warning">
+          <%= t :leaves_error_msg %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>

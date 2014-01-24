@@ -5,15 +5,23 @@
       <thead>
         <th><%= t :name%></th>
         <th><%= t :date %></th>
-        <th></th>
-        <th></th>
+        <th><%= t :action %></th>
       </thead>
       <% @organization_holidays.each do |organization_holiday|%>
         <tr>
           <td><%= organization_holiday.name %></td>
           <td><%= organization_holiday.date %></td>
-          <td><%= link_to t(:edit), edit_organization_organization_setting_organization_holiday_path(current_organization, @organization_setting, organization_holiday) %></td>
-          <td><%= link_to t(:delete), organization_organization_setting_organization_holiday_path(current_organization, @organization_setting, organization_holiday), method: :delete, data: { confirm: t(:are_you_sure) } %></td>
+          <td>
+            <a href="#" data-dropdown="drop_<%=organization_holiday.id %>" class="tiny button dropdown"><%= t :details %></a>
+            <ul id="drop_<%=organization_holiday.id %>" data-dropdown-content class="f-dropdown">
+              <li>
+                <%= link_to t(:edit), edit_organization_organization_setting_organization_holiday_path(current_organization, @organization_setting, organization_holiday), class: "fi-pencil" %>
+              </li>
+              <li>
+                <%= link_to t(:delete), organization_organization_setting_organization_holiday_path(current_organization, @organization_setting, organization_holiday), class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure) } %>
+              </li>
+            </ul>
+          </td>
         </tr>
       <% end %>
     </table>

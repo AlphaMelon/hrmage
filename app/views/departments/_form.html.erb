@@ -1,5 +1,4 @@
 <%= simple_form_for [@organization, @department], wrapper: :custom do |f| %>
-
   <%= render '/shared/error_message', object: f.object %>
     <%= f.input :name %>
     <div class="row">
@@ -8,5 +7,4 @@
         <%= f.button :submit, class: "button success" %>
       </div>
     </div>
-    
 <% end %>

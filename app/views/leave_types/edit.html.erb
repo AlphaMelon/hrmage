@@ -1,7 +1,9 @@
 <div class="row">
-  <div class="large-12 columns">
-    <h3><%= t :edit %> <%= @leave_type.name %></h3>
-    <blockquote><%= t :leave_types_edit_description %></blockquote>
-    <%= render 'form' %>
+  <div class="large-8 small-12 columns">
+    <fieldset>
+      <legend><%= t :edit %> <%= @leave_type.name %></legend>
+      <div class="panel"><%= t :leave_types_edit_description %></div>
+      <%= render 'form' %>
+    </fieldset>
   </div>
 </div>

@@ -31,7 +31,7 @@ en:
   show: " Show"
   edit: " Edit"
   update: "Update"
-  delete: "Delete"
+  delete: " Delete"
   add_new_department: "Add New Department"
   last_name: "Last Name"
   first_name: "First Name"
@@ -207,4 +207,5 @@ en:
   organizations_new_description: "This is where you create a new organization. Your domain will be named according to your organization's name."
   positions_edit_description: "This is where you edit your organization's position."
   positions_new_description: "This is where add position for your organization like Executive or manager."
-  
+  new_login: "New Login"
+  account_organizations_new_description: "This is where you add account to access your organization, make sure the email exist before you add account."

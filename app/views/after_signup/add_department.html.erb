@@ -5,43 +5,46 @@
 </div>
 
 <div class="row">
-  <div class="large-6 columns">
-    <h3><%= t :add_department_for_organization%> </h3>
-    <blockquote><%= t :after_signup_add_department %></blockquote>
-    <%= simple_form_for @department, url: wizard_path, method: "put" do |f| %>
-      <div class="row">
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:department_1, "Department 1", class: "left required inline") %>
+  <div class="large-8 columns">
+    <fieldset>
+      <legend><%= t :add_department %></legend>
+      <h3><%= t :add_department_for_organization%> </h3>
+      <div class="panel"><%= t :after_signup_add_department %></div>
+      <%= simple_form_for @department, url: wizard_path, method: "put" do |f| %>
+        <div class="row">
+          <div class="large-3 small-3 columns">
+            <%= label_tag(:department_1, "Department 1", class: "left required inline") %>
+          </div>
+          <div class="large-9 small-9 columns">
+            <%= text_field_tag :department_1 %>
+          </div>
+          <div class="large-3 small-3 columns">
+            <%= label_tag(:department_2, "Department 2", class: "left inline") %>
+          </div>
+          <div class="large-9 small-9 columns">
+            <%= text_field_tag :department_2 %>
+          </div>
+          <div class="large-3 small-3 columns">
+            <%= label_tag(:department_3, "Department 3", class: "left inline") %>
+          </div>
+          <div class="large-9 small-9 columns">
+            <%= text_field_tag :department_3 %>
+          </div>
+          <div class="large-3 small-3 columns">
+            <%= label_tag(:department_4, "Department 4", class: "left inline") %>
+          </div>
+          <div class="large-9 small-9 columns">
+            <%= text_field_tag :department_4 %>
+          </div>
+          <div class="large-3 small-3 columns">
+            <%= label_tag(:department_5, "Department 5", class: "left inline")%>
+          </div>
+          <div class="large-9 small-9 columns">
+            <%= text_field_tag :department_5 %>
+            <%= f.button :submit, t(:next_step) %>
+          </div>
         </div>
-        <div class="large-9 small-9 columns">
-          <%= text_field_tag :department_1 %>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:department_2, "Department 2", class: "left inline") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <%= text_field_tag :department_2 %>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:department_3, "Department 3", class: "left inline") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <%= text_field_tag :department_3 %>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:department_4, "Department 4", class: "left inline") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <%= text_field_tag :department_4 %>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:department_5, "Department 5", class: "left inline")%>
-        </div>
-        <div class="large-9 small-9 columns">
-          <%= text_field_tag :department_5 %>
-          <%= f.button :submit, t(:next_step) %>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </fieldset>
   </div>
 </div>

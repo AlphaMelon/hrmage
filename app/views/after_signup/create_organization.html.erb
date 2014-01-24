@@ -1,22 +1,27 @@
 <div class="row">
   <div class="large-12 columns">
     <%= render "breadcrumbs", breadcrumbs_step: "organization"%>
+  </div>
+</div>
 
-    <h3><%= t :add_your_organization %></h3>
-    <blockquote><%= t :after_signup_create_organization %></blockquote>
-    <%= simple_form_for @organization, wrapper: :custom , url: wizard_path, method: "put" do |f| %>
-      <%= f.input :name %>
-      <div class="row">
-        <div class="large-3 small-3 columns">
+<div class="row">
+  <div class="large-8 columns">
+    <fieldset>
+      <legend><%= t :add_your_organization %></legend>
+      <div class="panel"><%= t :after_signup_create_organization %></div>
+      <%= simple_form_for @organization, wrapper: :custom , url: wizard_path, method: "put" do |f| %>
+        <%= f.input :name %>
+        <div class="row">
+          <div class="large-3 small-3 columns">
 
-          <%= label_tag(:default_currency, "Currency", class: "string optional left inline", for: "organization_default_currency") %>
+            <%= label_tag(:default_currency, "Currency", class: "string optional left inline", for: "organization_default_currency") %>
+          </div>
+          <div class="large-9 small-9 columns">
+            <%= currency_select("organization", :default_currency, ["myr","usd"]) %>
+            <%= f.button :submit, t(:next_step) %>
+          </div>
         </div>
-        <div class="large-9 small-9 columns">
-          <%= currency_select("organization", :default_currency, ["myr","usd"]) %>
-          <%= f.button :submit, t(:next_step) %>
-        </div>
-      </div>
-    <% end %>
-
+      <% end %>
+    </fieldset>
   </div>
 </div>

@@ -20,7 +20,8 @@ class LeaveTypesController < ApplicationController
     if @leave_type.save
       redirect_to organization_leave_types_path(current_organization), notice: "Leave type successfully created"
     else
-      render action: 'new'
+      #render action: 'new'
+      redirect_to new_organization_leave_type_path(current_organization), alert: "Please fill in the required field"
     end
   end
   

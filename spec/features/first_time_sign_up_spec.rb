@@ -42,7 +42,7 @@ feature "[First Time Signup]" do
     create_department_step
     
     #add position 
-    page.should have_content("Add position")
+    page.should have_content("Add Position")
     fill_in "Name", with: "Executive"
     click_on "Next Step"
     page.should have_content("Please fill in the required field")

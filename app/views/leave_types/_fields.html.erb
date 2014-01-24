@@ -1,7 +1,7 @@
 <%= render '/shared/error_message', object: f.object %>
 <%= f.input :name, :autofocus => true %>
 <%= f.input :approval_needed, as: :select, include_blank: false%>
-<%= f.input :affected_entity, collection: [["Leave",'count'], ["Salary","salary"], ["Leave & Salary",'"count","salary"']], include_blank: true %>
+<%= f.input :affected_entity, collection: [["Leave",'count'], ["Salary","salary"], ["Leave & Salary",'"count","salary"']], include_blank: false %>
 <%= f.input :type, collection: Rails.application.config.leave_types.collect{|l| [l.description,l.name]}, include_blank: false %>
 <%= f.input :description %>
 <%= f.input :colour, include_blank: false, as: :minicolors %>

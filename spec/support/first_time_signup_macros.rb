@@ -31,7 +31,7 @@ module FirstTimeSignupMacros
     
     def create_position_step
       #add position 
-      page.should have_content("Add position")
+      page.should have_content("Add Position")
       fill_in "Name", with: "Executive"
       fill_in "position_max_leaves_seconds", with: 1234567
       fill_in "position_max_claims", with: 1234567

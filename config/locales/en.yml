@@ -211,3 +211,4 @@ en:
   account_organizations_new_description: "This is where you add account to access your organization, make sure the email exist before you add account."
   days: "Days"
   hours: "Hours"
+  link_to_employee: "Link to employee"

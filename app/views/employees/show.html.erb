@@ -32,10 +32,10 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h5><%=@employee.last_name.capitalize %>'s Documents</h5>
+    <h5><%=@employee.last_name.capitalize %>'s <%= t :documents%></h5>
     <ul class="clearing-thumbs " data-clearing>
       <% @employee.documents.each do |document| %>
-        <li>
+        <li>        
           <% if document.image? %>
             <%= link_to image_tag(document.image_url(:larger_thumb), class: "th", "data-caption" => document.name ), image_path(document.image) %><br>
           <% else %>
@@ -45,6 +45,7 @@
           <%= link_to edit_organization_employee_document_path(@organization, @employee, document), id: 'edit_document' do %>
             <i class="fi-pencil" id="edit_document"></i>
           <%end%>
+          |
           <%= link_to organization_employee_document_path(@organization, @employee, document), id: 'delete_document', method: :delete, data: { confirm: t(:are_you_sure) } do%>
             <i class="fi-trash" id='delete_document'></i>
           <%end%>

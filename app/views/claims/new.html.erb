@@ -6,7 +6,7 @@
           <div class="panel"><%= t :claims_description %></div>
           <legend><%= t :submit_claim %></legend>
           <%= render '/shared/error_message', object: f.object %>
-          <%= f.input :subject, collection: ["Mileage","Petrol","Accommodation"], include_blank: false %>
+          <%= f.input :subject, placeholder: "Petrol" %>
           <%= f.input :date, as: :string, autocomplete: :off, input_html: {class: 'date_only'} %>
           <%= f.input :amount, type: :number%>
           <%= f.input :comment %>

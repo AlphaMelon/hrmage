@@ -5,12 +5,14 @@
         <li class="name hide-for-large">
           <h1><%= link_to current_organization.name || t(:organization) %></h1>
         </li>
+
         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
         <li class="toggle-topbar menu-icon">
           <a href="#">
             <span><%= t :menu %></span>
           </a>
         </li>
+
       </ul>
 
       <section class="top-bar-section">     
@@ -25,7 +27,7 @@
                 <li><%= link_to "My B"%></li>
               </ul>
             </li>
-            
+            <li class="divider"></li>
             <li class="has-dropdown">
               <a href="#"><%= t :hello %> <%= !current_account.profile.nil? ? current_account.profile.last_name : t(:new_user) %></a>
               <ul class="dropdown">
@@ -53,6 +55,7 @@
                   <li><%= link_to t(:add_new_organization), new_organization_path %></li>
                 </ul>
               </li>
+              <li class="divider"></li>
             <% else %>
               <li><%= link_to current_organization.name || t(:organization), root_path %></li>
             <% end %>

@@ -1,20 +1,15 @@
+<%= simple_form_for @organization, wrapper: :custom do |f| %>
+
+<%= render '/shared/error_message', object: f.object %>
+<%= f.input :name, :autofocus => true %>
+
 <div class="row">
-  <div class="large-8 small-12 columns">
-    <%= simple_form_for @organization, wrapper: :custom do |f| %>
-
-    <%= render '/shared/error_message', object: f.object %>
-    <%= f.input :name, :autofocus => true %>
-    
-    <div class="row">
-      <div class="large-3 small-3 columns">
-        <%= label_tag(:default_currency, "Currency", class: "string optional left inline", for: "organization_default_currency") %>
-      </div>
-      <div class="large-9 small-9 columns">
-        <%= currency_select("organization", :default_currency, ["myr","usd"]) %>
-        <%= f.button :submit, class: "button success" %>
-      </div>
-    </div>
-    <% end %>
-
+  <div class="large-3 small-3 columns">
+    <%= label_tag(:default_currency, "Currency", class: "string optional left inline", for: "organization_default_currency") %>
+  </div>
+  <div class="large-9 small-9 columns">
+    <%= currency_select("organization", :default_currency, ["myr","usd"]) %>
+    <%= f.button :submit, class: "button success" %>
   </div>
 </div>
+<% end %>

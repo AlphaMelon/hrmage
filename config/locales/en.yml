@@ -209,3 +209,5 @@ en:
   positions_new_description: "This is where add position for your organization like Executive or manager."
   new_login: "New Login"
   account_organizations_new_description: "This is where you add account to access your organization, make sure the email exist before you add account."
+  days: "Days"
+  hours: "Hours"

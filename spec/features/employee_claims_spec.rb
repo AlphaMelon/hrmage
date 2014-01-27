@@ -33,6 +33,15 @@ feature "[Employee Claims]" do
     page.should have_content("is more than your available claims")
   end
   
+  scenario "Applying claim with negative number" do
+    visit root_path
+    click_on "Claims"
+    click_on "Apply Claim"
+    fill_in "claim_amount", with: "-100"
+    click_button "Apply Claim"
+    page.should have_content("cannot be 0 or negative")
+  end
+  
   scenario "Claim remaining progress bar" do
     #120000 out of 560000 claims remaining
     #approve claims of 7781

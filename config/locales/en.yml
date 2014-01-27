@@ -198,7 +198,7 @@ en:
   employees_new_login_description: "This is where you add login information for the employee."
   my_leaves_error_msg: "Your profile is not ready"
   leave_types_edit_description: "This is where you edit leave types of your organization."
-  leave_types_new_description: "This is where you add leave types of your organization."
+  leave_types_new_description: "This is where you add leave types of your organization. The colour is the representative colour for the calendar."
   organization_holidays_edit_description: "This is where you edit your organization holiday."
   organization_holidays_new_description: "This is where you add your organization holiday."
   organization_settings_edit_description: "This is where you edit organization's settings. You need to enter the number of working hours per day, leave blank if it is not a working day for your organization."

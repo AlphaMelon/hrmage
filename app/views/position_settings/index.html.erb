@@ -6,17 +6,17 @@
         <th>Leave Type</th>
         <th><%= t :max_leaves %></th>
         <th><%= t :action %></th>
-        <th><%= t :max_leaves %></th>
+        <th><%= t :action %></th>
       </thead>
       <% @position_settings.each do |position_setting|%>
         <tr>
           <td><%= position_setting.leave_type.name %></td>
           <td><%= position_setting.max_leaves_seconds %></td>
-          <td><%= link_to t(:edit), edit_organization_position_position_setting_path(current_organization, @position, position_setting), class: "fi-pencil" %></td>
-          <td><%= link_to t(:delete),organization_position_position_setting_path(current_organization, @position, position_setting), class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure) } %></td>
+          <td><%= link_to t(:edit), edit_organization_position_position_setting_path(current_organization, @position, position_setting), class: "fi-pencil", id: "edit_position_setting" %></td>
+          <td><%= link_to t(:delete),organization_position_position_setting_path(current_organization, @position, position_setting), class: "fi-trash", id: "delete_position_setting", method: :delete, data: { confirm: t(:are_you_sure) } %></td>
         </tr>
       <% end %>
     </table>
-    <%= link_to "Add new Setting", new_organization_position_position_setting_path(current_organization, @position), class: "button success" %>
+    <%= link_to "Add New Setting", new_organization_position_position_setting_path(current_organization, @position), class: "button success" %>
   </div>
 </div>

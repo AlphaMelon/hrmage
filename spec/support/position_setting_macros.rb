@@ -5,7 +5,7 @@ module PositionSettingMacros
     @position_setting = PositionSetting.create!(@position_setting_attr)
     @position_setting.position = Position.first
     @position_setting.leave_type = LeaveType.first
-    @position.save
+    @position_setting.save
         
   end
 

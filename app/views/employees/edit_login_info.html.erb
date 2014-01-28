@@ -6,7 +6,7 @@
       <%= simple_form_for(@account, wrapper: :custom, url: organization_employee_edit_login_info_path) do |f| %>
         <%= render '/shared/error_message', object: f.object %>
         <%= f.input :email %>
-        <%= f.input :password, placeholder: "leave blank if don't want update" %>
+        <%= f.input :password, placeholder: t(:edit_login_info_password_placeholder) %>
         <%= f.input :role, collection: ["Admin", "Employee"], selected: AccountOrganization.where(account_id: @account.id, organization_id: @organization.id).first.role %>
         <div class="row">
           <div class="large-3 small-3 columns"></div>    

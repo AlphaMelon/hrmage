@@ -18,7 +18,7 @@
         <% end %>
       </fieldset>
     <% else %>
-      <%= t :employee_departments_add_new_error_msg%> <%= link_to "here", organization_departments_path(@organization) %>
+      <%= t :employee_departments_add_new_error_msg%> <%= link_to t(:here), organization_departments_path(@organization) %>
     <% end %>
   </div>
 </div>

@@ -17,7 +17,6 @@
         <%= t :e_mail %>: <%= @employee.account.email if !@employee.account.nil?%><br>
         <%= t :mobile_no %>: <%= @employee.mobile_contact%><br>
         <%= t :address %>: <%= @employee.address%><br>
-        <%= t :available_leaves %>: <%= @employee.available_leaves_seconds%></p>
         <h5><%= t :departments %></h5>
         <p>
           <% @employee.departments.each do |d|%>

@@ -21,7 +21,7 @@ feature "[CanCan Ability Claims]" do
     visit root_path
     click_on "Claims"
     click_on "Apply Claim"
-    select "Petrol", from: "Subject"
+    fill_in "Subject", with: "Petrol"
     fill_in "Date", with: "2014-01-27"
     fill_in "claim_amount", with: "88.1"
     click_button "Apply Claim"
@@ -40,7 +40,7 @@ feature "[CanCan Ability Claims]" do
     visit root_path
     click_on "Claims"
     click_on "Apply Claim"
-    select "Petrol", from: "Subject"
+    fill_in "Subject", with: "Petrol"
     fill_in "Date", with: "2014-01-27"
     fill_in "claim_amount", with: "88.1"
     click_button "Apply Claim"

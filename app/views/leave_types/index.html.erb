@@ -8,16 +8,18 @@
         <th><%= t :description %></th>
         <th><%= t :affected_entity %></th>
         <th><%= t :type %></th>
+        <th>Default Maximum Leaves</th>
         <th><%= t :colour %></th>
         <th><%= t :action %></th>
       </thead>
       <% @leave_types.each do |leave_type|%>
         <tr>
           <td><%= leave_type.name %></td>
-          <td><%= leave_type.approval_needed %></td>
+          <td><%= leave_type.approval_needed? ? 'Yes' : 'No' %></td>
           <td><%= leave_type.description %></td>
-          <td><%= leave_type.affected_entity %></td>
-          <td><%= leave_type.type %></td>
+          <td><%= leave_type.affected_entity.map(&:capitalize).to_sentence %></td>
+          <td><%= leave_type.type.delete("Leave") %></td>
+          <td><%= leave_type.default_count_seconds %></td>
           <td bgcolor="<%= leave_type.colour %>"></td>
           <td><%= link_to t(:edit), edit_organization_leave_type_path(current_organization, leave_type), class: "fi-pencil" %></td>
         </tr>

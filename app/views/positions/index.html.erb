@@ -4,20 +4,20 @@
     <table>
       <thead>
         <th><%= t :name %></th>
-        <th><%= t :max_leaves %></th>
         <th><%= t :max_claims %></th>
         <th><%= t :approve_leaves %></th>
         <th><%= t :approve_claims %></th>
+        <th><%= t :action %></th>
         <th><%= t :action %></th>
       </thead>
       <% @positions.each do |position|%>
         <tr>
           <td><%= position.name %></td>
-          <td><%= position.max_leaves_seconds %></td>
           <td><%= humanized_money_with_symbol position.max_claims %></td>
           <td><%= position.can_approve_leave %></td>
           <td><%= position.can_approve_claim %></td>
           <td><%= link_to t(:edit), edit_organization_position_path(current_organization, position), class: "fi-pencil" %></td>
+          <td><%= link_to "Settings", organization_position_position_settings_path(current_organization, position) %></td>
         </tr>
       <% end %>
     </table>

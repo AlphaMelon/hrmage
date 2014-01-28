@@ -9,7 +9,9 @@ Hrmage::Application.routes.draw do
   get 'sign_up' => "home#sign_up"
   resources :organizations do
     resources :claims
-    resources :positions
+    resources :positions do
+      resources :position_settings
+    end
     resources :account_organizations
     resources :departments
     resources :leaves

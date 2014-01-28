@@ -47,6 +47,7 @@ RSpec.configure do |config|
   config.include(DepartmentMacros)
   config.include(OrganizationMacros)
   config.include(PositionMacros)
+  config.include(PositionSettingMacros)
   config.include(LeaveTypeMacros)
   config.include(LeaveMacros)
   config.include(EmployeeMacros)
@@ -66,6 +67,7 @@ RSpec.configure do |config|
     Document.delete_all
     Organization.delete_all
     Position.delete_all
+    PositionSetting.delete_all
     Leave.delete_all
     LeaveType.delete_all
     AccountOrganization.delete_all
@@ -83,5 +85,6 @@ RSpec.configure do |config|
     create_leave_type
     create_leave
     create_claim
+    create_position_setting
   end
 end

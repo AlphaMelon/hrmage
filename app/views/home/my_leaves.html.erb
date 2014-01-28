@@ -11,7 +11,7 @@
     </div>
     <div class="large-12 columns">
       <div class="large-2 small-2 columns">
-        <h5 class="text-left"><%= current_account.profile.available_leaves_seconds%>/<%= current_account.profile.position.max_leaves_seconds%></h5>
+        <h5 class="text-left"><%#= current_account.profile.available_leaves_seconds%>/<%#= current_account.profile.position.max_leaves_seconds%></h5>
       </div>
       <div class=" progress success large-10 small-10 columns">
         <span class="meter" style="width: <%= @leaves_remaining_percentage%>%"></span>

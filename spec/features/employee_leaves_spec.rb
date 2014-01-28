@@ -20,7 +20,7 @@ feature "[Employee Leaves]" do
     click_on "Leaves"
     click_on "Apply Leave"
     fill_in "leave_start_date", with: "2014-01-27 00:00"
-    fill_in "leave_duration_seconds", with: 9999990
+    fill_in "leave_duration_seconds", with: 100
     click_button "Apply Leave"
     page.should have_content("is more than your available leaves")
   end

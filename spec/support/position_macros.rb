@@ -5,6 +5,7 @@ module PositionMacros
     @position = Position.create!(@position_attr)
     @position.organization = Organization.first
     @position.save
+        
   end
 
   

@@ -25,6 +25,7 @@ feature "[Admin Leave Type]" do
 		select "Substraction", from: "Type"
 		fill_in "Description", with: "Sick leaves"
 		fill_in "Colour", with: "#f4f4f4"
+		fill_in "leave_type_default_count_seconds", with: 100
 		click_on "Create Leave type"
     page.should have_content("Leave type successfully created")
     page.should have_content("Medical leave")

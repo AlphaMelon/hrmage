@@ -20,13 +20,6 @@ class Employee < ActiveRecord::Base
   def set_default_values
     self.can_self_approve = false if self.can_self_approve.blank?
     
-    #default available leaves
-    if self.available_leaves_seconds.blank? && !self.position.nil?
-      self.available_leaves_seconds = self.position.max_leaves_seconds
-    elsif self.available_leaves_seconds.blank? && self.position.blank?
-      self.available_leaves_seconds = 0
-    end
-    
     #default available claims
     if self.available_claims_cents.blank? && !self.position.nil?
       self.available_claims_cents = self.position.max_claims_cents

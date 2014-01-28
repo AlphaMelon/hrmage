@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140127085033) do
+ActiveRecord::Schema.define(version: 20140128065731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,20 +95,19 @@ ActiveRecord::Schema.define(version: 20140127085033) do
     t.integer  "organization_id"
     t.integer  "available_claims_cents"
     t.boolean  "can_self_approve"
-    t.integer  "available_leaves_seconds"
   end
 
   create_table "leave_types", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "affected_entity", array: true
+    t.string   "affected_entity",       array: true
     t.string   "type"
     t.integer  "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "approval_needed"
     t.string   "colour"
-    t.integer  "default_count"
+    t.integer  "default_count_seconds"
   end
 
   create_table "leaves", force: true do |t|
@@ -157,6 +156,14 @@ ActiveRecord::Schema.define(version: 20140127085033) do
   end
 
   create_table "position_default_variables", force: true do |t|
+    t.integer  "position_id"
+    t.integer  "leave_type_id"
+    t.integer  "max_leaves_seconds"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "position_settings", force: true do |t|
     t.integer  "position_id"
     t.integer  "leave_type_id"
     t.integer  "max_leaves_seconds"

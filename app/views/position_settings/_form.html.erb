@@ -1,11 +1,9 @@
 <div class="row">
   <div class="large-12 small-12 columns">
-     <%= simple_form_for [current_organization, @position], wrapper: :custom do |f| %>
+     <%= simple_form_for [current_organization, @position, @position_setting], wrapper: :custom do |f| %>
       <%= render '/shared/error_message', object: f.object %>
-      <%= f.input :name, :autofocus => true %>
-      <%= f.input :max_claims, type: :number %>
-      <%= f.input :can_approve_leave, as: :select, include_blank: false %>
-      <%= f.input :can_approve_claim, as: :select, include_blank: false %>
+      <%= f.association :leave_type, collection: current_organization.leave_types, include_blank: false %>
+      <%= f.input :max_leaves_seconds %>
       
       <div class="row">
         <div class="large-3 small-3 columns"></div>

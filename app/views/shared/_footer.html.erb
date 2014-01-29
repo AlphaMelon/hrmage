@@ -1,15 +1,17 @@
-<div class="row footer">
-  <div class="large-12 columns">
-    <div class="back-footer">
-      <div class="top-nav-bar">
-        <ul class="inline-list">
-          <li><%= link_to "footer link"%></li>
-          <li><%= link_to "footer link 2"%></li>
-          <li><%= link_to "footer link 3" %></li>
-        </ul>
+<% if !current_organization.id.nil?%>
+  <div class="row footer">
+    <div class="large-12 columns">
+      <div class="back-footer">
+        <div class="top-nav-bar">
+          <ul class="inline-list">
+            <li><%= link_to "footer link"%></li>
+            <li><%= link_to "footer link 2"%></li>
+            <li><%= link_to "footer link 3" %></li>
+          </ul>
+        </div>
+        <%= current_organization.name.capitalize if !current_organization.new_record? %>
+        <h5><%= t :footer %></h5>
       </div>
-      <%= current_organization.name.capitalize if !current_organization.new_record? %>
-      <h5><%= t :footer %></h5>
     </div>
   </div>
-</div>
+<% end %>

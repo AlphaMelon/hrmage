@@ -56,6 +56,7 @@ RSpec.configure do |config|
   config.include(OrganizationHolidayMacros)
   config.include(PageMacros)
   config.include(FirstTimeSignupMacros)
+  config.include(EmployeeVariableMacros)
   config.before(:each) do
     Capybara.javascript_driver = :webkit
     #Capybara.always_include_port = true
@@ -75,6 +76,7 @@ RSpec.configure do |config|
     Claim.delete_all
     OrganizationSetting.delete_all
     OrganizationHoliday.delete_all
+    EmployeeVariable.delete_all
     
     create_admin_account
     create_organization
@@ -83,8 +85,9 @@ RSpec.configure do |config|
     create_employee
     create_document
     create_leave_type
-    create_leave
     create_claim
     create_position_setting
+    create_leave #automatically create employee variable due to first_or_create in model
+    
   end
 end

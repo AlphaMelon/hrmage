@@ -4,9 +4,10 @@ class LeaveSubstraction < LeaveType
     "Substraction to entity"
   end
   
-  def calculate(employee,duration_seconds)
-    #employee.available_leaves_seconds = employee.available_leaves_seconds - duration_seconds
-    employee.save
+  def calculate(employee_id, leave_type_id, duration_seconds)
+    employee_variable = EmployeeVariable.where(employee_id: employee_id, leave_type_id: leave_type_id).first
+    employee_variable.available_leaves_seconds = employee_variable.available_leaves_seconds - duration_seconds
+    employee_variable.save
   end
 
 end

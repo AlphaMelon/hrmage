@@ -7,6 +7,7 @@ class Leave < ActiveRecord::Base
   before_save :set_default_values
   validate :start_date_cannot_be_in_past
   validate :duration_cannot_be_more_than_available_leaves
+  validate :duration_cannot_be_zero_or_negative
   validates :start_date, presence: true
   validates :duration_seconds, presence: true
 
@@ -16,7 +17,7 @@ class Leave < ActiveRecord::Base
   
   def approve
     self.status = "Approved"
-    self.leave_type.calculate(self.employee, self.duration_seconds)
+    self.leave_type.calculate(self.employee.id, self.leave_type.id, self.duration_seconds)
     self.save
   end
 
@@ -33,9 +34,17 @@ class Leave < ActiveRecord::Base
   
   def duration_cannot_be_more_than_available_leaves
     if !self.duration_seconds.nil?
-      #if self.employee.available_leaves_seconds < (self.duration_seconds/24/60/60)
-      #  errors.add(:duration_seconds, "is more than your available leaves")
-      #end
+      if self.employee.employee_variables.where(leave_type_id: self.leave_type.id).first_or_create.available_leaves_seconds < self.duration_seconds
+        errors.add("Duration", "is more than your available leaves")
+      end
+    end
+  end
+
+  def duration_cannot_be_zero_or_negative
+    if !self.duration_seconds.nil?
+      if 0 >= self.duration_seconds
+        errors.add("Duration", "cannot be zero or negative")
+      end
     end
   end
 end

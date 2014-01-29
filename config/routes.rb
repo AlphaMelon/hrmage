@@ -20,6 +20,7 @@ Hrmage::Application.routes.draw do
       resources :organization_holidays
     end
     resources :employees do
+      resources :employee_variables
       resources :employee_departments
       resources :documents
       get 'edit_login_info' => 'employees#edit_login_info'

@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="large-12 small-12 columns">
+     <%= simple_form_for [current_organization, @employee, @employee_variable], wrapper: :custom do |f| %>
+      <%= render '/shared/error_message', object: f.object %>
+      <%= f.input :available_leaves_seconds, label: "Available Leaves Remaining", input_html: { value: @employee_variable.available_leaves_seconds/24/60/60 }%>
+      
+      <div class="row">
+        <div class="large-3 small-3 columns"></div>
+        <div class="large-9 small-9 columns"><%= f.button :submit, "Update Employee's Setting", class: "button success" %></div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

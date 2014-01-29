@@ -5,19 +5,23 @@
     </div>
     
     <hr>
-
-    <div class="large-12 small-12 columns">
-      <h6><%= t :available_leaves %></h6>
-    </div>
-    <div class="large-12 columns">
-      <div class="large-2 small-2 columns">
-        <h5 class="text-left"><%#= current_account.profile.available_leaves_seconds%>/<%#= current_account.profile.position.max_leaves_seconds%></h5>
+    <% current_organization.leave_types.order(id: :asc).each do |leave_type|%>
+      <div class="large-12 small-12 columns">
+        <h6>Available <%= leave_type.name %></h6>
       </div>
-      <div class=" progress success large-10 small-10 columns">
-        <span class="meter" style="width: <%= @leaves_remaining_percentage%>%"></span>
+      <div class="large-12 columns">
+        <div class="large-2 small-2 columns">
+          <h5 class="text-left">
+            <%= EmployeeVariable.where(employee_id: current_account.profile.id, leave_type_id: leave_type.id).first_or_create.available_leaves_seconds/24/60/60 %>/<%= !current_account.profile.position.position_settings.where(leave_type_id: leave_type.id).blank? ? 
+            current_account.profile.position.position_settings.where(leave_type_id: leave_type.id).first.max_leaves_seconds/24/60/60 : leave_type.default_count_seconds/24/60/60%>
+          </h5>
+        </div>
+        <div class=" progress success large-10 small-10 columns">
+          <span class="meter" style="width: <%= @leaves_remaining_percentage%>%; background: <%= leave_type.colour%>"></span>
+        </div>
       </div>
-    </div>
-    <hr>
+      <hr>
+    <% end %>
   </div>
 
   <div class="row">

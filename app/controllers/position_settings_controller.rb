@@ -16,7 +16,7 @@ class PositionSettingsController < ApplicationController
 
   def create
     @position_setting = @position.position_settings.new(position_setting_params)
-    
+    @position_setting.max_leaves_seconds = position_setting_params[:max_leaves_seconds].to_i*24*60*60 if !position_setting_params[:max_leaves_seconds].blank?
     if @position_setting.save
       redirect_to organization_position_position_settings_path(current_organization, @position), notice: "Position setting successfully created"
     else
@@ -28,7 +28,9 @@ class PositionSettingsController < ApplicationController
   end
   
   def update
-		if @position_setting.update(position_setting_params)
+    @position_setting.update(position_setting_params)
+    @position_setting.max_leaves_seconds = position_setting_params[:max_leaves_seconds].to_i*24*60*60 if !position_setting_params[:max_leaves_seconds].blank?
+		if @position_setting.save
 			redirect_to organization_position_position_settings_path(current_organization, @position), notice: 'Position setting successfully updated'
 		else
 			render action: 'edit'

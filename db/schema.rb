@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140128065731) do
+ActiveRecord::Schema.define(version: 20140129042421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,14 @@ ActiveRecord::Schema.define(version: 20140128065731) do
     t.integer  "department_id"
     t.boolean  "leader",        default: false
     t.hstore   "properties"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "employee_variables", force: true do |t|
+    t.integer  "employee_id"
+    t.integer  "leave_type_id"
+    t.integer  "available_leaves_seconds"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

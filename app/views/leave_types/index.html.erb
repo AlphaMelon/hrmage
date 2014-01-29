@@ -19,7 +19,7 @@
           <td><%= leave_type.description %></td>
           <td><%= leave_type.affected_entity.map(&:capitalize).to_sentence %></td>
           <td><%= leave_type.type.delete("Leave") %></td>
-          <td><%= leave_type.default_count_seconds %></td>
+          <td><%= leave_type.default_count_seconds/24/60/60 %> days</td>
           <td bgcolor="<%= leave_type.colour %>"></td>
           <td><%= link_to t(:edit), edit_organization_leave_type_path(current_organization, leave_type), class: "fi-pencil" %></td>
         </tr>

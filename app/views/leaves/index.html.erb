@@ -8,6 +8,7 @@
         <th><%= t :start_date %> </th>
         <th><%= t :duration %></th>
         <th><%= t :comment %></th>
+        <th><%= t :leave_type %></th>
         <th><%= t :action %></th>
       </thead>
       <% @pending_leaves.each do |leave|%>
@@ -16,6 +17,7 @@
           <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %></td>
           <td><%= leave.duration_seconds/24/60/60%> Days</td>
           <td><%= leave.comment %></td>
+          <td><%= leave.leave_type.name%></td>
           <td>
           <a href="#" data-dropdown="drop_<%=leave.id %>" class="tiny button dropdown"><%= t :details %></a>
             <ul id="drop_<%=leave.id %>" data-dropdown-content class="f-dropdown">
@@ -37,8 +39,8 @@
         <th><%= t :name %></th>
         <th><%= t :start_date %></th>
         <th><%= t :duration %></th>
-        <th><%= t :leave_type %></th>
         <th><%= t :comment %></th>
+        <th><%= t :leave_type %></th>
         <th><%= t :action %></th>
       </thead>
       <% @verification_needed_leaves.each do |leave|%>
@@ -46,8 +48,8 @@
           <td><%= leave.employee.name_with_initial %></td>
           <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %></td>
           <td><%= leave.duration_seconds/24/60/60%> Days</td>
-          <td><%= leave.leave_type.name %></td>
           <td><%= leave.comment %></td>
+          <td><%= leave.leave_type.name %></td>
           <td>
             <a href="#" data-dropdown="drop_<%= leave.id %>" class="tiny button dropdown"><%= t :details %></a>
             <ul id="drop_<%= leave.id %>" data-dropdown-content class="f-dropdown">

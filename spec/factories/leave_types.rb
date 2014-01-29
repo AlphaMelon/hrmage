@@ -7,7 +7,7 @@ FactoryGirl.define do
     description "yearly leaves"
     affected_entity ["count", "salary"]
     type "LeaveSubstraction"
-    default_count_seconds 5000
+    default_count_seconds 1209600 #14 days
     colour "#f3f3f3"
   end
 end

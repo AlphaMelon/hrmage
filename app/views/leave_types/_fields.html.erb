@@ -3,7 +3,7 @@
 <%= f.input :approval_needed, as: :select, include_blank: false%>
 <%= f.input :affected_entity, collection: [["Leave",'count'], ["Salary","salary"], ["Leave & Salary",'"count","salary"']], include_blank: false %>
 <%= f.input :type, collection: Rails.application.config.leave_types.collect{|l| [l.description,l.name]}, include_blank: false %>
-<%= f.input :default_count_seconds%>
+<%= f.input :default_count_seconds, label: "Default Leaves (in days)", input_html: { value: !@leave_type.default_count_seconds.blank? ? @leave_type.default_count_seconds/24/60/60 : 14}%>
 <%= f.input :description %>
 <%= f.input :colour, include_blank: false, as: :minicolors %>
 

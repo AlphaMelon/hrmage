@@ -24,21 +24,32 @@ feature "[Employee Leaves]" do
     click_button "Apply Leave"
     page.should have_content("is more than your available leaves")
   end
+  
+  scenario "Applying leave with negative duration" do
+    visit root_path
+    click_on "Leaves"
+    click_on "Apply Leave"
+    fill_in "leave_start_date", with: "2014-01-27 00:00"
+    fill_in "leave_duration_seconds", with: -100
+    click_button "Apply Leave"
+    page.should have_content("cannot be zero or negative")
+  end
+
 
   scenario "Leave remaining progress bar" do
-    #1036800 out of 1209600 leave remaining
-    #approve leave of 172800
+    #10 out of 21 leave days remaining
+    #approve leave of 3 days
     visit root_path
     click_on "Admin"
     click_on "organization_leaves"
     click_on "Approve"
     page.should have_content("Leaves request approved")
     
-    #progress bar should be 864000 out of 1209600 leaves days
+    #progress bar should be 7 out of 21 leaves days
     #visit my_leaves_path
     click_on "Normal"
     click_on "my_leaves"
-    page.should have_content("864000/1209600")
+    page.should have_content("7/21")
   end
 
 end

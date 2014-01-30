@@ -1,9 +1,8 @@
 <div class="row">
   <div class="large-8 small-12 columns">
     <fieldset>
-      <legend>Add New setting for <%= @position.name%></legend>
-      <div class="panel">This is the place where you add special setting for specific position.
-      If no setting is added, the default setting will be used.</div>
+      <legend><%= t :add_new_setting_for %> <%= @position.name%></legend>
+      <div class="panel"><%= t :position_setting_new_description %></div>
       <%= render 'form' %>
     </fieldset>
   </div>

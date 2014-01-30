@@ -75,7 +75,7 @@
     <table>
       <thead>
         <th><%= sort_link @search, :last_name, t(:name) %></th>
-        <th>Type</th>
+        <th><%= t :type %></th>
         <th><%= sort_link @search, :comment, t(:comment) %></th>
         <th><%= sort_link @search, :duration_seconds, t(:duration) %></th>
         <th><%= sort_link @search, :date, t(:when) %></th>
@@ -130,7 +130,7 @@
     <div class="table-overflow">
       <table>
         <thead>
-          <th></th>
+          <th><%= t :employee_name %></th>
           <% (1..@date.end_of_month.day).each do |d|%>
             <th><%= d%></th>
           <% end %>

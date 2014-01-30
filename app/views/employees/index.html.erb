@@ -22,7 +22,7 @@
           <td><%= humanized_money_with_symbol employee.available_claims%></td>
           <td><%= employee.can_self_approve%></td>
           <td>
-            <a href="#" data-dropdown="drop_<%= employee.id %>" class="tiny button dropdown">Details</a><br>
+            <a href="#" data-dropdown="drop_<%= employee.id %>" class="tiny button dropdown"><%= t :details %></a><br>
             <ul id="drop_<%= employee.id %>" data-dropdown-content class="f-dropdown">
               <li>
                 <%= link_to t(:show), organization_employee_path(@organization, employee), id: "show_employee", class: "fi-eye" %>
@@ -31,7 +31,7 @@
                 <%= link_to t(:edit), edit_organization_employee_path(@organization, employee), id: "edit_employee", class: "fi-pencil" %>
               </li>
               <li>
-                <%= link_to "Settings", organization_employee_employee_variables_path(@organization, employee)%>
+                <%= link_to t(:b_settings), organization_employee_employee_variables_path(@organization, employee), class: "fi-widget"%>
               </li>
             </ul>
           </td>

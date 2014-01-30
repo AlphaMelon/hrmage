@@ -1,22 +1,30 @@
 <div class="row">
   <div class="large-12 columns">
-    <h2><%= @position.name %>'s settings</h2>
+    <h2><%= @position.name %>'s <%= t :settings %></h2>
     <table>
       <thead>
-        <th>Leave Type</th>
+        <th><%= t :leave_type %></th>
         <th><%= t :max_leaves %></th>
-        <th><%= t :action %></th>
         <th><%= t :action %></th>
       </thead>
       <% @position_settings.each do |position_setting|%>
         <tr>
           <td><%= position_setting.leave_type.name %></td>
           <td><%= position_setting.max_leaves_seconds/24/60/60 %> days</td>
-          <td><%= link_to t(:edit), edit_organization_position_position_setting_path(current_organization, @position, position_setting), class: "fi-pencil", id: "edit_position_setting" %></td>
-          <td><%= link_to t(:delete),organization_position_position_setting_path(current_organization, @position, position_setting), class: "fi-trash", id: "delete_position_setting", method: :delete, data: { confirm: t(:are_you_sure) } %></td>
+          <td>
+          <a href="#" data-dropdown="drop_<%= position_setting.id %>" class="tiny button dropdown"><%= t (:details)%></a><br>
+            <ul id="drop_<%= position_setting.id %>" data-dropdown-content class="f-dropdown">
+              <li>
+                <%= link_to t(:edit), edit_organization_position_position_setting_path(current_organization, @position, position_setting), class: "fi-pencil", id: "edit_position_setting" %>
+              </li>
+              <li>
+                <%= link_to t(:delete),organization_position_position_setting_path(current_organization, @position, position_setting), class: "fi-trash", id: "delete_position_setting", method: :delete, data: { confirm: t(:are_you_sure) } %>
+              </li>
+            </ul>
+          </td>
         </tr>
       <% end %>
     </table>
-    <%= link_to "Add New Setting", new_organization_position_position_setting_path(current_organization, @position), class: "button success" %>
+    <%= link_to t(:add_new_setting), new_organization_position_position_setting_path(current_organization, @position), class: "button success" %>
   </div>
 </div>

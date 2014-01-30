@@ -8,7 +8,6 @@
         <th><%= t :approve_leaves %></th>
         <th><%= t :approve_claims %></th>
         <th><%= t :action %></th>
-        <th><%= t :action %></th>
       </thead>
       <% @positions.each do |position|%>
         <tr>
@@ -16,8 +15,17 @@
           <td><%= humanized_money_with_symbol position.max_claims %></td>
           <td><%= position.can_approve_leave %></td>
           <td><%= position.can_approve_claim %></td>
-          <td><%= link_to t(:edit), edit_organization_position_path(current_organization, position), class: "fi-pencil" %></td>
-          <td><%= link_to "Settings", organization_position_position_settings_path(current_organization, position) %></td>
+          <td>
+          <a href="#" data-dropdown="drop_<%=position.id %>" class="tiny button dropdown"><%= t :details %></a>
+            <ul id="drop_<%=position.id %>" data-dropdown-content class="f-dropdown">
+              <li>
+                <%= link_to t(:edit), edit_organization_position_path(current_organization, position), class: "fi-pencil" %>
+              </li>
+              <li>
+                <%= link_to t(:b_settings), organization_position_position_settings_path(current_organization, position), class: "fi-widget" %>
+              </li>
+            </ul>
+          </td>
         </tr>
       <% end %>
     </table>

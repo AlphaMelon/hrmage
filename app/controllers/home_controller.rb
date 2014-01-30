@@ -17,7 +17,6 @@ class HomeController < ApplicationController
       if !current_account.profile.nil?
         if !current_account.profile.position.nil?
           @my_leaves = current_account.profile.leaves.order(id: :desc)
-          #@leaves_remaining_percentage = current_account.profile.available_leaves_seconds*100/current_account.profile.position.max_leaves_seconds
           @leaves_remaining_percentage = 90
           authenticate_account!
           @my_claims = current_account.profile.claims.order(id: :desc)
@@ -30,7 +29,6 @@ class HomeController < ApplicationController
   def my_leaves
     authenticate_account!
     @my_leaves = current_account.profile.leaves.order(id: :desc) if !current_account.profile.nil?
-    #@leaves_remaining_percentage = current_account.profile.available_leaves_seconds*100/current_account.profile.position.max_leaves_seconds if !current_account.profile.position.nil?
     @leaves_remaining_percentage = 90
   end
   

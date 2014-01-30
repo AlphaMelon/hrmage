@@ -17,7 +17,10 @@
           </h5>
         </div>
         <div class=" progress success large-10 small-10 columns">
-          <span class="meter" style="width: <%= @leaves_remaining_percentage%>%; background: <%= leave_type.colour%>"></span>
+          <span class="meter" style="width: 
+          <%= EmployeeVariable.where(employee_id: current_account.profile.id, leave_type_id: leave_type.id).first_or_create.available_leaves_seconds*100/
+          (!current_account.profile.position.position_settings.where(leave_type_id: leave_type.id).blank? ? 
+            current_account.profile.position.position_settings.where(leave_type_id: leave_type.id).first.max_leaves_seconds : leave_type.default_count_seconds) %>%; background: <%= leave_type.colour%>"></span>
         </div>
       </div>
       <hr>

@@ -46,10 +46,10 @@ feature "[Admin Position Setting]" do
     click_on "My Organization"
     click_on "Position"
     click_on "Settings"
-    page.should have_content("1000")
+    page.should have_content("21")
     click_on "delete_position_setting"
     page.should have_content("Position setting successfully deleted")
-    page.should_not have_content("1000")
+    page.should_not have_content("21")
   end
 
   scenario "submit position setting form without filling in anything" do
@@ -59,6 +59,7 @@ feature "[Admin Position Setting]" do
     click_on "Position"
     click_on "Settings"
     click_on "Add New Setting"
+    fill_in "position_setting_max_leaves_seconds", with: ""
 		click_on "Create Position setting"
     page.should have_content("can't be blank")
   end

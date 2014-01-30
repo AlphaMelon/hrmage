@@ -87,7 +87,8 @@ RSpec.configure do |config|
     create_leave_type
     create_claim
     create_position_setting
-    create_leave #automatically create employee variable due to first_or_create in model
+    create_employee_variable
+    create_leave
     
   end
 end

@@ -1,0 +1,8 @@
+<fieldset>
+  <%= f.input :name, :autofocus => true %>
+  <%= f.input :approval_needed, as: :select, include_blank: false%>
+  <%= f.input :affected_entity, collection: [["Leave",'count'], ["Salary","salary"], ["Leave & Salary",'"count","salary"']], include_blank: true %>
+  <%= f.input :type, collection: [["Substraction","LeaveSubstraction"], ["Neutral", "LeaveNeutral"], ["Addition", "LeaveAddition"]], include_blank: false %>
+  <%= f.input :description %>
+  <%= f.input :colour, include_blank: false, as: :minicolors %>
+</fieldset>

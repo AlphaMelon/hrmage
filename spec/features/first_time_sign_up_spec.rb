@@ -10,8 +10,8 @@ feature "[First Time Signup]" do
     sign_up_step
     create_organization_step
     create_department_step
-    create_position_step
     create_leave_type_step
+    create_position_step
     create_profile_step
     payment_step
     summary_step
@@ -23,7 +23,7 @@ feature "[First Time Signup]" do
     #add your organization part
     page.should have_content("Add your organization")
     click_on "Next Step"
-    page.should have_content("Please fill in the required field")
+    page.should have_content("can't be blank")
   end
 
   scenario "fail add department step" do
@@ -36,36 +36,37 @@ feature "[First Time Signup]" do
     page.should have_content("There must be at least one department")
   end
   
+  scenario "fail add leave type step" do 
+    sign_up_step
+    create_organization_step
+    create_department_step
+    page.should have_content("Add Leave Type")
+    click_on "Next Step"
+    page.should have_content("can't be blank")
+  end
+  
   scenario "fail add position step" do
     sign_up_step
     create_organization_step
     create_department_step
+    create_leave_type_step
     
     #add position 
     page.should have_content("Add Position")
     fill_in "Name", with: "Executive"
     click_on "Next Step"
-    page.should have_content("Please fill in the required field")
+    page.should have_content("Max claims is not a number")
   end
   
-  scenario "fail add leave type step" do 
-    sign_up_step
-    create_organization_step
-    create_department_step
-    create_position_step
-    page.should have_content("Add Leave Type")
-    click_on "Next Step"
-    page.should have_content("Please fill in the required field")
-  end
   
   scenario "fail create profile step" do
     sign_up_step
     create_organization_step
     create_department_step
-    create_position_step
     create_leave_type_step
+    create_position_step
     page.should have_content("Please tell us more about yourself")
     click_on "Next Step"
-    page.should have_content("Please fill in the required field")
+    page.should have_content("can't be blank")
   end 
 end

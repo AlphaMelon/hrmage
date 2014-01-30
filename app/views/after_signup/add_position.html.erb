@@ -9,9 +9,8 @@
     <fieldset>
       <legend><%= t :add_position %></legend>
       <div class="panel"><%= t :after_signup_add_position %></div>
-      <%= simple_form_for @position, url: wizard_path, method: "put" do |f| %>
+      <%= simple_form_for @position, wrapper: :custom, url: wizard_path, method: "put" do |f| %>
         <%= f.input :name, :autofocus => true %>
-        <%= f.input :max_leaves_seconds %>
         <%= f.input :max_claims, type: :number %>
         <%= f.input :can_approve_leave, as: :select, include_blank: false %>
         <%= f.input :can_approve_claim, as: :select, include_blank: false %>

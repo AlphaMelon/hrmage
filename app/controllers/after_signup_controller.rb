@@ -2,7 +2,7 @@ class AfterSignupController < ApplicationController
   include Wicked::Wizard
   before_filter :authenticate_account!
   layout "wizard"
-  steps :create_organization, :add_department, :add_position, :add_leave_type, :about_yourself, :payment, :finish
+  steps :create_organization, :add_department, :add_leave_type, :add_position, :about_yourself, :payment, :finish
   
   def show
     case step
@@ -10,10 +10,10 @@ class AfterSignupController < ApplicationController
       @organization = Organization.new
     when :add_department
       @department = Department.new
-    when :add_position
-      @position = Position.new
     when :add_leave_type
       @leave_type = LeaveType.new
+    when :add_position
+      @position = Position.new
     when :about_yourself
       @employee = current_account.build_profile
     when :payment
@@ -45,7 +45,7 @@ class AfterSignupController < ApplicationController
         account_organization.save
         redirect_to "/after_signup/add_department", notice: "Organization saved!"
       else
-        redirect_to "/after_signup/create_organization", notice: "Please fill in the required field"
+        redirect_to "/after_signup/create_organization", alert: @organization.errors.full_messages.to_sentence
       end
     when :add_department
       departments = []
@@ -57,7 +57,7 @@ class AfterSignupController < ApplicationController
       departments = departments.reject(&:empty?)
       
       if departments.count == 0
-        redirect_to "/after_signup/add_department", notice: "There must be at least one department"
+        redirect_to "/after_signup/add_department", alert: "There must be at least one department"
       else
         departments.each do |department|
           dep = Department.new
@@ -65,7 +65,17 @@ class AfterSignupController < ApplicationController
           dep.organization_id = current_account.organizations.first.id
           dep.save
         end
-        redirect_to "/after_signup/add_position", notice: "Department saved!"
+        redirect_to "/after_signup/add_leave_type", notice: "Department saved!"
+      end
+    when :add_leave_type
+      @leave_type = current_account.organizations.first.leave_types.new
+      leave_type_params = params.require(:leave_type).permit(:name, :description, :affected_entity, :type, :approval_needed, :colour, :default_count_seconds)
+      @leave_type.assign_attributes(leave_type_params)
+      @leave_type.default_count_seconds = leave_type_params[:default_count_seconds].to_i*24*60*60 if !leave_type_params[:default_count_seconds].blank?
+      if @leave_type.save
+        redirect_to "/after_signup/add_position", notice: "Leave type saved!"
+      else
+        redirect_to "/after_signup/add_leave_type", alert: @leave_type.errors.full_messages.to_sentence
       end
     when :add_position
       @position = current_account.organizations.first.positions.new
@@ -73,19 +83,9 @@ class AfterSignupController < ApplicationController
       @position.assign_attributes(position_params)
 
       if @position.save
-        redirect_to "/after_signup/add_leave_type", notice: "Position saved!"
+        redirect_to "/after_signup/about_yourself", notice: "Position saved!"
       else
-        redirect_to "/after_signup/add_position", notice: "Please fill in the required field"
-      end
-    when :add_leave_type
-      @leave_type = current_account.organizations.first.leave_types.new
-      leave_type_params = params.require(:leave_type).permit(:name, :description, :affected_entity, :type, :approval_needed, :colour)
-      @leave_type.assign_attributes(leave_type_params)
-
-      if @leave_type.save
-        redirect_to "/after_signup/about_yourself", notice: "Leave type saved!"
-      else
-        redirect_to "/after_signup/add_leave_type", notice: "Please fill in the required field"
+        redirect_to "/after_signup/add_position", alert: @position.errors.full_messages.to_sentence
       end
     when :about_yourself
       @employee = current_account.build_profile
@@ -98,7 +98,7 @@ class AfterSignupController < ApplicationController
         #redirect_to organization_path(current_account.organizations.first), notice: "Congratulation! Have a look at your Organization!"
         redirect_to "/after_signup/payment", notice: "Your profile is created"
       else
-        redirect_to "/after_signup/about_yourself", notice: "Please fill in the required field"
+        redirect_to "/after_signup/about_yourself", alert: @employee.errors.full_messages.to_sentence
       end
     when :payment
     

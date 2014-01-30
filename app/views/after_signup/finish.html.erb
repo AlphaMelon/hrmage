@@ -88,7 +88,6 @@
       <% @organization.positions.each do |position|%>
         <tr>
           <td><%= position.name %></td>
-          <td><%= position.max_leaves_seconds%></td>
           <td><%= position.max_claims_cents%></td>
           <td><%= position.can_approve_leave %></td>
           <td><%= position.can_approve_claim %></td>
@@ -100,7 +99,7 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h2><%= t :leave_types_list %></h2>
+    <h44><%= t :leave_types_list %></h4>
     <table>
       <thead>
         <th><%= t :name %></th>
@@ -118,6 +117,7 @@
           <td><%= leave_type.description %></td>
           <td><%= leave_type.affected_entity %></td>
           <td><%= leave_type.type %></td>
+          <td><%= leave_type.default_count_seconds/24/60/60 %> days</td>
           <td bgcolor="<%= leave_type.colour %>"></td>
         </tr>
       <% end %>

@@ -29,16 +29,6 @@ module FirstTimeSignupMacros
       page.should have_content("Department saved!")
     end
     
-    def create_position_step
-      #add position 
-      page.should have_content("Add Position")
-      fill_in "Name", with: "Executive"
-      fill_in "position_max_leaves_seconds", with: 1234567
-      fill_in "position_max_claims", with: 1234567
-      click_on "Next Step"
-      page.should have_content("Position")
-    end
-    
     def create_leave_type_step
       #add leave type 
       page.should have_content("Add Leave Type")
@@ -46,8 +36,18 @@ module FirstTimeSignupMacros
       select "Leave", from: "leave_type_affected_entity"
       fill_in "Description", with: "Medical Leave"
       fill_in "leave_type_colour", with: "#f3f3f3"
+      fill_in "leave_type_default_count_seconds", with: "10"
       click_on "Next Step"
       page.should have_content("Leave type saved!")
+    end
+    
+    def create_position_step
+      #add position 
+      page.should have_content("Add Position")
+      fill_in "Name", with: "Executive"
+      fill_in "position_max_claims", with: 1234567
+      click_on "Next Step"
+      page.should have_content("Position")
     end
     
     def create_profile_step

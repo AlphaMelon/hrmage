@@ -53,22 +53,25 @@ class OrganizationsController < ApplicationController
   def end_of_year_action
     authorize! :manage, current_organization
     
-    current_organization.employees.each do |emp|
-      if !emp.position.nil? && params[:forfeit]
-        emp.available_leaves_seconds = emp.position.max_leaves_seconds
-        emp.save
-      elsif emp.position.nil? && params[:forfeit]
-        emp.available_leaves_seconds = 0
-        emp.save
-      elsif !emp.position.nil? && params[:forward]
-        emp.available_leaves_seconds = emp.available_leaves_seconds + emp.position.max_leaves_seconds
-        emp.save
-      elsif emp.position.nil? && params[:forward]
-        emp.available_leaves_seconds = emp.available_leaves_seconds + 0
-        emp.save
-      end 
+    current_organization.employees.each do |employee|
+      current_organization.leave_types.each do |leave_type|
+        employee_variable = EmployeeVariable.where(employee_id: employee.id, leave_type_id: leave_type.id).first_or_create
+        default_max_leave = 0
+        if employee.position.position_settings.where(leave_type_id: leave_type.id).blank?
+          default_max_leave = employee.position.position_settings.where(leave_type_id: leave_type.id).first.max_leaves_seconds
+        else
+          default_max_leave = leave_type.default_count_seconds
+        end
+        
+        if params[:forfeit]
+          employee_variable.available_leaves_seconds = default_max_leave
+        elsif params[:forward]
+          employee_variable.available_leaves_seconds = employee_variable.available_leaves_seconds + default_max_leave
+        end
+        employee_variable.save
+      end
     end
-    
+
     if params[:forfeit]
       redirect_to organization_leaves_path(current_organization), notice: "Employee's leaves reseted"
     else

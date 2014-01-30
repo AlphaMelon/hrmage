@@ -18,6 +18,7 @@ class Organization < ActiveRecord::Base
   
   before_save :setup_currency
   
+  accepts_nested_attributes_for :leave_types, allow_destroy: true
   def setup_currency
     ::MoneyRails.configure do |config|
       config.default_currency = self.default_currency.to_sym if !self.default_currency.nil?

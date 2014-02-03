@@ -12,7 +12,7 @@
     <div class="large-2 small-2 columns">
       <h5 class="text-left"><%= current_account.profile.available_claims%>/<%= current_account.profile.position.max_claims%></h5>
     </div>
-    <div class=" progress success large-10 small-10 columns">
+    <div class=" progress alert large-10 small-10 columns">
       <span class="meter" style="width: <%= @claims_remaining_percentage%>%"></span>
     </div>
   </div>

@@ -10,7 +10,7 @@
       <% @position_settings.each do |position_setting|%>
         <tr>
           <td><%= position_setting.leave_type.name %></td>
-          <td><%= position_setting.max_leaves_seconds/24/60/60 %> days</td>
+          <td><%= position_setting.max_leaves_seconds/24/60/60 %> <%= t :days%></td>
           <td>
           <a href="#" data-dropdown="drop_<%= position_setting.id %>" class="tiny button dropdown"><%= t (:details)%></a><br>
             <ul id="drop_<%= position_setting.id %>" data-dropdown-content class="f-dropdown">

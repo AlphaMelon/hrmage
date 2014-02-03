@@ -11,17 +11,42 @@
           <% end %>
        </div>
       <div class="large-8 small-12 columns">
-        <h5><%= @employee.first_name.capitalize %> <%= t :information%></h5>
-        <p><%= t :last_name %>: <%= @employee.last_name%><br>
-        <%= t :first_name %>: <%= @employee.first_name%><br>
-        <%= t :e_mail %>: <%= @employee.account.email if !@employee.account.nil?%><br>
-        <%= t :mobile_no %>: <%= @employee.mobile_contact%><br>
-        <%= t :address %>: <%= @employee.address%><br>
-        <h5><%= t :departments %></h5>
-        <p>
-          <% @employee.departments.each do |d|%>
-            <%= d.name %>, 
-          <% end %>
+        <table>
+          <thead>
+            <th colspan="2"><%= @employee.first_name.capitalize %> <%= t :information%></th>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= t :last_name %>: </td>
+              <td><%= @employee.last_name%></td>
+            </tr>
+            <tr>
+              <td><%= t :first_name %>:</td>
+              <td><%= @employee.first_name%></td>
+            </tr>
+            <tr>
+              <td><%= t :e_mail %>:</td>
+              <td><%= @employee.account.email if !@employee.account.nil?%></td>
+            </tr>
+            <tr>
+              <td><%= t :mobile_no %>:</td>
+              <td><%= @employee.mobile_contact%></td>
+            </tr>
+            <tr>
+              <td><%= t :address %>:</td>
+              <td><%= @employee.address%></td>
+            </tr>
+            <tr>
+              <td><%= t :departments %></td>
+              <td>
+                <% @employee.departments.each do |d|%>
+                  <%= d.name %>, 
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+          
         </p>
       </div>
      </div>

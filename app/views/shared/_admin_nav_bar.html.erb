@@ -5,6 +5,6 @@
     <li><%= link_to t(:employee), organization_employees_path(current_organization), id: "organizaiton_employees" %></li>
     <li><%= link_to t(:leaves), organization_leaves_path(current_organization), id: "organization_leaves" %></li>
     <li><%= link_to t(:claims),  organization_claims_path(current_organization), id: "organization_claims"%></li>
-    <li><%= link_to t(:salary) %></li>
+    <li><%= link_to t(:salary), organization_payslip_settings_path(current_organization) %></li>
   </ul>
 </div>

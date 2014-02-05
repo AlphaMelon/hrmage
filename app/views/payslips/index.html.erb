@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h2><%= @employee.full_name%> Payslips</h2>
+    <table>
+      <thead>
+        <th><%= t :date %></th>
+        <th>Commission</th>
+        <th><%= t :action%></th>
+      </thead>
+      <tbody>
+      <% @payslips.each do |payslip|%>
+      <tr>
+        <td><%= payslip.date.to_date.strftime("%d/%m/%Y")  %></td>
+        <td><%= payslip.commission %></td>
+        <td>
+          <a href="#" data-dropdown="drop_<%= payslip.id %>" class="tiny button dropdown"><%= t :details %></a><br>
+            <ul id="drop_<%= payslip.id %>" data-dropdown-content class="f-dropdown">
+              <li>
+                <%= link_to t(:edit), edit_organization_employee_payslip_path(current_organization, @employee, payslip)%>
+              </li>
+            </ul>
+        </td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= link_to "Add new payslips", new_organization_employee_payslip_path, class: "button" %>
+  </div>
+</div>

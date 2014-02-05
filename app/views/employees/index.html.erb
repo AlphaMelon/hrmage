@@ -33,6 +33,9 @@
               <li>
                 <%= link_to t(:b_settings), organization_employee_employee_variables_path(@organization, employee), class: "fi-widget"%>
               </li>
+              <li>
+                <%= link_to "Payslip", organization_employee_payslips_path(@organization, employee)%>
+              </li>
             </ul>
           </td>
         </tbody>

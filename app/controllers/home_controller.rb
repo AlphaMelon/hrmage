@@ -38,6 +38,11 @@ class HomeController < ApplicationController
     @claims_remaining_percentage = current_account.profile.available_claims_cents*100/current_account.profile.position.max_claims_cents if !current_account.profile.position.nil?
   end
 
+  def my_salary
+    authenticate_account!
+    @payslips = current_account.profile.payslips.order(id: :desc) if !current_account.profile.nil?
+  end
+
   def sign_in
     if !account_signed_in?
       render layout: "marketing"

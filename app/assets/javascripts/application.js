@@ -36,7 +36,7 @@
 $(function(){ $(document).foundation(); });
 
 $(function() {
-    $('#leave_start_date').datetimepicker({
+    $('.datetime_only').datetimepicker({
       dateFormat: "yy-mm-dd",
       minDate: -1
     });

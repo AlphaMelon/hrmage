@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="large-12 small-12 columns">
+    <h1>My Salary</h1>
+  </div>
+  <hr>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <thead>
+        <th><%= t :date%></th>
+        <th>Commission</th>
+      </thead>
+      <tbody>
+        <% @payslips.each do |payslip| %>
+        <tr>
+          <td><%= payslip.date.to_date.strftime("%d/%m/%Y") %></td>
+          <td><%= humanized_money_with_symbol payslip.commission %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+  

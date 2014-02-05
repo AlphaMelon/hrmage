@@ -1,0 +1,11 @@
+<%= simple_form_for [current_organization, @employee, @payslip], wrapper: :custom do |f| %>
+  <%= render "shared/error_message", object: f.object %>
+  <%= f.input :date, as: :string, autocomplete: :off, input_html: {class: 'datetime_only'} %>
+  <%= f.input :commission %>
+  <div class="row">
+    <div class="large-3 small-3 columns"></div>
+    <div class="large-9 small-9 columns">
+      <%= f.button :submit, class: "button success" %>
+    </div>
+  </div>
+<% end %>

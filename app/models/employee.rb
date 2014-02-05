@@ -9,6 +9,7 @@ class Employee < ActiveRecord::Base
   has_many :departments, through: :employee_departments
   has_many :claims
   has_many :employee_variables
+  has_many :payslips
     
   before_save :set_default_values
   

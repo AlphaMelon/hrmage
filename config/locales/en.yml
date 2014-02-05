@@ -232,3 +232,6 @@ en:
   employee_variables_edit: "This is where you can edit specific employee settings"
   available_leave_remaining: "Available Leave Remaining"
   available: "Available"
+  payslip: " Payslip"
+  my_salary: "My Salary"
+  commission: "Commission"

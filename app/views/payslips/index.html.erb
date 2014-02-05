@@ -16,7 +16,7 @@
           <a href="#" data-dropdown="drop_<%= payslip.id %>" class="tiny button dropdown"><%= t :details %></a><br>
             <ul id="drop_<%= payslip.id %>" data-dropdown-content class="f-dropdown">
               <li>
-                <%= link_to t(:edit), edit_organization_employee_payslip_path(current_organization, @employee, payslip)%>
+                <%= link_to t(:edit), edit_organization_employee_payslip_path(current_organization, @employee, payslip), class: "fi-pencil"%>
               </li>
             </ul>
         </td>

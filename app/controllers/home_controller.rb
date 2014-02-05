@@ -40,7 +40,7 @@ class HomeController < ApplicationController
 
   def my_salary
     authenticate_account!
-    @payslips = current_account.profile.payslips.order(id: :desc) if !current_account.profile.nil?
+    @my_salarys = current_account.profile.payslips.order(id: :desc) if !current_account.profile.nil?
   end
 
   def sign_in

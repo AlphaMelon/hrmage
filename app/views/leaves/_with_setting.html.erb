@@ -1,5 +1,3 @@
-
-
 <div class="row">
   <div class="large-12 columns">
     <h3><%= t :leave_calendar %></h3>
@@ -25,23 +23,9 @@
           <% (1..@date.end_of_month.day).each do |d|%>
             <th><%= d%></th>
           <% end %>
-          <% (1..7).each do |w| %>
-            <% if w == 0 || w == 6%>
-              <th bgcolor="#8933E5"><%= w%></th>
-            <% else %>
-              <th><%= w %></th>
-            <% end %>
-          <% end %>
+
+
         </thead>
-
-        <%= current_organization.organization_setting.monday %>
-        <%= current_organization.organization_setting.tuesday %>
-        <%= current_organization.organization_setting.wednesday %>
-        <%= current_organization.organization_setting.thursday %>
-        <%= current_organization.organization_setting.friday %>
-        <%= current_organization.organization_setting.saturday %>
-        <%= current_organization.organization_setting.sunday %>
-
         <tbody>
         <% @employees.each do |employee|%>
           <tr>
@@ -65,18 +49,23 @@
                 <% end %>
               <% end %>
 
-              
-              <% if got_leave %>
-                <% if pending%>
-                  <%(1..duration).each do |du|%>
+              <% if !@workday[Date.new(@year,@month,count).wday]%>
+                <td class="offday"></td>
+                <% count = count + 1 %>
+              <% elsif got_leave %>
+                <% duration_count = 1 %>
+                <% while duration_count != duration+1 %>
+                  <% if !@workday[Date.new(@year,@month,count).wday] %>
+                    <td class="offday"></td>
+                  <% elsif pending%>
                     <td bgcolor="#000000"></td>
-                  <% end %>
-                <% else %>
-                  <%(1..duration).each do |du|%>
+                    <% duration_count = duration_count + 1 %>
+                  <% else %>
                     <td bgcolor="<%= type.colour %>"></td>
+                    <% duration_count = duration_count + 1 %>
                   <% end %>
+                  <% count = count + 1%>
                 <% end %>
-                <% count = count + duration%>
               <% else %>
                 <td class="present"></td>
                 <% count = count + 1 %>
@@ -98,6 +87,8 @@
           <td bgcolor="#E7E7E7"></td>
           <th><%= t :pending %></th>
           <td bgcolor="#000000"></td>
+          <th>Offday</th>
+          <td bgcolor="#C1C9FA"></td>
           <% @leave_types.each do |leave_type|%>
             <th><%=leave_type.name%></th>
             <td bgcolor="<%=leave_type.colour%>">

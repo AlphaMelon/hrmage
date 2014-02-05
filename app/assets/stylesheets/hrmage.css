@@ -49,6 +49,11 @@
     margin-top: 1em;
   }
 }
+
+.offday {
+  background-color: #C1C9FA;
+}
+
 .present{
   background-color: #E7E7E7;
 }

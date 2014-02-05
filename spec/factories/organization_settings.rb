@@ -7,7 +7,6 @@ FactoryGirl.define do
     wednesday 8
     thursday 8
     friday 8
-    saturday 4
     minimum_leave 1
   end
 end

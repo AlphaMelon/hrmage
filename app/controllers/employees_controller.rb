@@ -92,6 +92,6 @@ class EmployeesController < ApplicationController
 	def employee_params
 		params.require(:employee).permit(:first_name, :last_name, :mobile_contact, 
 		:address, :photo, :properties, :department_ids, :account_id, :position_id, 
-		:available_claims_cents, :available_claims, :can_self_approve)
+		:available_claims_cents, :available_claims, :can_self_approve, :base_salary_cents, :base_salary)
 	end
 end

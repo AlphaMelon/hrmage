@@ -9,6 +9,7 @@ class Organization < ActiveRecord::Base
   has_many :claims
   has_one :organization_setting
   has_many :organization_holidays
+  has_many :payslips
   
   validates :domain, uniqueness: true
   validates :domain, presence: true

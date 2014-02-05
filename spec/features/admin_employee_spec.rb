@@ -22,6 +22,7 @@ feature "[Admin Employee]" do
 		fill_in 'First name', with: 'Alan'
 		fill_in 'Mobile contact', with: '016-3134415'
 		fill_in 'Address', with: 'klang'
+		fill_in 'Base salary', with: '3000'
 		select "Executive", from: "Position"
 		click_on "Create Employee"
     page.should have_content("Employee successfully created")
@@ -69,6 +70,7 @@ feature "[Admin Employee]" do
 		fill_in 'First name', with: 'Alan'
 		fill_in 'Mobile contact', with: '016-3134415'
 		fill_in 'Address', with: 'klang'
+		fill_in 'Base salary', with: '3000'
 		select "Executive", from: "Position"
 		click_on "Create Employee"
     page.should have_content("Employee successfully created")
@@ -96,6 +98,7 @@ feature "[Admin Employee]" do
 		fill_in 'Last name', with: 'Lee'
 		fill_in 'First name', with: 'Alan'
 		fill_in 'Mobile contact', with: '016-3134415'
+		fill_in 'Base salary', with: '3000'
 		fill_in 'Address', with: 'klang'
 		select "Executive", from: "Position"
 		click_on "Create Employee"

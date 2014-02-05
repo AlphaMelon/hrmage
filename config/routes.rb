@@ -8,6 +8,7 @@ Hrmage::Application.routes.draw do
   get 'sign_in' => "home#sign_in"
   get 'sign_up' => "home#sign_up"
   resources :organizations do
+    resources :payslip_settings
     resources :claims
     resources :positions do
       resources :position_settings
@@ -20,6 +21,7 @@ Hrmage::Application.routes.draw do
       resources :organization_holidays
     end
     resources :employees do
+      resources :payslips
       resources :employee_variables
       resources :employee_departments
       resources :documents

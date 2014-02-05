@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140129042421) do
+ActiveRecord::Schema.define(version: 20140205033231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20140129042421) do
     t.integer  "organization_id"
     t.integer  "available_claims_cents"
     t.boolean  "can_self_approve"
+    t.integer  "base_salary_cents"
   end
 
   create_table "leave_types", force: true do |t|
@@ -161,6 +162,31 @@ ActiveRecord::Schema.define(version: 20140129042421) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "default_currency"
+  end
+
+  create_table "payslip_calculations", force: true do |t|
+    t.integer  "payslip_id"
+    t.integer  "payslip_setting_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payslip_settings", force: true do |t|
+    t.integer  "organization_id"
+    t.string   "name"
+    t.integer  "value"
+    t.string   "maths"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payslips", force: true do |t|
+    t.integer  "employee_id"
+    t.integer  "organization_id"
+    t.datetime "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "commission_cents"
   end
 
   create_table "position_default_variables", force: true do |t|

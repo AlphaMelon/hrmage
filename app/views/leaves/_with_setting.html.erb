@@ -25,7 +25,7 @@
           <% (1..@date.end_of_month.day).each do |d|%>
             <th><%= d%></th>
           <% end %>
-          <% (0..@date.wday).each do |w| %>
+          <% (1...wday).each do |w| %>
             <% if w == 0 || w == 6%>
               <th bgcolor="#8933E5"><%= w%></th>
             <% else %>

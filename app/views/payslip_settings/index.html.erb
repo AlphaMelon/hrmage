@@ -7,6 +7,7 @@
         <th>Name</th>
         <th>Value</th>
         <th>Maths</th>
+        <td><%= t :action %></td>
       </thead>
       <tbody>
         <% @payslip_settings.each do |payslip_setting| %>
@@ -14,6 +15,14 @@
           <td><%= payslip_setting.name %></td>
           <td><%= payslip_setting.value %></td>
           <td><%= payslip_setting.maths %></td>
+          <td>
+            <a href="#" data-dropdown="drop_<%= payslip_setting.id %>" class="tiny button dropdown"><%= t :details %></a><br>
+            <ul id="drop_<%= payslip_setting.id %>" data-dropdown-content class="f-dropdown">
+              <li>
+                <%= link_to t(:edit), edit_organization_payslip_setting_path(current_organization, payslip_setting), class: "fi-pencil"%>
+              </li>
+            </ul>
+          </td>
         </tr>
         <% end %>
       </tbody>

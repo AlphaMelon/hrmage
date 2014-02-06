@@ -1,0 +1,12 @@
+<%= simple_form_for [@organization, @payslip_setting], wrapper: :custom do |f| %>
+  <%= render '/shared/error_message', object: f.object %>
+  <%= f.input :name %>
+  <%= f.input :value %>
+  <%= f.input :maths %>
+  <div class="row">
+    <div class="large-3 small-3 columns"></div>
+    <div class="large-9 small-9 columns">
+      <%= f.button :submit, class: "button success" %>
+    </div>
+  </div>
+<% end %>

@@ -13,11 +13,24 @@ class PayslipSettingsController < ApplicationController
   end
 
   def create
-    @payslip_setting = current_organization.payslip_settings(payslip_setting_params)
+    @payslip_setting = @organization.payslip_settings.new(payslip_setting_params)
+    @payslip_setting.organization_id = current_organization.id
     if @payslip_setting.save
       redirect_to organization_payslip_settings_path(current_organization), notice: "Payslip Setting successfully created"
     else
       render action: 'new'
+    end
+  end
+
+  def edit
+    
+  end
+
+  def update
+    if @payslip_setting.update(payslip_setting_params)
+      redirect_to organization_payslip_settings_path(current_organization), notice: "Payslip Setting successfully update"
+    else
+      render action: 'edit'
     end
   end
 
@@ -32,6 +45,6 @@ class PayslipSettingsController < ApplicationController
   end
 
   def payslip_setting_params
-    params.require(:payslip_setting).permits(:organization_id, :name, :value, :maths)
+    params.require(:payslip_setting).permit(:organization_id, :name, :value, :maths)
   end
 end

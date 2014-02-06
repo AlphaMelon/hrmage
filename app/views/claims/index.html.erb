@@ -17,7 +17,7 @@
           <td><%= pending_claim.employee.last_name.capitalize %></td>
           <td><%= pending_claim.subject%></td>
           <td><%= pending_claim.date.to_date.strftime("%d/%m/%Y") %></td>
-          <td><%= number_to_currency(pending_claim.amount_cents.to_f/100, precision: 2) %></td>
+          <td><%= humanized_money_with_symbol pending_claim.amount_cents%></td>
           <td><%= pending_claim.comment %></td>
           <td>
             <% if pending_claim.image? %>

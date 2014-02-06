@@ -1,10 +1,11 @@
 class PayslipsController < ApplicationController
   before_action :set_employee
+  before_action :set_payslip, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_account!
-  
   load_and_authorize_resource
+  
   def index
-    @payslips = @employee.payslips
+    @payslips = @employee.payslips.order(date: :asc)
   end
 
   def new
@@ -37,15 +38,25 @@ class PayslipsController < ApplicationController
   def show
     
   end
-
+  
+	def destroy
+		@payslip.destroy
+		redirect_to organization_employee_payslips_path(current_organization, @employee), notice: 'Payslips successfully deleted'
+	end
+	
   private
-
+  
+	def set_payslip
+	  @payslip = Payslip.find(params[:id])
+	end
+	
   def set_employee
     @employee = Employee.find(params[:employee_id])
   end
 
   def payslip_params
-    params.require(:payslip).permit(:employee_id, :organzation_id, :date, :commission, :commission_cents)
+    params.require(:payslip).permit(:employee_id, :organzation_id, :date, :commission, 
+    :commission_cents, :base_salary_cents, :base_salary, { :payslip_setting_ids => [] })
   end
 
 end

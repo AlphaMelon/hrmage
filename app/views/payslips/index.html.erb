@@ -4,20 +4,30 @@
     <table>
       <thead>
         <th><%= t :date %></th>
+        <th>Base Salary</th>
         <th>Commission</th>
+        <th>Settings</th>
         <th><%= t :action%></th>
       </thead>
       <tbody>
       <% @payslips.each do |payslip|%>
       <tr>
-        <td><%= payslip.date.to_date.strftime("%d/%m/%Y")  %></td>
-        <td><%= payslip.commission %></td>
+        <td><%= payslip.date.to_date %></td>
+        <td><%= humanized_money_with_symbol payslip.base_salary%></td>
+        <td><%= humanized_money_with_symbol payslip.commission%></td>
+        <td>
+          <% payslip.payslip_settings.each do |payslip_setting| %>
+            <%=payslip_setting.name%>,
+          <% end %>
+        </td>
         <td>
           <a href="#" data-dropdown="drop_<%= payslip.id %>" class="tiny button dropdown"><%= t :details %></a><br>
             <ul id="drop_<%= payslip.id %>" data-dropdown-content class="f-dropdown">
+              <li><%= link_to "Show", organization_employee_payslip_path(current_organization, @employee, payslip)%></li>
               <li>
                 <%= link_to t(:edit), edit_organization_employee_payslip_path(current_organization, @employee, payslip), class: "fi-pencil"%>
               </li>
+              <li><%= link_to "Delete", organization_employee_payslip_path(current_organization, @employee, payslip), method: :delete, data: { confirm: t(:are_you_sure) }%></li>
             </ul>
         </td>
       </tr>

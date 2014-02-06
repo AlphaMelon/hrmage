@@ -8,6 +8,8 @@ class Leave < ActiveRecord::Base
   validate :start_date_cannot_be_in_past
   validate :duration_cannot_be_more_than_available_leaves
   validate :duration_cannot_be_zero_or_negative
+  validate :cannot_same_day_leave
+  validate :cannot_take_leave_on_off_day
   validates :start_date, presence: true
   validates :duration_seconds, presence: true
 
@@ -44,6 +46,36 @@ class Leave < ActiveRecord::Base
     if !self.duration_seconds.nil?
       if 0 >= self.duration_seconds
         errors.add("Duration", "cannot be zero or negative")
+      end
+    end
+  end
+  
+  def cannot_same_day_leave
+    if !self.start_date.nil?
+      if !self.employee.leaves.where(start_date: self.start_date.to_date).blank?
+        errors.add("Date", "has already taken")
+      end
+    end
+  end
+  
+  def cannot_take_leave_on_off_day
+    if !self.organization.organization_setting.nil?
+      if !self.start_date.nil?
+        if self.organization.organization_setting.monday.blank? && self.start_date.wday == 1
+          errors.add("Monday", "is off day")
+        elsif self.organization.organization_setting.tuesday.blank? && self.start_date.wday == 2
+          errors.add("Tuesday", "is off day")
+        elsif self.organization.organization_setting.wednesday.blank? && self.start_date.wday == 3
+          errors.add("Wednesday", "is off day")
+        elsif self.organization.organization_setting.thursday.blank? && self.start_date.wday == 4
+          errors.add("Thursday", "is off day")
+        elsif self.organization.organization_setting.friday.blank? && self.start_date.wday == 5
+          errors.add("Friday", "is off day")
+        elsif self.organization.organization_setting.saturday.blank? && self.start_date.wday == 6
+          errors.add("Saturday", "is off day")
+        elsif self.organization.organization_setting.sunday.blank? && self.start_date.wday == 0
+          errors.add("Sunday", "is off day")
+        end
       end
     end
   end

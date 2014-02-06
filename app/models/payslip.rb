@@ -1,5 +1,6 @@
 class Payslip < ActiveRecord::Base
 
+  belongs_to :organization
   belongs_to :employee
 
   has_many :payslip_calculations

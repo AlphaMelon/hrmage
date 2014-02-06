@@ -34,7 +34,35 @@ feature "[Employee Leaves]" do
     click_button "Apply Leave"
     page.should have_content("cannot be zero or negative")
   end
+  
+  scenario "Applying leave again with same day" do
+    visit root_path
+    click_on "Leaves"
+    click_on "Apply Leave"
+    fill_in "leave_start_date", with: "2014-01-27 00:00"
+    fill_in "leave_duration_seconds", with: 3
+    click_button "Apply Leave"
+    page.should have_content("Leave successfully applied, please wait for admin to approve")
+    
+    visit root_path
+    click_on "Leaves"
+    click_on "Apply Leave"
+    fill_in "leave_start_date", with: "2014-01-27 00:00"
+    fill_in "leave_duration_seconds", with: 3
+    click_button "Apply Leave"
+    page.should have_content("has already taken")
+  end
 
+  scenario "take leave on off day" do
+    create_organization_setting
+    visit root_path
+    click_on "Leaves"
+    click_on "Apply Leave"
+    fill_in "leave_start_date", with: "2014-01-26 00:00"
+    fill_in "leave_duration_seconds", with: 3
+    click_button "Apply Leave"
+    page.should have_content("is off day")
+  end
 
   scenario "Leave remaining progress bar" do
     #10 out of 21 leave days remaining

@@ -36,4 +36,13 @@ feature "[Admin payslip]" do
     page.should have_content("Payslips successfully update")
   end
 
+  scenario "submit payslip without failling in anything" do
+    visit root_path
+    click_on "Admin"
+    click_on "Employee"
+    click_on "Payslip"
+    click_on "Add new payslips"
+    click_button "Create Payslip"
+  end
+
 end

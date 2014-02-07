@@ -9,7 +9,11 @@
         <th><%= t :commission %></th>
         <td><%= humanized_money_with_symbol @payslip.commission %></td>
       </tr>
-      <%total = @payslip.base_salary_cents + @payslip.commission_cents.to_i%>
+      <tr>
+        <th>Claims</th>
+        <td><%= humanized_money_with_symbol (current_account.profile.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)/100 %></td>
+      </tr>
+      <%total = @payslip.base_salary_cents + @payslip.commission_cents.to_i + (current_account.profile.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents) %>
       <% @payslip.payslip_settings.each do |payslip_setting| %>
         <tr>
           <th><%=payslip_setting.name%></th>

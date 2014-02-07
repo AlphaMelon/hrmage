@@ -1,12 +1,12 @@
 <div class="row">
   <div class="large-12 small-12 columns">
-    <h1>Payslip Setting</h1>
+    <h1><%= t :payslip_setting %></h1>
 
     <table>
       <thead>
-        <th>Name</th>
-        <th>Value</th>
-        <th>Maths</th>
+        <th><%= t :Name %></th>
+        <th><%= t :value %></th>
+        <th><%= t :maths %></th>
         <td><%= t :action %></td>
       </thead>
       <tbody>
@@ -28,6 +28,6 @@
       </tbody>
     </table>
 
-    <%= link_to "Add New Payslip Settings", new_organization_payslip_setting_path(current_organization, @payslip_setting), class: "button"%>
+    <%= link_to t(:add_new_payslip_settings), new_organization_payslip_setting_path(current_organization, @payslip_setting), class: "button"%>
   </div>
 </div>

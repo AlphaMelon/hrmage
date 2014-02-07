@@ -1,11 +1,11 @@
 <div class="row">
   <div class="large-12 columns">
-    <h2><%= @employee.full_name%> Payslips</h2>
+    <h2><%= @employee.full_name%> <%= t :payslips %></h2>
     <table>
       <thead>
         <th><%= t :date %></th>
-        <th>Base Salary</th>
-        <th>Commission</th>
+        <th><%= t :base_salary %></th>
+        <th><%= t :commission %></th>
         <th>Settings</th>
         <th><%= t :action%></th>
       </thead>
@@ -23,17 +23,17 @@
         <td>
           <a href="#" data-dropdown="drop_<%= payslip.id %>" class="tiny button dropdown"><%= t :details %></a><br>
             <ul id="drop_<%= payslip.id %>" data-dropdown-content class="f-dropdown">
-              <li><%= link_to "Show", organization_employee_payslip_path(current_organization, @employee, payslip)%></li>
+              <li><%= link_to t(:show), organization_employee_payslip_path(current_organization, @employee, payslip), class: "fi-eye"%></li>
               <li>
                 <%= link_to t(:edit), edit_organization_employee_payslip_path(current_organization, @employee, payslip), class: "fi-pencil"%>
               </li>
-              <li><%= link_to "Delete", organization_employee_payslip_path(current_organization, @employee, payslip), method: :delete, data: { confirm: t(:are_you_sure) }%></li>
+              <li><%= link_to t(:delete), organization_employee_payslip_path(current_organization, @employee, payslip), class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure) }%></li>
             </ul>
         </td>
       </tr>
       <% end %>
       </tbody>
     </table>
-    <%= link_to "Add new payslips", new_organization_employee_payslip_path, class: "button" %>
+    <%= link_to t(:add_new_payslips), new_organization_employee_payslip_path, class: "button" %>
   </div>
 </div>

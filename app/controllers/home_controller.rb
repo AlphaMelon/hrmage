@@ -40,9 +40,14 @@ class HomeController < ApplicationController
 
   def my_salary
     authenticate_account!
-    @my_salarys = current_account.profile.payslips.order(id: :desc) if !current_account.profile.nil?
+    @my_salarys = current_account.profile.payslips.order(date: :asc) if !current_account.profile.nil?
   end
 
+  def my_salary_show
+    @payslip = Payslip.find(params[:payslip_id])
+  
+  end
+  
   def sign_in
     if !account_signed_in?
       render layout: "marketing"

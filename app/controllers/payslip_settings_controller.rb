@@ -5,7 +5,7 @@ class PayslipSettingsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @payslip_settings = @organization.payslip_settings
+    @payslip_settings = @organization.payslip_settings.order(id: :asc)
   end
 
   def new

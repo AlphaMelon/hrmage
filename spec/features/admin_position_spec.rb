@@ -11,6 +11,10 @@ feature "[Admin Position]" do
     click_on "My Organization"
     click_on "Position"
     page.should have_content("Executive")
+    
+    click_on "Show"
+    page.should have_content("List")
+    page.should have_content("David")
   end 
   
   scenario "Add New Position" do

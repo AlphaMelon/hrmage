@@ -4,7 +4,7 @@
     <table>
       <tr>
         <th><%= t :date %></th>
-        <td><%= @payslip.date.to_date %></td>
+        <td><%= @payslip.date.to_date.strftime("%d/%m/%Y") %></td>
       </tr>
       <tr>
         <th><%= t :base_salary %></th>

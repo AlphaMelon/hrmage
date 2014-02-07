@@ -10,13 +10,17 @@
     <table>
       <thead>
         <th><%= t :date%></th>
+        <th>Base Salary</th>
         <th><%= t :commission %></th>
+        <th></th>
       </thead>
       <tbody>
         <% @my_salarys.each do |salary| %>
         <tr>
           <td><%= salary.date.to_date.strftime("%d/%m/%Y") %></td>
+          <td><%= humanized_money_with_symbol salary.base_salary %></td>
           <td><%= humanized_money_with_symbol salary.commission %></td>
+          <td><%= link_to "Show", "my_salary_show/#{salary.id}" %></td>
         </tr>
         <% end %>
       </tbody>

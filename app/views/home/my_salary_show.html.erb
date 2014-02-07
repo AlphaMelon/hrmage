@@ -1,0 +1,28 @@
+<div class="row">  
+  <div class="large-6 columns">
+    <table>
+      <tr>
+        <th><%= t :base_salary %></th>
+        <td><%= humanized_money_with_symbol @payslip.base_salary %></td>
+      </tr>
+      <tr>
+        <th><%= t :commission %></th>
+        <td><%= humanized_money_with_symbol @payslip.commission %></td>
+      </tr>
+      <%total = @payslip.base_salary_cents + @payslip.commission_cents.to_i%>
+      <% @payslip.payslip_settings.each do |payslip_setting| %>
+        <tr>
+          <th><%=payslip_setting.name%></th>
+          <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting)/100%></td>
+          <%total = total + @payslip.calculate(payslip_setting)%>
+        </tr>
+      <% end %>
+      <tr>
+        <th>Total</th>
+        <td><%= humanized_money_with_symbol total/100 %></td>
+      </tr>
+        
+    </table>
+    <%= link_to "Back", my_salary_path, class: "button secondary"%>
+  </div>
+</div>

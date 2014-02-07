@@ -18,6 +18,7 @@
           <td>
           <a href="#" data-dropdown="drop_<%=position.id %>" class="tiny button dropdown"><%= t :details %></a>
             <ul id="drop_<%=position.id %>" data-dropdown-content class="f-dropdown">
+              <li><%= link_to "Show", organization_position_path(current_organization, position)%></li>
               <li>
                 <%= link_to t(:edit), edit_organization_position_path(current_organization, position), class: "fi-pencil" %>
               </li>

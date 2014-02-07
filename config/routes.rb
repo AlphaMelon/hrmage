@@ -6,6 +6,7 @@ Hrmage::Application.routes.draw do
   get 'my_leaves' => "home#my_leaves"
   get 'my_claims' => "home#my_claims"
   get 'my_salary' => "home#my_salary"
+  get 'my_salary_show/:payslip_id' => "home#my_salary_show"
   get 'sign_in' => "home#sign_in"
   get 'sign_up' => "home#sign_up"
   resources :organizations do

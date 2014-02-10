@@ -37,7 +37,3 @@
     <%= link_to t(:add_new_payslips), new_organization_employee_payslip_path, class: "button" %>
   </div>
 </div>
-
-<% if current_organization.payslips.nil? %>
-  no payslip
-<% end %>

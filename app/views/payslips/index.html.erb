@@ -15,11 +15,7 @@
         <td><%= payslip.date.to_date.strftime("%d/%m/%Y") %></td>
         <td><%= humanized_money_with_symbol payslip.base_salary%></td>
         <td><%= humanized_money_with_symbol payslip.commission%></td>
-        <td>
-          <% payslip.payslip_settings.each do |payslip_setting| %>
-            <%=payslip_setting.name%>,
-          <% end %>
-        </td>
+        <td><%= payslip.payslip_settings.collect{|n| n.name}.join(",") %></td>
         <td>
           <a href="#" data-dropdown="drop_<%= payslip.id %>" class="tiny button dropdown"><%= t :details %></a><br>
             <ul id="drop_<%= payslip.id %>" data-dropdown-content class="f-dropdown">

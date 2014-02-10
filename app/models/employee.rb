@@ -13,22 +13,16 @@ class Employee < ActiveRecord::Base
     
   before_save :set_default_values
   
-  monetize :available_claims_cents, as: "available_claims", allow_nil: true
   monetize :base_salary_cents, as: "base_salary", allow_nil: true
   mount_uploader :photo, ImageUploader
   
   validates :last_name, presence: true
   validates :first_name, presence: true
   validates :base_salary_cents, presence: true
+  validates :position_id, presence: true
+  
   def set_default_values
-    self.can_self_approve = false if self.can_self_approve.blank?
-    
-    #default available claims
-    if self.available_claims_cents.blank? && !self.position.nil?
-      self.available_claims_cents = self.position.max_claims_cents
-    elsif self.available_claims_cents.blank? && self.position.blank?
-      self.available_claims_cents = 0
-    end
+    #self.can_self_approve = false if self.can_self_approve.blank?
   end
 
   def name_with_initial

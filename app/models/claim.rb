@@ -21,7 +21,7 @@ class Claim < ActiveRecord::Base
   
   def claims_cannot_be_more_than_available_claims
     if !self.amount_cents.nil?
-      if self.employee.available_claims_cents < self.amount_cents
+      if (self.employee.position.monthly_max_claims_cents - (self.employee.claims.where(status: "Approved", date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).sum :amount_cents)) < self.amount_cents
         errors.add(:amount_claims, "is more than your available claims")
       end
     end
@@ -38,7 +38,6 @@ class Claim < ActiveRecord::Base
   def approve
     self.status = "Approved"
     employee = self.employee
-    employee.available_claims_cents = employee.available_claims_cents - self.amount_cents
     employee.save
     self.save
   end

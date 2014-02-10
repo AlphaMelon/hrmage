@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="large-6 small-12 columns">
+  <div class="large-12 small-12 columns">
     <div class="employees-container">
       <div class="row">
        <div class="large-4 small-12  columns">
@@ -10,7 +10,7 @@
             <%= image_tag("default-profile-photo.png")%>
           <% end %>
        </div>
-      <div class="large-8 small-12 columns">
+      <div class="large-4 small-12 columns">
         <table>
           <thead>
             <th colspan="2"><%= @employee.first_name.capitalize %> <%= t :information%></th>
@@ -46,6 +46,28 @@
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="large-4 small-12 columns">
+        <table>
+          <thead>
+            <th colspan="3">Claims</th>
+          </thead>
+          <thead>
+            <th>Date</th>
+            <th>Subject</th>
+            <th>Amount</th>
+          </thead>
+          <tbody>
+            <% @employee_claims.each do |employee_claim|%>
+              <tr>
+                <td><%= employee_claim.date.to_date%></td>
+                <td><%= employee_claim.subject%></td>
+                <td><%= humanized_money_with_symbol employee_claim.amount%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= paginate @employee_claims %>
       </div>
      </div>
     </div>

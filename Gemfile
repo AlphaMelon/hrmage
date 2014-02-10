@@ -52,7 +52,6 @@ gem 'compass-rails' # you need this or you get an err
 
 
 gem 'carrierwave'
-gem 'money-rails'
 gem 'sidekiq'
 gem 'rmagick'
 gem 'wicked'

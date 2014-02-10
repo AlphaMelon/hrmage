@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140206065624) do
+ActiveRecord::Schema.define(version: 20140210062722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,7 +101,6 @@ ActiveRecord::Schema.define(version: 20140206065624) do
     t.integer  "position_id"
     t.integer  "account_id"
     t.integer  "organization_id"
-    t.integer  "available_claims_cents"
     t.boolean  "can_self_approve"
     t.integer  "base_salary_cents"
   end
@@ -190,6 +189,14 @@ ActiveRecord::Schema.define(version: 20140206065624) do
     t.integer  "base_salary_cents"
   end
 
+  create_table "position_default_variables", force: true do |t|
+    t.integer  "position_id"
+    t.integer  "leave_type_id"
+    t.integer  "max_leaves_seconds"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "position_settings", force: true do |t|
     t.integer  "position_id"
     t.integer  "leave_type_id"
@@ -204,9 +211,9 @@ ActiveRecord::Schema.define(version: 20140206065624) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "organization_id"
-    t.integer  "max_claims_cents"
     t.boolean  "can_approve_leave"
     t.boolean  "can_approve_claim"
+    t.integer  "monthly_max_claims_cents"
   end
 
 end

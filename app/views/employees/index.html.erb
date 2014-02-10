@@ -8,7 +8,6 @@
         <th><%= t :position %></th>
         <th><%= t :e_mail %></th>
         <th><%= t :mobile_no %></th>
-        <th><%= t :available_claims %></th>
         <th>Base Salary</th>
         <th><%= t :Can_self_approve %></th>
         <th><%= t :action %></th>
@@ -20,7 +19,6 @@
           <td><%= employee.position.name if !employee.position.blank?%></td>
           <td><%= employee.account.email if !employee.account.nil?%></td>
           <td><%= employee.mobile_contact%></td>
-          <td><%= humanized_money_with_symbol employee.available_claims%></td>
           <td><%= humanized_money_with_symbol employee.base_salary%></td>
           <td><%= employee.can_self_approve%></td>
           <td>

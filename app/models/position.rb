@@ -4,7 +4,7 @@ class Position < ActiveRecord::Base
   has_many :position_settings
   belongs_to :organization
   validates :name, presence: true
-  validates :max_claims_cents, presence: true
+  validates :monthly_max_claims_cents, presence: true
   
-  monetize :max_claims_cents, as: "max_claims"
+  monetize :monthly_max_claims_cents, as: "monthly_max_claims"
 end

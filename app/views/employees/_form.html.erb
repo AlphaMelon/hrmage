@@ -7,7 +7,6 @@
       <%= f.input :position_id, collection: current_organization.positions, include_blank: false %>
       <%= f.input :mobile_contact %>
       <%= f.input :address %>
-      <%= f.input :available_claims, placeholder: t(:employees_available_claims_placeholder), type: :number %>
       <%= f.input :base_salary, as: :integer %>
       <%= f.input :can_self_approve, as: :select, include_blank: false %>
       <%= f.input :photo, as: :file %>

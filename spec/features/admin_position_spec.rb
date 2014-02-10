@@ -24,7 +24,7 @@ feature "[Admin Position]" do
     click_on "Position"
     click_on "Add New Position"
 		fill_in 'Name', with: 'Manager'
-		fill_in 'position_max_claims', with: 12000
+		fill_in 'position_monthly_max_claims', with: 12000
 		click_on "Create Position"
     page.should have_content("Position successfully created")
     page.should have_content("Manager")

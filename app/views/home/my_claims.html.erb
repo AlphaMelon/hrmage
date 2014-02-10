@@ -10,7 +10,9 @@
   </div>
   <div class="large-12 columns">
     <div class="large-2 small-2 columns">
-      <h5 class="text-left"><%= current_account.profile.available_claims%>/<%= current_account.profile.position.max_claims%></h5>
+      <h5 class="text-left">
+        <%= (current_account.profile.claims.where(status: "Approved", date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).sum :amount_cents)/100%>/<%= current_account.profile.position.monthly_max_claims%>
+      </h5>
     </div>
     <div class=" progress alert large-10 small-10 columns">
       <span class="meter" style="width: <%= @claims_remaining_percentage%>%"></span>

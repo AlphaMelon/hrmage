@@ -7,10 +7,10 @@ class EmployeesController < ApplicationController
 	
   def index
     @employees = @organization.employees.order(:id)
-    #authorize! :manage, @employee
   end
   
   def show
+    @employee_claims = @employee.claims.order(date: :asc).page(params[:page]).per(5)
   end
   
   def new
@@ -92,6 +92,6 @@ class EmployeesController < ApplicationController
 	def employee_params
 		params.require(:employee).permit(:first_name, :last_name, :mobile_contact, 
 		:address, :photo, :properties, :department_ids, :account_id, :position_id, 
-		:available_claims_cents, :available_claims, :can_self_approve, :base_salary_cents, :base_salary)
+		:can_self_approve, :base_salary_cents, :base_salary)
 	end
 end

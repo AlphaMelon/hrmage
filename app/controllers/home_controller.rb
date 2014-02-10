@@ -17,10 +17,9 @@ class HomeController < ApplicationController
       if !current_account.profile.nil?
         if !current_account.profile.position.nil?
           @my_leaves = current_account.profile.leaves.order(id: :desc)
-          @leaves_remaining_percentage = 90
           authenticate_account!
           @my_claims = current_account.profile.claims.order(id: :desc)
-          @claims_remaining_percentage = current_account.profile.available_claims_cents*100/current_account.profile.position.max_claims_cents
+          @claims_remaining_percentage = (current_account.profile.claims.where(status: "Approved", date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).sum :amount_cents)/current_account.profile.position.monthly_max_claims_cents
         end
       end
     end
@@ -29,13 +28,12 @@ class HomeController < ApplicationController
   def my_leaves
     authenticate_account!
     @my_leaves = current_account.profile.leaves.order(id: :desc) if !current_account.profile.nil?
-    @leaves_remaining_percentage = 90
   end
   
   def my_claims
     authenticate_account!
     @my_claims = current_account.profile.claims.order(id: :desc) if !current_account.profile.nil?
-    @claims_remaining_percentage = current_account.profile.available_claims_cents*100/current_account.profile.position.max_claims_cents if !current_account.profile.position.nil?
+    @claims_remaining_percentage = (current_account.profile.claims.where(status: "Approved", date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).sum :amount_cents)/current_account.profile.position.monthly_max_claims_cents
   end
 
   def my_salary

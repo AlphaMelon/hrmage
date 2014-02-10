@@ -59,11 +59,7 @@
         <%total = @payslip.base_salary_cents + @payslip.commission_cents.to_i + (current_account.profile.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents) %>
         <% @payslip.payslip_settings.each do |payslip_setting| %>
           <tr>
-            <% if payslip_setting.maths == "Substration" %>
-              <td><%=payslip_setting.name%></td>
-              <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting)/100%></td>
-            <% end %>
-            <% if payslip_setting.maths == "Substraction Percentage" %>
+            <% if payslip_setting.maths == "Substration" || payslip_setting.maths == "Substraction Percentage" %>
               <td><%=payslip_setting.name%></td>
               <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting)/100%></td>
             <% end %>
@@ -82,16 +78,13 @@
             <% if payslip_setting.maths == "Addition" %>
               <td><%=payslip_setting.name%></td>
               <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting)/100%></td>
-            <% end %>
-            <% if payslip_setting.maths == "Division" %>
+            <% elsif payslip_setting.maths == "Division" %>
               <td><%=payslip_setting.name%></td>
               <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting)/100%></td>
-            <% end %>
-            <% if payslip_setting.maths == "Multiplication" %>
+            <% elsif payslip_setting.maths == "Multiplication" %>
               <td><%=payslip_setting.name%></td>
               <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting)/100%></td>
-            <% end %>
-            <% if payslip_setting.maths == "Addition Percentage" %>
+            <% elsif payslip_setting.maths == "Addition Percentage" %>
               <td><%=payslip_setting.name%></td>
               <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting)/100%></td>
             <% end %>

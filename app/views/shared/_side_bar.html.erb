@@ -27,6 +27,8 @@
   <%= render "shared/admin_salary_panel" %>
 <% elsif (!@my_salarys.nil? || !@my_salary.nil?) && session[:employee_session]  %>
   <%= render "shared/salary_panel" %>
+<% elsif (!@payslips.nil? || !@payslip.nil?) && session[:employee_session]  %>
+  <%= render "shared/salary_panel" %>
 
 <% elsif (!@my_claims.nil? || !@my_claim.nil?) && session[:admin_session]  %>
   <%= render "shared/admin_claims_panel" %>

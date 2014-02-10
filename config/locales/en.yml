@@ -245,3 +245,8 @@ en:
   payslip_setting: "Payslip Setting"
   add_new_payslip_settings: "Add New Payslip Settings"
   add_new_payslip_setting: "Add New Payslip Settting"
+  total_payment: "Total payment"
+  deduction: "Deduction"
+  others: "Others"
+  net_pay: "Net pay"
+  payments: "Payments"

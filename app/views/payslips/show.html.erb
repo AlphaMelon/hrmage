@@ -9,24 +9,24 @@
     <table class="large-8">
       <thead>
         <tr>
-          <th colspan="2"><center>Payments</center></th>
+          <th colspan="2"><center><%= t :payments %></center></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-            <td>Date</td>
-            <td><%= @payslip.date.to_date.strftime("%d/%m/%Y") %></td>
+          <td><%= t :date %></td>
+          <td><%= @payslip.date.to_date.strftime("%d/%m/%Y") %></td>
         </tr>
       </tbody>
       <thead>
         <tr>
-          <th>Description</th>
-          <th>Amount</th>
+          <th><%= t :description %></th>
+          <th><%= t :amount %></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Base Salary</td>
+          <td><%= t :base_salary %></td>
           <td><%= humanized_money_with_symbol @payslip.base_salary %></td>
         </tr>
         <tr>
@@ -34,22 +34,27 @@
           <td><%= humanized_money_with_symbol @payslip.commission %></td>
         </tr>
         <tr>
-          <th>Total payment</th>
+          <th><%= t :total_payment %></th>
           <td><%= humanized_money_with_symbol @payslip.commission+@payslip.base_salary %></td>
         </tr>
       </tbody>
 
       <thead>
-        <th colspan="2"><center>Claims</center></th>
+        <th colspan="2"><center><%= t :claims %></center></th>
       </thead>
       <tbody>
-        <tr>
-          <td><%= humanized_money_with_symbol (current_account.profile.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)/100 %></td>
-        </tr>
+        <% current_account.profile.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).each do |claim|%>
+          <tr>
+            <td><%= claim.subject %></td>
+            <td>
+            <%= humanized_money_with_symbol claim.amount %>
+            <%#= humanized_money_with_symbol (current_account.profile.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)/100 %></td>
+          </tr>
+        <% end %>
       </tbody>
 
       <thead>
-        <th colspan="2"><center>Deduction</center></th>
+        <th colspan="2"><center><%= t :deduction %></center></th>
       </thead>
       <tbody>
         <%total = @payslip.base_salary_cents + @payslip.commission_cents.to_i + (current_account.profile.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents) %>
@@ -68,7 +73,7 @@
       </tbody>
 
       <thead>
-        <th colspan="2"><center>Others</center></th>
+        <th colspan="2"><center><%= t :others %></center></th>
       </thead>
       <tbody>
         <%total = @payslip.base_salary_cents + @payslip.commission_cents.to_i + (current_account.profile.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents) %>
@@ -99,10 +104,11 @@
     <table class="large-8">
       <thead>
          <tr>
-            <th>Net pay</th>
+            <th><%= t :net_pay %></th>
             <th><%= humanized_money_with_symbol total/100 %></th>
           </tr>
       </thead>
     </table>
+    <%= link_to t(:back), :back, class: "button success" %>
   </div>
 </div>

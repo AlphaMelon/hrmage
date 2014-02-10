@@ -45,7 +45,6 @@ class HomeController < ApplicationController
 
   def my_salary_show
     @payslip = Payslip.find(params[:payslip_id])
-  
   end
   
   def sign_in

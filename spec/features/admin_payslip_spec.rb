@@ -36,6 +36,15 @@ feature "[Admin payslip]" do
     page.should have_content("Payslips successfully update")
   end
 
+  scenario "Delete payslip" do
+    visit root_path
+    click_on "Admin"
+    click_on "Employee"
+    click_on "Payslip"
+    click_on "Delete"
+    page.should have_content("Payslips successfully deleted")
+  end
+
   scenario "submit payslip without failling in anything" do
     visit root_path
     click_on "Admin"

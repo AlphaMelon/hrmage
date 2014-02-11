@@ -49,7 +49,7 @@ class PositionsController < ApplicationController
 	end
 
 	def position_params
-		params.require(:position).permit(:name, :max_leaves_seconds, :organization_id, :properties, 
+		params.require(:position).permit(:name, :organization_id, :properties, 
 		:can_approve_leave, :can_approve_claim, :monthly_max_claims_cents, :monthly_max_claims)
 	end
 end

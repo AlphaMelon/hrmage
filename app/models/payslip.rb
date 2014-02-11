@@ -27,5 +27,6 @@ class Payslip < ActiveRecord::Base
     end
     
   end
+
 end
 

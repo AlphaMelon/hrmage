@@ -58,46 +58,25 @@
         <% end %>
       </tbody>
 
-      <thead>
-        <th colspan="2"><center><%= t :deduction %></center></th>
-      </thead>
-
-      <tbody>
-        <%total = @payslip.base_salary_cents + @payslip.commission_cents.to_i + (current_account.profile.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents) %>
-        <% @payslip.payslip_settings.each do |payslip_setting| %>
-          <tr>
-            <% if payslip_setting.maths == "Substration" || payslip_setting.maths == "Substraction Percentage" %>
-              <td><%=payslip_setting.name%></td>
-              <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting)/100%></td>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-
+      <%total = @payslip.base_salary_cents + @payslip.commission_cents.to_i + (current_account.profile.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents) %>
       <thead>
         <th colspan="2"><center><%= t :others %></center></th>
       </thead>
 
       <tbody>
-        <%total = @payslip.base_salary_cents + @payslip.commission_cents.to_i + (current_account.profile.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents) %>
         <% @payslip.payslip_settings.each do |payslip_setting| %>
-          <tr>
-            <% if payslip_setting.maths == "Addition" %>
+          <% if payslip_setting.positive? %>
+            <tr>
               <td><%=payslip_setting.name%></td>
               <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting)/100%></td>
-            <% elsif payslip_setting.maths == "Division" %>
-              <td><%=payslip_setting.name%></td>
-              <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting)/100%></td>
-            <% elsif payslip_setting.maths == "Multiplication" %>
-              <td><%=payslip_setting.name%></td>
-              <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting)/100%></td>
-            <% elsif payslip_setting.maths == "Addition Percentage" %>
-              <td><%=payslip_setting.name%></td>
-              <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting)/100%></td>
-            <% end %>
-              <%total = total + @payslip.calculate(payslip_setting)%>
             </tr>
-          <% end %>
+          <% else %>
+            <tr>
+              <td><%=payslip_setting.name%></td>
+              <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting)/100%></td>
+            </tr>
+          <% end %>     
+        <% end %>
       </tbody>
     </table>
 

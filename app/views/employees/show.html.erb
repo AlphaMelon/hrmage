@@ -89,14 +89,14 @@
         <th colspan="3">Claims</th>
       </thead>
       <thead>
-        <th>Date</th>
-        <th>Subject</th>
-        <th>Amount</th>
+        <th><%= t :date %></th>
+        <th><%= t :subject %></th>
+        <th><%= t :amount %></th>
       </thead>
       <tbody>
         <% @employee_claims.each do |employee_claim|%>
           <tr>
-            <td><%= employee_claim.date.to_date%></td>
+            <td><%= employee_claim.date.to_date.strftime("%d/%m/%Y") %></td>
             <td><%= employee_claim.subject%></td>
             <td><%= humanized_money_with_symbol employee_claim.amount%></td>
           </tr>

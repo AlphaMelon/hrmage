@@ -75,7 +75,8 @@
               <td><%=payslip_setting.name%></td>
               <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting)/100%></td>
             </tr>
-          <% end %>     
+          <% end %>
+          <%total = total + @payslip.calculate(payslip_setting)%>     
         <% end %>
       </tbody>
     </table>

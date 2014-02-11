@@ -6,7 +6,7 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h5>Employees of <%= @department.name%> Department</h5>
+    <h5><%= t :employees_of %> <%= @department.name%> <%=t :departments %></h5>
     <table>
       <thead>
         <th><%=t :last_name %></th>

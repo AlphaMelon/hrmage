@@ -44,7 +44,7 @@
           <td><%= leave.leave_type.name %></td>
           <td><%= leave.comment %></td>
           <td><%= (leave.duration_seconds)/60/60/24 %> Days</td>
-          <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %> - <%= (leave.start_date.to_date + ((leave.duration_seconds)/60/60/24).days).strftime("%d/%m/%Y") %></td>
+          <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %> - <%= (leave.start_date.to_date + ((leave.duration_seconds)/60/60/24-1).days).strftime("%d/%m/%Y") %></td>
           <td><%= leave.status %></td>
           <td>
             <a href="#" data-dropdown="drop2" class="tiny button dropdown"><%= t :details %></a>

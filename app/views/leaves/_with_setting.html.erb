@@ -27,52 +27,46 @@
 
         </thead>
         <tbody>
-        <% @employees.each do |employee|%>
-          <tr>
-            <td><%= employee.name_with_initial%></td>
-            <% count = 1 %>
-            <% while count <= @date.end_of_month.day%>
-              <% got_leave = false %>
-              <% current_organization.organization_setting.monday == true %>
-              <% type = nil %>
-              <% pending = false %>
-              <% duration = 0 %>
-              <% employee.leaves.each do |emp_lea|%>
-                <% if emp_lea.start_date.to_date == Date.new(@year,@month,count)%>
-                  <% got_leave = true %>
-                  <% type = emp_lea.leave_type %>
-                  <% pending = true if emp_lea.status == "Pending" %>
-                  <% duration = emp_lea.duration_seconds/24/60/60 %>
-                  <% break %>
-                <% else %>
-                  <% got_leave = false %>
+          <% @employees.each do |employee|%>
+            <tr>
+              <td><%= employee.name_with_initial%></td>
+              <% count = 1 %>
+              <% offday = 0 %>
+              <% while count <= @date.end_of_month.day%>
+                <% got_leave = false %>
+                <% type = nil %>
+                <% pending = false %>
+                <% duration = 0 %>
+                <% employee.leaves.each do |emp_lea|%>
+                  <% if (emp_lea.start_date..emp_lea.start_date+(emp_lea.duration_seconds/24/60/60-1+offday).day).cover?(Date.new(@year,@month,count))%>
+                    <% got_leave = true %>
+                    <% type = emp_lea.leave_type %>
+                    <% pending = true if emp_lea.status == "Pending" %>
+                    <% break %>
+                  <% else %>
+                    <% got_leave = false %>
+                  <% end %>
                 <% end %>
-              <% end %>
-
-              <% if !@workday[Date.new(@year,@month,count).wday]%>
-                <td class="offday"></td>
-                <% count = count + 1 %>
-              <% elsif got_leave %>
-                <% duration_count = 1 %>
-                <% while duration_count != duration+1 %>
-                  <% if !@workday[Date.new(@year,@month,count).wday] %>
-                    <td class="offday"></td>
-                  <% elsif pending%>
+                
+                <% if !@workday[Date.new(@year,@month,count).wday]%>
+                  <td class="offday"></td>
+                  <% offday = offday + 1%>
+                  <% count = count + 1 %>
+                <% elsif got_leave %>
+                  <% if pending%>
                     <td bgcolor="#000000"></td>
-                    <% duration_count = duration_count + 1 %>
                   <% else %>
                     <td bgcolor="<%= type.colour %>"></td>
-                    <% duration_count = duration_count + 1 %>
                   <% end %>
                   <% count = count + 1%>
+                <% else %>
+                  <td class="present"></td>
+                  <% count = count + 1 %>
+                  <% offday = 0%>
                 <% end %>
-              <% else %>
-                <td class="present"></td>
-                <% count = count + 1 %>
               <% end %>
-            <% end %>
-          </tr>
-        <% end %>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>   

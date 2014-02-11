@@ -55,7 +55,7 @@ feature "[First Time Signup]" do
     page.should have_content("Add Position")
     fill_in "Name", with: "Executive"
     click_on "Next Step"
-    page.should have_content("Max claims is not a number")
+    page.should have_content("Monthly max claims is not a number")
   end
   
   

@@ -79,7 +79,7 @@ class AfterSignupController < ApplicationController
       end
     when :add_position
       @position = current_account.organizations.first.positions.new
-      position_params = params.require(:position).permit(:name, :max_leaves_seconds, :organization_id, :properties, :can_approve_leave, :can_approve_claim, :max_claims_cents, :max_claims)
+      position_params = params.require(:position).permit(:name, :organization_id, :properties, :can_approve_leave, :can_approve_claim, :monthly_max_claims_cents, :monthly_max_claims)
       @position.assign_attributes(position_params)
 
       if @position.save
@@ -89,9 +89,10 @@ class AfterSignupController < ApplicationController
       end
     when :about_yourself
       @employee = current_account.build_profile
-      emp_params = params.require(:employee).permit(:last_name, :first_name, :mobile_contact, :address, :photo)
+      emp_params = params.require(:employee).permit(:last_name, :first_name, :mobile_contact, :address, :photo, :base_salary_cents, :base_salary)
       @employee.assign_attributes(emp_params)
       @employee.organization_id = current_account.organizations.first.id
+      @employee.position_id = current_account.organizations.first.positions.first.id
       if @employee.save
         #redirect_to wizard_path(:create_organization)
         #redirect_to "/after_signup/create_organization", notice: "Details saved!"

@@ -43,19 +43,19 @@ feature "[Employee Claims]" do
   end
   
   scenario "Claim remaining progress bar" do
-    #120000 out of 560000 claims remaining
-    #approve claims of 7781
+    #0 out of 560000 claims remaining
+    #approve claims of 77
     visit root_path
     click_on "Admin"
     click_on "organization_claims"
     click_on "approve_claim"
     page.should have_content("Claim application approved")
     
-    #progress bar should be 112219 out of 560000 leaves days
+    #progress bar should be 77 out of 560000 leaves days
     #visit my_leaves_path
     click_on "Normal"
     click_on "my_claims"
-    page.should have_content("1122.19/5600.00")
+    page.should have_content("77/5600.00")
   end
 
 end

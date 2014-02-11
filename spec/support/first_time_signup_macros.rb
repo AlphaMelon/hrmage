@@ -45,7 +45,7 @@ module FirstTimeSignupMacros
       #add position 
       page.should have_content("Add Position")
       fill_in "Name", with: "Executive"
-      fill_in "position_max_claims", with: 1234567
+      fill_in "position_monthly_max_claims", with: 1234567
       click_on "Next Step"
       page.should have_content("Position")
     end
@@ -57,6 +57,7 @@ module FirstTimeSignupMacros
       fill_in "employee_first_name", with: "David"
       fill_in "employee_mobile_contact", with: "016-31413254"
       fill_in "employee_address", with: "Klang"
+      fill_in "employee_base_salary", with: "3000"
       click_on "Next Step"
       page.should have_content("Your profile is created")
     end

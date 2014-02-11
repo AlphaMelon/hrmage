@@ -24,9 +24,7 @@ class Payslip < ActiveRecord::Base
       return self.base_salary_cents/100*payslip_setting.value
     elsif payslip_setting.maths == "Substraction Percentage"
       return -self.base_salary_cents/100*payslip_setting.value
-    end
-    
+    end  
   end
-
 end
 

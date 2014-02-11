@@ -78,37 +78,32 @@
             </ul>
           </td>
         </tr>
+        <tr>
+          <td><%= link_to t(:add_new_document), new_organization_employee_document_path(@organization, @employee), class: "button success" %></td>
+        </tr>
       </tbody>
     </table>
 
- <div class="large-4 small-12 columns">
-        <table>
-          <thead>
-            <th colspan="3">Claims</th>
-          </thead>
-          <thead>
-            <th>Date</th>
-            <th>Subject</th>
-            <th>Amount</th>
-          </thead>
-          <tbody>
-            <% @employee_claims.each do |employee_claim|%>
-              <tr>
-                <td><%= employee_claim.date.to_date%></td>
-                <td><%= employee_claim.subject%></td>
-                <td><%= humanized_money_with_symbol employee_claim.amount%></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-        <%= paginate @employee_claims %>
-      </div>
-     </div>
-
-    <div class="row">
-      <div class="large-12 columns">
-        <%= link_to t(:add_new_document), new_organization_employee_document_path(@organization, @employee), class: "button success" %>
-        <%= link_to t(:back), :back, class: "button success" %>
-      </div>
-
-  
+    <table class="large-9">
+      <thead>
+        <th colspan="3">Claims</th>
+      </thead>
+      <thead>
+        <th>Date</th>
+        <th>Subject</th>
+        <th>Amount</th>
+      </thead>
+      <tbody>
+        <% @employee_claims.each do |employee_claim|%>
+          <tr>
+            <td><%= employee_claim.date.to_date%></td>
+            <td><%= employee_claim.subject%></td>
+            <td><%= humanized_money_with_symbol employee_claim.amount%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate @employee_claims %>
+    <%= link_to t(:back), :back, class: "button success" %>
+  </div>
+</div>

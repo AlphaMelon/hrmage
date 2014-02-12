@@ -47,6 +47,8 @@ class LeavesController < ApplicationController
       @workday[6] = true if !current_organization.organization_setting.saturday.blank? && current_organization.organization_setting.saturday != 0
       @workday[7] = true if !current_organization.organization_setting.sunday.blank? && current_organization.organization_setting.sunday != 0
     end
+    
+    
   end
   
   def new

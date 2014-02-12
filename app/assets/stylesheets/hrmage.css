@@ -54,11 +54,19 @@
   background-color: #C1C9FA;
 }
 
+.holiday {
+  background-color: #26F60A;
+}
+
 .present{
   background-color: #E7E7E7;
 }
 .absent{
   background-color: #da1337;
+}
+
+.pending{
+  background-color: #000000;
 }
 .table-overflow{
   overflow-x:auto;

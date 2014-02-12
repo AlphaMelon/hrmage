@@ -48,7 +48,7 @@
                 
                 <% if got_leave %>
                   <% if pending%>
-                    <td bgcolor="#000000"></td>
+                    <td class="pending"></td>
                   <% else %>
                     <td bgcolor="<%= type.colour %>"></td>
                   <% end %>
@@ -70,9 +70,9 @@
         <tr>
           <th><%= t :remark %></th>
           <th><%= t :no_leave %></th>
-          <td bgcolor="#E7E7E7"></td>
+          <td class="present"></td>
           <th><%= t :pending %></th>
-          <td bgcolor="#000000"></td>
+          <td class="pending"></td>
           <% @leave_types.each do |leave_type|%>
             <th><%=leave_type.name%></th>
             <td bgcolor="<%=leave_type.colour%>">

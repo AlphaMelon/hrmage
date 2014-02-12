@@ -21,6 +21,7 @@ feature "[Admin payslip]" do
     click_on "Add new payslips"
     fill_in "Date", with: '2014-01-27'
     fill_in "Commission", with: '1000'
+    check "Socso"
     click_button "Create Payslip"
     page.should have_content("Payslips successfully created")
   end
@@ -45,13 +46,14 @@ feature "[Admin payslip]" do
     page.should have_content("Payslips successfully deleted")
   end
 
-  scenario "submit payslip without failling in anything" do
+  scenario "submit payslip without filling in anything" do
     visit root_path
     click_on "Admin"
     click_on "Employee"
     click_on "Payslip"
     click_on "Add new payslips"
     click_button "Create Payslip"
+    page.should have_content("can't be blank")
   end
 
 end

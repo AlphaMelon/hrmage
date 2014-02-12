@@ -34,7 +34,7 @@ feature "[Admin payslip]" do
     page.should have_content("Payslip Setting successfully update")
   end
 
-  scenario "submit payslip setting without failing in anything" do
+  scenario "submit payslip setting without filling in anything" do
     visit root_path
     click_on "Admin"
     click_on "Payslip Setting"

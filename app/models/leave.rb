@@ -8,11 +8,19 @@ class Leave < ActiveRecord::Base
   validate :start_date_cannot_be_in_past
   validate :duration_cannot_be_more_than_available_leaves
   validate :duration_cannot_be_zero_or_negative
-  validate :cannot_same_day_leave
+  validate :cannot_same_day_leave, on: :create
   validate :cannot_take_leave_on_off_day
   validates :start_date, presence: true
   validates :duration_seconds, presence: true
-
+  
+  def salary_calculate(base_salary_cents)
+    if self.leave_type.type == "LeaveSubstraction"
+      return -(base_salary_cents/26*(self.duration_seconds/24/60/60))
+    elsif self.leave_type.type == "LeaveAddition"
+      return base_salary_cents/26*(self.duration_seconds/24/60/60)
+    end
+  end
+  
   def set_default_values
     self.status = "Pending" if self.status.blank?
   end

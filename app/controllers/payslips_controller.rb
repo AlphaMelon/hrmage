@@ -36,7 +36,15 @@ class PayslipsController < ApplicationController
   end
 
   def show
+    @affected_leave = []
+    @employee.leaves.where(status: "Approved", start_date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).each do |leave|
+      if leave.leave_type.affected_entity.include?("salary")
+        @affected_leave << leave
+      end
+    end
     
+    @base_salary_cents = @payslip.base_salary_cents
+    @total = @payslip.commission_cents + (current_account.profile.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)
   end
   
 	def destroy

@@ -53,25 +53,32 @@
         <% end %>
       </tbody>
 
-      <%total = @payslip.base_salary_cents + @payslip.commission_cents.to_i + (current_account.profile.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents) %>
       <thead>
         <th colspan="2"><center><%= t :others %></center></th>
       </thead>
 
       <tbody>
+        <% @affected_leave.each do |leave| %>
+          <tr>
+            <td><%= leave.leave_type.name %></td>
+            <td><%= humanized_money_with_symbol leave.salary_calculate(@payslip.base_salary_cents).to_f/100 %></td>
+          </tr>
+          <% @base_salary_cents = @base_salary_cents + leave.salary_calculate(@payslip.base_salary_cents)%>
+        <% end %>
+        
         <% @payslip.payslip_settings.each do |payslip_setting| %>
           <% if payslip_setting.positive? %>
             <tr>
               <td><%=payslip_setting.name%></td>
-              <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting)/100%></td>
+              <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting, @base_salary_cents)/100%></td>
             </tr>
           <% else %>
             <tr>
               <td><%=payslip_setting.name%></td>
-              <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting)/100%></td>
+              <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting, @base_salary_cents)/100%></td>
             </tr>
           <% end %>
-          <%total = total + @payslip.calculate(payslip_setting)%>    
+          <%@total = @total + @payslip.calculate(payslip_setting, @base_salary_cents)%>    
         <% end %>
       </tbody>
     </table>
@@ -80,7 +87,7 @@
       <thead>
          <tr>
             <th><%= t :net_pay %></th>
-            <th><%= humanized_money_with_symbol total/100 %></th>
+            <th><%= humanized_money_with_symbol (@total+@base_salary_cents).to_f/100 %></th>
           </tr>
       </thead>
     </table>

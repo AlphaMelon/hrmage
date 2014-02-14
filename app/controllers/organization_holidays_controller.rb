@@ -6,18 +6,18 @@ class OrganizationHolidaysController < ApplicationController
 	load_and_authorize_resource
 	
   def index
-    @organization_holidays = @organization.organization_holidays
+    @organization_holidays = @organization.organization_setting.organization_holidays
   end
   
   def show
   end
   
   def new
-    @organization_holiday = current_organization.organization_holidays.new
+    @organization_holiday = current_organization.organization_setting.organization_holidays.new
   end 
 
   def create
-    @organization_holiday = current_organization.organization_holidays.new(organization_holiday_params)
+    @organization_holiday = current_organization.organization_setting.organization_holidays.new(organization_holiday_params)
     if @organization_holiday.save
       redirect_to organization_organization_setting_organization_holidays_path(current_organization, @organization_setting), notice: "Organization holiday successfully created"
     else

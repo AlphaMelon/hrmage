@@ -1,5 +1,7 @@
 Hrmage::Application.routes.draw do
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   devise_for :accounts, :controllers => { :registrations => "registrations" }
   resources :accounts, :only => [:show]
   root 'home#index'

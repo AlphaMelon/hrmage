@@ -7,6 +7,7 @@
         <th><%= t :max_leaves %></th>
         <th><%= t :action %></th>
       </thead>
+      <tbody>
       <% @position_settings.each do |position_setting|%>
         <tr>
           <td><%= position_setting.leave_type.name %></td>
@@ -24,6 +25,7 @@
           </td>
         </tr>
       <% end %>
+      </tbody>
     </table>
     <%= link_to t(:add_new_setting), new_organization_position_position_setting_path(current_organization, @position), class: "button success" %>
   </div>

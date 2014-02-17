@@ -82,8 +82,9 @@
         <th><%= sort_link @search, :status, t(:status) %></th>
         <th><%= t :action %></th>
       </thead>
-      <% @leaves.each do |history|%>
       <tbody>
+      <% @leaves.each do |history|%>
+      <tr>
         <td><%= history.employee.name_with_initial %></td>
         <td><%= history.leave_type.name %></td>
         <td><%= history.comment %></td>
@@ -96,8 +97,9 @@
             <li><a href="#">test</a></li>
           </ul>
         </td>
-      </tbody>
+      </tr>
       <%end%>
+      </tbody>
     </table>
     <%= paginate @leaves %>
     <a href="#" data-dropdown="end_of_year" class="tiny button dropdown"><%= t :end_of_year%></a>

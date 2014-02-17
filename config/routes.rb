@@ -22,7 +22,9 @@ Hrmage::Application.routes.draw do
     resources :leaves
     resources :leave_types
     resources :organization_settings do
-      resources :organization_holidays
+      resources :organization_holidays do
+        post 'get_and_update_holiday' => "organization_holidays#get_and_update_holiday"
+      end
     end
     resources :employees do
       resources :payslips

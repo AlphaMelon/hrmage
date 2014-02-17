@@ -4,7 +4,7 @@
     <table>
       <thead>
         <th><%= t :name%></th>
-        <th><%= t :date %></th>
+        <th><%= t :holiday_date %></th>
         <th><%= t :action %></th>
       </thead>
       <tbody>
@@ -27,6 +27,7 @@
       <% end %>
       </tbody>
     </table>
-    <%= link_to t(:add_new_holiday), new_organization_organization_setting_organization_holiday_path(current_organization, @organization_setting), class: "button success" %>
+    <%= link_to t(:add_new_holiday), new_organization_organization_setting_organization_holiday_path(current_organization, @organization_setting), class: "button success" %></br>
+    <%= link_to "Get and update new default holiday for your organization", organization_organization_setting_organization_holiday_get_and_update_holiday_path(current_organization, @organization_setting, 1), method: "post"%>
   </div>
 </div>

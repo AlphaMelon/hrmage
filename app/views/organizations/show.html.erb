@@ -4,11 +4,15 @@
       <thead>
         <th><%= t :name %></th>
         <th><%= t :domain %></th>
+        <th>Country</th>
+        <th>Currency</th>
         <th></th>
       </thead>
       <tbody>
-        <td><%= @organization.name%></td>
-        <td><%= @organization.domain%></td>
+          <td><%= @organization.name %></td>
+          <td><%= @organization.domain %></td>
+          <td><%= @organization.country %></td>
+          <td><%= @organization.default_currency %></td>
         <td><%= link_to t(:edit), edit_organization_path(@organization), id: "edit_organization" %></td>
       </tbody>
     </table>

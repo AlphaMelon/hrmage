@@ -42,6 +42,15 @@ class OrganizationHolidaysController < ApplicationController
 		redirect_to organization_organization_setting_organization_holidays_path(current_organization, @organization_setting), notice: 'Organization holiday successfully deleted'
 	end
 	
+	def get_and_update_holiday
+    country_setting = CountrySetting.where(country: current_organization.country).first
+    if country.nil?
+      redirect_to organization_organization_setting_organization_holidays_path(current_organization, @organization_setting), notice: 'There is no default holiday for your country yet.'
+    else
+      @holidays = country_setting.country_holiday_settings
+    end
+	end
+  
   private
   
 	def set_organization_holiday

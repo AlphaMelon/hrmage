@@ -139,7 +139,7 @@ en:
   applying_leaves: "Applying Leaves"
   pending_claims: "Pending Claims"
   subject: "Subject"
-  date: "Date"
+  holiday_date: "Date"
   amount: "Amount"
   receipt: "Receipt"
   history: "History"
@@ -254,3 +254,39 @@ en:
   employees_leaves: "employee's leaves"
   employees_claims: "employee's claims"
   employees_of: "Employees of"
+  #for active admin
+  date:
+    abbr_day_names:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    - Fri
+    - Sat
+    abbr_month_names:
+    -
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - May
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Oct
+    - Nov
+    - Dec
+    day_names:
+    - Sunday
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Friday
+    - Saturday
+    formats:
+      default: ! '%m-%d-%Y'
+      long: ! '%B %d, %Y'
+      short: ! '%b %d'

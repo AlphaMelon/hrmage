@@ -17,6 +17,7 @@ class Organization < ActiveRecord::Base
   validates :name, presence: true
   validates :name, uniqueness: true
   validates :default_currency, presence: true
+  validates :country, presence: true
   
   before_save :setup_currency
   

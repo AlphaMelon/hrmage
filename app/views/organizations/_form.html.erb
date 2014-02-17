@@ -2,7 +2,7 @@
 
 <%= render '/shared/error_message', object: f.object %>
 <%= f.input :name, :autofocus => true %>
-
+<%= f.input :country, include_blank: false, priority: ["Malaysia", "United States"] %>
 <div class="row">
   <div class="large-3 small-3 columns">
     <%= label_tag(:default_currency, "Currency", class: "string optional left inline", for: "organization_default_currency") %>

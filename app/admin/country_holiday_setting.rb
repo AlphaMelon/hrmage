@@ -49,5 +49,13 @@ ActiveAdmin.register CountryHolidaySetting do
     redirect_to :action => :index, :notice => "CSV imported successfully!"
   end
 
+  index do
+    column "Country", sortable: :country_setting_id do |country|
+      country.country_setting.country
+    end
+    column :name
+    column :date
+    default_actions
+  end
   
 end

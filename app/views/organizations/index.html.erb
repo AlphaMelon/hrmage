@@ -5,6 +5,8 @@
       <thead>
         <th><%= t :name %></th>
         <th><%= t :domain %></th>
+        <th>Country</th>
+        <th>Currency</th>
         <th></th>
         <th></th>
       </thead>
@@ -12,6 +14,8 @@
         <tr>
           <td><%= organization.name %></td>
           <td><%= organization.domain %></td>
+          <td><%= organization.country %></td>
+          <td><%= organization.currency %></td>
           <td><%= link_to t(:show), organization_path(organization)%></td>
           <td><%= link_to t(:edit), edit_organization_path(organization), id: "edit_organization" %></td>
         </tr>

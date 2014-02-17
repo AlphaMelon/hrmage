@@ -12,6 +12,7 @@
         <th><%= t :receipt %></th>
         <th><%= t :action %></th>
       </thead>
+      <tbody>
       <% @pending_claims.each do |pending_claim|%>
         <tr>
           <td><%= pending_claim.employee.last_name.capitalize %></td>
@@ -39,6 +40,7 @@
           </td>
         </tr>
       <% end %>
+      </tbody>
     </table>
     
     <h3><%= t :history %></h3>

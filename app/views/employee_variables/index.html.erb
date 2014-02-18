@@ -7,15 +7,15 @@
         <th><%= t :available_leave_remaining %></th>
         <th><%= t :action %></th>
       </thead>
-      <% @employee_variables.each do |employee_variable|%>
-        <tbody>
-          <td><%= employee_variable.leave_type.name%></td>
-          <td><%= employee_variable.available_leaves_seconds/24/60/60%> days</td>
-          <td><%= link_to t(:edit), edit_organization_employee_employee_variable_path(current_organization, @employee, employee_variable), class: "fi-pencil" %></td>
-        </tbody>
-      <% end %>
+      <tbody>
+        <% @employee_variables.each do |employee_variable|%>
+          <tr>
+            <td><%= employee_variable.leave_type.name%></td>
+            <td><%= employee_variable.available_leaves_seconds/24/60/60%> days</td>
+            <td><%= link_to t(:edit), edit_organization_employee_employee_variable_path(current_organization, @employee, employee_variable), class: "fi-pencil" %></td>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
   </div>
 </div>
-
-

@@ -254,7 +254,6 @@ en:
   employees_leaves: "employee's leaves"
   employees_claims: "employee's claims"
   employees_of: "Employees of"
-  
   #for active admin
   date:
     abbr_day_names:

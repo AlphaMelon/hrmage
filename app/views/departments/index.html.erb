@@ -14,22 +14,24 @@
         <th><%=t :name %></th>
         <th><%=t :action %></th>
       </thead>
-      <% @departments.each do |department|%>
-        <tr>
-          <td><%= department.name%></td>
-          <td>
-            <a href="#" data-dropdown="drop_<%= department.id %>" class="tiny button dropdown"><%=t :details%></a>
-            <ul id="drop_<%= department.id %>" data-dropdown-content class="f-dropdown">
-              <li>
-                <%= link_to t(:show), organization_department_path(@organization, department), class: "fi-eye"%>
-              </li>
-              <li>
-                <%= link_to t(:edit), edit_organization_department_path(@organization, department), class: "fi-pencil" %>
-              </li>
-            </ul>
-          </td>
-        </tr>
-      <% end %>
+      <tbody>
+        <% @departments.each do |department|%>
+          <tr>
+            <td><%= department.name%></td>
+            <td>
+              <a href="#" data-dropdown="drop_<%= department.id %>" class="tiny button dropdown"><%=t :details%></a>
+              <ul id="drop_<%= department.id %>" data-dropdown-content class="f-dropdown">
+                <li>
+                  <%= link_to t(:show), organization_department_path(@organization, department), class: "fi-eye"%>
+                </li>
+                <li>
+                  <%= link_to t(:edit), edit_organization_department_path(@organization, department), class: "fi-pencil" %>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
     <%= link_to t(:add_new_department), new_organization_department_path, class: "button success" %>
   </div>

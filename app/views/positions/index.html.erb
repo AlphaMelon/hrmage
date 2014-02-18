@@ -9,6 +9,7 @@
         <th><%= t :approve_claims %></th>
         <th><%= t :action %></th>
       </thead>
+      <tbody>
       <% @positions.each do |position|%>
         <tr>
           <td><%= position.name %></td>
@@ -29,6 +30,7 @@
           </td>
         </tr>
       <% end %>
+      </tbody>
     </table>
     <%= link_to t(:add_new_position), new_organization_position_path(current_organization), class: "button success" %>
   </div>

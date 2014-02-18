@@ -12,8 +12,9 @@
         <th><%= t :Can_self_approve %></th>
         <th><%= t :action %></th>
       </thead>
+      <tbody>
       <% @position.employees.each do |employee|%>
-        <tbody>
+        <tr>
           <td><%= employee.last_name%></td>
           <td><%= employee.first_name%></td>
           <td><%= employee.position.name if !employee.position.blank?%></td>
@@ -38,8 +39,9 @@
               </li>
             </ul>
           </td>
-        </tbody>
+        </tr>
       <% end %>
+      </tbody>
     </table>
     <%= link_to t(:back), organization_positions_path(current_organization), class: "button success" %>
 

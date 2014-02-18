@@ -27,12 +27,14 @@
         <th><%= t :name %></th>
         <th></th>
       </thead>
+      <tbody>
       <% @organization.departments.each do |department|%>
         <tr>
           <td><%= department.name%></td>
           <td><%= link_to t(:edit), edit_organization_department_path(@organization, department)%></td>
         </tr>
       <% end %>
+      </tbody>
     </table>
     <%= link_to t(:department_list), organization_departments_path(@organization) %>
   </div>

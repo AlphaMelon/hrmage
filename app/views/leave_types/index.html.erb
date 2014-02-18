@@ -12,6 +12,7 @@
         <th><%= t :colour %></th>
         <th><%= t :action %></th>
       </thead>
+      <tbody>
       <% @leave_types.each do |leave_type|%>
         <tr>
           <td><%= leave_type.name %></td>
@@ -24,6 +25,7 @@
           <td><%= link_to t(:edit), edit_organization_leave_type_path(current_organization, leave_type), class: "fi-pencil" %></td>
         </tr>
       <% end %>
+      </tbody>
     </table>
     <%= link_to t(:add_new_leave_type), new_organization_leave_type_path(current_organization), class: "button success" %>
   </div>

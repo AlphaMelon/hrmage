@@ -17,23 +17,25 @@
         <th><%=t :leader %></th>
         <th><%=t :action %></th>
       </thead>
-      <% @department.employees.each do |employee|%>
-        <tr>
-          <td><%= employee.last_name%></td>
-          <td><%= employee.first_name%></td>
-          <td><%= employee.account.email if !employee.account.nil? %></td>
-          <td><%= employee.mobile_contact%></td>
-          <td><%= employee.address%></td>
-          <td><%= EmployeeDepartment.where(department_id: @department.id, employee_id: employee.id).first.leader %>
-          <td>
-            <a href="#" data-dropdown="drop_<%=employee.id%>" class="tiny button dropdown"><%= t :details %></a>
-            <ul id="drop_<%=employee.id%>" data-dropdown-content class="f-dropdown">
-              <li><%= link_to t(:show), organization_employee_path(@organization, employee), class: "fi-eye" %></li>
-              <li><%= link_to t(:edit), edit_organization_employee_path(@organization,employee), class: "fi-pencil" %></li>
-            </ul>
-          </td>
-        </tr>
-      <% end %>
+      <tbody>
+        <% @department.employees.each do |employee|%>
+          <tr>
+            <td><%= employee.last_name%></td>
+            <td><%= employee.first_name%></td>
+            <td><%= employee.account.email if !employee.account.nil? %></td>
+            <td><%= employee.mobile_contact%></td>
+            <td><%= employee.address%></td>
+            <td><%= EmployeeDepartment.where(department_id: @department.id, employee_id: employee.id).first.leader %>
+            <td>
+              <a href="#" data-dropdown="drop_<%=employee.id%>" class="tiny button dropdown"><%= t :details %></a>
+              <ul id="drop_<%=employee.id%>" data-dropdown-content class="f-dropdown">
+                <li><%= link_to t(:show), organization_employee_path(@organization, employee), class: "fi-eye" %></li>
+                <li><%= link_to t(:edit), edit_organization_employee_path(@organization,employee), class: "fi-pencil" %></li>
+              </ul>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
     <%= link_to t(:back), :back, class: "button success" %>
   </div>

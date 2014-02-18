@@ -51,6 +51,7 @@ class OrganizationHolidaysController < ApplicationController
       holidays.each do |holiday|
         organization_holiday = current_organization.organization_setting.organization_holidays.where(name: holiday.name).first_or_initialize
         organization_holiday.date = holiday.date
+        organization_holiday.organization_id = current_organization.id
         organization_holiday.save
       end
       redirect_to organization_organization_setting_organization_holidays_path(current_organization, @organization_setting), notice: 'Organization holidays successfully updated.'

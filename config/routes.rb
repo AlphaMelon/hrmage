@@ -1,9 +1,9 @@
 Hrmage::Application.routes.draw do
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
   devise_for :accounts, :controllers => { :registrations => "registrations" }
   resources :accounts, :only => [:show]
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   root 'home#index'
   get 'my_leaves' => "home#my_leaves"
   get 'my_claims' => "home#my_claims"

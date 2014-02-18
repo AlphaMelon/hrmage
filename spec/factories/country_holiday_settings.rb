@@ -2,8 +2,7 @@
 
 FactoryGirl.define do
   factory :country_holiday_setting do
-    country_setting_id 1
-    name "MyString"
-    date "2014-02-14"
+    name "Christmas"
+    date "2014-12-25"
   end
 end

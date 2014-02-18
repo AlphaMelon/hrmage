@@ -30,7 +30,7 @@ class AfterSignupController < ApplicationController
     case step
     when :create_organization
       @organization = Organization.new
-      organization_params = params.require(:organization).permit(:name, :default_currency)
+      organization_params = params.require(:organization).permit(:name, :default_currency, :country)
       @organization.assign_attributes(organization_params)
       if Rails.env == "development" || Rails.env == "test"
         @organization.domain = (@organization.name.downcase.delete(" ") + ".hrmage.dev")

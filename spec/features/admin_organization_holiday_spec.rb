@@ -60,5 +60,14 @@ feature "[Admin Organization Holiday]" do
     click_on "Create Organization holiday"
     page.should have_content("can't be blank")
   end
-
+  
+  scenario "Get and update new default holiday" do
+    visit root_path
+    click_on "Admin"
+    click_on "My Organization"
+    click_on "Organization Holidays"
+    click_on "Get and update new default holiday for your organization"
+    page.should have_content("Organization holidays successfully updated.")
+    page.should have_content("Christmas")
+  end
 end

@@ -26,6 +26,6 @@
       <% end %>
     </table>
     <%= link_to t(:add_new_holiday), new_organization_organization_setting_organization_holiday_path(current_organization, @organization_setting), class: "button success" %></br>
-    <%= link_to "Get and update new default holiday for your organization", organization_organization_setting_organization_holiday_get_and_update_holiday_path(current_organization, @organization_setting, 1), method: "post"%>
+    <%= link_to "Get and update new default holiday for your organization", organization_organization_setting_organization_holiday_get_and_update_holiday_path(current_organization, @organization_setting, 1), method: "post", data: { confirm: t(:are_you_sure) }%>
   </div>
 </div>

@@ -59,6 +59,9 @@ RSpec.configure do |config|
   config.include(EmployeeVariableMacros)
   config.include(PayslipMacros)
   config.include(PayslipSettingMacros)
+  config.include(AdminUserMacros)
+  config.include(CountrySettingMacros)
+  config.include(CountryHolidaySettingMacros)
   config.before(:each) do
     Capybara.javascript_driver = :webkit
     #Capybara.always_include_port = true
@@ -82,6 +85,10 @@ RSpec.configure do |config|
     Payslip.delete_all
     PayslipSetting.delete_all
     PayslipCalculation.delete_all
+    AdminUser.delete_all
+    CountrySetting.delete_all
+    CountryHolidaySetting.delete_all
+    
     
     create_admin_account
     create_organization
@@ -96,6 +103,9 @@ RSpec.configure do |config|
     create_leave
     create_payslip
     create_payslip_setting
+    create_admin_user
+    create_country_setting
+    create_country_holiday_setting
     
   end
 end

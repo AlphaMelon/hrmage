@@ -15,6 +15,8 @@ module FirstTimeSignupMacros
       #add your organization part
       page.should have_content("Add your organization")
       fill_in "Name", with: "testing"
+      select "Malaysia", from: "Country", match: :first
+      select "Malaysian Ringgit - MYR", from: "Currency", match: :first
       click_on "Next Step"
       page.should have_content("Organization saved!")
     end

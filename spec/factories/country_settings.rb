@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :country_setting do
-    country "MyString"
+    country "Malaysia"
   end
 end

@@ -7,6 +7,7 @@
       <div class="panel"><%= t :after_signup_create_organization %></div>
       <%= simple_form_for @organization, wrapper: :custom , url: wizard_path, method: "put" do |f| %>
         <%= f.input :name %>
+        <%= f.input :country, include_blank: false, priority: ["Malaysia", "United States"] %>
         <div class="row">
           <div class="large-3 small-3 columns">
 

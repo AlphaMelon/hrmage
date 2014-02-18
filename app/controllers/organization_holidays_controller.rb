@@ -44,10 +44,16 @@ class OrganizationHolidaysController < ApplicationController
 	
 	def get_and_update_holiday
     country_setting = CountrySetting.where(country: current_organization.country).first
-    if country.nil?
+    if country_setting.nil?
       redirect_to organization_organization_setting_organization_holidays_path(current_organization, @organization_setting), notice: 'There is no default holiday for your country yet.'
     else
-      @holidays = country_setting.country_holiday_settings
+      holidays = country_setting.country_holiday_settings
+      holidays.each do |holiday|
+        organization_holiday = current_organization.organization_setting.organization_holidays.where(name: holiday.name).first_or_initialize
+        organization_holiday.date = holiday.date
+        organization_holiday.save
+      end
+      redirect_to organization_organization_setting_organization_holidays_path(current_organization, @organization_setting), notice: 'Organization holidays successfully updated.'
     end
 	end
   

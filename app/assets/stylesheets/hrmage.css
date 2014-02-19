@@ -95,8 +95,20 @@
     margin-top: 0.8em;
   }
 }
-.after_signup{
+.after-signup{
   .current{
+    font-weight: bold;
+  }
+}
+.paginator-page{
+  .current{
+    display: block;
+    padding: 0.05556rem 0.55556rem 0.05556rem;
+    font-weight: bold;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background: #008CBA;
+    color: #FFF;
     font-weight: bold;
   }
 }

@@ -11,40 +11,30 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.ui.all
 //= require jquery.minicolors
 //= require jquery.minicolors.simple_form
-//= require jquery.ui.datepicker
-//= require jquery.ui.slider
 //= require jquery_ujs
 //= require turbolinks
 //= require foundation
 //= require jquery-ui-timepicker-addon
 //= require jquery-ui-sliderAccess
-//= require jquery.slimscroll.min
 //= require jquery.fullPage
 //= require hrmage
 
-// var t;
-// function ready(){
-//   t = setTimeout(function(){$(document).foundation()},500);
-// }
-// $(document).ready(ready)
-// $(document).on('page:load', ready)
-// $(document).on('page:fetch', function(){
-//   clearTimeout(t);
-// })
-
-$(function() {
-    $('.datetime_only').datetimepicker({
-      dateFormat: "yy-mm-dd",
-      minDate: -1
-    });
+var t;
+function ready(){
+  $(document).foundation();
+  
+  $('.date_only').datepicker({
+    dateFormat: "yy-mm-dd",
   });
 
-$(function() {
-    $('.date_only').datepicker({
-      dateFormat: "yy-mm-dd",
-    });
+  $('.datetime_only').datetimepicker({
+    dateFormat: "yy-mm-dd",
+    minDate: -1
   });
+}
 
-$(function(){ $(document).foundation(); });
+$(document).ready(ready)
+$(document).on('page:load', ready)

@@ -61,7 +61,7 @@ class Leave < ActiveRecord::Base
   def cannot_same_day_leave
     if !self.start_date.nil?
       if !self.employee.leaves.where(start_date: self.start_date.to_date, status: "Approved").blank?
-        errors.add("Date", "has already taken")
+        errors.add("Date", "You have leave on the selected days already.")
       end
     end
   end

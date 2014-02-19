@@ -13,6 +13,9 @@ ActiveAdmin.register CountryHolidaySetting do
   #  permitted << :other if resource.something?
   #  permitted
   # end
+
+  permit_params :country_setting_id, :name, :date
+  
   form do |f|
     f.inputs 'Details' do
       #f.input :country, :as => :string
@@ -52,6 +55,7 @@ ActiveAdmin.register CountryHolidaySetting do
   index do
     column "Country", sortable: :country_setting_id do |country|
       country.country_setting.country
+      
     end
     column :name
     column :date

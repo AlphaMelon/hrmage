@@ -36,6 +36,7 @@ feature "[Employee Leaves]" do
   end
   
   scenario "Applying leave again with same day" do
+    #apply leave
     visit root_path
     click_on "Leaves"
     click_on "Apply Leave"
@@ -44,7 +45,20 @@ feature "[Employee Leaves]" do
     click_button "Apply Leave"
     page.should have_content("Leave successfully applied, please wait for admin to approve")
     
+    #approve leave
     visit root_path
+    click_on "Admin"
+    click_on "organization_leaves"
+    click_on "Approve", match: :first
+    page.should have_content("Leaves request approved")
+    visit root_path
+    click_on "organization_leaves"
+    click_on "Approve"
+    page.should have_content("Leaves request approved")
+
+    #apply leave again on the same day
+    visit root_path
+    click_on "Normal"
     click_on "Leaves"
     click_on "Apply Leave"
     fill_in "leave_start_date", with: "2014-01-27 00:00"

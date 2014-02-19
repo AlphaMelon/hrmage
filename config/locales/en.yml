@@ -254,3 +254,5 @@ en:
   employees_leaves: "employee's leaves"
   employees_claims: "employee's claims"
   employees_of: "Employees of"
+  default_max_leaves: "Default Maximum Leaves"
+  default_holiday: "Get and update new default holiday for your organization"

@@ -15,13 +15,15 @@
 //= require jquery.minicolors.simple_form
 //= require jquery.ui.all
 //= require jquery_ujs
-//= require foundation
 //= require turbolinks
-//= require_tree .
+//= require foundation
 //= require jquery-ui-timepicker-addon
 //= require jquery-ui-sliderAccess
 //= require jquery.slimscroll.min
 //= require jquery.fullPage
+//= require hrmage
+
+
 // var t;
 // function ready(){
 //   t = setTimeout(function(){$(document).foundation()},500);
@@ -47,6 +49,3 @@ $(function() {
       dateFormat: "yy-mm-dd",
     });
   });
-
-
-

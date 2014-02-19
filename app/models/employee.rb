@@ -4,12 +4,12 @@ class Employee < ActiveRecord::Base
   belongs_to :organization
   
   has_many :documents, dependent: :destroy
-  has_many :employee_departments
-  has_many :leaves
+  has_many :employee_departments, dependent: :destroy
+  has_many :leaves, dependent: :destroy
   has_many :departments, through: :employee_departments
-  has_many :claims
-  has_many :employee_variables
-  has_many :payslips
+  has_many :claims, dependent: :destroy
+  has_many :employee_variables, dependent: :destroy
+  has_many :payslips, dependent: :destroy
     
   before_save :set_default_values
   

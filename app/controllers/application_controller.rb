@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
   end
   
   def current_ability
-    @current_ability ||= Ability.new(current_account, current_organization)
+    @current_ability ||= ::Ability.new(current_account, current_organization)
   end
   
   def current_organization
@@ -57,9 +57,9 @@ class ApplicationController < ActionController::Base
   
   private
   def setup_domains
-    @current_organization = Organization.find_by(domain: request.host)
+    @current_organization = ::Organization.find_by(domain: request.host)
     if !@current_organization
-      @current_organization = Organization.new
+      @current_organization = ::Organization.new
       if Rails.env.production?
         redirect_to host: "officemage.com" if request.host != "officemage.com"
       else

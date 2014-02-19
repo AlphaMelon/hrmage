@@ -3,7 +3,7 @@ class Payslip < ActiveRecord::Base
   belongs_to :organization
   belongs_to :employee
 
-  has_many :payslip_calculations
+  has_many :payslip_calculations, dependent: :destroy
   has_many :payslip_settings, :through => :payslip_calculations
   
   before_save :set_default_values

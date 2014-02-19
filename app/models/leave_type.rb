@@ -2,8 +2,8 @@ class LeaveType < ActiveRecord::Base
 
   belongs_to :organization
   has_many :leaves
-  has_many :position_settings
-  has_many :employee_variables
+  has_many :position_settings, dependent: :destroy
+  has_many :employee_variables, dependent: :destroy
   validates :name, presence: true
   validates :colour, presence: true
   validates :default_count_seconds, presence: true

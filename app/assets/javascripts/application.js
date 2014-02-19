@@ -13,7 +13,8 @@
 //= require jquery
 //= require jquery.minicolors
 //= require jquery.minicolors.simple_form
-//= require jquery.ui.all
+//= require jquery.ui.datepicker
+//= require jquery.ui.slider
 //= require jquery_ujs
 //= require turbolinks
 //= require foundation
@@ -33,8 +34,6 @@
 //   clearTimeout(t);
 // })
 
-$(function(){ $(document).foundation(); });
-
 $(function() {
     $('.datetime_only').datetimepicker({
       dateFormat: "yy-mm-dd",
@@ -47,3 +46,5 @@ $(function() {
       dateFormat: "yy-mm-dd",
     });
   });
+
+$(function(){ $(document).foundation(); });

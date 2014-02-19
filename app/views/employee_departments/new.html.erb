@@ -2,7 +2,7 @@
   <div class="large-8 small-12 columns">
     <% if @departments.count != 0%>
       <fieldset>
-        <legend><%= t :linking_department_to %> <%= @employee.last_name.capitalize %></legend>
+        <legend><%= t :link_department_to %> <%= @employee.last_name.capitalize %></legend>
         <div class="panel"><%= t :employee_departments_add_new_description %></div>
         <%= simple_form_for [@organization, @employee, @employee_department], wrapper: :custom do |f| %>
         

@@ -1,11 +1,3 @@
-<% if !current_organization.id.nil? %>
-  <h5>Welcome, you are now in <%= current_organization.name.capitalize if !current_organization.new_record?%> Organization</h5>
-<% else %>
-  <center>
-    <h5>Welcome, you are now in <%= current_organization.name.capitalize if !current_organization.new_record?%> Organization</h5>
-  </center>
-<% end %>
-
 <% if account_signed_in? %>
   <%= render "sign_in" %>
 <% else %>

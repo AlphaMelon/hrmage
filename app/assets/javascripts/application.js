@@ -19,9 +19,6 @@
 //= require turbolinks
 //= require foundation
 //= require jquery-ui-timepicker-addon
-//= require jquery-ui-sliderAccess
-//= require jquery.slimscroll.min
-//= require jquery.fullPage
 //= require hrmage
 
 // var t;

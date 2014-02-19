@@ -160,7 +160,7 @@ en:
   end_of_year: "End of year?"
   reset_employees_available_leaves: "Reset Employee's Available Leaves"
   carry_forward_employees_available_leaves: "Carry Forward Employee's Available Leaves"
-  linking_department_to: "Linking Department to"
+  link_department_to: "Link Department to"
   resend_confirmation_instructions: "Resend confirmation instructions"
   send_me_reset_password_instructions: "Send me reset password instructions"
   change_your_password: "Change your password"

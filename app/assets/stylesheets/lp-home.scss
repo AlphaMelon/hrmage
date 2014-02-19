@@ -1,0 +1,85 @@
+/*
+
+ *= require foundation_and_overrides
+ *= require jquery.fullPage
+ *= require_self
+*/
+
+body{
+  font-family: 'Open Sans', sans-serif !important;
+  h1,h2,h3,h4,h5,h6,p{
+    font-family: 'Open Sans', sans-serif !important;
+    color: #FEFEFE;
+  }
+}
+
+
+.section{
+  text-align:center;
+}
+
+
+.subheader{
+  margin-top:0px;
+  color: #FEFEFE;
+}
+
+.scene,
+.layer {
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.scene {
+  max-height: 100%;
+  max-width: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.layer {
+  position: absolute;
+}
+.layer div {
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.background {
+  background-image: url(image-path('t33_home_handsbackground.jpg'));
+  bottom: -5%;
+  background-size: cover;
+  position: absolute;
+  background-position-x: center;
+  width: 110%;
+  left: -5%;
+  top: -5%;
+}
+.hands {
+  background-image: url(image-path( 't33_home_hands.gif'));
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position-x: center;
+  background-position-y: bottom;
+  height: 100%;
+}
+
+@media only screen and (max-width: 500px){
+  body {
+    font-size: 80%;
+  }
+  .hands {
+    background-size: 600px auto;
+    bottom: -5%;
+  }
+}

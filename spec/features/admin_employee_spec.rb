@@ -118,7 +118,7 @@ feature "[Admin Employee]" do
     click_on "Employee"
     click_on "Edit"
     click_on "Add department to this employee"
-    page.should have_content("Linking Department")
+    page.should have_content("Link Department to")
     click_on "Link to employee"
     page.should have_content("Department successfully linked")
   end

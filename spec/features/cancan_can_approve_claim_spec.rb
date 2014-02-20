@@ -12,14 +12,9 @@ feature "[CanCan Ability Claims]" do
     page.should have_content("Claim application approved")
   end
   
-  scenario "Read Leaves" do
-    visit "http://staff.alphamelon.dev/organizations/#{Organization.first.id}/leaves"
-    page.should have_content("Access denied.")
-  end
-  
   scenario "Approve Own claim" do
     visit root_path
-    click_on "Claims"
+    click_on "Claims", match: :first
     click_on "Apply Claim"
     fill_in "Subject", with: "Petrol"
     fill_in "Date", with: "2014-01-27"
@@ -38,7 +33,7 @@ feature "[CanCan Ability Claims]" do
     employee.save
     
     visit root_path
-    click_on "Claims"
+    click_on "Claims", match: :first
     click_on "Apply Claim"
     fill_in "Subject", with: "Petrol"
     fill_in "Date", with: "2014-01-27"

@@ -33,6 +33,7 @@
               </div>
               <hr>
             <% end %>
+            <h6 class="clearfix"><%= link_to t(:leaves),  my_leaves_path, id: "my_leaves", class: "right" %></h6>
           </div>
         </div>
         <div class="large-4 small-12 columns">
@@ -43,22 +44,36 @@
               <div class="large-2 small-2 columns">
                 <h6 class="text-left"><%= (current_account.profile.claims.where(status: "Approved", date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).sum :amount_cents)/100%>/<%= current_account.profile.position.monthly_max_claims%></h6>
               </div>
-              <div class=" progress alert large-8 small-10 columns">
+              <div class="progress success large-8 small-10 columns">
                 <span class="meter" style="width: <%= @claims_remaining_percentage%>%"></span>
               </div>
             </div>
             <hr>
+            <h6 class="clearfix"><%= link_to t(:claims),  my_claims_path, id: "my_claims", class: "right" %></h6>
           </div>
         </div>
         <div class="large-4 small-12 columns">
           <h3>Salary</h3>
           <div class="large-12 panel columns">
-            <% current_organization.payslips.order(id: :asc).each do |payslip| %>
-              <h6>
-                <%= payslip.date.to_date.strftime("%d/%m/%Y") %>
-                <%= humanized_money_with_symbol payslip.base_salary%>
-              </h6>
-            <% end %>
+            <table class="large-12">
+              <thead>
+                <th><%= t :working_date %></th>
+                <th><%= t :base_salary %></th>
+                <th><%= t :commission %></th>
+              </thead>
+              <tbody>
+                <% current_account.profile.payslips.order(id: :asc).each do |payslip| %>
+                  <tr>
+                    <td><%= payslip.date.to_date.strftime("%d/%m/%Y") %></td>
+                    <td><%= humanized_money_with_symbol payslip.base_salary %></td>
+                    <td><%= humanized_money_with_symbol payslip.commission %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <h6 class="clearfix">
+              <%= link_to t(:salary), my_salary_path, id: "my_salary", class: "right" %>
+            </h6>
           </div>
         </div>
       </div>

@@ -64,7 +64,7 @@ feature "[Employee Leaves]" do
     fill_in "leave_start_date", with: "2014-01-27 00:00"
     fill_in "leave_duration_seconds", with: 3
     click_button "Apply Leave"
-    page.should have_content("has already taken")
+    page.should have_content("You have leave on the selected day already.")
   end
 
   scenario "take leave on off day" do

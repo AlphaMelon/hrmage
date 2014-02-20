@@ -181,7 +181,7 @@ en:
   organizations_list: "Organization's List"
   the_form_contains: "The form contains"
   footer: "Office Mage - Copyright 2013 Alpha Melon Sdn Bhd"
-  claims_description: "This is where you create claims so your admin can see what you are claiming for."
+  claims_description: "This is where you create claims so your admin can see what you are claiming for.Please note that you get your claim according to when you apply the claim, not according to the date of claim"
   claims_error_msg: "Your profile is not ready yet, please contact administrator to link your profile before making claim application."
   leaves_description: "This is where you create leaves so your admin can see when and why you are applying for leave."
   leaves_error_msg: "There is no leave type added yet, please contact your administrator to add leave type."

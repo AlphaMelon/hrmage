@@ -52,6 +52,10 @@ class HomeController < ApplicationController
     
     @base_salary_cents = @payslip.base_salary_cents
     @total = @payslip.commission_cents + (current_account.profile.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)
+    if @payslip.employee_id != current_account.profile.id
+      redirect_to(root_path, alert: "You are not authorize to view this.")
+    end
+  
   end
 
   def print_salary
@@ -62,11 +66,10 @@ class HomeController < ApplicationController
         @affected_leave << leave
       end
     end
-    
     @base_salary_cents = @payslip.base_salary_cents
     @total = @payslip.commission_cents + (current_account.profile.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)
     if @payslip.employee_id != current_account.profile.id
-      redirect_to(root_path, alert: "You are not authorize to view this.")
+      redirect_to(root_path, alert: "You are not authorize to view this.") and return
     end
     render layout: "blank"
   end

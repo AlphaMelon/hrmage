@@ -24,7 +24,7 @@
                     current_account.profile.position.position_settings.where(leave_type_id: leave_type.id).first.max_leaves_seconds/24/60/60 : leave_type.default_count_seconds/24/60/60%>
                   </h6>
                 </div>
-                <div class="progress success large-8 small-10 columns">
+                <div class="progress success large-8 small-8 columns">
                   <span class="meter" style="width: 
                   <%= EmployeeVariable.where(employee_id: current_account.profile.id, leave_type_id: leave_type.id).first_or_create.available_leaves_seconds*100/
                   (!current_account.profile.position.position_settings.where(leave_type_id: leave_type.id).blank? ? 

@@ -53,6 +53,23 @@ class HomeController < ApplicationController
     @base_salary_cents = @payslip.base_salary_cents
     @total = @payslip.commission_cents + (current_account.profile.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)
   end
+
+  def print_salary
+    @payslip = Payslip.find(params[:payslip_id])
+    @affected_leave = []
+    current_account.profile.leaves.where(status: "Approved", start_date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).each do |leave|
+      if leave.leave_type.affected_entity.include?("salary")
+        @affected_leave << leave
+      end
+    end
+    
+    @base_salary_cents = @payslip.base_salary_cents
+    @total = @payslip.commission_cents + (current_account.profile.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)
+    if @payslip.employee_id != current_account.profile.id
+      redirect_to(root_path, alert: "You are not authorize to view this.")
+    end
+    render layout: "blank"
+  end
   
   def sign_in
     if !account_signed_in?

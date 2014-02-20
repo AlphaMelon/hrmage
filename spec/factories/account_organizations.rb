@@ -2,8 +2,6 @@
 
 FactoryGirl.define do
   factory :account_organization do
-    account_id 1
-    organization_id 1
-    role "Admin"
+    role "Super Admin"
   end
 end

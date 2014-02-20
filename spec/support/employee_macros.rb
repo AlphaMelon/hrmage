@@ -4,7 +4,7 @@ module EmployeeMacros
     organization = Organization.first
   
     account = Account.first
-    account_organization = AccountOrganization.new(account_id: account.id, organization_id: organization.id, role: "Admin")
+    account_organization = AccountOrganization.new(account_id: account.id, organization_id: organization.id, role: "Super Admin")
     account_organization.save
     
     position = Position.first
@@ -29,7 +29,7 @@ module EmployeeMacros
     account.password = "spree123"
     account.save
     
-    account_organization = AccountOrganization.new(account_id: account.id, organization_id: organization.id, role: "Employee")
+    account_organization = AccountOrganization.new(account_id: account.id, organization_id: organization.id, role: "Admin")
     account_organization.save
     
     position = Position.new(name: "Clerk", monthly_max_claims_cents: 240000, can_approve_leave: can_approve_leave, can_approve_claim: can_approve_claim)

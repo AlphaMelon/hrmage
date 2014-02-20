@@ -5,8 +5,6 @@
       <thead>
         <th><%= t :name %></th>
         <th><%= t :monthly_max_claims %></th>
-        <th><%= t :approve_leaves %></th>
-        <th><%= t :approve_claims %></th>
         <th><%= t :action %></th>
       </thead>
       <tbody>
@@ -14,8 +12,6 @@
         <tr>
           <td><%= position.name %></td>
           <td><%= humanized_money_with_symbol position.monthly_max_claims %></td>
-          <td><%= position.can_approve_leave %></td>
-          <td><%= position.can_approve_claim %></td>
           <td>
           <a href="#" data-dropdown="drop_<%=position.id %>" class="tiny button dropdown"><%= t :details %></a>
             <ul id="drop_<%=position.id %>" data-dropdown-content class="f-dropdown">

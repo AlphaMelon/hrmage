@@ -3,10 +3,10 @@
     <fieldset>
       <legend><%t :new_login %></legend>
       <div class="panel"><%= t :employees_new_login_description %></div>
-        <%= simple_form_for(@account, url: organization_employee_new_login_path) do |f| %>
+        <%= simple_form_for(@account, url: organization_employee_new_login_path, wrapper: :custom) do |f| %>
           <%= f.input :email %>
           <%= f.input :password, placeholder: "minimum 8 characters" %>
-          <%= f.input :role, collection: [t(:admin), t(:employee)], selected: t(:employee) %>
+          <%= f.input :role, collection: ["Super Admin", t(:admin), t(:employee)], selected: t(:employee) %>
           <%= f.button :submit %>
         <% end %>
     </fieldset>

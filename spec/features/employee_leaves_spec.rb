@@ -7,7 +7,7 @@ feature "[Employee Leaves]" do
   
   scenario "Apply Leave" do
     visit root_path
-    click_on "Leaves"
+    click_on "Leaves", match: :first
     click_on "Apply Leave"
     fill_in "leave_start_date", with: "2014-01-27 00:00"
     fill_in "leave_duration_seconds", with: 3
@@ -17,7 +17,7 @@ feature "[Employee Leaves]" do
   
   scenario "Applying leave more than your available leaves" do
     visit root_path
-    click_on "Leaves"
+    click_on "Leaves", match: :first
     click_on "Apply Leave"
     fill_in "leave_start_date", with: "2014-01-27 00:00"
     fill_in "leave_duration_seconds", with: 100
@@ -27,7 +27,7 @@ feature "[Employee Leaves]" do
   
   scenario "Applying leave with negative duration" do
     visit root_path
-    click_on "Leaves"
+    click_on "Leaves", match: :first
     click_on "Apply Leave"
     fill_in "leave_start_date", with: "2014-01-27 00:00"
     fill_in "leave_duration_seconds", with: -100
@@ -38,7 +38,7 @@ feature "[Employee Leaves]" do
   scenario "Applying leave again with same day" do
     #apply leave
     visit root_path
-    click_on "Leaves"
+    click_on "Leaves", match: :first
     click_on "Apply Leave"
     fill_in "leave_start_date", with: "2014-01-27 00:00"
     fill_in "leave_duration_seconds", with: 3
@@ -59,7 +59,7 @@ feature "[Employee Leaves]" do
     #apply leave again on the same day
     visit root_path
     click_on "Normal"
-    click_on "Leaves"
+    click_on "Leaves", match: :first
     click_on "Apply Leave"
     fill_in "leave_start_date", with: "2014-01-27 00:00"
     fill_in "leave_duration_seconds", with: 3
@@ -70,7 +70,7 @@ feature "[Employee Leaves]" do
   scenario "take leave on off day" do
     create_organization_setting
     visit root_path
-    click_on "Leaves"
+    click_on "Leaves", match: :first
     click_on "Apply Leave"
     fill_in "leave_start_date", with: "2014-01-26 00:00"
     fill_in "leave_duration_seconds", with: 3
@@ -90,7 +90,7 @@ feature "[Employee Leaves]" do
     #progress bar should be 7 out of 21 leaves days
     #visit my_leaves_path
     click_on "Normal"
-    click_on "my_leaves"
+    click_on "my_leaves", match: :first
     page.should have_content("7/21")
   end
 

@@ -57,7 +57,7 @@ en:
   position: "Position"
   positions: "Positions"
   available_leaves: "Available Leaves"
-  claims_applied: "Claims applied in "
+  claims_for: "Claims for "
   can_self_approve: "Can Self Approve"
   add_new_employee: "Add New Employee"
   information: "Information"

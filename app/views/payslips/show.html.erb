@@ -43,12 +43,10 @@
         <th colspan="2"><center><%= t :claims %></center></th>
       </thead>
       <tbody>
-        <% current_account.profile.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).each do |claim|%>
+        <% current_account.profile.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).each do |claim|%>
           <tr>
             <td><%= claim.subject %></td>
-            <td>
-            <%= humanized_money_with_symbol claim.amount %>
-            <%#= humanized_money_with_symbol (current_account.profile.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)/100 %></td>
+            <td><%= humanized_money_with_symbol claim.amount %></td>
           </tr>
         <% end %>
       </tbody>

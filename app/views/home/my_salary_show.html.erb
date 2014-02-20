@@ -43,7 +43,7 @@
         <th colspan="2"><center><%= t :claims %></center></th>
       </thead>
       <tbody>
-        <% current_account.profile.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).each do |claim|%>
+        <% current_account.profile.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).each do |claim|%>
           <tr>
             <td><%= claim.subject %></td>
             <td>

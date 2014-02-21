@@ -4,7 +4,7 @@
     <li><h6><%= current_organization.name.capitalize%>'s <%= t (:organization)%></h6></li>
     <li><%= link_to t(:department), organization_departments_path(current_organization) %></li>
     <li class="divider"></li>
-    <li><%= link_to t(:position), organization_positions_path(current_organization) %></li> 
+    <li ><%= link_to t(:position), organization_positions_path(current_organization) %></li> 
     <li class="divider"></li>
     <li><%= link_to t(:employee), organization_employees_path(current_organization) %></li>
     <li class="divider"></li>

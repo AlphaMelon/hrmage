@@ -11,6 +11,7 @@ Hrmage::Application.routes.draw do
   get 'my_salary_show/:payslip_id' => "home#my_salary_show"
   get 'sign_in' => "home#sign_in"
   get 'sign_up' => "home#sign_up"
+  get 'calendar' => "home#calendar"
   get 'print_salary' => "home#print_salary"
   resources :organizations do
     resources :payslip_settings

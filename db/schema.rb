@@ -237,14 +237,6 @@ ActiveRecord::Schema.define(version: 20140217080951) do
     t.integer  "base_salary_cents"
   end
 
-  create_table "position_default_variables", force: true do |t|
-    t.integer  "position_id"
-    t.integer  "leave_type_id"
-    t.integer  "max_leaves_seconds"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "position_settings", force: true do |t|
     t.integer  "position_id"
     t.integer  "leave_type_id"

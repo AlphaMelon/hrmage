@@ -89,4 +89,47 @@ class HomeController < ApplicationController
       redirect_to root_path, notice: "You are already signed in."
     end
   end
+
+  def calendar
+    
+    @my_leaves = "asb"
+    @leave_types = current_organization.leave_types
+    
+    @month = !params[:date].blank? ? params[:date][:month].to_i : DateTime.now.month
+    @year = !params[:date].blank? ? params[:date][:year].to_i : DateTime.now.year
+    @date = DateTime.new(@year, @month)
+    @month_collection = [
+    ["January", 1], 
+    ["February", 2], 
+    ["March", 3], 
+    ["April", 4], 
+    ["May", 5], 
+    ["June", 6], 
+    ["July", 7], 
+    ["August", 8], 
+    ["September", 9], 
+    ["October", 10], 
+    ["November", 11], 
+    ["December", 12]]
+    
+    @employees = []
+
+    current_account.profile.departments.each do |department| 
+      department.employees.each do |employee|
+        @employees << employee
+      end
+    end
+
+    if !current_organization.organization_setting.nil?
+      @workday = [false,false,false,false,false,false,false,false]
+      @workday[1] = true if !current_organization.organization_setting.monday.blank? && current_organization.organization_setting.monday != 0
+      @workday[2] = true if !current_organization.organization_setting.tuesday.blank? && current_organization.organization_setting.tuesday != 0
+      @workday[3] = true if !current_organization.organization_setting.wednesday.blank? && current_organization.organization_setting.wednesday != 0
+      @workday[4] = true if !current_organization.organization_setting.thursday.blank? && current_organization.organization_setting.thursday != 0
+      @workday[5] = true if !current_organization.organization_setting.friday.blank? && current_organization.organization_setting.friday != 0
+      @workday[6] = true if !current_organization.organization_setting.saturday.blank? && current_organization.organization_setting.saturday != 0
+      @workday[7] = true if !current_organization.organization_setting.sunday.blank? && current_organization.organization_setting.sunday != 0
+    end
+    
+  end
 end

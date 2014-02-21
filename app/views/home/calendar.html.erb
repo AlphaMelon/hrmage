@@ -1,0 +1,7 @@
+<%= render "select_year_month" %>
+
+<% if current_organization.organization_setting.nil? %>
+  <%= render "leaves/without_setting"%>
+<% else %>
+  <%= render "leaves/with_setting" %>
+<% end %>

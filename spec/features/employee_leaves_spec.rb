@@ -94,4 +94,11 @@ feature "[Employee Leaves]" do
     page.should have_content("7/21")
   end
 
+  scenario "view calendar" do
+    visit root_path
+    click_on "my_leaves", match: :first
+    click_on "Calendar"
+    page.should have_content("Leave Calendar")
+  end
+
 end

@@ -119,7 +119,7 @@ en:
   my_leaves: "My Leaves"
   apply_leave: "Apply Leave"
   apply_overtime: "Apply Overtime"
-  whos_on_leave: "Who's On Leave"
+  calendar: "Calendar"
   approvals: "Approvals"
   pending_leaves: "Pending Leaves"
   start_date: "Start Date"

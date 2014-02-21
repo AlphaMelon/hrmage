@@ -29,12 +29,11 @@
     </fieldset>
     <fieldset>
       <legend><%= t :departments %></legend>
-      <ul class="no-bullet">
         <table>
           <thead>
-            <th>Department name</th>
-            <th>Leader or Employee</th>
-            <th>Action</th>
+            <th><%= t :department_name %></th>
+            <th><%= t :leader_or_employee %></th>
+            <th><%= t :action %></th>
           </thead>
           <tbody>
           <% @employee.employee_departments.each do |ed|%>
@@ -46,7 +45,6 @@
           <% end %>
           </tbody>
         </table>
-      </ul>
       <%= link_to t(:add_department_for_employee), new_organization_employee_employee_department_path(@organization, @employee), class: "button success"%>
     </fieldset>
   </div>

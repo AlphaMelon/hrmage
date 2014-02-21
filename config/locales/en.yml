@@ -258,3 +258,7 @@ en:
   employees_of: "Employees of"
   default_max_leaves: "Default Maximum Leaves"
   default_holiday: "Get and update new default holiday for your organization"
+  department_name: "Department name"
+  leader_or_employee: "Leader or Employee"
+  super_admin: "Super Admin"
+  password_requirement: "minimum 8 characters"

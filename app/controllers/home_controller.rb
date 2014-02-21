@@ -27,7 +27,7 @@ class HomeController < ApplicationController
   
   def my_leaves
     authenticate_account!
-    @my_leaves = current_account.profile.leaves.order(id: :desc) if !current_account.profile.nil?
+    @my_leaves = current_account.profile.leaves.order(start_date: :desc).page(params[:page]).per(5) if !current_account.profile.nil?
   end
   
   def my_claims

@@ -7,8 +7,8 @@
           <legend><%= t :submit_claim %></legend>
           <%= render '/shared/error_message', object: f.object %>
           <%= f.input :subject, placeholder: "Petrol" %>
-          <%= f.input :date, as: :string, autocomplete: :off, input_html: {class: 'date_only'} %>
-          <%= f.input :amount %>
+          <%= f.input :date, as: :string, autocomplete: :off, input_html: {class: 'date_only', value: Date.today} %>
+          <%= f.input :amount, placeholder: "38.50" %>
           <%= f.input :comment %>
           <%= f.input :image, as: :file %>
           <div class="row">

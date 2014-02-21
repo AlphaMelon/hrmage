@@ -262,3 +262,4 @@ en:
   leader_or_employee: "Leader or Employee"
   super_admin: "Super Admin"
   password_requirement: "minimum 8 characters"
+  organization_settings_helper: "Your organization do not have any settings yet, please click the button below to create setting"

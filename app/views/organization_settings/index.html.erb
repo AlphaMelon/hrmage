@@ -45,7 +45,9 @@
       <%= link_to t(:edit), edit_organization_organization_setting_path(current_organization, @organization_setting), class: "button success"%>
       <%= link_to t(:delete), organization_organization_setting_path(current_organization, @organization_setting), method: :delete, data: { confirm: t(:delete_organization_holidays) }, class: "button alert" %>
     <% else %>
-      <p>Your organization do not have any settings yet, please click the button below to create setting</p>
+      <div class="panel large-9">
+        <%= t :organization_settings_helper %>
+      </div>
       <%= link_to t(:create_settings) , new_organization_organization_setting_path(current_organization), class: "button success" %>
     <% end%>
   </div>

@@ -32,7 +32,7 @@ class HomeController < ApplicationController
   
   def my_claims
     authenticate_account!
-    @my_claims = current_account.profile.claims.order(id: :desc) if !current_account.profile.nil?
+    @my_claims = current_account.profile.claims.order(id: :desc).page(params[:page]).per(5) if !current_account.profile.nil?
     @claims_remaining_percentage = (current_account.profile.claims.where(status: "Approved", date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).sum :amount_cents)/current_account.profile.position.monthly_max_claims_cents
   end
 

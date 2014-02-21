@@ -44,18 +44,19 @@ feature "[Employee Claims]" do
   
   scenario "Claim remaining progress bar" do
     #0 out of 560000 claims remaining
-    #approve claims of 77
+    #approve claims of 77.81
     visit root_path
     click_on "Admin"
     click_on "organization_claims"
     click_on "approve_claim"
     page.should have_content("Claim application approved")
     
-    #progress bar should be 77 out of 560000 leaves days
+    #progress bar should be 77.81 out of 560000 claims
     #visit my_leaves_path
     click_on "Normal"
     click_on "my_claims", match: :first
-    page.should have_content("77/5600.00")
+    page.should have_content("77.81")
+    page.should have_content("5,522.19")
   end
 
 end

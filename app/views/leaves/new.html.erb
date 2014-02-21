@@ -6,7 +6,7 @@
         <legend><%= t :applying_leaves %></legend>
         <%= simple_form_for [@organization, @leave], wrapper: :custom do |f| %>
           <%= render '/shared/error_message', object: f.object %>
-          <%= f.input :start_date, as: :string, autocomplete: :off, input_html: {class: "datetime_only"} %>
+          <%= f.input :start_date, as: :string, autocomplete: :off, input_html: {class: "datetime_only", value: Date.today} %>
           <%= f.input :duration_seconds, label: "Duration (in days)", input_html: { value: !@leave.duration_seconds.blank? ? @leave.duration_seconds/24/60/60 : 1} %>
           <%= f.association :leave_type, collection: current_organization.leave_types.order(id: :asc), include_blank: false %>
           <%= f.input :comment, as: :text %>

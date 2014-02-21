@@ -11,7 +11,7 @@
     <% if !current_account.profile.position.nil?%>
       <div class="dashboard row">
         <div class="large-4 small-12 columns">
-          <h3>Leaves</h3>
+          <h3><%= t :leaves %></h3>
           <div class="large-12 panel columns">
             <% current_organization.leave_types.order(id: :asc).each do |leave_type|%>
               <div class="large-12 small-12 columns">
@@ -37,16 +37,16 @@
           </div>
         </div>
         <div class="large-4 small-12 columns">
-          <h3>Claims</h3>
+          <h3><%= t :claims %></h3>
           <div class="large-12 panel columns">
             <h6><strong><%= t :claims_for %> <%=Date::MONTHNAMES[Date.today.month]%></strong></h6>
             <div class="large-12 columns">
               <div class="large-12 small-12 columns">
                 <h6 class="text-left">
-                Claim Amount:
+                <%= t :claim_amout %>
                 <%= humanized_money_with_symbol (current_account.profile.claims.where(status: "Approved", date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).sum :amount_cents).to_f/100 %></h6>
                 <h6>
-                Claim Remaining: <%= humanized_money_with_symbol (current_account.profile.position.monthly_max_claims_cents - (current_account.profile.claims.where(status: "Approved", date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).sum :amount_cents)).to_f/100 %>
+                <%= t :claim_remaining %> <%= humanized_money_with_symbol (current_account.profile.position.monthly_max_claims_cents - (current_account.profile.claims.where(status: "Approved", date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).sum :amount_cents)).to_f/100 %>
                 </h6>
               </div>
             </div>

@@ -113,6 +113,8 @@ en:
   role_allocation: "Role Allocation"
   role: "Role"
   report: "Report"
+  claim_amout: "Claim Amount"
+  claim_remaining: "Claim Remaining"
   my_claims: "My Claims"
   apply_claim: "Apply Claim"
   claims_category: "Claims Category"

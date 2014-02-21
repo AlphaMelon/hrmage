@@ -31,11 +31,12 @@
       <legend><%= t :departments %></legend>
       <ul class="no-bullet">
         <table>
-          <tr>
+          <thead>
             <th>Department name</th>
             <th>Leader or Employee</th>
             <th>Action</th>
-          </tr>
+          </thead>
+          <tbody>
           <% @employee.employee_departments.each do |ed|%>
             <tr>
               <td><%= ed.department.name %></td>
@@ -43,6 +44,7 @@
               <td><%= link_to t(:remove_link), organization_employee_employee_department_path(@organization, @employee, ed), method: :delete, data: { confirm: t(:are_you_sure) }%></td>
             </tr>
           <% end %>
+          </tbody>
         </table>
       </ul>
       <%= link_to t(:add_department_for_employee), new_organization_employee_employee_department_path(@organization, @employee), class: "button success"%>

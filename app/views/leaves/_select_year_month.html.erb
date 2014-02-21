@@ -5,9 +5,11 @@
       <%= f.input :year, collection: (@year-3..@year+3), include_blank: false, selected: @year %>
       <%= f.input :month, collection: @month_collection, include_blank: false, selected: @month %>
         
-      <div class="large-3 small-3 columns"></div>
-      <div class="large-9 small-9 columns">
-        <%= f.submit t(:change_date), class: "button success"%>
+      <div class="row">
+        <div class="large-3 small-3 columns"></div>
+        <div class="large-9 small-9 columns">
+          <%= f.submit t(:change_date), class: "button success"%>
+        </div>
       </div>
     <% end %> 
   </div>

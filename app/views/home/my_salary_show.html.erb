@@ -92,6 +92,6 @@
       </thead>
     </table>
     <%= link_to t(:back), :back, class: "button success" %>
-    <%= link_to "Print", print_salary_path(payslip_id: @payslip.id) , class: "button success" %>
+    <%= link_to "Print", print_salary_path(payslip_id: @payslip.id), target: "_blank", class: "button success" %>
   </div>
 </div>

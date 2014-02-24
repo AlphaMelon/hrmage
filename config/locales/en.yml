@@ -244,6 +244,7 @@ en:
   commission: "Commission"
   base_salary: "Base Salary"
   add_new_payslips: "Add new payslips"
+  print: "Print"
   payslips: "Payslips"
   new_paid: "New paid"
   edit_payslip_setting: "Edit Payslip Settting"

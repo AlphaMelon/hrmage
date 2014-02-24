@@ -1,0 +1,6 @@
+take action on
+<% if activity.trackable %>
+  <%= link_to activity.trackable.leave_type.name, organization_leaves_path(current_organization) %> leave
+<% else %>
+  which has since been removed 
+<% end %>

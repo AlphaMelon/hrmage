@@ -26,6 +26,8 @@ en:
   departments_list: "Department's List"
   department_list: "Department List"
   name: "Name"
+  country: "Country"
+  currency: "Currency"
   value: "Value"
   action: "Action"
   maths: "Maths"
@@ -264,3 +266,4 @@ en:
   super_admin: "Super Admin"
   password_requirement: "minimum 8 characters"
   organization_settings_helper: "Your organization do not have any settings yet, please click the button below to create setting"
+  max_leaves_in_days: "Maximum Leaves (in days)"

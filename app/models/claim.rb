@@ -14,7 +14,10 @@ class Claim < ActiveRecord::Base
   
   mount_uploader :image, ImageUploader
   
-
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_account }
+  tracked organization_id: Proc.new { |controller, model| controller.current_organization.id }
+  
   def set_default_values
     self.status = "Pending" if self.status.nil?
   end

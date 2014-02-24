@@ -8,17 +8,8 @@ class ApplicationController < ActionController::Base
   before_filter :can_can_compability_to_strong_paramater
   before_filter :admin_or_employee_session
   
-  # before_filter :beta
+  include PublicActivity::StoreController
 
-  # def beta
-  #   params[:beta] = session[:beta] if session[:beta]
-  #   if !params[:beta]
-  #     session[:beta] = false
-  #     render '/home/coming_soon', layout: 'blank'
-  #     return
-  #   end
-  # end
-  
   def admin_or_employee_session
     session[:admin_session] = true if params[:admin_session]
     session[:admin_session] = false if params[:employee_session]

@@ -1,27 +1,16 @@
 <div class="row">
-  <div class="large-12 columns">
+  <div class="large-5 columns">
+    <h4>Organization Details</h4>
     <table>
-      <thead>
-        <th><%= t :name %></th>
-        <th><%= t :domain %></th>
-        <th>Country</th>
-        <th>Currency</th>
-        <th></th>
-      </thead>
-      <tbody>
-          <td><%= @organization.name %></td>
-          <td><%= @organization.domain %></td>
-          <td><%= @organization.country %></td>
-          <td><%= @organization.default_currency %></td>
-        <td><%= link_to t(:edit), edit_organization_path(@organization), id: "edit_organization" %></td>
-      </tbody>
+      <tr><th><%= t :name %></th><td><%= @organization.name %></td></tr>
+      <tr><th><%= t :domain %></th><td><%= @organization.domain %></td></tr>
+      <tr><th>Country</th><td><%= @organization.country %></td></tr>
+      <tr><th>Currency</th><td><%= @organization.default_currency %></td></tr>
     </table>
+    <%= link_to t(:edit_organization), edit_organization_path(@organization), id: "edit_organization" %>
   </div>
-</div>
-
-<div class="row">
-  <div class="large-12 columns">
-    <h2><%= @organization.name.capitalize %>'s <%= t :departments %></h2>
+  <div class="large-7 columns">
+    <h4><%= t :departments %></h4>
     <table>
       <thead>
         <th><%= t :name %></th>
@@ -39,9 +28,10 @@
     <%= link_to t(:department_list), organization_departments_path(@organization) %>
   </div>
 </div>
+
 <div class="row">
-  <div class="large-12 columns">
-    <h2><%= t :account_with_access_to %> <%= @organization.name %></h2>
+  <div class="large-5 columns">
+    <h4><%= t :login_account %> </h4>
     <table>
       <tr>
         <th><%= t :email %></th>
@@ -58,11 +48,9 @@
     </table>
     <%= link_to "Add more account to #{@organization.name}", new_organization_account_organization_path(@organization)%>
   </div>
-</div>  
-
-<div class="row">
-  <div class="large-12 columns">
-    <h2><%= @organization.name.capitalize %>'s <%= t :employees %></h2>
+  
+  <div class="large-7 columns">
+    <h4><%= t :employees %></h4>
     <table>
       <tr>
         <th><%= t :last_name %></th>
@@ -86,4 +74,5 @@
     </table>
     <%= link_to t(:employee_list), organization_employees_path(@organization) %>
   </div>
-</div>
+</div>  
+

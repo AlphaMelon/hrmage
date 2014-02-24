@@ -6,6 +6,8 @@ require 'rspec/autorun'
 require 'capybara/rspec'
 require 'capybara-webkit'
 require 'rack/utils'
+require 'public_activity/testing'
+
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -66,6 +68,8 @@ RSpec.configure do |config|
     Capybara.javascript_driver = :webkit
     #Capybara.always_include_port = true
     Capybara.app_host = "http://staff.alphamelon.dev:#{Capybara.server_port}/?beta=1"
+    
+    PublicActivity.enabled = false
     
     Employee.delete_all
     Account.delete_all

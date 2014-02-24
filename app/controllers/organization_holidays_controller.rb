@@ -18,6 +18,7 @@ class OrganizationHolidaysController < ApplicationController
 
   def create
     @organization_holiday = current_organization.organization_setting.organization_holidays.new(organization_holiday_params)
+    @organization_holiday.organization_id = current_organization.id
     if @organization_holiday.save
       redirect_to organization_organization_setting_organization_holidays_path(current_organization, @organization_setting), notice: "Organization holiday successfully created"
     else

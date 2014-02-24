@@ -132,4 +132,9 @@ class HomeController < ApplicationController
     end
     
   end
+
+  def approvals
+    @my_leaves = current_account.profile.leaves.where(status: "Approved").order(start_date: :desc).page(params[:page]).per(5) if !current_account.profile.nil?
+  end
+
 end

@@ -13,6 +13,7 @@ Hrmage::Application.routes.draw do
   get 'sign_up' => "home#sign_up"
   get 'calendar' => "home#calendar"
   get 'print_salary' => "home#print_salary"
+  get 'approvals' => "home#approvals"
   resources :organizations do
     resources :payslip_settings
     resources :claims

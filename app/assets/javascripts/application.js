@@ -20,7 +20,7 @@
 //= require jquery-ui-timepicker-addon
 //= require hrmage
 
-var t;
+Foundation.set_namespace = function() {};
 function ready(){
   $(document).foundation();
   

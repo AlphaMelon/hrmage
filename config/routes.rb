@@ -14,6 +14,7 @@ Hrmage::Application.routes.draw do
   get 'calendar' => "home#calendar"
   get 'print_salary' => "home#print_salary"
   resources :organizations do
+    resources :activities
     resources :payslip_settings
     resources :claims
     resources :positions do

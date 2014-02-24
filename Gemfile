@@ -73,6 +73,7 @@ gem 'kaminari'
 gem 'ransack'
 
 gem 'puma'
+gem 'public_activity'
 
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'rails-i18n', '~> 4.0.0'

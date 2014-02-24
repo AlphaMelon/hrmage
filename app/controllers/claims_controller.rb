@@ -5,6 +5,8 @@ class ClaimsController < ApplicationController
 	
 	load_and_authorize_resource
 	
+
+	
   def index
     @claims = @organization.claims.order(:id)
     @pending_claims = @organization.claims.where(status: "Pending")

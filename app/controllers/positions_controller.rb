@@ -34,8 +34,12 @@ class PositionsController < ApplicationController
   end
 
 	def destroy
-		@position.destroy
-		redirect_to organization_positions_path, notice: 'Position successfully deleted'
+	  if @position.employees.blank?
+		  @position.destroy
+		  redirect_to organization_positions_path, notice: 'Position successfully deleted'
+		else
+		  redirect_to organization_positions_path, alert: 'You cannot delete this position because there is employee with this position.'
+		end
 	end
 
   private

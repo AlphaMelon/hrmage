@@ -1,0 +1,6 @@
+created a setting for 
+<% if activity.trackable %>
+  <%= link_to activity.trackable.position.name, organization_position_path(current_organization, activity.trackable.position) %>
+<% else %>
+  which has since been removed 
+<% end %>

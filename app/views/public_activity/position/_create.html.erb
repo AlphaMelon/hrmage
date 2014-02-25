@@ -1,0 +1,6 @@
+created a new position named 
+<% if activity.trackable %>
+  <%= link_to activity.trackable.name, organization_position_path(current_organization, activity.trackable) %>
+<% else %>
+  which has since been removed 
+<% end %>

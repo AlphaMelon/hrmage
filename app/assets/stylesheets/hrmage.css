@@ -1,3 +1,6 @@
+h1, h2, h3, h4, h5, h6{
+  text-transform: capitalize;
+}
 .alert-box.account{
   background-color: #c17d11;
   a{
@@ -112,4 +115,3 @@
     font-weight: bold;
   }
 }
-$namespace : false;

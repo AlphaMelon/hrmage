@@ -2,6 +2,6 @@
 <% @activities.each do |activity| %>
   <div class="activity">
     <%= link_to activity.owner.profile.name_with_initial, organization_employee_path(current_organization, activity.owner.profile) if activity.owner %>
-    <%= render_activity(activity) %>
+    <%= render_activity activity %>
   </div>
 <% end %>

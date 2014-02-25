@@ -12,6 +12,10 @@ class Leave < ActiveRecord::Base
   validate :cannot_take_leave_on_off_day
   validates :start_date, presence: true
   validates :duration_seconds, presence: true
+
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_account }
+  tracked organization_id: Proc.new { |controller, model| controller.current_organization.id }
   
   def salary_calculate(base_salary_cents)
     if self.leave_type.type == "LeaveSubstraction"

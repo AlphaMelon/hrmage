@@ -6,12 +6,11 @@
 
   <title><%= content_for?(:title) ? yield(:title) : "HR Mage" %></title>
 
-  <%= stylesheet_link_tag    "lp-home", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "lp-home", media: "all", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <%= javascript_include_tag "lp-home" %>
 </head>
   <body>
-    <%= yield %>
-    
+    <%= yield %> 
   </body>
 </html>

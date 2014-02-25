@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h3><%= t :approvals %></h3>
+    <table>
+      <thead>
+        <td><%= t :type %></td>
+        <td><%= t :reason %></td>
+        <td><%= t :duration%></td>
+        <td><%= t :when %></td>
+        <td><%= t :status %></td>
+        <td><%= t :action %></td>
+      </thead>
+      <tbody>
+      <% @my_leaves.each do |leave| %>
+        <tr>
+          <td><%= leave.leave_type.name %></td>
+          <td><%= leave.comment %></td>
+          <td><%= (leave.duration_seconds)/60/60/24 %> Days</td>
+          <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %> - <%= (leave.start_date.to_date + ((leave.duration_seconds)/60/60/24-1).days).strftime("%d/%m/%Y") %></td>
+          <td><%= leave.status %></td>
+          <td>
+            <a href="#" data-dropdown="drop2" class="tiny button dropdown"><%= t :details %></a>
+            <ul id="drop2" data-dropdown-content class="f-dropdown">
+              <li><a href="#">test</a></li>
+            </ul>
+          </td>
+        </tr>
+      <%end%>
+      </tbody>
+    </table>
+    <%= paginate @my_leaves %>
+  </div>
+</div>

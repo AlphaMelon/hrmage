@@ -7,7 +7,7 @@
     <hr>
     <% current_organization.leave_types.order(id: :asc).each do |leave_type|%>
       <div class="large-12 small-12 columns">
-        <h6>Available <%= leave_type.name %></h6>
+        <h6><%= t :available %> <%= leave_type.name %></h6>
       </div>
       <div class="large-12 columns">
         <div class="large-2 small-2 columns">

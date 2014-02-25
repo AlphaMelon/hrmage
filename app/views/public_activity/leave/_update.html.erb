@@ -1,4 +1,4 @@
-take action on
+<%= activity.trackable.status if activity.trackable %>
 <% if activity.trackable %>
   <%= link_to activity.trackable.leave_type.name, organization_leaves_path(current_organization) %> leave
 <% else %>

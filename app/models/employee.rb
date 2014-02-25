@@ -20,6 +20,10 @@ class Employee < ActiveRecord::Base
   validates :first_name, presence: true
   validates :base_salary_cents, presence: true
   validates :position_id, presence: true
+
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_account }
+  tracked organization_id: Proc.new { |controller, model| controller.current_organization.id }
   
   def set_default_values
     #self.can_self_approve = false if self.can_self_approve.blank?

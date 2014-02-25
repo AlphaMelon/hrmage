@@ -1,0 +1,6 @@
+added
+<% if activity.trackable %>
+  <%= link_to activity.trackable.id, organization_organization_settings_path(current_organization, activity.trackable) %> organization setting
+<% else %>
+  which has since been removed 
+<% end %>

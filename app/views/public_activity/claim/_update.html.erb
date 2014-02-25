@@ -1,4 +1,4 @@
-take action on
+<%= activity.trackable.status if activity.trackable %>
 <% if activity.trackable %>
   <%= link_to activity.trackable.subject, organization_claims_path(current_organization) %> claim
 <% else %>

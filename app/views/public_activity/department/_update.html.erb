@@ -1,0 +1,6 @@
+updated
+<% if activity.trackable %>
+  <%= link_to activity.trackable.name, organization_departments_path(current_organization) %> department
+<% else %>
+  which has since been removed 
+<% end %>

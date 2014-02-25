@@ -1,0 +1,6 @@
+added
+<% if activity.trackable %>
+  <%= link_to activity.trackable.base_salary, organization_employee_payslips_path(current_organization, activity.trackable.employee) %>
+<% else %>
+  which has since been removed 
+<% end %>

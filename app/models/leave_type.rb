@@ -8,6 +8,10 @@ class LeaveType < ActiveRecord::Base
   validates :colour, presence: true
   validates :default_count_seconds, presence: true
   before_save :set_default_values
+
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_account }
+  tracked organization_id: Proc.new { |controller, model| controller.current_organization.id }
   
   def self.description
     raise Exception, "Please override this method"

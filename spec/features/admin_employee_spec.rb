@@ -13,7 +13,7 @@ feature "[Admin Employee]" do
     page.should have_content("spree@example.com")
   end 
   
-  scenario "Add New Employee" do
+  scenario "Add New Employee and then delete it" do
     visit root_path
     click_on "Admin"
     click_on "Employee"
@@ -27,6 +27,15 @@ feature "[Admin Employee]" do
 		click_on "Create Employee"
     page.should have_content("Employee successfully created")
     page.should have_content("Lee")
+
+    all('#delete_employee')[1].click
+    page.should have_content("Employee successfully deleted")
+
+    #what if i delete a super admin employee?
+    click_on "delete_employee"
+    page.should have_content("Super Admin employee cannot be deleted.")
+    
+
   end
 
   scenario "Edit Employee" do

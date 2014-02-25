@@ -21,7 +21,7 @@ feature "[Admin payslip]" do
     click_on "Add new payslips"
     fill_in "Date", with: '2014-01-27'
     fill_in "Commission", with: '1000'
-    check "Socso"
+    check "EPF"
     click_button "Create Payslip"
     page.should have_content("Payslips successfully created")
   end

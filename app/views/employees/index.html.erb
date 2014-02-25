@@ -32,6 +32,9 @@
                 <%= link_to t(:edit), edit_organization_employee_path(@organization, employee), id: "edit_employee", class: "fi-pencil" %>
               </li>
               <li>
+                <%= link_to t(:delete), organization_employee_path(@organization, employee), id: 'delete_employee', class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure_employee) }%>
+              </li>
+              <li>
                 <%= link_to t(:b_settings), organization_employee_employee_variables_path(@organization, employee), class: "fi-widget"%>
               </li>
               <li>

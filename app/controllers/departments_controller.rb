@@ -38,8 +38,12 @@ class DepartmentsController < ApplicationController
   end
   
 	def destroy
-		@department.destroy
-		redirect_to organization_departments_path(@organization), notice: 'Department successfully deleted'
+	  if @department.employees.blank?
+		  @department.destroy
+		  redirect_to organization_departments_path(@organization), notice: 'Department successfully deleted'
+		else
+		  redirect_to organization_departments_path(@organization), alert: 'You cannot delete department with employee in it.'
+		end
 	end
   
   private

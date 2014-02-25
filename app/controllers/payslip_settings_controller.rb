@@ -1,5 +1,6 @@
 class PayslipSettingsController < ApplicationController
   before_action :set_organization
+  before_action :set_payslip_setting, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_account!
 
   load_and_authorize_resource
@@ -33,10 +34,19 @@ class PayslipSettingsController < ApplicationController
       render action: 'edit'
     end
   end
-
+  
+	def destroy
+	  if @payslip_setting.payslip_calculations.blank?
+		  @payslip_setting.destroy
+		  redirect_to organization_payslip_settings_path(current_organization), notice: 'Payslip setting successfully deleted'
+		else
+		  redirect_to organization_payslip_settings_path(current_organization), alert: 'You cannot delete this setting because it is being used for payslips.'
+		end
+	end
+	
   private
   
-  def set_claim
+  def set_payslip_setting
     @payslip_setting = PayslipSetting.find(params[:id])
   end
   

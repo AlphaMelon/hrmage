@@ -27,6 +27,9 @@
                 <li>
                   <%= link_to t(:edit), edit_organization_department_path(@organization, department), class: "fi-pencil" %>
                 </li>
+                <li>
+                  <%= link_to t(:delete), organization_department_path(@organization, department), id: 'delete_department', class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure) }%>
+                </li>
               </ul>
             </td>
           </tr>

@@ -12,7 +12,7 @@ feature "[Admin payslip]" do
     page.should have_content("Payslip Setting")
   end
 
-  scenario "Add new payslip setting" do
+  scenario "Add new payslip setting and then delete it" do
     visit root_path
     click_on "Admin"
     click_on "Payslip Setting"
@@ -22,6 +22,13 @@ feature "[Admin payslip]" do
     select "Addition", from: 'Maths'
     click_button "Create Payslip setting"
     page.should have_content("Payslip Setting successfully created")
+    
+    all('#delete_payslip_setting')[1].click
+    page.should have_content("Payslip setting successfully deleted")
+
+    #what if i delete a setting that is still being used?
+    click_on "delete_payslip_setting"
+    page.should have_content("You cannot delete this setting because it is being used for payslips.")    
   end
 
   scenario "Edit payslip setting" do

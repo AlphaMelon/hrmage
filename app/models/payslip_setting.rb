@@ -9,6 +9,10 @@ class PayslipSetting < ActiveRecord::Base
   validates :value, presence: true
   validates :maths, presence: true
 
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_account }
+  tracked organization_id: Proc.new { |controller, model| controller.current_organization.id }
+
   def positive?
     if self.maths == "Addition" || self.maths == "Multiplication" || self.maths == "Addition Percentage"
       return true

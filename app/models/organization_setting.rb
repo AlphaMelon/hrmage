@@ -5,6 +5,10 @@ class OrganizationSetting < ActiveRecord::Base
   
   validate :at_least_one_day_is_working_day
   validate :cannot_be_negative_number
+
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_account }
+  tracked organization_id: Proc.new { |controller, model| controller.current_organization.id }
   
   def at_least_one_day_is_working_day
     if self.monday.nil? && self.tuesday.nil? && self.wednesday.nil? && 

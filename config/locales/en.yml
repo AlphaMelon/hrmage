@@ -26,6 +26,7 @@ en:
   departments_list: "Department's List"
   department_list: "Department List"
   name: "Name"
+  organization_details: "Organization Details"
   country: "Country"
   currency: "Currency"
   value: "Value"

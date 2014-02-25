@@ -21,6 +21,9 @@
               <li>
                 <%= link_to t(:edit), edit_organization_payslip_setting_path(current_organization, payslip_setting), class: "fi-pencil"%>
               </li>
+              <li>
+                <%= link_to t(:delete), organization_payslip_setting_path(current_organization, payslip_setting), id: 'delete_payslip_setting', class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure) }%>
+              </li>
             </ul>
           </td>
         </tr>

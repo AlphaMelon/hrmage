@@ -6,7 +6,11 @@ module PayslipMacros
     @payslip.organization = Organization.first
     @payslip.employee = Employee.first
     @payslip.save
-        
+    
+    @payslip_calculation = PayslipCalculation.new
+    @payslip_calculation.payslip = @payslip
+    @payslip_calculation.payslip_setting = PayslipSetting.first
+    @payslip_calculation.save
   end
 
   

@@ -105,8 +105,8 @@ RSpec.configure do |config|
     create_position_setting
     create_employee_variable
     create_leave
-    create_payslip
     create_payslip_setting
+    create_payslip
     create_admin_user
     create_country_setting
     create_country_holiday_setting

@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-	before_action :set_employee, only: [:show, :edit, :update]
+	before_action :set_employee, only: [:show, :edit, :update, :destroy]
 	before_action :set_organization
 	before_filter :authenticate_account!
 	
@@ -78,7 +78,16 @@ class EmployeesController < ApplicationController
       redirect_to organization_employee_new_login_path(@organization, params[:employee_id]), alert: "Invalid email or password"
 		end
   end
-
+  
+	def destroy
+	  if @employee.account.blank? || @employee.account.account_organizations.where(organization_id: current_organization).first.role != "Super Admin"
+		  @employee.destroy
+		  redirect_to organization_employees_path(current_organization), notice: 'Employee successfully deleted'
+	  else
+	    redirect_to organization_employees_path(current_organization), alert: 'Super Admin employee cannot be deleted.'
+	  end
+	end
+	
   private
   
 	def set_employee

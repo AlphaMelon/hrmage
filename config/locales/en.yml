@@ -70,6 +70,7 @@ en:
   link_to_account: "Link this profile to my account"
   remove_link: " Remove Link"
   are_you_sure: "Are you sure?"
+  are_you_sure_employee: "All documents, leaves, claims and payslips relating to this employee will be deleted. Are you sure?"
   add_department_for_employee: "Add department to this employee"
   documents: "Documents"
   document: "Document"

@@ -17,7 +17,7 @@ feature "[Admin Position]" do
     page.should have_content("David")
   end 
   
-  scenario "Add New Position" do
+  scenario "Add New Position and then delete it" do
     visit root_path
     click_on "Admin"
     click_on "My Organization"
@@ -28,6 +28,14 @@ feature "[Admin Position]" do
 		click_on "Create Position"
     page.should have_content("Position successfully created")
     page.should have_content("Manager")
+    
+    all('#delete_position')[1].click
+    page.should have_content("Position successfully deleted")
+
+    #what if i delete a position that still has employee?
+    click_on "delete_position"
+    page.should have_content("You cannot delete this position because there is employee with this position.")
+    
   end
 
   scenario "Edit Position" do

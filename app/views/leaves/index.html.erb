@@ -5,13 +5,13 @@
 </div>
 
 <dl class="tabs" data-tab>
-  <dd class="active"><a href="#panel1a"><%= t :pending_leaves %></a></dd>
-  <dd><a href="#panel2a"><%= t :waiting_for_verification_leaves %></a></dd>
-  <dd><a href="#panel3a"><%= t :history %></a></dd>
-  <dd><a href="#panel4a"><%= t :leave_calendar %></a></dd>
+  <dd class="active"><a href="#pending_leaves"><%= t :pending_leaves %></a></dd>
+  <dd><a href="#verify_leaves"><%= t :waiting_for_verification_leaves %></a></dd>
+  <dd><a href="#history"><%= t :history %></a></dd>
+  <dd><a href="#leave_calendar"><%= t :leave_calendar %></a></dd>
 </dl>
 <div class="tabs-content">
-  <div class="content active" id="panel1a">
+  <div class="content active" id="pending_leaves">
     <table>
       <thead>
         <th><%= t :name %></th>
@@ -43,7 +43,7 @@
       <% end %>
     </table>
   </div>
-  <div class="content" id="panel2a">
+  <div class="content" id="verify_leaves">
     <table>
       <thead>
         <th><%= t :name %></th>
@@ -75,46 +75,44 @@
       <% end %>
     </table>
   </div>
-  <div class="content" id="panel3a">
-    <div class="large-12 columns">
-      <table>
-        <thead>
-          <th><%= sort_link @search, :last_name, t(:name) %></th>
-          <th><%= t :type %></th>
-          <th><%= sort_link @search, :comment, t(:comment) %></th>
-          <th><%= sort_link @search, :duration_seconds, t(:duration) %></th>
-          <th><%= sort_link @search, :date, t(:when) %></th>
-          <th><%= sort_link @search, :status, t(:status) %></th>
-          <th><%= t :action %></th>
-        </thead>
-        <tbody>
-        <% @leaves.each do |history|%>
-        <tr>
-          <td><%= history.employee.name_with_initial %></td>
-          <td><%= history.leave_type.name %></td>
-          <td><%= history.comment %></td>
-          <td><%= (history.duration_seconds)/60/60/24 %> Days</td>
-          <td><%= history.start_date.to_date.strftime("%d/%m/%Y") %> - <%= (history.start_date.to_date + ((history.duration_seconds)/60/60/24-1).days).strftime("%d/%m/%Y") %></td>
-          <td><%= history.status %></td>
-          <td>
-          <a href="#" data-dropdown="drop2" class="tiny button dropdown"><%= t :details %></a>
-            <ul id="drop2" data-dropdown-content class="f-dropdown">
-              <li><a href="#">test</a></li>
-            </ul>
-          </td>
-        </tr>
-        <%end%>
-        </tbody>
-      </table>
-      <%= paginate @leaves %>
-      <a href="#" data-dropdown="end_of_year" class="tiny button dropdown"><%= t :end_of_year%></a>
-      <ul id="end_of_year" data-dropdown-content class="f-dropdown">
-        <li><%= link_to t(:reset_employees_available_leaves), organization_end_of_year_action_path(forfeit: true), method: :post%></li>
-        <li><%= link_to t(:carry_forward_employees_available_leaves), organization_end_of_year_action_path(forward: true), method: :post%></li>
-      </ul>
-    </div>
+  <div class="content" id="history">
+    <table>
+      <thead>
+        <th><%= sort_link @search, :last_name, t(:name) %></th>
+        <th><%= t :type %></th>
+        <th><%= sort_link @search, :comment, t(:comment) %></th>
+        <th><%= sort_link @search, :duration_seconds, t(:duration) %></th>
+        <th><%= sort_link @search, :date, t(:when) %></th>
+        <th><%= sort_link @search, :status, t(:status) %></th>
+        <th><%= t :action %></th>
+      </thead>
+      <tbody>
+      <% @leaves.each do |history|%>
+      <tr>
+        <td><%= history.employee.name_with_initial %></td>
+        <td><%= history.leave_type.name %></td>
+        <td><%= history.comment %></td>
+        <td><%= (history.duration_seconds)/60/60/24 %> Days</td>
+        <td><%= history.start_date.to_date.strftime("%d/%m/%Y") %> - <%= (history.start_date.to_date + ((history.duration_seconds)/60/60/24-1).days).strftime("%d/%m/%Y") %></td>
+        <td><%= history.status %></td>
+        <td>
+        <a href="#" data-dropdown="drop2" class="tiny button dropdown"><%= t :details %></a>
+          <ul id="drop2" data-dropdown-content class="f-dropdown">
+            <li><a href="#">test</a></li>
+          </ul>
+        </td>
+      </tr>
+      <%end%>
+      </tbody>
+    </table>
+    <%= paginate @leaves %>
+    <a href="#" data-dropdown="end_of_year" class="tiny button dropdown"><%= t :end_of_year%></a>
+    <ul id="end_of_year" data-dropdown-content class="f-dropdown">
+      <li><%= link_to t(:reset_employees_available_leaves), organization_end_of_year_action_path(forfeit: true), method: :post%></li>
+      <li><%= link_to t(:carry_forward_employees_available_leaves), organization_end_of_year_action_path(forward: true), method: :post%></li>
+    </ul>
   </div>
-  <div class="content" id="panel4a">
+  <div class="content" id="leave_calendar">
     <%= render "select_year_month" %>
     <% if current_organization.organization_setting.nil? %>
       <%= render "without_setting"%>

@@ -1,0 +1,21 @@
+added entitlement leave
+history for leave take employee have taken.
+on the leave employee (pending leave) put a link to employee name
+apply claim subject drop down [select]
+set admin can only approve own department
+claims cannot be with salary 
+salary have different paid out time such as OT, allowance, commision and others
+change by user setting in payslip setting
+put equalize to employee document
+add search for employee
+add claim report (export)
+leave calculated by hours or days (have setting more)
+payslip calculate by unpaid leave by set number or per month (admin can choose)
+write a special script for raw data into csv/excel and insert into leave
+add employee id at employee
+create shift for employee (shift |--< employee_shift >--| employee)
+reduce font size by 80% 
+superadmain can approve claims that exceed the claim limit
+claims follow the leave
+add devise expire password gem "https://github.com/phatworx/devise_security_extension"
+superadmin can apply leave for all employee

@@ -137,7 +137,7 @@ en:
   approve: " Approve"
   reject: " Reject"
   waiting_for_verification_leaves: "Waiting for Verification Leaves"
-  verify: "Verify"
+  verify: " Verify"
   when: "When"
   status: "Status"
   leave_calendar: "Leave Calendar"

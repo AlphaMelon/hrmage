@@ -43,6 +43,9 @@ body{
 
 .layer {
   position: absolute;
+  h1,h2,h3,h4,h5,h6 {
+    color: #222;
+  }
 }
 .layer div {
   -webkit-transform: translate3d(0,0,0);
@@ -56,7 +59,7 @@ body{
   backface-visibility: hidden;
 }
 .background {
-  background-image: url(image-path('t33_home_handsbackground.jpg'));
+  background-image: url(image-path('OfficeWorkers1.jpg'));
   bottom: -5%;
   background-size: cover;
   position: absolute;

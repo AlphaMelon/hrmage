@@ -1,0 +1,6 @@
+added
+<% if activity.trackable %>
+  <%= link_to activity.trackable.name, organization_organization_setting_organization_holidays_path(current_organization, activity.trackable.organization_setting) %>
+<% else %>
+  which has since been removed 
+<% end %>

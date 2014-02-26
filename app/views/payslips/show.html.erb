@@ -1,0 +1,94 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h2><%= @employee.name_with_initial %>'s <%= t :payslips %></h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <table class="large-8">
+      <thead>
+        <tr>
+          <th colspan="2"><center><%= t :payments %></center></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= t :working_date %></td>
+          <td><%= @payslip.date.to_date.strftime("%d/%m/%Y") %></td>
+        </tr>
+      </tbody>
+      <thead>
+        <tr>
+          <th><%= t :description %></th>
+          <th><%= t :amount %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= t :base_salary %></td>
+          <td><%= humanized_money_with_symbol @payslip.base_salary %></td>
+        </tr>
+        <tr>
+          <td><%= t :commission %></td>
+          <td><%= humanized_money_with_symbol @payslip.commission %></td>
+        </tr>
+        <tr>
+          <th><%= t :total_payment %></th>
+          <td><%= humanized_money_with_symbol @payslip.commission+@payslip.base_salary %></td>
+        </tr>
+      </tbody>
+
+      <thead>
+        <th colspan="2"><center><%= t :claims %></center></th>
+      </thead>
+      <tbody>
+        <% current_account.profile.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).each do |claim|%>
+          <tr>
+            <td><%= claim.subject %></td>
+            <td><%= humanized_money_with_symbol claim.amount %></td>
+          </tr>
+        <% end %>
+      </tbody>
+
+      <thead>
+        <th colspan="2"><center><%= t :others %></center></th>
+      </thead>
+
+      <tbody>
+        <% @affected_leave.each do |leave| %>
+          <tr>
+            <td><%= leave.leave_type.name %></td>
+            <td><%= humanized_money_with_symbol leave.salary_calculate(@payslip.base_salary_cents).to_f/100 %></td>
+          </tr>
+          <% @base_salary_cents = @base_salary_cents + leave.salary_calculate(@payslip.base_salary_cents)%>
+        <% end %>
+        
+        <% @payslip.payslip_settings.each do |payslip_setting| %>
+          <% if payslip_setting.positive? %>
+            <tr>
+              <td><%=payslip_setting.name%></td>
+              <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting, @base_salary_cents)/100%></td>
+            </tr>
+          <% else %>
+            <tr>
+              <td><%=payslip_setting.name%></td>
+              <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting, @base_salary_cents)/100%></td>
+            </tr>
+          <% end %>
+          <%@total = @total + @payslip.calculate(payslip_setting, @base_salary_cents)%>    
+        <% end %>
+      </tbody>
+    </table>
+
+    <table class="large-8">
+      <thead>
+         <tr>
+            <th><%= t :net_pay %></th>
+            <th><%= humanized_money_with_symbol (@total+@base_salary_cents).to_f/100 %></th>
+          </tr>
+      </thead>
+    </table>
+    <%= link_to t(:back), :back, class: "button success" %>
+  </div>
+</div>

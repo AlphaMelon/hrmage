@@ -1,4 +1,4 @@
-<% if !current_organization.id.nil? && (can? :manage, current_organization) %>
+<% if !current_organization.id.nil? && (can? :read, Leave ) %>
   <div class="row">
 
     <div class="large-2 hide-for-small columns">
@@ -33,10 +33,10 @@
 
     <div class="large-2 columns">
       <div class="user-panel">
-        <% if can? :manage, :all %>
+        <% if can? :read, Leave %>
           <ul class="side-nav">
-            <li><%= link_to "Admin", admin_session: true %></li>
-            <li><%= link_to "Normal", employee_session: true %></li>
+            <li><%= session[:admin_session] ?  ("<b>"+t(:admin)+"</b>").html_safe : (link_to t(:admin), root_path(admin_session: true)) %></li>
+            <li><%= session[:employee_session] ?  ("<b>"+t(:normal)+"</b>").html_safe : (link_to t(:normal), root_path(employee_session: true)) %></li>
           </ul>
         <% end %>
       </div>
@@ -56,11 +56,15 @@
 
     <div class="large-10 columns">
       <div class="top-nav-bar">
-        <ul class="inline-list">
-          <li><%= link_to "Leave", organization_leaves_path(current_organization) %></li>
-          <li><a href="#">Salary</a></li>
-          <li><%= link_to "Claims",  organization_claims_path(current_organization), id: "organization_claims"%></li>
-        </ul>
+        <% if (!current_organization.nil? || !current_organization.nil?) && session[:employee_session] %>
+          <%= render "shared/normal_nav_bar" %>
+        <% elsif (!@my_leaves.nil? || !@my_leave.nil?) && session[:employee] %>
+          <%= render "shared/normal_nav_bar" %>
+        <% elsif (!@my_claims.nil? || !@my_claim.nil?) && session[:employee] %>
+          <%= render "shared/normal_nav_bar" %>
+        <% elsif (@accounts.nil? || !@account.nil?) && session[:employee] %>
+          <%= render "shared/normal_nav_bar" %>
+        <%end%>
       </div>
     </div>
   </div>

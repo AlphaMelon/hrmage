@@ -1,83 +1,92 @@
 <div class="row">
   <div class="large-12 columns">
-    <table>
+    <h4><%= t :organization_details %></h4>
+    <table class="large-9">
       <thead>
-        <th>Name</th>
-        <th>Domain</th>
-        <th></th>
+        <th><%= t :name %></th>
+        <th><%= t :domain %></th>
+        <th><%= t :country %></th>
+        <th><%= t :currency %></th>
+        <th><%= t :action %></th>
       </thead>
       <tbody>
-        <td><%= @organization.name%></td>
-        <td><%= @organization.domain%></td>
-        <td><%= link_to "Edit", edit_organization_path(@organization) %></td>
+        <tr>
+          <td><%= @organization.name %></td>
+          <td><%= @organization.domain %></td>
+          <td><%= @organization.country %></td>
+          <td><%= @organization.default_currency %></td>
+          <td><%= link_to t(:edit_organization), edit_organization_path(@organization), id: "edit_organization" %></td>
+        </tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<div class="row">
-  <div class="large-12 columns">
-    <h2><%= @organization.name.capitalize %>'s Departments</h2>
-    <table>
+<dl class="tabs" data-tab>
+  <dd class="active"><a href="#departments"><%= t :departments %></a></dd>
+  <dd><a href="#login_account"><%= t :login_account %></a></dd>
+  <dd><a href="#employees"><%= t :employees %></a></dd>
+</dl>
+<div class="tabs-content">
+  <div class="content active" id="departments">
+    <table class="large-9">
       <thead>
-        <th>Name</th>
-        <th></th>
+        <th><%= t :name %></th>
+        <th><%= t :action %></th>
       </thead>
+      <tbody>
       <% @organization.departments.each do |department|%>
         <tr>
           <td><%= department.name%></td>
-          <td><%= link_to "Edit", edit_organization_department_path(@organization, department)%></td>
+          <td><%= link_to t(:edit), edit_organization_department_path(@organization, department)%></td>
         </tr>
       <% end %>
+      </tbody>
     </table>
-    <%= link_to "Department list", organization_departments_path(@organization) %>
+    <%= link_to t(:department_list), organization_departments_path(@organization), class: "button" %>
   </div>
-</div>
-<div class="row">
-  <div class="large-12 columns">
-    <h2>Accounts with access to <%= @organization.name %></h2>
-    <table>
-      <tr>
-        <th>Email</th>
-        <th>Role</th>
-        <th></th>
-      </tr>
-      <% @organization.account_organizations.each do |acc_org|%>
-        <tr>
-          <td><%= acc_org.account.email %></td>
-          <td><%= acc_org.role %></td>
-          <th><%= link_to "Remove link", organization_account_organization_path(@organization, acc_org), method: :delete, data: { confirm: 'Are you sure?' }%></th>
-        </tr>
-      <% end %>
+  <div class="content" id="login_account">
+    <table class="large-9">
+      <thead>
+        <th><%= t :email %></th>
+        <th><%= t :role %></th>
+        <th><%= t :action %></th>
+      </thead>
+      <tbody>
+        <% @organization.account_organizations.each do |acc_org|%>
+          <tr>
+            <td><%= acc_org.account.email %></td>
+            <td><%= acc_org.role %></td>
+            <th><%= link_to t(:remove_link), organization_account_organization_path(@organization, acc_org), method: :delete, data: { confirm: t(:are_you_sure) }%></th>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
-    <%= link_to "Add more account to #{@organization.name}", new_organization_account_organization_path(@organization)%>
+    <%= link_to "Add more account to #{@organization.name}", new_organization_account_organization_path(@organization), class: "button" %>
   </div>
-</div>  
-
-<div class="row">
-  <div class="large-12 columns">
-    <h2><%= @organization.name.capitalize %>'s Employees</h2>
-    <table>
-      <tr>
-        <th>Last Name</th>
-        <th>First Name</th>
-        <th>E-mail</th>
-        <th>Mobile Contact</th>
-        <th>Address</th>
-        <th></th>
-        <th></th>
-      </tr>
-      <% @organization.employees.each do |employee|%>
-        <tr>
-          <td><%= employee.last_name %></td>
-          <td><%= employee.first_name%></td>
-          <td><%= employee.account.email if !employee.account.nil?%></td>
-          <td><%= employee.mobile_contact %></td>
-          <td><%= employee.address%></td>
-          <td><%= link_to "Edit", edit_organization_employee_path(@organization, employee)%></td>
-        </tr>
-      <% end %>
+  <div class="content" id="employees">
+    <table class="large-9">
+      <thead>
+        <th><%= t :last_name %></th>
+        <th><%= t :first_name %></th>
+        <th><%= t :e_mail %></th>
+        <th><%= t :mobile_no %></th>
+        <th><%= t :address %></th>
+        <th><%= t :action %></th>
+      </thead>
+      <tbody>
+        <% @organization.employees.each do |employee|%>
+          <tr>
+            <td><%= employee.last_name %></td>
+            <td><%= employee.first_name%></td>
+            <td><%= employee.account.email if !employee.account.nil?%></td>
+            <td><%= employee.mobile_contact %></td>
+            <td><%= employee.address%></td>
+            <td><%= link_to t(:edit), edit_organization_employee_path(@organization, employee)%></td>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
-    <%= link_to "Employee list", organization_employees_path(@organization) %>
+    <%= link_to t(:employee_list), organization_employees_path(@organization), class: "button" %>
   </div>
 </div>

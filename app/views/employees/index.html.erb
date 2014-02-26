@@ -1,44 +1,52 @@
 <div class="row">
   <div class="large-12 columns">
-    <h2>Employee's List</h2>
+    <h2><%= t :employees_list %></h2>
     <table>
       <thead>
-        <th>Last Name</th>
-        <th>First Name</th>
-        <th>Position</th>
-        <th>E-mail</th>
-        <th>Mobile Contact</th>
-        <th>Address</th>
-        <th>Available Leaves</th>
-        <th>Available Claims</th>
-        <th>Action</th>
-        <th></th>
+        <th><%= t :last_name %></th>
+        <th><%= t :first_name %></th>
+        <th><%= t :position %></th>
+        <th><%= t :e_mail %></th>
+        <th><%= t :mobile_no %></th>
+        <th><%= t :base_salary %></th>
+        <th><%= t :Can_self_approve %></th>
+        <th><%= t :action %></th>
       </thead>
+      <tbody>
       <% @employees.each do |employee|%>
-        <tbody>
+        <tr>
           <td><%= employee.last_name%></td>
           <td><%= employee.first_name%></td>
           <td><%= employee.position.name if !employee.position.blank?%></td>
           <td><%= employee.account.email if !employee.account.nil?%></td>
           <td><%= employee.mobile_contact%></td>
-          <td><%= employee.address%></td>
-          <td><%= employee.available_leaves%></td>
-          <td><%= humanized_money_with_symbol employee.available_claims%></td>
+          <td><%= humanized_money_with_symbol employee.base_salary%></td>
+          <td><%= employee.can_self_approve%></td>
           <td>
-            <a href="#" data-dropdown="drop_<%= employee.id %>" class="tiny button dropdown">Details</a><br>
+            <a href="#" data-dropdown="drop_<%= employee.id %>" class="tiny button dropdown"><%= t :details %></a><br>
             <ul id="drop_<%= employee.id %>" data-dropdown-content class="f-dropdown">
               <li>
-                <%= link_to " Show", organization_employee_path(@organization, employee), id: "show_employee", class: "fi-eye" %>
+                <%= link_to t(:show), organization_employee_path(@organization, employee), id: "show_employee", class: "fi-eye" %>
               </li>
               <li>
-                <%= link_to " Edit", edit_organization_employee_path(@organization, employee), id: "edit_employee", class: "fi-pencil" %>
+                <%= link_to t(:edit), edit_organization_employee_path(@organization, employee), id: "edit_employee", class: "fi-pencil" %>
+              </li>
+              <li>
+                <%= link_to t(:delete), organization_employee_path(@organization, employee), id: 'delete_employee', class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure_employee) }%>
+              </li>
+              <li>
+                <%= link_to t(:b_settings), organization_employee_employee_variables_path(@organization, employee), class: "fi-widget"%>
+              </li>
+              <li>
+                <%= link_to t(:payslip), organization_employee_payslips_path(@organization, employee), class: "fi-dollar" %>
               </li>
             </ul>
           </td>
-        </tbody>
+        </tr>
       <% end %>
+      </tbody>
     </table>
-    <%= link_to "Add New Employee", new_organization_employee_path, class: "button success" %>
+    <%= link_to t(:add_new_employee), new_organization_employee_path, class: "button success" %>
   </div>
 </div>
 

@@ -1,0 +1,17 @@
+<%= simple_form_for [current_organization, @organization_setting], wrapper: :custom do |f| %>
+  <%= render '/shared/error_message', object: f.object %>
+
+  <h5>Working hours</h5>
+  <%= f.input :monday, autofocus: true, placeholder: "8" %>
+  <%= f.input :tuesday, placeholder: "8" %>
+  <%= f.input :wednesday, placeholder: "8" %>
+  <%= f.input :thursday, placeholder: "8" %>
+  <%= f.input :friday, placeholder: "8" %>
+  <%= f.input :saturday, placeholder: "4" %>
+  <%= f.input :sunday, placeholder: "leave blank if not working day" %>
+  <%= f.input :minimum_leave %>
+  <div class="row">
+    <div class="large-3 small-3 columns"></div>
+    <div class="large-9 small-9 columns"><%= f.button :submit, class: "button success" %></div>
+  </div>
+<% end %>

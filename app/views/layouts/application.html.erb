@@ -6,32 +6,23 @@
   <body>
     <%= render "shared/top_bar"%>
     <%= render "layouts/notifications" %>
+    <%= render "shared/top_nav_bar" %>
+
     <div class="row">
-
-      <div class="large-12 small-12 columns">
-        <%= render "shared/top_nav_bar" %>
-      </div>
-
-      <div class="large-12 small-12 columns">
-        <div class="row">
-          <div class="large-2 small-12 columns">
-            <%= render "shared/side_bar"%>
-          </div>
-          <div class="large-10 small-12 columns">
-            <%= yield %>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer">
-      <div class="row">
+      <% if request.env['PATH_INFO'] == root_path %>
         <div class="large-12 columns">
-          <%= render "shared/footer" %>
+          <%= yield %>
         </div>
-      </div>
+      <% else  %>
+        <div class="large-2 small-12 columns">
+          <%= render "shared/side_bar"%>
+        </div>
+        <div class="large-10 small-12 columns">
+          <%= yield %>
+        </div>
+      <% end %>
     </div>
-    <%= javascript_include_tag "application" %>
-    
+
+    <%= render "shared/footer" %>
   </body>
 </html>

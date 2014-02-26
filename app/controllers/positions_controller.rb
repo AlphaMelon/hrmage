@@ -34,8 +34,12 @@ class PositionsController < ApplicationController
   end
 
 	def destroy
-		@position.destroy
-		redirect_to organization_positions_path, notice: 'Position successfully deleted'
+	  if @position.employees.blank?
+		  @position.destroy
+		  redirect_to organization_positions_path, notice: 'Position successfully deleted'
+		else
+		  redirect_to organization_positions_path, alert: 'You cannot delete this position because there is employee with this position.'
+		end
 	end
 
   private
@@ -49,6 +53,7 @@ class PositionsController < ApplicationController
 	end
 
 	def position_params
-		params.require(:position).permit(:name, :max_leaves, :organization_id, :properties, :can_approve_leave, :can_approve_claim, :max_claims_cents, :max_claims)
+		params.require(:position).permit(:name, :organization_id, :properties, 
+		:can_approve_leave, :can_approve_claim, :monthly_max_claims_cents, :monthly_max_claims)
 	end
 end

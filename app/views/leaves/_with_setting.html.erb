@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="large-12 columns">
+
+    <div class="table-overflow">
+      <table>
+        <thead>
+          <th><%= t :employee_name %></th>
+          <% (1..@date.end_of_month.day).each do |d|%>
+            <th><%= d%></th>
+          <% end %>
+
+
+        </thead>
+        <tbody>
+          <% @employees.each do |employee|%>
+            <tr>
+              <td><%= employee.name_with_initial%></td>
+              <% count = 1 %>
+              <% offday = 0 %>
+              <% while count <= @date.end_of_month.day%>
+                <% got_leave = false %>
+                <% type = nil %>
+                <% pending = false %>
+                <% duration = 0 %>
+                <% employee.leaves.each do |emp_lea|%>
+                  <% if (emp_lea.start_date..emp_lea.start_date+(emp_lea.duration_seconds/24/60/60-1+offday).day).cover?(Date.new(@year,@month,count))%>
+                    <% got_leave = true %>
+                    <% type = emp_lea.leave_type %>
+                    <% pending = true if emp_lea.status == "Pending" %>
+                    <% break %>
+                  <% else %>
+                    <% got_leave = false %>
+                  <% end %>
+                <% end %>
+                
+                <% if OrganizationHoliday.holiday?(current_organization.id, Date.new(@year,@month,count))%>
+                  <td data-tooltip class="holiday has-tip" title="<%=OrganizationHoliday.holiday?(current_organization.id, Date.new(@year,@month,count)).name%>"></td>
+                  <% offday = offday + 1%>
+                <% elsif !@workday[Date.new(@year,@month,count).wday]%>
+                  <td class="offday"></td>
+                  <% offday = offday + 1%>
+                <% elsif got_leave %>
+                  <% if pending%>
+                    <td class="pending"></td>
+                  <% else %>
+                    <td bgcolor="<%= type.colour %>"></td>
+                  <% end %>
+                <% else %>
+                  <td class="present"></td>
+                  <% offday = 0%>
+                <% end %>
+                <% count = count + 1 %>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>   
+  </div>
+
+  <div class="large-12 columns">
+    <table class="remark-leaves">
+      <tbody>
+        <tr>
+          <th><%= t :remark %></th>
+          <th><%= t :no_leave %></th>
+          <td class="present"></td>
+          <th><%= t :pending %></th>
+          <td class="pending"></td>
+          <th>Offday</th>
+          <td class="offday"></td>
+          <th>Holiday</th>
+          <td class="holiday"></td>
+          <% @leave_types.each do |leave_type|%>
+            <th><%=leave_type.name%></th>
+            <td bgcolor="<%=leave_type.colour%>">
+          <%end%>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

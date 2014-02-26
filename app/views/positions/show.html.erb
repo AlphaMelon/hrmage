@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="large-12 small-12 columns">
+    <h2><%= @position.name%>'s <%= t :list%></h2>
+    <table>
+      <thead>
+        <th><%= t :last_name %></th>
+        <th><%= t :first_name %></th>
+        <th><%= t :position %></th>
+        <th><%= t :e_mail %></th>
+        <th><%= t :mobile_no %></th>
+        <th>Base Salary</th>
+        <th><%= t :Can_self_approve %></th>
+        <th><%= t :action %></th>
+      </thead>
+      <tbody>
+      <% @position.employees.each do |employee|%>
+        <tr>
+          <td><%= employee.last_name%></td>
+          <td><%= employee.first_name%></td>
+          <td><%= employee.position.name if !employee.position.blank?%></td>
+          <td><%= employee.account.email if !employee.account.nil?%></td>
+          <td><%= employee.mobile_contact%></td>
+          <td><%= humanized_money_with_symbol employee.base_salary%></td>
+          <td><%= employee.can_self_approve%></td>
+          <td>
+            <a href="#" data-dropdown="drop_<%= employee.id %>" class="tiny button dropdown"><%= t :details %></a><br>
+            <ul id="drop_<%= employee.id %>" data-dropdown-content class="f-dropdown">
+              <li>
+                <%= link_to t(:show), organization_employee_path(current_organization, employee), id: "show_employee", class: "fi-eye" %>
+              </li>
+              <li>
+                <%= link_to t(:edit), edit_organization_employee_path(current_organization, employee), id: "edit_employee", class: "fi-pencil" %>
+              </li>
+              <li>
+                <%= link_to t(:b_settings), organization_employee_employee_variables_path(current_organization, employee), class: "fi-widget"%>
+              </li>
+              <li>
+                <%= link_to t(:payslip), organization_employee_payslips_path(current_organization, employee), class: "fi-dollar" %>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= link_to t(:back), organization_positions_path(current_organization), class: "button success" %>
+
+  </div>
+</div>

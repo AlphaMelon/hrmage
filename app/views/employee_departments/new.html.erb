@@ -1,26 +1,24 @@
 <div class="row">
-  <div class="large-6 columns">
-
+  <div class="large-8 small-12 columns">
     <% if @departments.count != 0%>
-      <%= simple_form_for [@organization, @employee, @employee_department] do |f| %>
-      
-        <%= render '/shared/error_message', object: f.object %>
+      <fieldset>
+        <legend><%= t :link_department_to %> <%= @employee.last_name.capitalize %></legend>
+        <div class="panel"><%= t :employee_departments_add_new_description %></div>
+        <%= simple_form_for [@organization, @employee, @employee_department], wrapper: :custom do |f| %>
         
-        <p>Linking department to <%= @employee.last_name %></p>
-        <div class="row">
-          <div class="large-3 small-3 columns">
-            <%= label_tag(:department_id, "Department", class: "select optional left inline", for: "employee_department_department_id") %>
+          <%= render '/shared/error_message', object: f.object %>
+          <%= f.input :department_id, collection: @departments, include_blank: false %>
+          <%= f.input :leader %>
+          <div class="row">
+            <div class="large-3 small-3 columns"></div>
+            <div class="large-9 small-9 columns">
+              <%= f.button :submit, t(:link_to_employee), class: "button success" %>
+            </div>
           </div>
-          <div class="large-9 small-9 columns">
-            <%= f.input_field :department_id, collection: @departments, include_blank: false %>
-            <%= f.input :leader %>
-            <%= f.button :submit, "Link to employee", class: "button success" %>
-          </div>
-        </div>
-      <% end %>
+        <% end %>
+      </fieldset>
     <% else %>
-      This organization got no department yet, please add department at <%= link_to "here", organization_departments_path(@organization) %>
+      <%= t :employee_departments_add_new_error_msg%> <%= link_to t(:here), organization_departments_path(@organization) %>
     <% end %>
-
   </div>
 </div>

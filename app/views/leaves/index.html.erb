@@ -1,14 +1,15 @@
 <div class="row">
   <div class="large-12 columns">
-    <h1><%= current_organization.name.capitalize %>'s employee's leaves</h1>
-    <h3>Pending Leaves</h3>
+    <h1><%= current_organization.name.capitalize %>'s <%= t :employees_leaves %></h1>
+    <h3><%= t :pending_leaves %></h3>
     <table>
       <thead>
-        <th>Name</th>
-        <th>Start Date</th>
-        <th>Duration</th>
-        <th>Comment</th>
-        <th>Action</th>
+        <th><%= t :name %></th>
+        <th><%= t :start_date %> </th>
+        <th><%= t :duration %></th>
+        <th><%= t :comment %></th>
+        <th><%= t :leave_type %></th>
+        <th><%= t :action %></th>
       </thead>
       <% @pending_leaves.each do |leave|%>
         <tr>
@@ -16,14 +17,15 @@
           <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %></td>
           <td><%= leave.duration_seconds/24/60/60%> Days</td>
           <td><%= leave.comment %></td>
+          <td><%= leave.leave_type.name%></td>
           <td>
-          <a href="#" data-dropdown="drop_<%=leave.id %>" class="tiny button dropdown">Details</a>
+          <a href="#" data-dropdown="drop_<%=leave.id %>" class="tiny button dropdown"><%= t :details %></a>
             <ul id="drop_<%=leave.id %>" data-dropdown-content class="f-dropdown">
               <li>
-                <%= link_to " Approve", organization_leave_path(current_organization, leave, leave: {status: "Approved"}), method: "patch", class: "fi-check"%>
+                <%= link_to t(:approve), organization_leave_path(current_organization, leave, leave: {status: "Approved"}), method: "patch", class: "fi-check", id: "approve_leave"%>
               </li>
               <li>
-                <%= link_to " Reject", organization_leave_path(current_organization, leave, leave: {status: "Rejected"}), method: "patch", class: "fi-x"%>
+                <%= link_to t(:reject), organization_leave_path(current_organization, leave, leave: {status: "Rejected"}), method: "patch", class: "fi-x", id: "reject_leave"%>
               </li>
             </ul>
           </td>
@@ -31,31 +33,31 @@
       <% end %>
     </table>
     
-    <h3>Waiting for Verification Leaves</h3>
+    <h3><%= t :waiting_for_verification_leaves %></h3>
     <table>
       <thead>
-        <th>Name</th>
-        <th>Start Date</th>
-        <th>Duration</th>
-        <th>Leave Type</th>
-        <th>Comment</th>
-        <th>Action</th>
+        <th><%= t :name %></th>
+        <th><%= t :start_date %></th>
+        <th><%= t :duration %></th>
+        <th><%= t :comment %></th>
+        <th><%= t :leave_type %></th>
+        <th><%= t :action %></th>
       </thead>
       <% @verification_needed_leaves.each do |leave|%>
         <tr>
           <td><%= leave.employee.name_with_initial %></td>
           <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %></td>
           <td><%= leave.duration_seconds/24/60/60%> Days</td>
-          <td><%= leave.leave_type.name %></td>
           <td><%= leave.comment %></td>
+          <td><%= leave.leave_type.name %></td>
           <td>
-            <a href="#" data-dropdown="drop_<%= leave.id %>" class="tiny button dropdown">Details</a>
+            <a href="#" data-dropdown="drop_<%= leave.id %>" class="tiny button dropdown"><%= t :details %></a>
             <ul id="drop_<%= leave.id %>" data-dropdown-content class="f-dropdown">
               <li>
-                <%= link_to " Verify", organization_leave_path(current_organization, leave, leave: {status: "Approved"}), method: "patch", class: "fi-check" %>
+                <%= link_to t(:verify), organization_leave_path(current_organization, leave, leave: {status: "Approved"}), method: "patch", class: "fi-check" %>
               </li>
               <li>
-                <%= link_to " Reject", organization_leave_path(current_organization, leave, leave: {status: "Rejected"}), method: "patch", class: "fi-x" %>
+                <%= link_to t(:reject), organization_leave_path(current_organization, leave, leave: {status: "Rejected"}), method: "patch", class: "fi-x" %>
               </li>
             </ul>
           </td>
@@ -67,141 +69,51 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h3>History</h3>
+    <h3><%= t :history %></h3>
   </div>
   <div class="large-12 columns">
     <table>
       <thead>
-        <th><%= sort_link @search, :last_name, "Name" %></th>
-        <th>Type</th>
-        <th><%= sort_link @search, :comment, "Comment" %></th>
-        <th><%= sort_link @search, :duration_seconds, "Duration" %></th>
-        <th><%= sort_link @search, :date, "When" %></th>
-        <th><%= sort_link @search, :status, "Status" %></th>
-        <th>Action</th>
+        <th><%= sort_link @search, :last_name, t(:name) %></th>
+        <th><%= t :type %></th>
+        <th><%= sort_link @search, :comment, t(:comment) %></th>
+        <th><%= sort_link @search, :duration_seconds, t(:duration) %></th>
+        <th><%= sort_link @search, :date, t(:when) %></th>
+        <th><%= sort_link @search, :status, t(:status) %></th>
+        <th><%= t :action %></th>
       </thead>
-      <% @leaves.each do |history|%>
       <tbody>
+      <% @leaves.each do |history|%>
+      <tr>
         <td><%= history.employee.name_with_initial %></td>
         <td><%= history.leave_type.name %></td>
         <td><%= history.comment %></td>
         <td><%= (history.duration_seconds)/60/60/24 %> Days</td>
-        <td><%= history.start_date.to_date.strftime("%d/%m/%Y") %> - <%= (history.start_date.to_date + ((history.duration_seconds)/60/60/24).days).strftime("%d/%m/%Y") %></td>
+        <td><%= history.start_date.to_date.strftime("%d/%m/%Y") %> - <%= (history.start_date.to_date + ((history.duration_seconds)/60/60/24-1).days).strftime("%d/%m/%Y") %></td>
         <td><%= history.status %></td>
         <td>
-        <a href="#" data-dropdown="drop2" class="tiny button dropdown">Details</a>
+        <a href="#" data-dropdown="drop2" class="tiny button dropdown"><%= t :details %></a>
           <ul id="drop2" data-dropdown-content class="f-dropdown">
             <li><a href="#">test</a></li>
           </ul>
         </td>
-      </tbody>
+      </tr>
       <%end%>
+      </tbody>
     </table>
     <%= paginate @leaves %>
-    <a href="#" data-dropdown="end_of_year" class="tiny button dropdown">End of year?</a>
+    <a href="#" data-dropdown="end_of_year" class="tiny button dropdown"><%= t :end_of_year%></a>
     <ul id="end_of_year" data-dropdown-content class="f-dropdown">
-      <li><%= link_to "Reset Employee's Available Leaves", organization_end_of_year_action_path(forfeit: true), method: :post%></li>
-      <li><%= link_to "Carry Forward Employee's Available Leaves", organization_end_of_year_action_path(forward: true), method: :post%></li>
+      <li><%= link_to t(:reset_employees_available_leaves), organization_end_of_year_action_path(forfeit: true), method: :post%></li>
+      <li><%= link_to t(:carry_forward_employees_available_leaves), organization_end_of_year_action_path(forward: true), method: :post%></li>
     </ul>
     
   </div>
 </div>
 
-<div class="row">
-  <div class="large-12 columns">
-    <h3>Leave Calendar</h3>
-
-    <div class="row">
-      <%= simple_form_for :date, url: organization_leaves_path(current_organization), method: :get do |f| %>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:year, "Year", class: "select required left inline", for: "date_year") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <div class="large-5 columns">
-            <%= f.input_field :year, collection: (@year-3..@year+3), include_blank: false, selected: @year %>
-          </div>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:month, "Month", class: "select required left inline", for: "date_month") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <div class="large-5 columns">
-            <%= f.input_field :month, collection: @month_collection, include_blank: false, selected: @month %>
-            <%= f.submit "Change Date", class: "button success"%>
-          </div>
-        </div>
-      <% end %> 
-    </div>
-
-    <div class="table-overflow">
-      <table>
-        <thead>
-          <th></th>
-          <% (1..@date.end_of_month.day).each do |d|%>
-            <th><%= d%></th>
-          <% end %>
-        </thead>
-        
-        <tbody>
-        <% @employees.each do |employee|%>
-          <tr>
-            <td><%= employee.name_with_initial%></td>
-            <% count = 1 %>
-            <% while count <= @date.end_of_month.day%>
-              <% got_leave = false %>
-              <% type = nil %>
-              <% pending = false %>
-              <% duration = 0 %>
-              <% employee.leaves.each do |emp_lea|%>
-                <% if emp_lea.start_date.to_date == Date.new(@year,@month,count)%>
-                  <% got_leave = true %>
-                  <% type = emp_lea.leave_type %>
-                  <% pending = true if emp_lea.status == "Pending" %>
-                  <% duration = emp_lea.duration_seconds/24/60/60 %>
-                  <% break %>
-                <% else %>
-                  <% got_leave = false %>
-                <% end %>
-              <% end %>
-              
-              <% if got_leave %>
-                <% if pending%>
-                  <%(1..duration).each do |du|%>
-                    <td bgcolor="#000000"></td>
-                  <% end %>
-                <% else %>
-                  <%(1..duration).each do |du|%>
-                    <td bgcolor="<%= type.colour %>"></td>
-                  <% end %>
-                <% end %>
-                <% count = count + duration%>
-              <% else %>
-                <td class="present"></td>
-                <% count = count + 1 %>
-              <% end %>
-            <% end %>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>   
-  </div>
-
-  <div class="large-12 columns">
-    <table class="remark-leaves">
-      <tbody>
-        <tr>
-          <th>REMARK</th>
-          <th>No Leave</th>
-          <td bgcolor="#E7E7E7"></td>
-          <th>Pending</th>
-          <td bgcolor="#000000"></td>
-          <% @leave_types.each do |leave_type|%>
-            <th><%=leave_type.name%></th>
-            <td bgcolor="<%=leave_type.colour%>">
-          <%end%>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<%= render "select_year_month" %>
+<% if current_organization.organization_setting.nil? %>
+  <%= render "without_setting"%>
+<% else %>
+  <%= render "with_setting" %>
+<% end %>

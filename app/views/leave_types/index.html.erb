@@ -1,32 +1,32 @@
 <div class="row">
   <div class="large-12 columns">
-    <h2>Leave Type's List</h2>
+    <h2><%= t :leave_types_list %></h2>
     <table>
       <thead>
-        <th>Name</th>
-        <th>Approval Needed</th>
-        <th>Description</th>
-        <th>Affected Entity</th>
-        <th>Type</th>
-        <th>Colour</th>
-        <th>Action</th>
+        <th><%= t :name %></th>
+        <th><%= t :approval_needed %></th>
+        <th><%= t :description %></th>
+        <th><%= t :affected_entity %></th>
+        <th><%= t :type %></th>
+        <th><%= t :default_max_leaves %></th>
+        <th><%= t :colour %></th>
+        <th><%= t :action %></th>
       </thead>
+      <tbody>
       <% @leave_types.each do |leave_type|%>
         <tr>
           <td><%= leave_type.name %></td>
-          <td><%= leave_type.approval_needed %></td>
+          <td><%= leave_type.approval_needed? ? 'Yes' : 'No' %></td>
           <td><%= leave_type.description %></td>
-          <td><%= leave_type.affected_entity %></td>
-          <td><%= leave_type.type %></td>
+          <td><%= leave_type.affected_entity.map(&:capitalize).to_sentence %></td>
+          <td><%= leave_type.type.delete("Leave") %></td>
+          <td><%= leave_type.default_count_seconds/24/60/60 %> <%= t :days %></td>
           <td bgcolor="<%= leave_type.colour %>"></td>
-          <td><%= link_to "Edit", edit_organization_leave_type_path(current_organization, leave_type) %></td>
+          <td><%= link_to t(:edit), edit_organization_leave_type_path(current_organization, leave_type), class: "fi-pencil" %></td>
         </tr>
       <% end %>
+      </tbody>
     </table>
-    <span class="minicolors-swatch">
-<span class="minicolors-swatch-color" style="background-color: rgb(224, 49, 49);">adsfasdf</span>
-</span>
-    <%= link_to "Add New Leave Type", new_organization_leave_type_path(current_organization), class: "button success" %>
+    <%= link_to t(:add_new_leave_type), new_organization_leave_type_path(current_organization), class: "button success" %>
   </div>
 </div>
-

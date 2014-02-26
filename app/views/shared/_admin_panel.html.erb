@@ -1,13 +1,21 @@
 <% if !current_organization.id.nil? %>
 
   <ul class="side-nav">
-    <li><h6><%= current_organization.name.capitalize%>'s Organization</h6></li>
-    <li><%= link_to "Department", organization_departments_path(current_organization) %></li>
+    <li><h6><%= current_organization.name.capitalize%>'s <%= t (:organization)%></h6></li>
+    <li><%= link_to t(:department), organization_departments_path(current_organization) %></li>
     <li class="divider"></li>
-    <li><%= link_to "Position", organization_positions_path(current_organization) %></li> 
+    <li ><%= link_to t(:position), organization_positions_path(current_organization) %></li> 
     <li class="divider"></li>
-    <li><%= link_to "Employee", organization_employees_path(current_organization) %></li>
+    <li><%= link_to t(:employee), organization_employees_path(current_organization) %></li>
     <li class="divider"></li>
-    <li><%= link_to "Leave Types", organization_leave_types_path(current_organization) %></li> 
+    <li><%= link_to t(:leave_types), organization_leave_types_path(current_organization) %></li>
+    <li class="divider"></li>
+    <li><%= link_to t(:organization_settings), organization_organization_settings_path(current_organization) %></li> 
+    <% if !current_organization.organization_setting.nil?%>    
+      <% if !current_organization.organization_setting.id.nil?%>
+        <li class="divider"></li>
+        <li><%= link_to t(:organization_holidays), organization_organization_setting_organization_holidays_path(current_organization, current_organization.organization_setting)%></li> 
+      <% end %>
+    <% end %>
   </ul>
 <% end %>

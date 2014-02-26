@@ -1,0 +1,6 @@
+update payslip for
+<% if activity.trackable %>
+  <%= link_to activity.trackable.employee.full_name, organization_employee_payslips_path(current_organization, activity.trackable.employee) %>
+<% else %>
+  which has since been removed 
+<% end %>

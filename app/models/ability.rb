@@ -12,8 +12,19 @@ class Ability
       acc_org = AccountOrganization.new
     end
     
-    if acc_org.role == "Admin" || acc_org.role == "Super Admin"
+    if acc_org.role == "Super Admin"
       can :manage, :all
+    elsif acc_org.role == "Admin"
+      can :create, Leave
+      can :create, Claim
+      can :read, Leave
+      can :read, Claim
+      can :update, Leave do |leave|
+        leave.try(:employee_id) != account.profile.id || account.profile.can_self_approve
+      end
+      can :update, Claim do |claim|
+        claim.try(:employee_id) != account.profile.id || account.profile.can_self_approve
+      end
     elsif acc_org.role == "Employee"
       can :create, Leave
       can :create, Claim

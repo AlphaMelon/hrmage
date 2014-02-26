@@ -1,5 +1,9 @@
 <div class="row">
-  <div class="large-12 columns">
+  <div class="large-8 small-12 columns">
+    <fieldset>
+      <legend><%= t :edit %> <%= @position.name %></legend>
+      <div class="panel"><%= t :positions_edit_description %></div>
       <%= render 'form' %>
+    </fieldset>
   </div>
 </div>

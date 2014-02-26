@@ -2,17 +2,37 @@ Hrmage::Application.routes.draw do
 
   devise_for :accounts, :controllers => { :registrations => "registrations" }
   resources :accounts, :only => [:show]
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   root 'home#index'
   get 'my_leaves' => "home#my_leaves"
   get 'my_claims' => "home#my_claims"
+  get 'my_salary' => "home#my_salary"
+  get 'my_salary_show/:payslip_id' => "home#my_salary_show"
+  get 'sign_in' => "home#sign_in"
+  get 'sign_up' => "home#sign_up"
+  get 'calendar' => "home#calendar"
+  get 'print_salary' => "home#print_salary"
+  get 'approvals' => "home#approvals"
   resources :organizations do
+    resources :activities
+    resources :payslip_settings
     resources :claims
-    resources :positions
+    resources :positions do
+      resources :position_settings
+    end
     resources :account_organizations
     resources :departments
     resources :leaves
     resources :leave_types
+    resources :organization_settings do
+      resources :organization_holidays do
+        post 'get_and_update_holiday' => "organization_holidays#get_and_update_holiday"
+      end
+    end
     resources :employees do
+      resources :payslips
+      resources :employee_variables
       resources :employee_departments
       resources :documents
       get 'edit_login_info' => 'employees#edit_login_info'

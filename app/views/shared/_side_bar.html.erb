@@ -1,46 +1,57 @@
-
-<%# admin plane %>
+<%# admin panel %>
 <% if (!@departments.nil? || !@department.nil?) && session[:admin_session] %>
   <%= render "shared/admin_panel" %>
 <% elsif (!@departments.nil? || !@department.nil?) && session[:employee_session] %>
   <%# render what employee can see here %>
 
-<%# leaves plane %>
+<%# leaves panel %>
 <% elsif (!@leaves.nil? || !@leave.nil?) && session[:admin_session] %>
   <%= render "shared/admin_leaves_panel" %>
 <% elsif (!@leaves.nil? || !@leave.nil?) && session[:employee_session] %>
   <%= render "shared/leaves_panel" %>
-
-<%# my_leave plane %>
-<% elsif (!@my_leaves.nil? || !@my_leave.nil?) && session[:admin_session]  %>
+<% elsif (!@my_leaves.nil? || !@my_leave.nil?) && session[:admin_session] %>
   <%= render "shared/admin_leaves_panel" %>
 <% elsif (!@my_leaves.nil? || !@my_leave.nil?) && session[:employee_session] %>
   <%= render "shared/leaves_panel" %>
 
-<%# claim plane %>
+<%# claim panel %>
 <% elsif (!@claims.nil? || !@claim.nil?) && session[:admin_session]  %>
   <%= render "shared/admin_claims_panel" %>
 <% elsif (!@claims.nil? || !@claim.nil?) && session[:employee_session]  %>
   <%= render "shared/claims_panel" %>
+
+<%# salary panel %>
+<% elsif (!@payslip_settings.nil? || !@payslip_setting.nil?) && session[:admin_session]  %>
+  <%= render "shared/admin_salary_panel" %>
+<% elsif (!@my_salarys.nil? || !@my_salary.nil?) && session[:employee_session]  %>
+  <%= render "shared/salary_panel" %>
+<% elsif (!@payslips.nil? || !@payslip.nil?) && session[:employee_session]  %>
+  <%= render "shared/salary_panel" %>
 
 <% elsif (!@my_claims.nil? || !@my_claim.nil?) && session[:admin_session]  %>
   <%= render "shared/admin_claims_panel" %>
 <% elsif (!@my_claims.nil? || !@my_claim.nil?) && session[:employee_session]  %>
   <%= render "shared/claims_panel" %>
 
-<%# position plane %>
+<%# organization panel %>
+<% elsif (!@organizations.nil? || !@organization.nil?) && session[:admin_session] %>
+  <%= render "shared/admin_panel" %>
+<% elsif (!@organizations.nil? || !@organization.nil?) && session[:employee_session] %>
+  <%# render what employee can see here %>
+
+<%# position panel %>
 <% elsif (!@positions.nil? || !@position.nil?) && session[:admin_session] %>
   <%= render "shared/admin_panel" %>
 <% elsif (!@positions.nil? || !@position.nil?) && session[:employee_session] %>
   <%# render what employee can see here %>
 
-<%# leave type plane %>
+<%# leave type panel %>
 <% elsif (!@leave_types.nil? || !@leave_type.nil?) && session[:admin_session] %>
  <%= render "shared/admin_panel" %>
 <% elsif (!@leave_types.nil? || !@leave_type.nil?) && session[:employee_session] %>
   <%# render what employee can see here %>
 
-<%# employee plane %>
+<%# employee panel %>
 <% elsif (!@employees.nil? || !@employee.nil?) && session[:admin_session] %>
  <%= render "shared/admin_panel" %>
 <% elsif (!@employees.nil? || !@employee.nil?) && session[:employee_session] %>

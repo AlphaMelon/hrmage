@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="large-8 columns">
+    <h3><%= current_organization.name %>'s <%= t :activities %></h3>
+    <hr>
+  </div>
+</div>
+
+<% @activities.each do |activity| %>
+  <div class="row activity">
+    <div class="large-11 columns">
+    <h5><small><%="about #{time_ago_in_words(activity.created_at)} ago "%></small></h5>
+    <h5><%= link_to activity.owner.profile.name_with_initial, organization_employee_path(current_organization, activity.owner.profile) if activity.owner %>
+      <%= render_activity activity %></h5>
+    </div>
+  </div>
+<% end %>
+<%= paginate @activities %>

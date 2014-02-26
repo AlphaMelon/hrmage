@@ -1,1 +1,5 @@
-<p>THIS IS THE CONTAINER</p><%= current_organization.name if !current_organization.new_record?%>
+<% if account_signed_in? %>
+  <%= render "sign_in" %>
+<% else %>
+  <%= render "not_sign_in" %>
+<% end %>

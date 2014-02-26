@@ -5,6 +5,8 @@ class ClaimsController < ApplicationController
 	
 	load_and_authorize_resource
 	
+
+	
   def index
     @claims = @organization.claims.order(:id)
     @pending_claims = @organization.claims.where(status: "Pending")
@@ -21,6 +23,11 @@ class ClaimsController < ApplicationController
     @claim = @organization.claims.new(claim_params)
     @claim.employee_id = current_account.profile.id
     if @claim.save
+      @claim.employee.departments.each do |department|
+        department.employee_departments.where(leader: true).each do |employee_department|
+          UserMailer.apply_claim(employee_department.employee.account, @claim).deliver if !employee_department.employee.account.nil?
+        end
+      end
       redirect_to my_claims_path, notice: "Claim successfully applied, please wait for approval"
     else
       render action: 'new'
@@ -33,12 +40,11 @@ class ClaimsController < ApplicationController
   def update
     @claim.update(action_by_id: current_account.id)
 		if claim_params[:status] == "Approved"
-		  @claim.status = "Approved"
-		  @claim.save
+		  @claim.approve
+		  UserMailer.claim_approval(@claim.employee.account, @claim).deliver if !@claim.employee.account.nil?
 			redirect_to organization_claims_path(current_organization), notice: 'Claim application approved'
 		elsif claim_params[:status]  == "Rejected"
-		  @claim.status = "Rejected"
-		  @claim.save
+		  @claim.reject
 		  redirect_to organization_claims_path(current_organization), notice: 'Claim application rejected'
 		else
 			render action: 'edit'

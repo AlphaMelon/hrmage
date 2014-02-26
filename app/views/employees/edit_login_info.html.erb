@@ -1,29 +1,20 @@
 <div class="row">
-  <div class="large-12 columns">
-    <%= simple_form_for(@account, url: organization_employee_edit_login_info_path) do |f| %>
-      <%= render '/shared/error_message', object: f.object %>
-      <div class="row">
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:email, "Email", class: "email optional left inline", for: "account_email") %>
+  <div class="large-8 small-12 columns">
+    <fieldset>
+      <legend><%= t :edit_login_info %></legend>
+      <div class="panel"><%= t :employees_edit_login_info_description %></div>
+      <%= simple_form_for(@account, wrapper: :custom, url: organization_employee_edit_login_info_path) do |f| %>
+        <%= render '/shared/error_message', object: f.object %>
+        <%= f.input :email %>
+        <%= f.input :password, placeholder: t(:edit_login_info_password_placeholder) %>
+        <%= f.input :role, collection: ["Super Admin", "Admin", "Employee"], selected: AccountOrganization.where(account_id: @account.id, organization_id: @organization.id).first.role %>
+        <div class="row">
+          <div class="large-3 small-3 columns"></div>    
+          <div class="large-9 small-9 columns">
+            <%= f.button :submit, class: "button success" %>
+          </div>
         </div>
-        <div class="large-9 small-9 columns">
-          <%= f.input_field :email %>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:password, "Password", class: "password optional left inline", for: "account_password") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <%= f.input_field :password, placeholder: "leave blank if don't want update" %>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:role, "Role", class: "select optional left inline", for: "account_role") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <%= f.input_field :role, collection: ["Admin", "Employee"], 
-      selected: AccountOrganization.where(account_id: @account.id, organization_id: @organization.id).first.role %>
-          <%= f.button :submit, class: "button success" %>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </fieldset>    
   </div>
 </div>

@@ -1,39 +1,51 @@
 <div class="row">
-  <div class="large-12 columns">
-  <%= render 'form' %>
-  <% if !@employee.account.nil? %>
-    <div class="row">
-      <div class="large-3 small-4 columns"></div>
-      <div class="large-9 small-8 columns">
-        <%= link_to "Edit Login Info", organization_employee_edit_login_info_path(@organization, @employee), class: "button success"%>
+  <div class="large-8 small-12 columns">
+    <fieldset>
+      <legend>
+        <%= t :edit %> <%= @employee.first_name.capitalize %> <%= @employee.last_name.capitalize %> <%= t :information %>
+      </legend>
+      <div class="panel"><%= t :employees_edit_description %></div>
+      <%= render 'form' %>
+      <% if !@employee.account.nil? %>
+      <div class="row">
+        <div class="large-3 small-4 columns"></div>
+        <div class="large-9 small-8 columns">
+          <%= link_to t(:edit_login_info), organization_employee_edit_login_info_path(@organization, @employee), class: "button success"%>
+        </div>
       </div>
-    </div>
-  <% else %>
-    <div class="row">
-      <div class="large-12 small-12 columns">
-        <div class="row">
-          <div class="large-3 small-4 columns"></div>
-          <div class="large-9 small-8 columns">
-            <%= link_to "Add Login", organization_employee_new_login_path(@organization, @employee), class: "button success"%>
-            <%= link_to "Link this profile to my account", organization_employee_path(@organization, @employee, employee: {account_id: current_account.id}), method: :patch ,class: "button success" if current_account.profile.nil? %>
+    <% else %>
+      <div class="row">
+        <div class="large-12 small-12 columns">
+          <div class="row">
+            <div class="large-3 small-4 columns"></div>
+            <div class="large-9 small-8 columns">
+              <%= link_to t(:add_login), organization_employee_new_login_path(@organization, @employee), class: "button success"%>
+              <%= link_to t(:link_to_account), organization_employee_path(@organization, @employee, employee: {account_id: current_account.id}), method: :patch ,class: "button success" if current_account.profile.nil? %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  <% end %>
-  
-  
-  <h3>Departments</h3>
-  <ul class="no-bullet">
-    <% @employee.employee_departments.each do |ed|%>
-      <li>
-        <%= ed.department.name %> - 
-        <%= ed.leader ? "Leader" : "Employee" %> - 
-        <%= link_to "Remove link", organization_employee_employee_department_path(@organization, @employee, ed), method: :delete, data: { confirm: 'Are you sure?' }%>
-      </li>
     <% end %>
-  </ul>
-  
-  <%= link_to "Add department to this employee", new_organization_employee_employee_department_path(@organization, @employee), class: "button success"%>
+    </fieldset>
+    <fieldset>
+      <legend><%= t :departments %></legend>
+        <table>
+          <thead>
+            <th><%= t :department_name %></th>
+            <th><%= t :leader_or_employee %></th>
+            <th><%= t :action %></th>
+          </thead>
+          <tbody>
+          <% @employee.employee_departments.each do |ed|%>
+            <tr>
+              <td><%= ed.department.name %></td>
+              <td><%= ed.leader ? t(:leader) : t(:employee) %></td>
+              <td><%= link_to t(:remove_link), organization_employee_employee_department_path(@organization, @employee, ed), class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure) }%></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <%= link_to t(:add_department_for_employee), new_organization_employee_employee_department_path(@organization, @employee), class: "button success"%>
+    </fieldset>
   </div>
 </div>

@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h2><%= @employee.full_name%> <%= t :payslips %></h2>
+    <table>
+      <thead>
+        <th><%= t :working_date %></th>
+        <th><%= t :base_salary %></th>
+        <th><%= t :commission %></th>
+        <th><%= t :b_settings %></th>
+        <th><%= t :action%></th>
+      </thead>
+      <tbody>
+      <% @payslips.each do |payslip|%>
+      <tr>
+        <td><%= payslip.date.to_date.strftime("%d/%m/%Y") %></td>
+        <td><%= humanized_money_with_symbol payslip.base_salary%></td>
+        <td><%= humanized_money_with_symbol payslip.commission%></td>
+        <td><%= payslip.payslip_settings.collect{|n| n.name}.join(",") %></td>
+        <td>
+          <a href="#" data-dropdown="drop_<%= payslip.id %>" class="tiny button dropdown"><%= t :details %></a><br>
+            <ul id="drop_<%= payslip.id %>" data-dropdown-content class="f-dropdown">
+              <li><%= link_to t(:show), organization_employee_payslip_path(current_organization, @employee, payslip), class: "fi-eye"%></li>
+              <li>
+                <%= link_to t(:edit), edit_organization_employee_payslip_path(current_organization, @employee, payslip), class: "fi-pencil"%>
+              </li>
+              <li><%= link_to t(:delete), organization_employee_payslip_path(current_organization, @employee, payslip), class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure) }%></li>
+            </ul>
+        </td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= link_to t(:add_new_payslips), new_organization_employee_payslip_path, class: "button success" %>
+  </div>
+</div>

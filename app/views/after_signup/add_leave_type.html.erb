@@ -1,0 +1,25 @@
+<%= render "breadcrumbs", breadcrumbs_step: "leave_type"%>
+
+<div class="row">
+  <div class="large-8 columns">
+    <fieldset>
+      <legend><%= t :add_leave_type %></legend>
+      <div class="panel"><%= t :after_signup_add_leave_type %></div>
+
+      <%= simple_form_for @leave_type, wrapper: :custom, url: wizard_path, method: "put" do |f| %>
+        <%= f.input :name, :autofocus => true %>
+        <%= f.input :approval_needed, as: :select, include_blank: false%>
+        <%= f.input :affected_entity, collection: [["Leave",'count'], ["Salary","salary"], ["Leave & Salary",'"count","salary"']], include_blank: true %>
+        <%= f.input :type, collection: [["Substraction","LeaveSubstraction"], ["Neutral", "LeaveNeutral"], ["Addition", "LeaveAddition"]], include_blank: false %>
+        <%= f.input :default_count_seconds, label: "Default Leaves (in days)", input_html: { value: !@leave_type.default_count_seconds.blank? ? @leave_type.default_count_seconds/24/60/60 : 14}%>
+        <%= f.input :description %>
+        <%= f.input :colour, include_blank: false, as: :minicolors %>
+
+        <div class="row">
+          <div class="large-3 small-3 columns"></div>
+          <div class="large-9 small-9 columns"><%= f.button :submit, t(:next_step) %></div>
+        </div>
+      <% end %>
+    </fieldset>
+  </div>
+</div>

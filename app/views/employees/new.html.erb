@@ -1,5 +1,9 @@
 <div class="row">
-  <div class="large-12 columns">
-  <%= render 'form' %>
+  <div class="large-8 small-12 columns">
+    <fieldset>
+      <legend><%= t :add_new_employee %></legend>
+      <div class="panel"><%= t :employees_add_new_description %></div>
+      <%= render 'form' %>
+    </fieldset>
   </div>
 </div>

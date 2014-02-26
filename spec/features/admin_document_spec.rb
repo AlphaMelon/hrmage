@@ -7,6 +7,7 @@ feature "[Admin Employee's Document]" do
    
   scenario "Add New Document for employee" do
     visit root_path
+    click_on "Admin"
     click_on "Employee"
     click_on "Show"
     click_on "New Document"
@@ -18,6 +19,7 @@ feature "[Admin Employee's Document]" do
 
   scenario "Edit Document" do
     visit root_path
+    click_on "Admin"
     click_on "Employee"
     click_on "Show"
     click_on "edit_document"
@@ -29,11 +31,21 @@ feature "[Admin Employee's Document]" do
   
   scenario "Delete Document" do
     visit root_path
+    click_on "Admin"
     click_on "Employee"
     click_on "Show"
     click_on "delete_document"
     page.should have_content("Document successfully deleted")
-    #page.should_not have_content("Passport_photostat")
+    page.should_not have_content("Passport_photostat")
   end
-
+  
+  scenario "submit document form withing filling anything" do
+    visit root_path
+    click_on "Admin"
+    click_on "Employee"
+    click_on "Show"
+    click_on "New Document"
+		click_on "Create Document"
+    page.should have_content("can't be blank")
+  end
 end

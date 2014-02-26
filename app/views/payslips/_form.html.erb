@@ -1,0 +1,18 @@
+<%= simple_form_for [current_organization, @employee, @payslip], wrapper: :custom do |f| %>
+  <%= render "shared/error_message", object: f.object %>
+  <%= f.input :date, as: :string, autocomplete: :off, input_html: {class: 'date_only'} %>
+  <% if @payslip.base_salary_cents.nil?%>
+    <%= f.input :base_salary, as: :integer,input_html: {  value: @employee.base_salary_cents/100} %>
+  <% else %>
+    <%= f.input :base_salary, as: :integer %>
+  <% end %>
+  <%= f.input :commission, as: :integer %>
+  <%= f.association :payslip_settings, as: :check_boxes,label_method: :name, collection: current_organization.payslip_settings %>
+  
+  <div class="row">
+    <div class="large-3 small-3 columns"></div>
+    <div class="large-9 small-9 columns">
+      <%= f.button :submit, class: "button success" %>
+    </div>
+  </div>
+<% end %>

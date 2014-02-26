@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="large-12 small-12 columns">
+    <h1><%= t :payslip_setting %></h1>
+
+    <table>
+      <thead>
+        <th><%= t :Name %></th>
+        <th><%= t :value %></th>
+        <th><%= t :maths %></th>
+        <td><%= t :action %></td>
+      </thead>
+      <tbody>
+        <% @payslip_settings.each do |payslip_setting| %>
+        <tr>
+          <td><%= payslip_setting.name %></td>
+          <td><%= payslip_setting.value %></td>
+          <td><%= payslip_setting.maths %></td>
+          <td>
+            <a href="#" data-dropdown="drop_<%= payslip_setting.id %>" class="tiny button dropdown"><%= t :details %></a><br>
+            <ul id="drop_<%= payslip_setting.id %>" data-dropdown-content class="f-dropdown">
+              <li>
+                <%= link_to t(:edit), edit_organization_payslip_setting_path(current_organization, payslip_setting), class: "fi-pencil"%>
+              </li>
+              <li>
+                <%= link_to t(:delete), organization_payslip_setting_path(current_organization, payslip_setting), id: 'delete_payslip_setting', class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure) }%>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to t(:add_new_payslip_settings), new_organization_payslip_setting_path(current_organization, @payslip_setting), class: "button success"%>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h2 data-holiday-index="header"><%= current_organization.name%>'s <%= t :holiday_list %></h2>
+    <table>
+      <thead>
+        <th><%= t :name%></th>
+        <th><%= t :holiday_date %></th>
+        <th><%= t :action %></th>
+      </thead>
+      <tbody>
+      <% @organization_holidays.each do |organization_holiday|%>
+        <tr>
+          <td><%= organization_holiday.name %></td>
+          <td><%= organization_holiday.date %></td>
+          <td>
+            <a href="#" data-dropdown="drop_<%=organization_holiday.id %>" class="tiny button dropdown"><%= t :details %></a>
+            <ul id="drop_<%=organization_holiday.id %>" data-dropdown-content class="f-dropdown">
+              <li>
+                <%= link_to t(:edit), edit_organization_organization_setting_organization_holiday_path(current_organization, @organization_setting, organization_holiday), class: "fi-pencil" %>
+              </li>
+              <li>
+                <%= link_to t(:delete), organization_organization_setting_organization_holiday_path(current_organization, @organization_setting, organization_holiday), class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure) } %>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to t(:add_new_holiday), new_organization_organization_setting_organization_holiday_path(current_organization, @organization_setting), class: "button success" %>
+    <%= link_to t(:default_holiday), organization_organization_setting_organization_holiday_get_and_update_holiday_path(current_organization, @organization_setting, 1), class: "button", method: "post", data: { confirm: t(:are_you_sure) }%>
+  </div>
+</div>

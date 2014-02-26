@@ -1,32 +1,15 @@
+<%= simple_form_for @organization, wrapper: :custom do |f| %>
+
+<%= render '/shared/error_message', object: f.object %>
+<%= f.input :name, :autofocus => true %>
+<%= f.input :country, include_blank: false, priority: ["Malaysia", "United States"] %>
 <div class="row">
-  <div class="large-12 small-12 columns">
-    <%= simple_form_for @organization do |f| %>
-
-    <%= render '/shared/error_message', object: f.object %>
-
-    <div class="row">
-      <div class="large-3 small-3 columns">
-        <%= label_tag(:name, "Name", class: "string optional left inline", for: "organization_name") %>
-      </div>
-      <div class="large-9 small-9 columns">
-        <%= f.input_field :name, :autofocus => true %>
-      </div>
-      <div class="large-3 small-3 columns">
-        <%= label_tag(:domain, "Domain", class: "string optional left inline", for: "organization_domain") %>
-      </div>
-      <div class="large-9 small-9 columns">
-        <%= f.input_field :domain %>
-      </div>
-      <div class="large-3 small-3 columns">
-        <%= label_tag(:default_currency, "Currency", class: "string optional left inline", for: "organization_default_currency") %>
-      </div>
-      <div class="large-9 small-9 columns">
-        <%= currency_select("organization", :default_currency, ["myr","usd"]) %>
-      </div>
-      <div class="large-3 small-3 columns"></div>
-      <div class="large-9 small-9 columns"><%= f.button :submit, class: "button success" %></div>
-    </div>
-    <% end %>
-
+  <div class="large-3 small-3 columns">
+    <%= label_tag(:default_currency, "Currency", class: "string optional left inline", for: "organization_default_currency") %>
+  </div>
+  <div class="large-9 small-9 columns">
+    <%= currency_select("organization", :default_currency, ["myr","usd"]) %>
+    <%= f.button :submit, class: "button success" %>
   </div>
 </div>
+<% end %>

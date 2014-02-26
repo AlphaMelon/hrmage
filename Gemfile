@@ -52,7 +52,6 @@ gem 'compass-rails' # you need this or you get an err
 
 
 gem 'carrierwave'
-gem 'money-rails'
 gem 'sidekiq'
 gem 'rmagick'
 gem 'wicked'
@@ -66,13 +65,18 @@ gem 'ancestry'
 gem 'wicked'
 gem 'money-rails'
 gem 'currency_select'
+gem 'country_select'
 #gem 'zurb-foundation', '~> 4.0.0'
-gem 'foundation-rails'
+gem 'foundation-rails', github: 'zurb/foundation-rails'
 gem 'foundation-icons-sass-rails', github: 'zaiste/foundation-icons-sass-rails'
 gem 'kaminari'
 gem 'ransack'
 
 gem 'puma'
+gem 'public_activity'
+
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'rails-i18n', '~> 4.0.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

@@ -1,50 +1,78 @@
 <% if !current_account.profile.nil?%>
-<div class="row">
-  <div class="large-6 small-12 columns">
-    <div class="employees-container">
-      <div class="row">
-       <div class="large-4 small-12  columns">
-          <h5><%= current_account.profile.first_name.upcase %></h5>
-          <% if current_account.profile.photo? %>
-            <%= image_tag current_account.profile.photo_url(:larger_thumb) %>
-          <% else %>
-            <%= image_tag("default-profile-photo.png") %>
-          <% end %>
-       </div>
-      <div class="large-8 small-12 columns">
-        <h5><%= current_account.profile.first_name.capitalize %> Information</h5>
-        <p>Last Name: <%= current_account.profile.last_name %><br>
-        First Name: <%= current_account.profile.first_name %><br>
-        Email: <%= current_account.email %><br>
-        Mobile Contact: <%= current_account.profile.mobile_contact %><br>
-        Address: <%= current_account.profile.address%><br>
-        Leave Remaining : <%= current_account.profile.available_leaves %> Days</p>
-      </div>
-     </div>
-    </div>
-  </div>
-</div>
 
 <div class="row">
-  <div class="large-12 columns">
-    <h5><%=current_account.profile.last_name.capitalize %>'s Documents</h5>
-    <ul class="clearing-thumbs " data-clearing>
-      <% current_account.profile.documents.each do |document| %>
-        <li>
-          <% if document.image? %>
-            <%= link_to image_tag(document.image_url(:larger_thumb), class: "th", "data-caption" => document.name), image_path(document.image) %><br />
-          <% else %>
-            <%= image_tag("not_available.jpg", size: "200x200", class: "th")%>
-          <% end %>
-          <%= document.name %>
-        </li>
-      <% end %>
-    </ul>
+  <div class="large-2 columns">
+    <table>
+      <thead>
+        <th><%= current_account.profile.full_name.capitalize %></th>
+      </thead>
+      <tbody>
+        <% if current_account.profile.photo? %>
+          <tr>
+            <td><%= image_tag current_account.profile.photo_url(:larger_thumb) %></td>
+          </tr>
+        <% else %>
+          <tr>
+            <td><%= image_tag("default-profile-photo.png") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-</div>
-<div class="row">
-  <div class="large-12 columns">
-    <%= link_to "Back", :back, class: "button success" %>
+  <div class="large-10 columns">
+    <table class="large-9">
+      <thead>
+        <th colspan="2"><%= current_account.profile.first_name.capitalize %> <%= t :information %></th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= t :name %>:</td>
+          <td><%= current_account.profile.full_name %></td>
+        </tr>
+        <tr>
+          <td><%= t :e_mail %>:</td>
+          <td><%= current_account.email %></td>
+        </tr>
+        <tr>
+          <td><%= t :mobile_no %>:</td>
+          <td><%= current_account.profile.mobile_contact %></td>
+        </tr>
+        <tr>
+          <td><%= t :address %>:</td>
+          <td><%= current_account.profile.address%></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="large-9">
+      <thead>
+        <th><%=current_account.profile.last_name.capitalize %>'s <%= t :documents %></th>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+            <ul class="clearing-thumbs " data-clearing>
+              <% current_account.profile.documents.each do |document| %>
+                <li>
+                  <% if document.image? %>
+                    <%= link_to image_tag(document.image_url(:larger_thumb), class: "th", "data-caption" => document.name), image_path(document.image) %><br />
+                  <% else %>
+                    <%= image_tag("not_available.jpg", size: "200x200", class: "th")%>
+                  <% end %>
+                  <%= document.name %>
+                </li>
+              <% end %>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="large-12 columns">
+        <%= link_to t(:back), :back, class: "button success" %>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -52,7 +80,7 @@
   <div class="row">
     <div class="large-6 columns">
       <%= current_account.email%> <br />
-      This account is not linked to any profile yet
+      <%= t :account_not_link_to_profile %>
     </div>
   </div>
 <% end %>

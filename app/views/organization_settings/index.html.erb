@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h2><%= current_organization.name%>'s <%= t :settings %></h2>
+    <% if !current_organization.organization_setting.nil?%>
+      <table>
+        <thead>
+          <th><%= t :b_days %></th>
+          <th><%= t :hours %></th>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= t :monday %></td>
+            <td><%= @organization_setting.monday %></td>
+          </tr>
+          <tr>
+            <td><%= t :tuesday %></td>
+            <td><%= @organization_setting.tuesday%></td>
+          </tr>
+          <tr>
+            <td><%= t :wednesday %></td>
+            <td><%= @organization_setting.wednesday%></td>
+          </tr>
+          <tr>
+            <td><%= t :thursday %></td>
+            <td><%= @organization_setting.thursday%></td>
+          </tr>
+          <tr>
+            <td><%= t :friday %></td>
+            <td><%= @organization_setting.friday%></td>
+          </tr>
+          <tr>
+            <td><%= t :saturday %></td>
+            <td><%= @organization_setting.saturday%></td>
+          </tr>
+          <tr>
+            <td><%= t :sunday %></td>
+            <td><%= @organization_setting.sunday%></td>
+          </tr>
+          <tr>
+            <td><%= t :min_leave %></td>
+            <td><%= @organization_setting.minimum_leave%></td>
+          </tr>
+        </tbody>
+      </table>
+      <%= link_to t(:edit), edit_organization_organization_setting_path(current_organization, @organization_setting), class: "button success"%>
+      <%= link_to t(:delete), organization_organization_setting_path(current_organization, @organization_setting), method: :delete, data: { confirm: t(:delete_organization_holidays) }, class: "button alert" %>
+    <% else %>
+      <div class="panel large-9">
+        <%= t :organization_settings_helper %>
+      </div>
+      <%= link_to t(:create_settings) , new_organization_organization_setting_path(current_organization), class: "button success" %>
+    <% end%>
+  </div>
+</div>

@@ -1,23 +1,24 @@
-              <div class="row">
+<div class="row">
   <div class="large-12 columns">
-    <h1><%= current_organization.name.capitalize %>'s employee's claims</h1>
-    <h3>Pending Claims</h3>
+    <h1><%= current_organization.name.capitalize %>'s <%= t :employees_claims %></h1>
+    <h3><%= t :pending_claims %></h3>
     <table>
       <thead>
-        <th>Name</th>
-        <th>Subject</th>
-        <th>Date</th>
-        <th>Amount</th>
-        <th>Comment</th>
-        <th>Recipit</th>
-        <th>Action</th>
+        <th><%= t :name %></th>
+        <th><%= t :subject %></th>
+        <th><%= t :working_date %></th>
+        <th><%= t :amount %></th>
+        <th><%= t :comment %></th>
+        <th><%= t :receipt %></th>
+        <th><%= t :action %></th>
       </thead>
+      <tbody>
       <% @pending_claims.each do |pending_claim|%>
         <tr>
           <td><%= pending_claim.employee.last_name.capitalize %></td>
           <td><%= pending_claim.subject%></td>
           <td><%= pending_claim.date.to_date.strftime("%d/%m/%Y") %></td>
-          <td><%= number_to_currency(pending_claim.amount_cents.to_f/100, precision: 2) %></td>
+          <td><%= humanized_money_with_symbol pending_claim.amount%></td>
           <td><%= pending_claim.comment %></td>
           <td>
             <% if pending_claim.image? %>
@@ -27,31 +28,32 @@
             <% end %>
           </td>
           <td>
-          <a href="#" data-dropdown="drop_<%=pending_claim.id %>" class="tiny button dropdown">Details</a>
+          <a href="#" data-dropdown="drop_<%=pending_claim.id %>" class="tiny button dropdown"><%= t :details %></a>
             <ul id="drop_<%=pending_claim.id %>" data-dropdown-content class="f-dropdown">
               <li>
-                <%= link_to " Approve", organization_claim_path(current_organization, pending_claim, claim: {status: "Approved"}), method: "patch", class: "fi-check"%>
+                <%= link_to t(:approve), organization_claim_path(current_organization, pending_claim, claim: {status: "Approved"}), method: "patch", class: "fi-check", id: "approve_claim"%>
               </li>
               <li>
-                <%= link_to " Reject", organization_claim_path(current_organization, pending_claim, claim: {status: "Rejected"}), method: "patch", class: "fi-x"%>
+                <%= link_to t(:reject), organization_claim_path(current_organization, pending_claim, claim: {status: "Rejected"}), method: "patch", class: "fi-x", id: "reject_claim"%>
               </li>
             </ul>
           </td>
         </tr>
       <% end %>
+      </tbody>
     </table>
     
-    <h3>History</h3>
+    <h3><%= t :history %></h3>
     <table>
       <thead>
-        <th>Name</th>
-        <th>Subject</th>
-        <th>Date</th>
-        <th>Amount</th>
-        <th>Comment</th>
-        <th>Recipit</th>
-        <th>Status</th>
-        <th>Action by</th>
+         <th><%= t :name %></th>
+        <th><%= t :subject %></th>
+        <th><%= t :working_date %></th>
+        <th><%= t :amount %></th>
+        <th><%= t :comment %></th>
+        <th><%= t :receipt %></th>
+        <th><%= t :status %></th>
+        <th><%= t :action_by %></th>
       </thead>
       <% @claims.each do |claim|%>
         <tr>
@@ -68,7 +70,7 @@
             <% end %>
           </td>
           <td><%= claim.status %></td>
-          <td><%= claim.action_by.nil? ? "No Action Yet" : claim.action_by.profile.last_name %></td>
+          <td><%= claim.action_by.nil? ? t(:no_action_yet) : claim.action_by.profile.last_name %></td>
           </td>
         </tr>
       <% end %>
@@ -76,4 +78,3 @@
 
   </div>
 </div>
-

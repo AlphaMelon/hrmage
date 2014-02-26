@@ -7,18 +7,9 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :can_can_compability_to_strong_paramater
   before_filter :admin_or_employee_session
-
-  # before_filter :beta
-
-  # def beta
-  #   params[:beta] = session[:beta] if session[:beta]
-  #   if !params[:beta]
-  #     session[:beta] = false
-  #     render '/home/coming_soon', layout: 'blank'
-  #     return
-  #   end
-  # end
   
+  include PublicActivity::StoreController
+
   def admin_or_employee_session
     session[:admin_session] = true if params[:admin_session]
     session[:admin_session] = false if params[:employee_session]
@@ -43,18 +34,23 @@ class ApplicationController < ActionController::Base
   end
   
   def current_ability
-    @current_ability ||= Ability.new(current_account, current_organization)
+    @current_ability ||= ::Ability.new(current_account, current_organization)
   end
   
   def current_organization
     @current_organization
   end
-
+  
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:alert] = "Access denied."
+    redirect_to root_url
+  end
+  
   private
   def setup_domains
-    @current_organization = Organization.find_by(domain: request.host)
+    @current_organization = ::Organization.find_by(domain: request.host)
     if !@current_organization
-      @current_organization = Organization.new
+      @current_organization = ::Organization.new
       if Rails.env.production?
         redirect_to host: "officemage.com" if request.host != "officemage.com"
       else

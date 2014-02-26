@@ -1,4 +1,4 @@
 <ul class="side-nav">
-  <li><%= link_to "My Claims", my_claims_path %></li>
-  <li><%= link_to "Apply Claim", new_organization_claim_path(current_organization) if !current_organization.id.nil?%></li>
+  <li><%= link_to t(:my_claims), my_claims_path %></li>
+  <li><%= link_to t(:apply_claim), new_organization_claim_path(current_organization) if !current_organization.id.nil?%></li>
 </ul>

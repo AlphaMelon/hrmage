@@ -14,10 +14,13 @@ module AccountMacros
     page.should have_content("Signed in successfully.")
   end
   
+  def login(email, password)
+    fill_in "Email", with: email
+    fill_in "Password", with: password
+    click_on "Sign in"
+  end
+  
   def sign_up_account(email, password)
-    visit new_account_registration_path
-    click_on "Sign In"
-    click_on "Sign up"
     fill_in "Email", with: email
     fill_in "account_password", with: password
     fill_in "account_password_confirmation", with: password

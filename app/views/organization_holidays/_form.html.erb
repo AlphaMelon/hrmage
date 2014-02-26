@@ -1,0 +1,11 @@
+<%= simple_form_for [current_organization, @organization_setting, @organization_holiday], wrapper: :custom do |f| %>
+
+<%= render '/shared/error_message', object: f.object %>
+<%= f.input :name, :autofocus => true %>
+<%= f.input :date, as: :string, input_html: {class: 'date_only'} %>
+
+<div class="row">
+  <div class="large-3 small-3 columns"></div>
+  <div class="large-9 small-9 columns"><%= f.button :submit, class: "button success" %></div>
+</div>
+<% end %>

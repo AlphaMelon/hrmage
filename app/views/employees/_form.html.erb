@@ -1,73 +1,20 @@
 <div class="row">
   <div class="large-12 small-12 columns">
-
-    <%= simple_form_for [@organization, @employee] do |f| %>
-    
+    <%= simple_form_for [@organization, @employee], wrapper: :custom do |f| %>
       <%= render '/shared/error_message', object: f.object %>
+      <%= f.input :last_name %>
+      <%= f.input :first_name %>
+      <%= f.input :position_id, collection: current_organization.positions, include_blank: false %>
+      <%= f.input :mobile_contact %>
+      <%= f.input :address %>
+      <%= f.input :base_salary, as: :integer %>
+      <%= f.input :can_self_approve, as: :select, include_blank: false %>
+      <%= f.input :photo, as: :file %>
       
       <div class="row">
-        <div class="large-3 small-4 columns">
-          <%= label_tag(:last_name, "Last name", class: "string optional left inline", for: "employee_last_name") %>
-        </div>
-        <div class="large-9 small-8 columns">
+        <div class="large-3 small-3 columns"></div>
+        <div class="large-9 small-9 columns">
           <div class="large-8">
-            <%= f.input_field :last_name %>
-          </div>
-        </div>
-        <div class="large-3 small-4 columns">
-          <%= label_tag(:first_name, "First name", class: "string optional left inline", for: "employee_first_name") %>
-        </div>
-        <div class="large-9 small-8 columns">
-          <div class="large-8">
-            <%= f.input_field :first_name %>
-          </div>
-        </div>
-        <div class="large-3 small-4 columns">
-          <%= label_tag(:position_id, "Position", class: "string optional left inline", for: "employee_position_id") %>
-        </div>
-        <div class="large-9 small-8 columns">
-          <div class="large-4">
-            <%= f.input_field :position_id, collection: current_organization.positions, include_blank: false %>
-          </div>
-        </div>
-        <div class="large-3 small-4 columns">
-          <%= label_tag(:mobile_contact, "Mobile contact", class: "string optional left inline", for: "employee_mobile_contact") %>
-        </div>
-        <div class="large-9 small-8 columns">
-          <div class="large-8">
-            <%= f.input_field :mobile_contact %>
-          </div>
-        </div>
-        <div class="large-3 small-4 columns">
-          <%= label_tag(:address, "Address", class: "string optional left inline", for: "employee_address")%>
-        </div>
-        <div class="large-9 small-8 columns">
-          <div class="large-8">
-            <%= f.input_field :address %>
-          </div>
-        </div>
-        <div class="large-3 small-4 columns">
-          <%= label_tag(:available_leaves, "Available Leaves", class: "string optional left inline", for: "employee_available_leaves") %>
-        </div>
-        <div class="large-9 small-8 columns">
-          <div class="large-8">
-            <%= f.input_field :available_leaves, placeholder: "leave blank to set to default amount of leaves according to position" %>
-          </div>
-        </div>
-        <div class="large-3 small-4 columns">
-          <%= label_tag(:available_claims, "Available Claims", class: "string optional left inline", for: "employee_available_claims") %>
-        </div>
-        <div class="large-9 small-8 columns">
-          <div class="large-8">
-            <%= f.input_field :available_claims, placeholder: "leave blank to set to default amount of claims according to position", type: :number %>
-          </div>
-        </div>
-        <div class="large-3 small-4 columns">
-          <%= label_tag(:photo, "Photo", class: "file optional left inline", for: "employee_photo") %>
-        </div>
-        <div class="large-9 small-8 columns">
-          <div class="large-8">
-            <%= f.input_field :photo, as: :file %>
             <%= f.button :submit, class: "button success" %>
           </div>
         </div>

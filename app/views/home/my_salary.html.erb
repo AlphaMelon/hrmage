@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="large-12 small-12 columns">
+    <h1><%= t :my_salary %></h1>
+  </div>
+  <hr>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <thead>
+        <th><%= t :working_date %></th>
+        <th><%= t :base_salary%></th>
+        <th><%= t :commission %></th>
+        <th><%= t :action %></th>
+      </thead>
+      <tbody>
+        <% @my_salarys.each do |salary| %>
+        <tr>
+          <td><%= salary.date.to_date.strftime("%d/%m/%Y") %></td>
+          <td><%= humanized_money_with_symbol salary.base_salary %></td>
+          <td><%= humanized_money_with_symbol salary.commission %></td>
+          <td><%= link_to t(:show), "my_salary_show/#{salary.id}", class: "fi-eye" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

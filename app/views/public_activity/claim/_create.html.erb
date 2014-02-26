@@ -1,0 +1,6 @@
+applied claim for  
+<% if activity.trackable %>
+  <%= link_to activity.trackable.subject, organization_claims_path(current_organization) %>
+<% else %>
+  which has since been removed 
+<% end %>

@@ -1,28 +1,12 @@
-<div class="row">
-  <div class="large-6 columns">
-
-    <%= simple_form_for [@organization, @employee, @document] do |f| %>
-    
-      <%= render '/shared/error_message', object: f.object %>
-      <div class="row">
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:name, "Name", class: "string required left inline", for: "document_name") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <%= f.input_field :name %>
-        </div>
-        <div class="large-3 small-3 columns">
-          <%= label_tag(:image, "Image", class: "file optional left inline", for: "document_image") %>
-        </div>
-        <div class="large-9 small-9 columns">
-          <%= f.input_field :image, as: :file %>
-          <%= f.button :submit, class: "button success" %>
-        </div>
-      </div>
-      
-      
-      
-    <% end %>
-
+<%= simple_form_for [@organization, @employee, @document], wrapper: :custom do |f| %>
+  <%= render '/shared/error_message', object: f.object %>
+  <%= f.input :name %>
+  <%= f.input :image, as: :file %>
+  <div class="row">
+    <div class="large-3 small-3 columns">
+    </div>
+    <div class="large-9 small-9 columns">
+      <%= f.button :submit, class: "button success" %>
+    </div>
   </div>
-</div>
+<% end %>

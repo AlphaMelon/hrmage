@@ -3,34 +3,30 @@ class Employee < ActiveRecord::Base
   belongs_to :position
   belongs_to :organization
   
-  has_many :documents
-  has_many :employee_departments
-  has_many :leaves
+  has_many :documents, dependent: :destroy
+  has_many :employee_departments, dependent: :destroy
+  has_many :leaves, dependent: :destroy
   has_many :departments, through: :employee_departments
-  has_many :claims  
+  has_many :claims, dependent: :destroy
+  has_many :employee_variables, dependent: :destroy
+  has_many :payslips, dependent: :destroy
     
   before_save :set_default_values
   
-  monetize :available_claims_cents, as: "available_claims", allow_nil: true
+  monetize :base_salary_cents, as: "base_salary", allow_nil: true
   mount_uploader :photo, ImageUploader
   
   validates :last_name, presence: true
   validates :first_name, presence: true
+  validates :base_salary_cents, presence: true
+  validates :position_id, presence: true
+
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_account }
+  tracked organization_id: Proc.new { |controller, model| controller.current_organization.id }
   
   def set_default_values
-    #default available leaves
-    if self.available_leaves.blank? && !self.position.nil?
-      self.available_leaves = self.position.max_leaves
-    elsif self.available_leaves.blank? && self.position.blank?
-      self.available_leaves = 0
-    end
-    
-    #default available claims
-    if self.available_claims_cents.blank? && !self.position.nil?
-      self.available_claims_cents = self.position.max_claims_cents
-    elsif self.available_claims_cents.blank? && self.position.blank?
-      self.available_claims_cents = 0
-    end
+    #self.can_self_approve = false if self.can_self_approve.blank?
   end
 
   def name_with_initial

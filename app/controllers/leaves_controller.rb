@@ -14,9 +14,9 @@ class LeavesController < ApplicationController
       @leaves = @search.result.order(id: :desc).page(params[:page]).per(5)
     end
     
-    @leave_types = @organization.leave_types
     @pending_leaves = @organization.leaves.where(status: "Pending")
     @verification_needed_leaves = @organization.leaves.where(status: "Verification Needed")
+    @leave_types = @organization.leave_types
     
     @month = !params[:date].blank? ? params[:date][:month].to_i : DateTime.now.month
     @year = !params[:date].blank? ? params[:date][:year].to_i : DateTime.now.year
@@ -37,7 +37,18 @@ class LeavesController < ApplicationController
     
     @employees = current_organization.employees.order(:id)
     
-    #raise params.inspect
+    if !current_organization.organization_setting.nil?
+      @workday = [false,false,false,false,false,false,false,false]
+      @workday[1] = true if !current_organization.organization_setting.monday.blank? && current_organization.organization_setting.monday != 0
+      @workday[2] = true if !current_organization.organization_setting.tuesday.blank? && current_organization.organization_setting.tuesday != 0
+      @workday[3] = true if !current_organization.organization_setting.wednesday.blank? && current_organization.organization_setting.wednesday != 0
+      @workday[4] = true if !current_organization.organization_setting.thursday.blank? && current_organization.organization_setting.thursday != 0
+      @workday[5] = true if !current_organization.organization_setting.friday.blank? && current_organization.organization_setting.friday != 0
+      @workday[6] = true if !current_organization.organization_setting.saturday.blank? && current_organization.organization_setting.saturday != 0
+      @workday[7] = true if !current_organization.organization_setting.sunday.blank? && current_organization.organization_setting.sunday != 0
+    end
+    
+    
   end
   
   def new
@@ -48,9 +59,14 @@ class LeavesController < ApplicationController
   def create
     @leave = current_organization.leaves.new(leave_params)
     @leave.employee_id = current_account.profile.id
-    @leave.duration_seconds = @leave.duration_seconds.days if !@leave.duration_seconds.nil?
+    @leave.duration_seconds = @leave.duration_seconds*24*60*60 if !@leave.duration_seconds.nil?
     @leave.status = "Verification Needed" if !@leave.leave_type.approval_needed
     if @leave.save
+      @leave.employee.departments.each do |department|
+        department.employee_departments.where(leader: true).each do |employee_department|
+          UserMailer.apply_leave(employee_department.employee.account, @leave).deliver if !employee_department.employee.account.nil?
+        end
+      end
       redirect_to my_leaves_path, notice: "Leave successfully applied, please wait for admin to approve"
     else
       render action: 'new'
@@ -64,6 +80,7 @@ class LeavesController < ApplicationController
     @leave.update(action_by_id: current_account.id)
 		if leave_params[:status] == "Approved"
 		  @leave.approve
+		  UserMailer.leave_approval(@leave.employee.account, @leave).deliver if !@leave.employee.account.nil?
 			redirect_to organization_leaves_path(current_organization), notice: 'Leaves request approved'
 		elsif leave_params[:status]  == "Rejected"
 		  @leave.reject

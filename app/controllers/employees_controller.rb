@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-	before_action :set_employee, only: [:show, :edit, :update]
+	before_action :set_employee, only: [:show, :edit, :update, :destroy]
 	before_action :set_organization
 	before_filter :authenticate_account!
 	
@@ -7,10 +7,10 @@ class EmployeesController < ApplicationController
 	
   def index
     @employees = @organization.employees.order(:id)
-    #authorize! :manage, @employee
   end
   
   def show
+    @employee_claims = @employee.claims.order(date: :asc).page(params[:page]).per(5)
   end
   
   def new
@@ -19,7 +19,6 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = @organization.employees.new(employee_params)
-    @employee.available_claims_cents = 0 if employee_params[:available_claims].blank?
     if @employee.save
       redirect_to organization_employees_path(@organization), notice: "Employee successfully created"
     else
@@ -36,7 +35,6 @@ class EmployeesController < ApplicationController
 		if @employee.update(employee_params)
 			redirect_to organization_employees_path(@organization), notice: 'Employee successfully updated'
 		else
-		  raise @employee.inspect
 			render action: 'edit'
 		end
   end
@@ -80,7 +78,19 @@ class EmployeesController < ApplicationController
       redirect_to organization_employee_new_login_path(@organization, params[:employee_id]), alert: "Invalid email or password"
 		end
   end
-
+  
+	def destroy
+	  if !@employee.account.blank? && @employee.account.account_organizations.where(organization_id: current_organization).first.role == "Super Admin"
+	    redirect_to organization_employees_path(current_organization), alert: 'Super Admin employee cannot be deleted.'
+    elsif !@employee.account.blank? && (!Leave.where(action_by_id: @employee.account.id).blank? || !Claim.where(action_by_id: @employee.account.id).blank?)
+      redirect_to organization_employees_path(current_organization), alert: 'Employee that has approved leave or claim cannot be deleted.'
+	  else
+	    @employee.account.destroy if !@employee.account.blank?
+		  @employee.destroy
+		  redirect_to organization_employees_path(current_organization), notice: 'Employee successfully deleted'
+	  end
+	end
+	
   private
   
 	def set_employee
@@ -93,6 +103,7 @@ class EmployeesController < ApplicationController
 
 	def employee_params
 		params.require(:employee).permit(:first_name, :last_name, :mobile_contact, 
-		:address, :photo, :properties, :department_ids, :account_id, :position_id, :available_leaves, :available_claims_cents, :available_claims)
+		:address, :photo, :properties, :department_ids, :account_id, :position_id, 
+		:can_self_approve, :base_salary_cents, :base_salary)
 	end
 end

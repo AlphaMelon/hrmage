@@ -1,36 +1,35 @@
 <div class="row">
   <div class="large-12 small-12 columns">
-    <h1>My Claims</h1>
+    <h1><%= t :my_claims %></h1>
   </div>
   
   <hr>
 
   <div class="large-12 small-12 columns">
-    <h6>Available Claims</h6>
+    <h5><strong><%= t :claims_for %> <%=Date::MONTHNAMES[Date.today.month]%></strong></h5>
   </div>
-  <div class="large12 columns">
-    <div class="large-2 small-2 columns">
-      <h5 class="text-left"><%= current_account.profile.available_claims%>/<%= current_account.profile.position.max_claims%></h5>
-    </div>
-    <div class=" progress success large-10 small-10 columns">
-      <span class="meter" style="width: <%= @claims_remaining_percentage%>%"></span>
-    </div>
-  </div>
+  <div class="large-12 columns">
+    <h6 class="text-left">
+      Claim Amount:
+      <%= humanized_money_with_symbol (current_account.profile.claims.where(status: "Approved", date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).sum :amount_cents).to_f/100 %></h6>
+    <h6>
+      Claim Remaining: <%= humanized_money_with_symbol (current_account.profile.position.monthly_max_claims_cents - (current_account.profile.claims.where(status: "Approved", date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).sum :amount_cents)).to_f/100 %>
+    </h6>
   <hr>
 </div>
 
 <div class="row">
   <div class="large-12 columns">
-    <h2>History</h2>
+    <h2><%= t :history %></h2>
     <table>
       <thead>
-        <td>Subject</td>
-        <td>Date</td>
-        <td>Amount</td>
-        <td>Comment</td>
-        <td>Status</td>
-        <td>Action by</td>
-        <td></td>
+        <td><%= t :subject %></td>
+        <td><%= t :working_date %></td>
+        <td><%= t :amount %></td>
+        <td><%= t :comment %></td>
+        <td><%= t :status %></td>
+        <td><%= t :action_by %></td>
+        <td><%= t :action %></td>
       </thead>
       <% @my_claims.each do |claim| %>
       <tbody>
@@ -39,9 +38,9 @@
         <td><%= humanized_money_with_symbol claim.amount %></td>
         <td><%= claim.comment %></td>
         <td><%= claim.status %></td>
-        <td><%= claim.action_by.nil? ? "No Action Yet" : claim.action_by.profile.last_name %></td>
+        <td><%= claim.action_by.nil? ? t(:no_action_yet) : claim.action_by.profile.last_name %></td>
         <td>
-          <a href="#" data-dropdown="drop2" class="tiny button dropdown">Details</a>
+          <a href="#" data-dropdown="drop2" class="tiny button dropdown"><%= t :details %></a>
           <ul id="drop2" data-dropdown-content class="f-dropdown">
             <li><a href="#">test</a></li>
           </ul>
@@ -49,5 +48,6 @@
       </tbody>
       <%end%>
     </table>
+    <%= paginate @my_claims %>
   </div>
 </div>

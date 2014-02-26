@@ -1,25 +1,26 @@
 <div class="row">
-  <div class="large-6 small-12 columns">
-  </div>
-</div>
-
-<div class="row">
-  <div class="large-6 columns">
-
-    <%= simple_form_for [@organization, @account_organization] do |f| %>
-    
-      <%= render '/shared/error_message', object: f.object %>
-      
-      <p>Add account to <%= @organization.name %></p>
-      <div class="row">
-        <div class="large-9 small-9 columns">
-          <%= label_tag :email %>
-          <%= text_field_tag :email %>
-          <%= f.input :role, collection: ["Employee", "Admin"], include_blank: false %>
-          <%= f.button :submit, "Add Account" %>
+  <div class="large-8 small-12 columns">
+    <fieldset>
+      <legend><%= t :add_account_to %> <%= @organization.name %></legend>
+      <%= simple_form_for [@organization, @account_organization] do |f| %>
+        <%= render '/shared/error_message', object: f.object %>
+        <div class="panel"><%= t :account_organizations_new_description %></div>
+        <div class="row">
+          <div class="large-3 small-3 columns">
+            <%= label_tag(:email, "Email", class: "left inline") %>
+          </div>
+          <div class="large-9 small-9 columns">
+            <%= text_field_tag :email %>
+          </div>
         </div>
-      </div>
-    <% end %>
-
+        <%= f.input :role, collection: ["Employee", "Admin"], wrapper: :custom, include_blank: false %>
+        <div class="row">
+          <div class="large-3 small-3 columns"></div>
+          <div class="large-9 small-9 columns">
+            <%= f.button :submit, t(:add_account) %>
+          </div>
+        </div>
+      <% end %>
+    </fieldset>
   </div>
 </div>

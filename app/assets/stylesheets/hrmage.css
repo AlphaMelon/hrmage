@@ -1,3 +1,6 @@
+h1, h2, h3, h4, h5, h6{
+  text-transform: capitalize;
+}
 .alert-box.account{
   background-color: #c17d11;
   a{
@@ -12,12 +15,6 @@
 }
 
 .devise-container{
-  margin-top: 1em;
-}
-.organ-container{
-  margin-top: 1em;
-}
-.department-container{
   margin-top: 1em;
 }
 
@@ -41,6 +38,9 @@
     padding-right: 0.83em;
   }
 }
+.footer{
+  margin-top: 1em;
+}
 .back-footer{
   background-color: whiteSmoke;
   border: 1px solid #DADADA;
@@ -52,15 +52,24 @@
     margin-top: 1em;
   }
 }
-.footer{
-  padding-top: 1em;
-  padding-bottom: 1em;
+
+.offday {
+  background-color: #C1C9FA;
 }
+
+.holiday {
+  background-color: #F3E2C7;
+}
+
 .present{
   background-color: #E7E7E7;
 }
 .absent{
   background-color: #da1337;
+}
+
+.pending{
+  background-color: #000000;
 }
 .table-overflow{
   overflow-x:auto;
@@ -74,4 +83,48 @@
 }
 .remark-leaves{
   margin-top: 1em;
+}
+.minicolors-theme-default .minicolors-swatch {
+  top: 1px;
+}
+.dashboard{
+  min-height: 350px;
+}
+.sign_in{
+  margin-top: 9em;
+}
+.boolean{
+  input{
+    margin-top: 0.8em;
+  }
+}
+.after-signup{
+  .current{
+    font-weight: bold;
+  }
+}
+.paginator-page{
+  .current{
+    display: block;
+    padding: 0.05556rem 0.55556rem 0.05556rem;
+    font-weight: bold;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background: #008CBA;
+    color: #FFF;
+    font-weight: bold;
+  }
+}
+.activity{
+  h5{
+    margin-bottom: 0px;
+    margin-top: 0px;
+    text-transform: none;
+    small {
+      color: #BBB;
+    }
+  }
+  .large-12 {
+    margin-bottom: 1em;
+  }
 }

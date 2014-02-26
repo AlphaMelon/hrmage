@@ -17,7 +17,11 @@ class OrganizationsController < ApplicationController
 
   def create
     @organization = Organization.new(organization_params)
-    
+    if Rails.env == "development" || Rails.env == "test"
+      @organization.domain = (@organization.name.downcase.delete(" ") + ".hrmage.dev")
+    elsif Rails.env == "production"
+      @organization.domain = (@organization.name.downcase.delete(" ") + ".officemage.com")
+    end
     if @organization.save
     
       account_organization = AccountOrganization.new
@@ -37,7 +41,9 @@ class OrganizationsController < ApplicationController
   end
   
   def update
-		if @organization.update(organization_params)
+		@organization.assign_attributes(organization_params)
+    
+		if @organization.save
 			redirect_to organization_path(@organization), notice: 'Organization successfully updated'
 		else
 			render action: 'edit'
@@ -47,22 +53,25 @@ class OrganizationsController < ApplicationController
   def end_of_year_action
     authorize! :manage, current_organization
     
-    current_organization.employees.each do |emp|
-      if !emp.position.nil? && params[:forfeit]
-        emp.available_leaves = emp.position.max_leaves
-        emp.save
-      elsif emp.position.nil? && params[:forfeit]
-        emp.available_leaves = 0
-        emp.save
-      elsif !emp.position.nil? && params[:forward]
-        emp.available_leaves = emp.available_leaves + emp.position.max_leaves
-        emp.save
-      elsif emp.position.nil? && params[:forward]
-        emp.available_leaves = emp.available_leaves + 0
-        emp.save
-      end 
+    current_organization.employees.each do |employee|
+      current_organization.leave_types.each do |leave_type|
+        employee_variable = EmployeeVariable.where(employee_id: employee.id, leave_type_id: leave_type.id).first_or_create
+        default_max_leave = 0
+        if employee.position.position_settings.where(leave_type_id: leave_type.id).blank?
+          default_max_leave = employee.position.position_settings.where(leave_type_id: leave_type.id).first.max_leaves_seconds
+        else
+          default_max_leave = leave_type.default_count_seconds
+        end
+        
+        if params[:forfeit]
+          employee_variable.available_leaves_seconds = default_max_leave
+        elsif params[:forward]
+          employee_variable.available_leaves_seconds = employee_variable.available_leaves_seconds + default_max_leave
+        end
+        employee_variable.save
+      end
     end
-    
+
     if params[:forfeit]
       redirect_to organization_leaves_path(current_organization), notice: "Employee's leaves reseted"
     else
@@ -77,6 +86,6 @@ class OrganizationsController < ApplicationController
 	end
 
 	def organization_params
-		params.require(:organization).permit(:name, :domain, :default_currency)
+		params.require(:organization).permit(:name, :domain, :default_currency, :country)
 	end
 end

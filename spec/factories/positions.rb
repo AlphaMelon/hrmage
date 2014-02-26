@@ -3,6 +3,8 @@
 FactoryGirl.define do
   factory :position do
     name "Executive"
-    max_leaves 14
+    monthly_max_claims_cents 560000
+    can_approve_leave true
+    can_approve_claim true
   end
 end

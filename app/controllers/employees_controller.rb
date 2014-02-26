@@ -80,11 +80,14 @@ class EmployeesController < ApplicationController
   end
   
 	def destroy
-	  if @employee.account.blank? || @employee.account.account_organizations.where(organization_id: current_organization).first.role != "Super Admin"
+	  if !@employee.account.blank? && @employee.account.account_organizations.where(organization_id: current_organization).first.role == "Super Admin"
+	    redirect_to organization_employees_path(current_organization), alert: 'Super Admin employee cannot be deleted.'
+    elsif !@employee.account.blank? && (!Leave.where(action_by_id: @employee.account.id).blank? || !Claim.where(action_by_id: @employee.account.id).blank?)
+      redirect_to organization_employees_path(current_organization), alert: 'Employee that has approved leave or claim cannot be deleted.'
+	  else
+	    @employee.account.destroy if !@employee.account.blank?
 		  @employee.destroy
 		  redirect_to organization_employees_path(current_organization), notice: 'Employee successfully deleted'
-	  else
-	    redirect_to organization_employees_path(current_organization), alert: 'Super Admin employee cannot be deleted.'
 	  end
 	end
 	

@@ -1,20 +1,38 @@
-<div class="row" data-equalizer>
-  <div class="large-5 columns" data-equalizer-watch>
+<div class="row">
+  <div class="large-12 columns">
     <h4><%= t :organization_details %></h4>
-    <table>
-        <tr><th><%= t :name %></th><td><%= @organization.name %></td></tr>
-        <tr><th><%= t :domain %></th><td><%= @organization.domain %></td></tr>
-        <tr><th><%= t :country %></th><td><%= @organization.country %></td></tr>
-        <tr><th><%= t :currency %></th><td><%= @organization.default_currency %></td></tr>
-    </table>
-    <%= link_to t(:edit_organization), edit_organization_path(@organization), id: "edit_organization" %>
-  </div>
-  <div class="large-7 columns" data-equalizer-watch>
-    <h4><%= t :departments %></h4>
-    <table>
+    <table class="large-9">
       <thead>
         <th><%= t :name %></th>
-        <th></th>
+        <th><%= t :domain %></th>
+        <th><%= t :country %></th>
+        <th><%= t :currency %></th>
+        <th><%= t :action %></th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @organization.name %></td>
+          <td><%= @organization.domain %></td>
+          <td><%= @organization.country %></td>
+          <td><%= @organization.default_currency %></td>
+          <td><%= link_to t(:edit_organization), edit_organization_path(@organization), id: "edit_organization" %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<dl class="tabs" data-tab>
+  <dd class="active"><a href="#departments"><%= t :departments %></a></dd>
+  <dd><a href="#login_account"><%= t :login_account %></a></dd>
+  <dd><a href="#employees"><%= t :employees %></a></dd>
+</dl>
+<div class="tabs-content">
+  <div class="content active" id="departments">
+    <table class="large-9">
+      <thead>
+        <th><%= t :name %></th>
+        <th><%= t :action %></th>
       </thead>
       <tbody>
       <% @organization.departments.each do |department|%>
@@ -25,18 +43,14 @@
       <% end %>
       </tbody>
     </table>
-    <%= link_to t(:department_list), organization_departments_path(@organization) %>
+    <%= link_to t(:department_list), organization_departments_path(@organization), class: "button" %>
   </div>
-</div>
-
-<div class="row">
-  <div class="large-5 columns" data-equalizer-watch>
-    <h4><%= t :login_account %> </h4>
-    <table>
+  <div class="content" id="login_account">
+    <table class="large-9">
       <thead>
         <th><%= t :email %></th>
         <th><%= t :role %></th>
-        <th></th>
+        <th><%= t :action %></th>
       </thead>
       <tbody>
         <% @organization.account_organizations.each do |acc_org|%>
@@ -48,19 +62,17 @@
         <% end %>
       </tbody>
     </table>
-    <%= link_to "Add more account to #{@organization.name}", new_organization_account_organization_path(@organization)%>
+    <%= link_to "Add more account to #{@organization.name}", new_organization_account_organization_path(@organization), class: "button" %>
   </div>
-  
-  <div class="large-7 columns" data-equalizer-watch>
-    <h4><%= t :employees %></h4>
-    <table>
+  <div class="content" id="employees">
+    <table class="large-9">
       <thead>
         <th><%= t :last_name %></th>
         <th><%= t :first_name %></th>
         <th><%= t :e_mail %></th>
         <th><%= t :mobile_no %></th>
         <th><%= t :address %></th>
-        <th></th>
+        <th><%= t :action %></th>
       </thead>
       <tbody>
         <% @organization.employees.each do |employee|%>
@@ -75,6 +87,6 @@
         <% end %>
       </tbody>
     </table>
-    <%= link_to t(:employee_list), organization_employees_path(@organization) %>
+    <%= link_to t(:employee_list), organization_employees_path(@organization), class: "button" %>
   </div>
-</div>  
+</div>

@@ -53,9 +53,9 @@
       <tbody>
         <tr>
           <td>
-            <ul class="clearing-thumbs " data-clearing>
+            <ul class="clearing-thumbs large-block-grid-3" data-equalizer data-clearing>
               <% @employee.documents.each do |document| %>
-                <li>        
+                <li data-equalizer-watch>        
                   <% if document.image? %>
                     <%= link_to image_tag(document.image_url(:larger_thumb), class: "th", "data-caption" => document.name ), image_path(document.image) %><br>
                   <% else %>

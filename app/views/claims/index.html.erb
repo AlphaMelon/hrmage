@@ -42,7 +42,7 @@
       <% end %>
       </tbody>
     </table>
-    
+    <%= paginate @pending_claims %>
     <h3><%= t :history %></h3>
     <table>
       <thead>
@@ -71,10 +71,9 @@
           </td>
           <td><%= claim.status %></td>
           <td><%= claim.action_by.nil? ? t(:no_action_yet) : claim.action_by.profile.last_name %></td>
-          </td>
         </tr>
       <% end %>
     </table>
-
+    <%= paginate @claims %>
   </div>
 </div>

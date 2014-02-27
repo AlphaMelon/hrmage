@@ -2,14 +2,24 @@ require 'spec_helper'
 
 feature "[CanCan Ability Claims]" do
   background do
-    create_employee_cancan(false, true)
+    create_employee_cancan("testing@example.dev", "spree123", true, false, "IT")
     admin_login("testing@example.dev", "spree123")
   end
 
-  scenario "Approve Claim" do
-    visit "http://staff.alphamelon.dev/organizations/#{Organization.first.id}/claims"
+  scenario "Approve Claim from another department" do
+    visit organization_claims_path(Organization.first)
     click_on "Approve"
-    page.should have_content("Claim application approved")
+    page.should have_content("Access denied")
+  end
+  
+  scenario "Approve leave from own department" do
+    ed = EmployeeDepartment.first
+    ed.department_id = EmployeeDepartment.last.department_id
+    ed.save
+    
+    visit organization_leaves_path(Organization.first)
+    click_on "Approve"
+    page.should have_content("Leaves request approved")
   end
   
   scenario "Approve Own claim" do
@@ -22,7 +32,7 @@ feature "[CanCan Ability Claims]" do
     click_button "Apply Claim"
     page.should have_content("Claim successfully applied, please wait for approval")
     
-    visit "http://staff.alphamelon.dev/organizations/#{Organization.first.id}/claims"
+    visit organization_claims_path(Organization.first)
     all('#approve_claim')[1].click
     page.should have_content("Claim application approved")
   end
@@ -41,7 +51,7 @@ feature "[CanCan Ability Claims]" do
     click_button "Apply Claim"
     page.should have_content("Claim successfully applied, please wait for approval")
     
-    visit "http://staff.alphamelon.dev/organizations/#{Organization.first.id}/claims"
+    visit organization_claims_path(Organization.first)
     all('#approve_claim')[1].click
     page.should have_content("Access denied")
   end

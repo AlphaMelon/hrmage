@@ -7,21 +7,18 @@
         <th><%= t :first_name %></th>
         <th><%= t :position %></th>
         <th><%= t :e_mail %></th>
-        <th><%= t :mobile_no %></th>
-        <th><%= t :base_salary %></th>
-        <th><%= t :Can_self_approve %></th>
+        <th><%= t :departments %></th>
         <th><%= t :action %></th>
       </thead>
       <tbody>
+
       <% @employees.each do |employee|%>
         <tr>
           <td><%= employee.last_name%></td>
           <td><%= employee.first_name%></td>
           <td><%= employee.position.name if !employee.position.blank?%></td>
           <td><%= employee.account.email if !employee.account.nil?%></td>
-          <td><%= employee.mobile_contact%></td>
-          <td><%= humanized_money_with_symbol employee.base_salary%></td>
-          <td><%= employee.can_self_approve%></td>
+          <td><%= employee.departments.map {|x| x.name}.to_sentence %></td>
           <td>
             <a href="#" data-dropdown="drop_<%= employee.id %>" class="tiny button dropdown"><%= t :details %></a><br>
             <ul id="drop_<%= employee.id %>" data-dropdown-content class="f-dropdown">

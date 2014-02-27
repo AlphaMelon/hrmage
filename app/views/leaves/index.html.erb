@@ -84,7 +84,7 @@
         <th><%= sort_link @search, :duration_seconds, t(:duration) %></th>
         <th><%= sort_link @search, :date, t(:when) %></th>
         <th><%= sort_link @search, :status, t(:status) %></th>
-        <th><%= t :action %></th>
+        <th><%= t :action_by %></th>
       </thead>
       <tbody>
       <% @leaves.each do |history|%>
@@ -96,10 +96,7 @@
         <td><%= history.start_date.to_date.strftime("%d/%m/%Y") %> - <%= (history.start_date.to_date + ((history.duration_seconds)/60/60/24-1).days).strftime("%d/%m/%Y") %></td>
         <td><%= history.status %></td>
         <td>
-        <a href="#" data-dropdown="drop2" class="tiny button dropdown"><%= t :details %></a>
-          <ul id="drop2" data-dropdown-content class="f-dropdown">
-            <li><a href="#">test</a></li>
-          </ul>
+        <%= history.action_by.nil? ? t(:no_action_yet) : (link_to history.action_by.profile.last_name, organization_employee_path(current_organization, history.action_by.profile)) %>
         </td>
       </tr>
       <%end%>

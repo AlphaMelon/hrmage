@@ -8,8 +8,8 @@ class ClaimsController < ApplicationController
 
 	
   def index
-    @claims = @organization.claims.order(:id)
-    @pending_claims = @organization.claims.where(status: "Pending")
+    @claims = @organization.claims.order(id: :desc).page(params[:page]).per(5)
+    @pending_claims = @organization.claims.where(status: "Pending").order(id: :desc).page(params[:page]).per(5)
   end
   
   def show

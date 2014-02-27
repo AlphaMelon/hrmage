@@ -20,10 +20,10 @@ class Ability
       can :read, Leave
       can :read, Claim
       can :update, Leave do |leave|
-        leave.try(:employee_id) != account.profile.id || account.profile.can_self_approve
+        (leave.try(:employee_id) != account.profile.id || account.profile.can_self_approve) && account.profile.this_employee_in_my_department?(leave.employee_id)
       end
       can :update, Claim do |claim|
-        claim.try(:employee_id) != account.profile.id || account.profile.can_self_approve
+        (claim.try(:employee_id) != account.profile.id || account.profile.can_self_approve) && account.profile.this_employee_in_my_department?(claim.employee_id) && claim.try(:status) != "Paid"
       end
     elsif acc_org.role == "Employee"
       can :create, Leave

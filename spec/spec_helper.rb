@@ -67,7 +67,7 @@ RSpec.configure do |config|
   config.before(:each) do
     Capybara.javascript_driver = :webkit
     #Capybara.always_include_port = true
-    Capybara.app_host = "http://staff.alphamelon.dev:#{Capybara.server_port}/?beta=1"
+    Capybara.app_host = "http://alphamelontesting.hrmage.dev:#{Capybara.server_port}"
     
     PublicActivity.enabled = false
     

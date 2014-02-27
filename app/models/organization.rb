@@ -20,11 +20,23 @@ class Organization < ActiveRecord::Base
   validates :country, presence: true
   
   before_save :setup_currency
+  before_validation :remove_special_character_from_name_and_automatically_generate_domain
   
   accepts_nested_attributes_for :leave_types, allow_destroy: true
   def setup_currency
     ::MoneyRails.configure do |config|
       config.default_currency = self.default_currency.to_sym if !self.default_currency.nil?
+    end
+  end
+  
+  def remove_special_character_from_name_and_automatically_generate_domain
+    if !self.name.blank?
+      domain_string = self.name.gsub(/[^0-9A-Za-z]/, '') 
+      if Rails.env == "development" || Rails.env == "test"
+        self.domain = (domain_string.downcase.delete(" ") + ".hrmage.dev")
+      elsif Rails.env == "production"
+        self.domain = (domain_string.downcase.delete(" ") + ".officemage.com")
+      end
     end
   end
 end

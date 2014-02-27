@@ -23,9 +23,9 @@ class Employee < ActiveRecord::Base
   validates :employee_identification, presence: true
   validates_uniqueness_of :employee_identification, scope: :organization_id
 
-  #include PublicActivity::Model
-  #tracked owner: Proc.new{ |controller, model| controller.current_account }
-  #tracked organization_id: Proc.new { |controller, model| controller.current_organization.id }
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_account }
+  tracked organization_id: Proc.new { |controller, model| controller.current_organization.id }
   
   def set_default_values
     #self.can_self_approve = false if self.can_self_approve.blank?

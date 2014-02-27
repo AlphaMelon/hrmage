@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :employee do
+    employee_identification "STN001"
     first_name "David"
     last_name "Wong"
     mobile_contact "016123214"

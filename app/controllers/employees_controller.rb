@@ -6,7 +6,12 @@ class EmployeesController < ApplicationController
 	load_and_authorize_resource
 	
   def index
-    @employees = @organization.employees.order(:id)
+    @search = current_organization.employees.search(params[:q])
+    if params[:q].nil?
+      @employees = current_organization.employees.order(id: :asc).page(params[:page]).per(5)
+    else
+      @employees = @search.result.order(id: :asc).page(params[:page]).per(5)
+    end
   end
   
   def show

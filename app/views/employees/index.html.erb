@@ -3,6 +3,7 @@
     <h2><%= t :employees_list %></h2>
     <table>
       <thead>
+        <th>Identification</th>
         <th><%= t :last_name %></th>
         <th><%= t :first_name %></th>
         <th><%= t :position %></th>
@@ -14,6 +15,7 @@
 
       <% @employees.each do |employee|%>
         <tr>
+          <td><%= employee.employee_identification%></td>
           <td><%= employee.last_name%></td>
           <td><%= employee.first_name%></td>
           <td><%= employee.position.name if !employee.position.blank?%></td>

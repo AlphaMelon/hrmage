@@ -32,11 +32,6 @@ class AfterSignupController < ApplicationController
       @organization = Organization.new
       organization_params = params.require(:organization).permit(:name, :default_currency, :country)
       @organization.assign_attributes(organization_params)
-      if Rails.env == "development" || Rails.env == "test"
-        @organization.domain = (@organization.name.downcase.delete(" ") + ".hrmage.dev")
-      elsif Rails.env == "production"
-        @organization.domain = (@organization.name.downcase.delete(" ") + ".officemage.com")
-      end
       if @organization.save
         account_organization = AccountOrganization.new
         account_organization.organization_id = @organization.id
@@ -89,7 +84,7 @@ class AfterSignupController < ApplicationController
       end
     when :about_yourself
       @employee = current_account.build_profile
-      emp_params = params.require(:employee).permit(:last_name, :first_name, :mobile_contact, :address, :photo, :base_salary_cents, :base_salary)
+      emp_params = params.require(:employee).permit(:last_name, :first_name, :mobile_contact, :address, :photo, :base_salary_cents, :base_salary,:employee_identification)
       @employee.assign_attributes(emp_params)
       @employee.organization_id = current_account.organizations.first.id
       @employee.position_id = current_account.organizations.first.positions.first.id

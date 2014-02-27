@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224071946) do
+ActiveRecord::Schema.define(version: 20140227062801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -168,6 +168,7 @@ ActiveRecord::Schema.define(version: 20140224071946) do
     t.integer  "organization_id"
     t.boolean  "can_self_approve"
     t.integer  "base_salary_cents"
+    t.string   "employee_identification"
   end
 
   create_table "leave_types", force: true do |t|

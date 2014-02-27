@@ -6,6 +6,7 @@
       <legend><%= t :about_yourself %></legend>
       <h3><%= t :please_tell_us_more_about_yourself %></h3>
       <%= simple_form_for @employee, wrapper: :custom, url: wizard_path, method: "put" do |f| %>
+        <%= f.input :employee_identification, placeholder: "STN001" %>
         <%= f.input :last_name %>
         <%= f.input :first_name %>
         <%= f.input :mobile_contact %>

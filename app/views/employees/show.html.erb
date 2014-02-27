@@ -41,11 +41,7 @@
         </tr>
         <tr>
           <td><%= t :departments %>:</td>
-          <td>
-            <% @employee.departments.each do |d|%>
-              <%= d.name %>, 
-            <% end %>
-          </td>
+          <td><%= @employee.departments.map {|x| x.name}.to_sentence %></td>
         </tr>
       </tbody>
     </table>

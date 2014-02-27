@@ -2,12 +2,22 @@ require 'spec_helper'
 
 feature "[CanCan Ability Leaves]" do
   background do
-    create_employee_cancan(true, false)
+    create_employee_cancan("testing@example.dev", "spree123", true, false, "IT")
     admin_login("testing@example.dev", "spree123")
   end
 
-  scenario "Approve Leave" do
-    visit "http://staff.alphamelon.dev/organizations/#{Organization.first.id}/leaves"
+  scenario "Approve Leave from other department" do
+    visit organization_leaves_path(Organization.first)
+    click_on "Approve"
+    page.should have_content("Access denied")
+  end
+  
+  scenario "Approve leave from own department" do
+    ed = EmployeeDepartment.first
+    ed.department_id = EmployeeDepartment.last.department_id
+    ed.save
+    
+    visit organization_leaves_path(Organization.first)
     click_on "Approve"
     page.should have_content("Leaves request approved")
   end
@@ -21,7 +31,7 @@ feature "[CanCan Ability Leaves]" do
     click_button "Apply Leave"
     page.should have_content("Leave successfully applied, please wait for admin to approve")
     
-    visit "http://staff.alphamelon.dev/organizations/#{Organization.first.id}/leaves"
+    visit organization_leaves_path(Organization.first)
     all('#approve_leave')[1].click
     page.should have_content("Leaves request approved")
   end
@@ -39,7 +49,7 @@ feature "[CanCan Ability Leaves]" do
     click_button "Apply Leave"
     page.should have_content("Leave successfully applied, please wait for admin to approve")
     
-    visit "http://staff.alphamelon.dev/organizations/#{Organization.first.id}/leaves"
+    visit organization_leaves_path(Organization.first)
     all('#approve_leave')[1].click
     page.should have_content("Access denied")
   end

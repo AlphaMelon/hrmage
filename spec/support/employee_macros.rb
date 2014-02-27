@@ -21,12 +21,12 @@ module EmployeeMacros
     employee_department.save
   end
 
-  def create_employee_cancan(can_approve_leave, can_approve_claim)
+  def create_employee_cancan(email, password, can_approve_leave, can_approve_claim, department)
     organization = Organization.first
   
     account = Account.new
-    account.email = "testing@example.dev"
-    account.password = "spree123"
+    account.email = email
+    account.password = password
     account.save
     
     account_organization = AccountOrganization.new(account_id: account.id, organization_id: organization.id, role: "Admin")
@@ -41,7 +41,7 @@ module EmployeeMacros
     employee.position_id = position.id
     employee.save
     
-    department = Department.first
+    department = Department.where(name: department).first_or_create
     employee_department = EmployeeDepartment.new(employee_id: employee.id, department_id: department.id, leader: true)
     employee_department.save
   end

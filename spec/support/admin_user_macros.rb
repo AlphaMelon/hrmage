@@ -10,9 +10,7 @@ module AdminUserMacros
     admin.save
   end
   def active_admin_login(email, password)
-    #visit new_admin_user_session_path
-    #raise current_url.inspect
-    visit "http://staff.alphamelon.dev/admin"
+    visit new_admin_user_session_path
     fill_in "Email", with: email
     fill_in "Password", with: password
     click_on "Login"

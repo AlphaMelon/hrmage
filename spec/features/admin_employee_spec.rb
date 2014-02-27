@@ -18,6 +18,7 @@ feature "[Admin Employee]" do
     click_on "Admin"
     click_on "Employee"
     click_on "Add New Employee"
+    fill_in 'Employee identification', with: "STN555"
 		fill_in 'Last name', with: 'Lee'
 		fill_in 'First name', with: 'Alan'
 		fill_in 'Mobile contact', with: '016-3134415'
@@ -75,6 +76,7 @@ feature "[Admin Employee]" do
     click_on "Admin"
     click_on "Employee"
     click_on "Add New Employee"
+    fill_in 'Employee identification', with: "STN444"
 		fill_in 'Last name', with: 'Lee'
 		fill_in 'First name', with: 'Alan'
 		fill_in 'Mobile contact', with: '016-3134415'
@@ -104,6 +106,7 @@ feature "[Admin Employee]" do
     click_on "Admin"
     click_on "Employee"
     click_on "Add New Employee"
+    fill_in 'Employee identification', with: "STN555"
 		fill_in 'Last name', with: 'Lee'
 		fill_in 'First name', with: 'Alan'
 		fill_in 'Mobile contact', with: '016-3134415'

@@ -55,6 +55,7 @@ module FirstTimeSignupMacros
     def create_profile_step
       #tell us more about yourself part
       page.should have_content("Please tell us more about yourself")
+      fill_in "employee_employee_identification", with: "STN005"
       fill_in "employee_last_name", with: "Wong"
       fill_in "employee_first_name", with: "David"
       fill_in "employee_mobile_contact", with: "016-31413254"

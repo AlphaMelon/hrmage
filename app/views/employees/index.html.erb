@@ -1,12 +1,24 @@
 <div class="row">
   <div class="large-12 columns">
     <h2><%= t :employees_list %></h2>
+    <%= search_form_for [current_organization, @search] do |f| %>
+      <div class="field">
+        <%= f.label :employee_identification_cont, "Identification" %>
+        <%= f.text_field :employee_identification_cont %>
+        <%= f.label :last_name_cont, "Last Name contains" %>
+        <%= f.text_field :last_name_cont %>
+        <%= f.label :first_name_cont, "First Name contains" %>
+        <%= f.text_field :first_name_cont %>
+      </div>
+      <div class="actions"><%= f.submit "Search" %></div>
+    <% end %>
     <table>
       <thead>
-        <th><%= t :last_name %></th>
-        <th><%= t :first_name %></th>
-        <th><%= t :position %></th>
-        <th><%= t :e_mail %></th>
+        <th><%= sort_link(@search, :employee_identification, "Identification") %></th>
+        <th><%= sort_link(@search, :last_name, (t :last_name)) %></th>
+        <th><%= sort_link(@search, :first_name, (t :first_name)) %></th>
+        <th><%= sort_link(@search, :position, (t :position)) %></th>
+        <th><%= sort_link(@search, :email, (t :e_mail)) %></th>
         <th><%= t :departments %></th>
         <th><%= t :action %></th>
       </thead>
@@ -14,6 +26,7 @@
 
       <% @employees.each do |employee|%>
         <tr>
+          <td><%= employee.employee_identification%></td>
           <td><%= employee.last_name%></td>
           <td><%= employee.first_name%></td>
           <td><%= employee.position.name if !employee.position.blank?%></td>
@@ -43,6 +56,7 @@
       <% end %>
       </tbody>
     </table>
+    <%= paginate @employees %>
     <%= link_to t(:add_new_employee), new_organization_employee_path, class: "button success" %>
   </div>
 </div>

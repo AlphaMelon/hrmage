@@ -26,14 +26,14 @@ feature "[CanCan Ability Claims]" do
     visit root_path
     click_on "Claims", match: :first
     click_on "Apply Claim"
-    fill_in "Subject", with: "Petrol"
+    select "Petrol", from: "Subject" 
     fill_in "Date", with: "2014-01-27"
     fill_in "claim_amount", with: "88.1"
     click_button "Apply Claim"
     page.should have_content("Claim successfully applied, please wait for approval")
-    
+
     visit organization_claims_path(Organization.first)
-    all('#approve_claim')[1].click
+    all('#approve_claim')[0].click
     page.should have_content("Claim application approved")
   end
   
@@ -45,7 +45,7 @@ feature "[CanCan Ability Claims]" do
     visit root_path
     click_on "Claims", match: :first
     click_on "Apply Claim"
-    fill_in "Subject", with: "Petrol"
+    select "Petrol", from: "Subject"
     fill_in "Date", with: "2014-01-27"
     fill_in "claim_amount", with: "88.1"
     click_button "Apply Claim"

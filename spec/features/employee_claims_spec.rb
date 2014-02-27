@@ -9,7 +9,7 @@ feature "[Employee Claims]" do
     visit root_path
     click_on "Claims", match: :first
     click_on "Apply Claim"
-    fill_in "Subject", with: "Petrol"
+    select "Petrol", from: "Subject"
     fill_in "Date", with: "2014-01-27"
     fill_in "claim_amount", with: "88.1"
     click_button "Apply Claim"
@@ -21,7 +21,7 @@ feature "[Employee Claims]" do
     click_on "Claims", match: :first
     click_on "Apply Claim"
     click_button "Apply Claim"
-    page.should have_content("can't be blank")
+    page.should have_content("not a number")
   end
 
   scenario "Applying claim more than your available claims" do

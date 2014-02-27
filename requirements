@@ -19,3 +19,4 @@ superadmain can approve claims that exceed the claim limit
 claims follow the leave
 add devise expire password gem "https://github.com/phatworx/devise_security_extension"
 superadmin can apply leave for all employee
+

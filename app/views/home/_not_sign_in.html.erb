@@ -4,18 +4,15 @@
         <li class="layer" data-depth="0.2"><div class="background"></div></li>
 
         <li class="layer" data-depth="0">
-          <div class="rows">
-            <div class="large-12 column show-for-medium-up">
-              <h1>Office Mage</h1>
-              <h3 class="subheader">
-                Magic for your office
-              </h3>
-            </div>
-            <div class="large-12 column show-for-small">
-              <h1>Discover local brands.</h1>
-              <h3 class="subheader">
-                 We'll hook you up with t-shirts from two local brands. Delivered to you monthly.
-              </h3>
+          <div class="row first-page">
+            <div class="large-12 columns hide-for-medium hide-for-small">
+              <div class="row">
+                <div class="large-5 columns">
+                  <center><h1>let's get started.</h1></center>
+                  <center><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></center>
+                  <%= link_to "Register Now", new_account_registration_path, class: "button radius" %>
+                </div>
+              </div>
             </div>
           </div>
         </li>
@@ -23,16 +20,37 @@
     </div>
 
     <div class="section">
-        <div class="slide"> Slide 1 </div>
-        <div class="slide"> Slide 2 </div>
-        <div class="slide"> Slide 3 </div>
-        <div class="slide"> Slide 4 </div>
+      <div class="row second-page">
+        <div class="large-12 columns">
+          <div class="row">
+            <div class="large-4 columns">
+              <%= image_tag("icon/thumbup.png", width: 150, height: 141) %>
+            </div>
+            <div class="large-4 columns">
+              <%= image_tag("icon/login.png", width: 150, height: 141) %>
+            </div>
+            <div class="large-4 columns">
+              <%= image_tag("icon/application.png", width: 150, height: 141) %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="section">
-        <div class="slide"> Slide 1 </div>
-        <div class="slide"> Slide 2 </div>
-        <div class="slide"> Slide 3 </div>
-        <div class="slide"> Slide 4 </div>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? </p>
+    </div>
+
+    <div class="section">
+        <div class="slide">
+          <h6>
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? 
+          </h6>
+        </div>
+        <div class="slide">
+          <h6>
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? 
+          </h6>
+        </div>
     </div>
 </div>

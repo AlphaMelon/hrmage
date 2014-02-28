@@ -14,7 +14,7 @@
 
 <div class="tabs-content">
   <div class="content active" id="pending_leaves">
-    <table>
+    <table class="large-12">
       <thead>
         <th><%= t :name %></th>
         <th><%= t :start_date %> </th>
@@ -47,7 +47,7 @@
   </div>
   
   <div class="content" id="verify_leaves">
-    <table>
+    <table class="large-12">
       <thead>
         <th><%= t :name %></th>
         <th><%= t :start_date %></th>
@@ -80,7 +80,7 @@
   </div>
   
   <div class="content" id="history">
-    <table>
+    <table class="large-12">
       <thead>
         <th><%= sort_link @search, :last_name, t(:name) %></th>
         <th><%= t :type %></th>
@@ -124,7 +124,7 @@
   </div>
   
   <div class="content" id="search_leaves">
-    <table>
+    <table class="large-12">
       <thead>
         <th><%= sort_link @search, :last_name, t(:name) %></th>
         <th><%= t :type %></th>

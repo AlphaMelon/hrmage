@@ -1,18 +1,37 @@
 <div class="row">
   <div class="large-12 columns">
     <h2><%= t :employees_list %></h2>
-    <%= search_form_for [current_organization, @search] do |f| %>
-      <div class="field">
-        <%= f.label :employee_identification_cont, "Identification" %>
-        <%= f.text_field :employee_identification_cont %>
-        <%= f.label :last_name_cont, "Last Name contains" %>
-        <%= f.text_field :last_name_cont %>
-        <%= f.label :first_name_cont, "First Name contains" %>
-        <%= f.text_field :first_name_cont %>
+    <fieldset>
+      <legend>Search for employee</legend>
+      <%= search_form_for [current_organization, @search] do |f| %>
+      <div class="row">
+        <div class="large-3 columns">
+          <%= f.label :employee_identification_cont, "Identification" %>
+        </div>
+        <div class="large-9 columns">
+          <%= f.text_field :employee_identification_cont %>
+        </div>
+        <div class="large-3 columns">
+          <%= f.label :last_name_cont, "Last Name contains" %>
+        </div>
+        <div class="large-9 columns">
+          <%= f.text_field :last_name_cont %>
+        </div>
+        <div class="large-3 columns">
+          <%= f.label :first_name_cont, "First Name contains" %>
+        </div>
+        <div class="large-9 columns">
+          <%= f.text_field :first_name_cont %>
+        </div>
+        <div class="large-3 columns"></div>
+        <div class="large-9 columns">
+          <%= f.submit "Search", class: "button" %>
+        </div> 
       </div>
-      <div class="actions"><%= f.submit "Search" %></div>
     <% end %>
-    <table>
+    </fieldset>
+    
+    <table class="large-12 columns">
       <thead>
         <th><%= sort_link(@search, :employee_identification, "Identification") %></th>
         <th><%= sort_link(@search, :last_name, (t :last_name)) %></th>

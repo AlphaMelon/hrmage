@@ -16,6 +16,7 @@ class EmployeesController < ApplicationController
   
   def show
     @employee_claims = @employee.claims.order(date: :asc).page(params[:page]).per(5)
+    @employee_leaves = @employee.leaves.order(start_date: :desc).page(params[:page]).per(5)
   end
   
   def new

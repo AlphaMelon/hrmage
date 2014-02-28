@@ -1,6 +1,6 @@
 <div class="row">
   <div class="large-2 columns">
-    <table>
+    <table class="large-12">
       <thead>
         <th><%= @employee.full_name.capitalize %></th>
       </thead>
@@ -18,7 +18,7 @@
     </table>
   </div>
   <div class="large-10 columns">
-    <table class="large-9">
+    <table class="large-12">
       <thead>
         <th colspan="2"><%= @employee.first_name.capitalize %> <%= t :information%></th>
       </thead>
@@ -46,7 +46,7 @@
       </tbody>
     </table>
 
-    <table class="large-9">
+    <table class="large-12">
       <thead>
         <th><%=@employee.last_name.capitalize %>'s <%= t :documents%></th>
       </thead>
@@ -80,7 +80,7 @@
       </tbody>
     </table>
 
-    <table class="large-9">
+    <table class="large-12">
       <thead>
         <th colspan="3"><center><%= t :claims %></center></th>
       </thead>
@@ -100,6 +100,35 @@
       </tbody>
     </table>
     <%= paginate @employee_claims %>
+
+    <table class="large-12">
+      <thead>
+        <tr>
+          <th colspan="5"><center><%= t :leaves %></center></th>
+        </tr>
+      </thead>
+      <thead>
+        <tr>
+          <th><%= t :type %></th>
+          <th><%= t :comment %></th>
+          <th><%= t :duration %></th>
+          <th><%= t :when %></th>
+          <th><%= t :status %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @employee_leaves.each do |employee_leave| %>
+          <tr>
+            <td><%= employee_leave.leave_type.name %></td>
+            <td><%= employee_leave.comment %></td>
+            <td><%= (employee_leave.duration_seconds)/60/60/24 %> Days</td>
+            <td><%= employee_leave.start_date.to_date.strftime("%d/%m/%Y") %> - <%= (employee_leave.start_date.to_date + ((employee_leave.duration_seconds)/60/60/24-1).days).strftime("%d/%m/%Y") %></td>
+            <td><%= employee_leave.status %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate @employee_leaves %>
     <%= link_to t(:back), :back, class: "button success" %>
   </div>
 </div>

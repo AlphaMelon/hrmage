@@ -2,7 +2,7 @@
   <div class="large-12 columns">
     <h1><%= current_organization.name.capitalize %>'s <%= t :employees_claims %></h1>
     <h3><%= t :pending_claims %></h3>
-    <table>
+    <table class="large-12">
       <thead>
         <th><%= t :name %></th>
         <th><%= t :subject %></th>
@@ -44,7 +44,7 @@
     </table>
     <%= paginate @pending_claims %>
     <h3><%= t :history %></h3>
-    <table>
+    <table class="large-12">
       <thead>
          <th><%= t :name %></th>
         <th><%= t :subject %></th>

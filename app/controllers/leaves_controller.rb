@@ -9,12 +9,11 @@ class LeavesController < ApplicationController
 
     @search = @organization.leaves.search(params[:q])
     if params[:q].nil?
-      @search_leaves = @organization.leaves.order(id: :desc).page(params[:page]).per(5)
+      @leaves = @organization.leaves.order(id: :desc).page(params[:page]).per(5)
     else
-      @search_leaves = @search.result.order(id: :desc).page(params[:page]).per(5)
+      @leaves = @search.result.order(id: :desc).page(params[:page]).per(5)
     end
     
-    @history_leaves = @organization.leaves.order(id: :desc).page(params[:page]).per(5)
     @pending_leaves = @organization.leaves.where(status: "Pending")
     @verification_needed_leaves = @organization.leaves.where(status: "Verification Needed")
     @leave_types = @organization.leave_types

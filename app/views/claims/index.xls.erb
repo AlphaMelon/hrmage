@@ -9,15 +9,17 @@
       <Row>
         <Cell><Data ss:Type="String">ID</Data></Cell>
         <Cell><Data ss:Type="String">Name</Data></Cell>
-        <Cell><Data ss:Type="String">Release Date</Data></Cell>
-        <Cell><Data ss:Type="String">Price</Data></Cell>
+        <Cell><Data ss:Type="String">Subject</Data></Cell>
+        <Cell><Data ss:Type="String">Date</Data></Cell>
+        <Cell><Data ss:Type="String">Amount</Data></Cell>
       </Row>
     <% @claims.each do |claim| %>
       <Row>
         <Cell><Data ss:Type="Number"><%= claim.id %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= claim.name %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= claim.released_on %></Data></Cell>
-        <Cell><Data ss:Type="Number"><%= claim.price %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= claim.employee.last_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= claim.subject %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= claim.date.to_date.strftime("%d/%m/%Y") %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= number_to_currency(claim.amount_cents.to_f/100, precision: 2) %></Data></Cell>
       </Row>
     <% end %>
     </Table>

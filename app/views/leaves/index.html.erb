@@ -5,15 +5,14 @@
 </div>
 
 <dl class="tabs" data-tab>
-  <dd class="active"><a href="#pending_leaves"><%= t :pending_leaves %></a></dd>
+  <dd class="<%= 'active' if params[:q].blank? && params[:date].blank? %>"><a href="#pending_leaves"><%= t :pending_leaves %></a></dd>
   <dd><a href="#verify_leaves"><%= t :waiting_for_verification_leaves %></a></dd>
-  <dd><a href="#history"><%= t :history %></a></dd>
-  <dd><a href="#leave_calendar"><%= t :leave_calendar %></a></dd>
-  <dd><a href="#search_leaves">Search Leaves</a></dd>
+  <dd class="<%= 'active' if !params[:q].blank? %>"><a href="#history"><%= t :history %></a></dd>
+  <dd class="<%= 'active' if !params[:date].blank? && params[:q].blank?%>"><a href="#leave_calendar"><%= t :leave_calendar %></a></dd>
 </dl>
 
 <div class="tabs-content">
-  <div class="content active" id="pending_leaves">
+  <div class="content <%= 'active' if params[:q].blank? && params[:date].blank? %>" id="pending_leaves">
     <table>
       <thead>
         <th><%= t :name %></th>
@@ -26,7 +25,7 @@
       <% @pending_leaves.each do |leave|%>
         <tr>
           <td><%= link_to leave.employee.name_with_initial, organization_employee_path(current_organization, leave.employee) %></td>
-          <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %></td>
+          <td><%= leave.start_date.to_date %></td>
           <td><%= leave.duration_seconds/24/60/60%> Days</td>
           <td><%= leave.comment %></td>
           <td><%= leave.leave_type.name%></td>
@@ -59,7 +58,7 @@
       <% @verification_needed_leaves.each do |leave|%>
         <tr>
           <td><%= link_to leave.employee.name_with_initial, organization_employee_path(current_organization, leave.employee) %></td>
-          <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %></td>
+          <td><%= leave.start_date.to_date %></td>
           <td><%= leave.duration_seconds/24/60/60%> Days</td>
           <td><%= leave.comment %></td>
           <td><%= leave.leave_type.name %></td>
@@ -79,25 +78,32 @@
     </table>
   </div>
   
-  <div class="content" id="history">
-    <table>
+  <div class="content <%= 'active' if !params[:q].blank? %>" id="history">
+    <%= search_form_for [current_organization, @search] do |f| %>
+      <%= f.label :start_date_gteq, "Date between" %>
+      <%= f.text_field :start_date_gteq, placeholder: Date.today %>
+      <%= f.label :start_date_lteq, "and" %>
+      <%= f.text_field :start_date_lteq, placeholder: Date.today + 10 %>    
+      <div class="actions"><%= f.submit "Search" %></div>
+    <% end %>
+    <table class = "large-12 columns">
       <thead>
         <th><%= sort_link @search, :last_name, t(:name) %></th>
         <th><%= t :type %></th>
         <th><%= sort_link @search, :comment, t(:comment) %></th>
         <th><%= sort_link @search, :duration_seconds, t(:duration) %></th>
-        <th><%= sort_link @search, :date, t(:when) %></th>
+        <th><%= sort_link @search, :start_date, t(:when) %></th>
         <th><%= sort_link @search, :status, t(:status) %></th>
         <th><%= t :action_by %></th>
       </thead>
       <tbody>
-      <% @history_leaves.each do |history|%>
+      <% @leaves.each do |history|%>
       <tr>
         <td><%= link_to history.employee.name_with_initial, organization_employee_path(current_organization, history.employee) %></td>
         <td><%= history.leave_type.name %></td>
         <td><%= history.comment %></td>
         <td><%= (history.duration_seconds)/60/60/24 %> Days</td>
-        <td><%= history.start_date.to_date.strftime("%d/%m/%Y") %> - <%= (history.start_date.to_date + ((history.duration_seconds)/60/60/24-1).days).strftime("%d/%m/%Y") %></td>
+        <td><%= history.start_date.to_date%></td>
         <td><%= history.status %></td>
         <td>
         <%= history.action_by.nil? ? t(:no_action_yet) : (link_to history.action_by.profile.last_name, organization_employee_path(current_organization, history.action_by.profile)) %>
@@ -106,7 +112,7 @@
       <%end%>
       </tbody>
     </table>
-    <%= paginate @history_leaves %>
+    <%= paginate @leaves %>
     <a href="#" data-dropdown="end_of_year" class="tiny button dropdown"><%= t :end_of_year%></a>
     <ul id="end_of_year" data-dropdown-content class="f-dropdown">
       <li><%= link_to t(:reset_employees_available_leaves), organization_end_of_year_action_path(forfeit: true), method: :post%></li>
@@ -114,7 +120,7 @@
     </ul>
   </div>
   
-  <div class="content" id="leave_calendar">
+  <div class="content <%= 'active' if !params[:date].blank? && params[:q].blank?%>" id="leave_calendar">
     <%= render "select_year_month" %>
     <% if current_organization.organization_setting.nil? %>
       <%= render "without_setting"%>
@@ -123,35 +129,7 @@
     <% end %>
   </div>
   
-  <div class="content" id="search_leaves">
-    <table>
-      <thead>
-        <th><%= sort_link @search, :last_name, t(:name) %></th>
-        <th><%= t :type %></th>
-        <th><%= sort_link @search, :comment, t(:comment) %></th>
-        <th><%= sort_link @search, :duration_seconds, t(:duration) %></th>
-        <th><%= sort_link @search, :date, t(:when) %></th>
-        <th><%= sort_link @search, :status, t(:status) %></th>
-        <th><%= t :action_by %></th>
-      </thead>
-      <tbody>
-      <% @search_leaves.each do |history|%>
-      <tr>
-        <td><%= link_to history.employee.name_with_initial, organization_employee_path(current_organization, history.employee) %></td>
-        <td><%= history.leave_type.name %></td>
-        <td><%= history.comment %></td>
-        <td><%= (history.duration_seconds)/60/60/24 %> Days</td>
-        <td><%= history.start_date.to_date.strftime("%d/%m/%Y") %> - <%= (history.start_date.to_date + ((history.duration_seconds)/60/60/24-1).days).strftime("%d/%m/%Y") %></td>
-        <td><%= history.status %></td>
-        <td>
-        <%= history.action_by.nil? ? t(:no_action_yet) : (link_to history.action_by.profile.last_name, organization_employee_path(current_organization, history.action_by.profile)) %>
-        </td>
-      </tr>
-      <%end%>
-      </tbody>
-    </table>
-    <%= paginate @search_leaves %>
-  </div>
+
 </div>
 
 

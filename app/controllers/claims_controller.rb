@@ -8,8 +8,15 @@ class ClaimsController < ApplicationController
 
 	
   def index
-    @claims = @organization.claims.order(id: :desc).page(params[:page]).per(5)
     @pending_claims = @organization.claims.where(status: "Pending").order(id: :desc).page(params[:page]).per(5)
+    
+    @search = @organization.claims.search(params[:q])
+    if params[:q].nil?
+      @claims = @organization.claims.order(id: :desc).page(params[:page]).per(5)
+    else
+      @claims = @search.result.order(id: :desc).page(params[:page]).per(5)
+    end
+    
     respond_to do |format|
       format.html
       format.csv { send_data @claims.to_csv }

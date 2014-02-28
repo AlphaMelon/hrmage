@@ -17,7 +17,7 @@
       <tbody>
         <% @my_salarys.each do |salary| %>
         <tr>
-          <td><%= salary.date.to_date.strftime("%d/%m/%Y") %></td>
+          <td><%= salary.date.to_date %></td>
           <td><%= humanized_money_with_symbol salary.base_salary %></td>
           <td><%= humanized_money_with_symbol salary.commission %></td>
           <td><%= link_to t(:show), "my_salary_show/#{salary.id}", class: "fi-eye" %></td>

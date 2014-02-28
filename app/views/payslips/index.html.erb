@@ -12,7 +12,7 @@
       <tbody>
       <% @payslips.each do |payslip|%>
       <tr>
-        <td><%= payslip.date.to_date.strftime("%d/%m/%Y") %></td>
+        <td><%= payslip.date.to_date %></td>
         <td><%= humanized_money_with_symbol payslip.base_salary%></td>
         <td><%= humanized_money_with_symbol payslip.commission%></td>
         <td><%= payslip.payslip_settings.collect{|n| n.name}.join(",") %></td>

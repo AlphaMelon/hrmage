@@ -58,7 +58,7 @@
               <tbody>
                 <% current_account.profile.payslips.order(id: :asc).each do |payslip| %>
                   <tr>
-                    <td><%= payslip.date.to_date.strftime("%d/%m/%Y") %></td>
+                    <td><%= payslip.date.to_date %></td>
                     <td><%= humanized_money_with_symbol payslip.base_salary %></td>
                     <td><%= humanized_money_with_symbol payslip.commission %></td>
                   </tr>

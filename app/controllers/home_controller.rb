@@ -1,5 +1,12 @@
 class HomeController < ApplicationController
   def index
+    if !account_signed_in?
+      if current_organization.id.nil?
+        render layout: "marketing"
+      else
+        redirect_to new_account_session_path
+      end
+    end
 
     if account_signed_in?
       if !current_account.profile.nil?

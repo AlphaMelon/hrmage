@@ -7,7 +7,7 @@
         <%= simple_form_for [@organization, @leave], wrapper: :custom do |f| %>
           <%= render '/shared/error_message', object: f.object %>
           <% if can? :manage, :all %>
-            <%= f.association :employee, collection: current_organization.employees, include_blank: false, label_method: :full_name, value_method: :id %>
+            <%= f.association :employee, collection: current_organization.employees, include_blank: false, label_method: :full_name, value_method: :id, selected: current_account.profile.id %>
           <% end %>
           <%= f.input :start_date, as: :string, autocomplete: :off, input_html: {class: "datetime_only", value: Date.today} %>
           <%= f.input :duration_seconds, label: "Duration (in days)", input_html: { value: !@leave.duration_seconds.blank? ? @leave.duration_seconds/24/60/60 : 1} %>

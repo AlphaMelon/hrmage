@@ -80,7 +80,7 @@
       </tbody>
     </table>
 
-    <table class="large-12">
+   <table class="large-12">
       <thead>
         <th colspan="3"><center><%= t :claims %></center></th>
       </thead>
@@ -92,7 +92,7 @@
       <tbody>
         <% @employee_claims.each do |employee_claim|%>
           <tr>
-            <td><%= employee_claim.date.to_date.strftime("%d/%m/%Y") %></td>
+            <td><%= employee_claim.date.to_date %></td>
             <td><%= employee_claim.subject%></td>
             <td><%= humanized_money_with_symbol employee_claim.amount%></td>
           </tr>
@@ -121,8 +121,8 @@
           <tr>
             <td><%= employee_leave.leave_type.name %></td>
             <td><%= employee_leave.comment %></td>
-            <td><%= (employee_leave.duration_seconds)/60/60/24 %> Days</td>
-            <td><%= employee_leave.start_date.to_date.strftime("%d/%m/%Y") %> - <%= (employee_leave.start_date.to_date + ((employee_leave.duration_seconds)/60/60/24-1).days).strftime("%d/%m/%Y") %></td>
+            <td><%= (employee_leave.duration_seconds)/60/60/24 %> <%= t :b_days %></td>
+            <td><%= employee_leave.start_date.to_date%> - <%= (employee_leave.start_date.to_date + ((employee_leave.duration_seconds)/60/60/24-1).days)%></td>
             <td><%= employee_leave.status %></td>
           </tr>
         <% end %>

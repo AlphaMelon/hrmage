@@ -4,12 +4,13 @@
  *= require jquery.fullPage
  *= require_self
 */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800);
 
 body{
   font-family: 'Open Sans', sans-serif !important;
   h1,h2,h3,h4,h5,h6,p{
     font-family: 'Open Sans', sans-serif !important;
-    color: #FEFEFE;
+    color: #555 !important;
   }
 }
 
@@ -24,8 +25,7 @@ body{
   color: #FEFEFE;
 }
 
-.scene,
-.layer {
+.scene, .layer {
   display: block;
   height: 100%;
   width: 100%;
@@ -43,6 +43,9 @@ body{
 
 .layer {
   position: absolute;
+  h1,h2,h3,h4,h5,h6 {
+    color: #222;
+  }
 }
 .layer div {
   -webkit-transform: translate3d(0,0,0);
@@ -56,7 +59,8 @@ body{
   backface-visibility: hidden;
 }
 .background {
-  background-image: url(image-path('t33_home_handsbackground.jpg'));
+  background-image: url(image-path('1.jpg'));
+  background-color: #3498db;
   bottom: -5%;
   background-size: cover;
   position: absolute;
@@ -82,4 +86,35 @@ body{
     background-size: 600px auto;
     bottom: -5%;
   }
+  .second-page{
+    margin-top: 0em;
+    margin-bottom: 0em;
+  }
+}
+
+.first-page{
+  margin-top: 21.375em;
+  margin-bottom: 21.375em;
+  p{
+    color: #222;
+  }
+}
+
+.second-page{
+}
+
+.section-three{
+  background-image:url(image_path('home.jpg'));
+  background-size: cover;
+}
+
+.icon-image-size{
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+}
+
+.th{
+  background-color: #3BC492;
+  border: solid 4px #3BC492 !important;
 }

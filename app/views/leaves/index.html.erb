@@ -1,8 +1,20 @@
 <div class="row">
   <div class="large-12 columns">
     <h1><%= current_organization.name.capitalize %>'s <%= t :employees_leaves %></h1>
-    <h3><%= t :pending_leaves %></h3>
-    <table>
+  </div>
+</div>
+
+<dl class="tabs" data-tab>
+  <dd class="<%= 'active' if params[:q].blank? && params[:date].blank? %>"><a href="#pending_leaves"><%= t :pending_leaves %></a></dd>
+  <dd><a href="#verify_leaves"><%= t :waiting_for_verification_leaves %></a></dd>
+  <dd class="<%= 'active' if !params[:q].blank? %>"><a href="#history"><%= t :history %></a></dd>
+  <dd class="<%= 'active' if !params[:date].blank? && params[:q].blank?%>"><a href="#leave_calendar"><%= t :leave_calendar %></a></dd>
+</dl>
+
+<div class="tabs-content">
+
+  <div class="content <%= 'active' if params[:q].blank? && params[:date].blank? %>" id="pending_leaves">
+    <table class="large-12">
       <thead>
         <th><%= t :name %></th>
         <th><%= t :start_date %> </th>
@@ -13,8 +25,8 @@
       </thead>
       <% @pending_leaves.each do |leave|%>
         <tr>
-          <td><%= leave.employee.name_with_initial %></td>
-          <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %></td>
+          <td><%= link_to leave.employee.name_with_initial, organization_employee_path(current_organization, leave.employee) %></td>
+          <td><%= leave.start_date.to_date %></td>
           <td><%= leave.duration_seconds/24/60/60%> Days</td>
           <td><%= leave.comment %></td>
           <td><%= leave.leave_type.name%></td>
@@ -32,9 +44,10 @@
         </tr>
       <% end %>
     </table>
-    
-    <h3><%= t :waiting_for_verification_leaves %></h3>
-    <table>
+  </div>
+  
+  <div class="content" id="verify_leaves">
+    <table class="large-12">
       <thead>
         <th><%= t :name %></th>
         <th><%= t :start_date %></th>
@@ -45,8 +58,8 @@
       </thead>
       <% @verification_needed_leaves.each do |leave|%>
         <tr>
-          <td><%= leave.employee.name_with_initial %></td>
-          <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %></td>
+          <td><%= link_to leave.employee.name_with_initial, organization_employee_path(current_organization, leave.employee) %></td>
+          <td><%= leave.start_date.to_date %></td>
           <td><%= leave.duration_seconds/24/60/60%> Days</td>
           <td><%= leave.comment %></td>
           <td><%= leave.leave_type.name %></td>
@@ -65,37 +78,51 @@
       <% end %>
     </table>
   </div>
-</div>
-
-<div class="row">
-  <div class="large-12 columns">
-    <h3><%= t :history %></h3>
-  </div>
-  <div class="large-12 columns">
-    <table>
+  
+  <div class="content <%= 'active' if !params[:q].blank? %>" id="history">
+    <fieldset>
+      <legend><%= t :search_by_date %></legend>
+      <%= search_form_for [current_organization, @search] do |f| %>
+      <div class="row">
+        <div class="large-2 columns">
+          <%= f.label :start_date_gteq, t(:date_between), class: "left inline" %>
+        </div>
+        <div class="large-3 columns">
+          <%= f.text_field :start_date_gteq, placeholder: Date.today %>
+        </div>
+        <div class="large-2 columns">
+          <%= f.label :start_date_lteq, t(:and), class: "left inline" %>
+        </div>
+        <div class="large-3 columns">
+          <%= f.text_field :start_date_lteq, placeholder: Date.today + 10 %>
+        </div>
+        <div class="large-2 columns">
+          <%= f.submit "Search", class: "button postfix" %>
+        </div>
+      </div>
+    <% end %>
+    </fieldset>
+    <table class = "large-12 columns">
       <thead>
         <th><%= sort_link @search, :last_name, t(:name) %></th>
         <th><%= t :type %></th>
         <th><%= sort_link @search, :comment, t(:comment) %></th>
         <th><%= sort_link @search, :duration_seconds, t(:duration) %></th>
-        <th><%= sort_link @search, :date, t(:when) %></th>
+        <th><%= sort_link @search, :start_date, t(:when) %></th>
         <th><%= sort_link @search, :status, t(:status) %></th>
-        <th><%= t :action %></th>
+        <th><%= t :action_by %></th>
       </thead>
       <tbody>
       <% @leaves.each do |history|%>
       <tr>
-        <td><%= history.employee.name_with_initial %></td>
+        <td><%= link_to history.employee.name_with_initial, organization_employee_path(current_organization, history.employee) %></td>
         <td><%= history.leave_type.name %></td>
         <td><%= history.comment %></td>
         <td><%= (history.duration_seconds)/60/60/24 %> Days</td>
-        <td><%= history.start_date.to_date.strftime("%d/%m/%Y") %> - <%= (history.start_date.to_date + ((history.duration_seconds)/60/60/24-1).days).strftime("%d/%m/%Y") %></td>
+        <td><%= history.start_date.to_date%></td>
         <td><%= history.status %></td>
         <td>
-        <a href="#" data-dropdown="drop2" class="tiny button dropdown"><%= t :details %></a>
-          <ul id="drop2" data-dropdown-content class="f-dropdown">
-            <li><a href="#">test</a></li>
-          </ul>
+        <%= history.action_by.nil? ? t(:no_action_yet) : (link_to history.action_by.profile.last_name, organization_employee_path(current_organization, history.action_by.profile)) %>
         </td>
       </tr>
       <%end%>
@@ -107,13 +134,18 @@
       <li><%= link_to t(:reset_employees_available_leaves), organization_end_of_year_action_path(forfeit: true), method: :post%></li>
       <li><%= link_to t(:carry_forward_employees_available_leaves), organization_end_of_year_action_path(forward: true), method: :post%></li>
     </ul>
-    
   </div>
+  
+  <div class="content <%= 'active' if !params[:date].blank? && params[:q].blank?%>" id="leave_calendar">
+    <%= render "select_year_month" %>
+    <% if current_organization.organization_setting.nil? %>
+      <%= render "without_setting"%>
+    <% else %>
+      <%= render "with_setting" %>
+    <% end %>
+  </div>
+  
+
 </div>
 
-<%= render "select_year_month" %>
-<% if current_organization.organization_setting.nil? %>
-  <%= render "without_setting"%>
-<% else %>
-  <%= render "with_setting" %>
-<% end %>
+

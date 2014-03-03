@@ -1,14 +1,7 @@
-<% if !current_organization.id.nil? %>
-  <h5>Welcome, you are now in <%= current_organization.name.capitalize if !current_organization.new_record?%> Organization</h5>
-<% else %>
-  <center>
-    <h5>Welcome, you are now in <%= current_organization.name.capitalize if !current_organization.new_record?%> Organization</h5>
-  </center>
-<% end %>
-
 <% if !current_organization.id.nil?%>
   <% if !current_account.profile.nil?%>
     <% if !current_account.profile.position.nil?%>
+      <h3>Welcome, you are now in <%= current_organization.name.capitalize if !current_organization.new_record?%> Organization</h3>
       <div class="dashboard row" data-equalizer>
         <div class="large-4 small-12 columns" >
           <h3><%= t :leaves %></h3>
@@ -65,7 +58,7 @@
               <tbody>
                 <% current_account.profile.payslips.order(id: :asc).each do |payslip| %>
                   <tr>
-                    <td><%= payslip.date.to_date.strftime("%d/%m/%Y") %></td>
+                    <td><%= payslip.date.to_date %></td>
                     <td><%= humanized_money_with_symbol payslip.base_salary %></td>
                     <td><%= humanized_money_with_symbol payslip.commission %></td>
                   </tr>

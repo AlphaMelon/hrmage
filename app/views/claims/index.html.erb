@@ -1,8 +1,17 @@
 <div class="row">
   <div class="large-12 columns">
     <h1><%= current_organization.name.capitalize %>'s <%= t :employees_claims %></h1>
-    <h3><%= t :pending_claims %></h3>
-    <table>
+  </div>
+</div>
+
+<dl class="tabs" data-tab>
+  <dd class="<%= 'active' if params[:q].blank? %>"><a href="#pending_claims"><%= t :pending_claims %></a></dd>
+  <dd class="<%= 'active' if !params[:q].blank? %>"><a href="#history"><%= t :history %></a></dd>
+</dl>
+
+<div class="tabs-content">
+  <div class="content <%= 'active' if params[:q].blank? %>" id="pending_claims">
+    <table class="large-12 columns">
       <thead>
         <th><%= t :name %></th>
         <th><%= t :subject %></th>
@@ -15,9 +24,9 @@
       <tbody>
       <% @pending_claims.each do |pending_claim|%>
         <tr>
-          <td><%= pending_claim.employee.last_name.capitalize %></td>
+          <td><%= link_to pending_claim.employee.name_with_initial, organization_employee_path(current_organization, pending_claim.employee) %></td>
           <td><%= pending_claim.subject%></td>
-          <td><%= pending_claim.date.to_date.strftime("%d/%m/%Y") %></td>
+          <td><%= pending_claim.date.to_date %></td>
           <td><%= humanized_money_with_symbol pending_claim.amount%></td>
           <td><%= pending_claim.comment %></td>
           <td>
@@ -42,25 +51,70 @@
       <% end %>
       </tbody>
     </table>
-    
-    <h3><%= t :history %></h3>
-    <table>
+    <%= paginate @pending_claims %>
+  </div>
+  
+  <div class="content <%= 'active' if !params[:q].blank? %>" id="history">
+    <fieldset>
+      <legend>Search</legend>
+      <%= search_form_for [current_organization, @search] do |f| %>
+      <div class="row">
+        <div class="large-3 columns">
+          <%= f.label :employee_id, "Name", class: "left inline" %>
+        </div>
+        <div class="large-9 columns">
+          <%= f.select :employee_id_cont, current_organization.employees.collect{|e| [e.full_name, e.id]}, include_blank: true%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-3 columns">
+          <%= f.label :subject_cont, "Subject", class: "left inline" %>
+        </div>
+        <div class="large-9 columns">
+          <%= f.select :subject_cont, ["Petrol", "Entertainment", "Accomodation", "Others"], include_blank: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-3 columns">
+          <%= f.label :date_gteq, "Date between", class: "left inline" %>
+        </div>
+        <div class="large-9 columns">
+          <%= f.text_field :date_gteq, placeholder: Date.today %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-3 columns">
+          <%= f.label :date_lteq, "and", class: "left inline" %>
+        </div>
+        <div class="large-9 columns">
+          <%= f.text_field :date_lteq, placeholder: Date.today + 10 %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-3 columns"></div>
+        <div class="large-9 columns">
+          <%= f.submit "Search", class: "button" %>
+        </div>
+      </div>
+    <% end %>
+    </fieldset>
+    <table class="large-12">
       <thead>
-         <th><%= t :name %></th>
-        <th><%= t :subject %></th>
-        <th><%= t :working_date %></th>
-        <th><%= t :amount %></th>
-        <th><%= t :comment %></th>
+        <th><%= sort_link @search, :employee_id, t(:name) %></th>
+        <th><%= sort_link @search, :subject, t(:subject) %></th>
+        <th><%= sort_link @search, :date, t(:working_date) %></th>
+        <th><%= sort_link @search, :amount, t(:amount) %></th>
+        <th><%= sort_link @search, :comment, t(:comment) %></th>
         <th><%= t :receipt %></th>
-        <th><%= t :status %></th>
-        <th><%= t :action_by %></th>
+        <th><%= sort_link @search, :status, t(:status) %></th>
+        <th><%= sort_link @search, :action_by, t(:action_by) %></th>
       </thead>
       <% @claims.each do |claim|%>
         <tr>
-          <td><%= claim.employee.last_name.capitalize %></td>
+          <td><%= link_to claim.employee.name_with_initial, organization_employee_path(current_organization, claim.employee) %></td>
           <td><%= claim.subject%></td>
-          <td><%= claim.date.to_date.strftime("%d/%m/%Y") %></td>
-          <td><%= number_to_currency(claim.amount_cents.to_f/100, precision: 2) %></td>
+          <td><%= claim.date.to_date %></td>
+          <td><%= humanized_money_with_symbol claim.amount%></td>
           <td><%= claim.comment %></td>
           <td>
             <% if claim.image? %>
@@ -71,10 +125,12 @@
           </td>
           <td><%= claim.status %></td>
           <td><%= claim.action_by.nil? ? t(:no_action_yet) : claim.action_by.profile.last_name %></td>
-          </td>
         </tr>
       <% end %>
     </table>
-
+    <%= paginate @claims %>
+    <h6>
+      Download: <%= link_to "CSV", ""%> | <%= link_to "XLS", ""%>
+    </h6>
   </div>
 </div>

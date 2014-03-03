@@ -1,7 +1,7 @@
 <div class="row">
   <div class="large-12 columns">
     <h2><%= @employee.full_name%> <%= t :payslips %></h2>
-    <table>
+    <table class="large-12">
       <thead>
         <th><%= t :working_date %></th>
         <th><%= t :base_salary %></th>
@@ -12,7 +12,7 @@
       <tbody>
       <% @payslips.each do |payslip|%>
       <tr>
-        <td><%= payslip.date.to_date.strftime("%d/%m/%Y") %></td>
+        <td><%= payslip.date.to_date %></td>
         <td><%= humanized_money_with_symbol payslip.base_salary%></td>
         <td><%= humanized_money_with_symbol payslip.commission%></td>
         <td><%= payslip.payslip_settings.collect{|n| n.name}.join(",") %></td>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <table class="large-12">
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">Name</Data></Cell>
+        <Cell><Data ss:Type="String">Subject</Data></Cell>
+        <Cell><Data ss:Type="String">Date</Data></Cell>
+        <Cell><Data ss:Type="String">Amount</Data></Cell>
+      </Row>
+    <% @claims.each do |claim| %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= claim.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= claim.employee.last_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= claim.subject %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= claim.date.to_date.strftime("%d/%m/%Y") %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= number_to_currency(claim.amount_cents.to_f/100, precision: 2) %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

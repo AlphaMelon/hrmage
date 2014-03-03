@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224071946) do
+ActiveRecord::Schema.define(version: 20140303080734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,7 +106,10 @@ ActiveRecord::Schema.define(version: 20140224071946) do
     t.datetime "updated_at"
     t.integer  "action_by_id"
     t.integer  "amount_cents"
+    t.datetime "deleted_at"
   end
+
+  add_index "claims", ["deleted_at"], name: "index_claims_on_deleted_at", using: :btree
 
   create_table "country_holiday_settings", force: true do |t|
     t.integer  "country_setting_id"
@@ -127,7 +130,10 @@ ActiveRecord::Schema.define(version: 20140224071946) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "organization_id"
+    t.datetime "deleted_at"
   end
+
+  add_index "departments", ["deleted_at"], name: "index_departments_on_deleted_at", using: :btree
 
   create_table "documents", force: true do |t|
     t.string   "name"
@@ -135,7 +141,10 @@ ActiveRecord::Schema.define(version: 20140224071946) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "employee_id"
+    t.datetime "deleted_at"
   end
+
+  add_index "documents", ["deleted_at"], name: "index_documents_on_deleted_at", using: :btree
 
   create_table "employee_departments", force: true do |t|
     t.integer  "employee_id"
@@ -168,7 +177,11 @@ ActiveRecord::Schema.define(version: 20140224071946) do
     t.integer  "organization_id"
     t.boolean  "can_self_approve"
     t.integer  "base_salary_cents"
+    t.string   "employee_identification"
+    t.datetime "deleted_at"
   end
+
+  add_index "employees", ["deleted_at"], name: "index_employees_on_deleted_at", using: :btree
 
   create_table "leave_types", force: true do |t|
     t.string   "name"
@@ -181,7 +194,10 @@ ActiveRecord::Schema.define(version: 20140224071946) do
     t.boolean  "approval_needed"
     t.string   "colour"
     t.integer  "default_count_seconds"
+    t.datetime "deleted_at"
   end
+
+  add_index "leave_types", ["deleted_at"], name: "index_leave_types_on_deleted_at", using: :btree
 
   create_table "leaves", force: true do |t|
     t.datetime "start_date"
@@ -195,7 +211,10 @@ ActiveRecord::Schema.define(version: 20140224071946) do
     t.integer  "leave_type_id"
     t.integer  "duration_seconds"
     t.integer  "action_by_id"
+    t.datetime "deleted_at"
   end
+
+  add_index "leaves", ["deleted_at"], name: "index_leaves_on_deleted_at", using: :btree
 
   create_table "organization_holidays", force: true do |t|
     t.string   "name"
@@ -243,7 +262,10 @@ ActiveRecord::Schema.define(version: 20140224071946) do
     t.string   "maths"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
+
+  add_index "payslip_settings", ["deleted_at"], name: "index_payslip_settings_on_deleted_at", using: :btree
 
   create_table "payslips", force: true do |t|
     t.integer  "employee_id"
@@ -253,7 +275,10 @@ ActiveRecord::Schema.define(version: 20140224071946) do
     t.datetime "updated_at"
     t.integer  "commission_cents"
     t.integer  "base_salary_cents"
+    t.datetime "deleted_at"
   end
+
+  add_index "payslips", ["deleted_at"], name: "index_payslips_on_deleted_at", using: :btree
 
   create_table "position_default_variables", force: true do |t|
     t.integer  "position_id"
@@ -280,6 +305,9 @@ ActiveRecord::Schema.define(version: 20140224071946) do
     t.boolean  "can_approve_leave"
     t.boolean  "can_approve_claim"
     t.integer  "monthly_max_claims_cents"
+    t.datetime "deleted_at"
   end
+
+  add_index "positions", ["deleted_at"], name: "index_positions_on_deleted_at", using: :btree
 
 end

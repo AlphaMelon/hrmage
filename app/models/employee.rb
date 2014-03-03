@@ -20,6 +20,8 @@ class Employee < ActiveRecord::Base
   validates :first_name, presence: true
   validates :base_salary_cents, presence: true
   validates :position_id, presence: true
+  validates :employee_identification, presence: true
+  validates_uniqueness_of :employee_identification, scope: :organization_id
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_account }
@@ -37,5 +39,21 @@ class Employee < ActiveRecord::Base
   def full_name
     name = self.last_name + " " + self.first_name
     return name
+  end
+  
+  def this_employee_in_my_department?(employee_id)
+    status = false
+    self.departments.each do |department|
+      department.employees.each do |employee|
+        if employee_id == employee.id
+          status = true
+          break
+        else
+          status = false
+        end
+      end
+      break if status == true
+    end
+    return status
   end
 end

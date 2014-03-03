@@ -1,43 +1,93 @@
 <div id="superContainer">
-    <div class="section">
-      <ul id="scene" class="scene">
-        <li class="layer" data-depth="0.2"><div class="background"></div></li>
-        <li class="layer" data-depth="0.01">
-          <div class="hands">
-          </div>
-        </li>
-        <li class="layer" data-depth="0">
-          <div class="rows">
-            <div class="large-12 column show-for-medium-up">
-              <h1>Discover local brands.</h1>
-              <h3 class="subheader">
-                Tell us your style. We'll hook you up with t-shirts from two local brands. <br />
-                Delivered to you in an awesome box monthly.
-              </h3>
+  <div class="section">
+    <ul id="scene" class="scene">
+      <li class="layer" data-depth="0.2"><div class="background"></div></li>
+
+      <li class="layer" data-depth="0">
+        <div class="row first-page">
+          <div class="large-12 columns hide-for-medium hide-for-small">
+            <div class="row">
+              <div class="large-5 columns">
+                <center><h1>let's get started.</h1></center>
+                <center><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></center>
+                <%= link_to "Register Now", new_account_registration_path, class: "button radius" %>
+              </div>
             </div>
-            <div class="large-12 column show-for-small">
-              <h1>Discover local brands.</h1>
-              <h3 class="subheader">
-                 We'll hook you up with t-shirts from two local brands. Delivered to you monthly.
-              </h3>
-            </div>
-
           </div>
-        </li>
-      </ul>
-    </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 
-    <div class="section">
-        <div class="slide"> Slide 1 </div>
-        <div class="slide"> Slide 2 </div>
-        <div class="slide"> Slide 3 </div>
-        <div class="slide"> Slide 4 </div>
+  <div class="section">
+    <div class="row">
+      <div class="large-3 small-6 columns">
+        <%= image_tag("icon/Flaticon_11296.png", class: "icon-image-size th")%>
+        <h3>Lorem Ipsum</h3>
+        <h4>editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</h4>
+      </div>
+      <div class="large-3 small-6 columns">
+        <%= image_tag("icon/Flaticon_181.png", class: "icon-image-size th")%>
+        <h3>Lorem Ipsum</h3>
+        <h4>
+          editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+        </h4>
+      </div>
+      <div class="large-3 small-6 columns">
+        <%= image_tag("icon/Flaticon_24587.png", class: "icon-image-size th")%>
+        <h3>Lorem Ipsum</h3>
+        <h4>
+          editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+        </h4>
+      </div>
+      <div class="large-3 small-6 columns">
+        <%= image_tag("icon/Flaticon_1712.png", class: "icon-image-size th")%>
+        <h3>Lorem Ipsum</h3>
+        <h4>
+          editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+        </h4>
+      </div>
     </div>
+  </div>
 
-    <div class="section">
-        <div class="slide"> Slide 1 </div>
-        <div class="slide"> Slide 2 </div>
-        <div class="slide"> Slide 3 </div>
-        <div class="slide"> Slide 4 </div>
+  <div class="section section-three">
+    <div class="row">
+      <div class="large-8 columns">
+        <h1>Neque porro</h1>
+        <h6>
+          <p>
+            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. 
+          </p>
+          <p>
+            Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)
+          </p>
+        </h6>
+        <a href="#" class="button">Subscribe</a>
+        <div class="large-4 columns"></div>
+      </div>
     </div>
+  </div>
+
+  <div class="section">
+    <ul class="scene">
+      <li>
+        <div class="row">
+          <div class="large-6 columns">
+            <p>
+              <h1 class="text-justify">AlphaMelon Sdn Bhd</h1>
+            </p>
+            <p>
+              <h4 class="text-justify">
+                We always look forward to meet new awesome people and discuss brilliant project ideas. Come visit us! We have a great place to sit.
+              </h4>
+            </p>
+            <p>
+              <h3 class="subheader text-justify">Our contact details</h3>
+            </p>
+          </div>
+          <div class="large-6 columns"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>

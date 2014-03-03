@@ -1,27 +1,56 @@
 <div class="row">
   <div class="large-12 columns">
     <h2><%= t :employees_list %></h2>
-    <table>
+    <fieldset>
+      <legend><%= t :search_employee %></legend>
+      <%= search_form_for [current_organization, @search] do |f| %>
+      <div class="row">
+        <div class="large-3 columns">
+          <%= f.label :employee_identification_cont, t(:identification) %>
+        </div>
+        <div class="large-9 columns">
+          <%= f.text_field :employee_identification_cont %>
+        </div>
+        <div class="large-3 columns">
+          <%= f.label :last_name_cont, t(:last_name) %>
+        </div>
+        <div class="large-9 columns">
+          <%= f.text_field :last_name_cont %>
+        </div>
+        <div class="large-3 columns">
+          <%= f.label :first_name_cont, t(:first_name) %>
+        </div>
+        <div class="large-9 columns">
+          <%= f.text_field :first_name_cont %>
+        </div>
+        <div class="large-3 columns"></div>
+        <div class="large-9 columns">
+          <%= f.submit t(:search), class: "button" %>
+        </div> 
+      </div>
+    <% end %>
+    </fieldset>
+    
+    <table class="large-12 columns">
       <thead>
-        <th><%= t :last_name %></th>
-        <th><%= t :first_name %></th>
-        <th><%= t :position %></th>
-        <th><%= t :e_mail %></th>
-        <th><%= t :mobile_no %></th>
-        <th><%= t :base_salary %></th>
-        <th><%= t :Can_self_approve %></th>
+        <th><%= sort_link(@search, :employee_identification, t(:identification)) %></th>
+        <th><%= sort_link(@search, :last_name, (t :last_name)) %></th>
+        <th><%= sort_link(@search, :first_name, (t :first_name)) %></th>
+        <th><%= sort_link(@search, :position, (t :position)) %></th>
+        <th><%= sort_link(@search, :email, (t :e_mail)) %></th>
+        <th><%= t :departments %></th>
         <th><%= t :action %></th>
       </thead>
       <tbody>
+
       <% @employees.each do |employee|%>
         <tr>
+          <td><%= employee.employee_identification%></td>
           <td><%= employee.last_name%></td>
           <td><%= employee.first_name%></td>
           <td><%= employee.position.name if !employee.position.blank?%></td>
           <td><%= employee.account.email if !employee.account.nil?%></td>
-          <td><%= employee.mobile_contact%></td>
-          <td><%= humanized_money_with_symbol employee.base_salary%></td>
-          <td><%= employee.can_self_approve%></td>
+          <td><%= employee.departments.map {|x| x.name}.to_sentence %></td>
           <td>
             <a href="#" data-dropdown="drop_<%= employee.id %>" class="tiny button dropdown"><%= t :details %></a><br>
             <ul id="drop_<%= employee.id %>" data-dropdown-content class="f-dropdown">
@@ -46,6 +75,7 @@
       <% end %>
       </tbody>
     </table>
+    <%= paginate @employees %>
     <%= link_to t(:add_new_employee), new_organization_employee_path, class: "button success" %>
   </div>
 </div>

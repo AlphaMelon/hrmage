@@ -1,10 +1,5 @@
 class HomeController < ApplicationController
   def index
-    cookies[:beta] = true if params[:beta]
-    if !cookies[:beta]
-      render 'coming_soon', layout: 'blank'
-      return
-    end
     if !account_signed_in?
       if current_organization.id.nil?
         render layout: "marketing"

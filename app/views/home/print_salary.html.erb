@@ -1,6 +1,6 @@
 <div class="row">
   <div class="large-12 columns">
-    <h2><%= current_account.profile.full_name.capitalize %> (<%= @payslip.date.to_date.strftime("%d/%m/%Y") %>) </h2>
+    <h2><%= current_account.profile.full_name.capitalize %> (<%= @payslip.date.to_date %>) </h2>
   </div>
 </div>
 
@@ -15,7 +15,7 @@
       <tbody>
         <tr>
           <td><%= t :working_date %></td>
-          <td><%= @payslip.date.to_date.strftime("%d/%m/%Y") %></td>
+          <td><%= @payslip.date.to_date %></td>
         </tr>
       </tbody>
       <thead>

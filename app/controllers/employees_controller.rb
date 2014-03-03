@@ -6,11 +6,17 @@ class EmployeesController < ApplicationController
 	load_and_authorize_resource
 	
   def index
-    @employees = @organization.employees.order(:id)
+    @search = current_organization.employees.search(params[:q])
+    if params[:q].nil?
+      @employees = current_organization.employees.order(id: :asc).page(params[:page]).per(5)
+    else
+      @employees = @search.result.order(id: :asc).page(params[:page]).per(5)
+    end
   end
   
   def show
     @employee_claims = @employee.claims.order(date: :asc).page(params[:page]).per(5)
+    @employee_leaves = @employee.leaves.order(start_date: :desc).page(params[:page]).per(5)
   end
   
   def new
@@ -104,6 +110,6 @@ class EmployeesController < ApplicationController
 	def employee_params
 		params.require(:employee).permit(:first_name, :last_name, :mobile_contact, 
 		:address, :photo, :properties, :department_ids, :account_id, :position_id, 
-		:can_self_approve, :base_salary_cents, :base_salary)
+		:can_self_approve, :base_salary_cents, :base_salary, :employee_identification)
 	end
 end

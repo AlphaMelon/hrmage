@@ -48,6 +48,14 @@ GIT
       activemodel (>= 4.0.0, < 4.1)
 
 GIT
+  remote: git://github.com/radar/paranoia.git
+  revision: 96a02dd0baaa674ad1be0f63d033275d4938ac72
+  branch: rails4
+  specs:
+    paranoia (2.0.2)
+      activerecord (~> 4.0)
+
+GIT
   remote: git://github.com/seuros/capistrano-puma.git
   revision: 171622257c4543396ce6d8878af7e53e9bb9e37d
   specs:
@@ -365,6 +373,7 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari
   money-rails
+  paranoia!
   pg
   public_activity
   puma

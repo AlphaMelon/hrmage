@@ -24,7 +24,7 @@
       <tbody>
       <% @pending_claims.each do |pending_claim|%>
         <tr>
-          <td><%= pending_claim.employee.last_name.capitalize %></td>
+          <td><%= link_to pending_claim.employee.name_with_initial, organization_employee_path(current_organization, pending_claim.employee) %></td>
           <td><%= pending_claim.subject%></td>
           <td><%= pending_claim.date.to_date %></td>
           <td><%= humanized_money_with_symbol pending_claim.amount%></td>
@@ -111,7 +111,7 @@
       </thead>
       <% @claims.each do |claim|%>
         <tr>
-          <td><%= claim.employee.last_name.capitalize %></td>
+          <td><%= link_to claim.employee.name_with_initial, organization_employee_path(current_organization, claim.employee) %></td>
           <td><%= claim.subject%></td>
           <td><%= claim.date.to_date %></td>
           <td><%= humanized_money_with_symbol claim.amount%></td>

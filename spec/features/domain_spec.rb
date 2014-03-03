@@ -9,7 +9,7 @@ feature "[Domain]" do
     
     visit "http://xyztest.hrmage.dev:#{Capybara.server_port}"
     page.should have_content("xyz test")
-    current_url.should === "http://xyztest.hrmage.dev/"
+    current_url.should == "http://xyztest.hrmage.dev/accounts/sign_in"
     
     #test no domain found
     visit "http://nodomain.dev:#{Capybara.server_port}"

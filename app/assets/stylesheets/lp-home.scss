@@ -25,8 +25,7 @@ body{
   color: #FEFEFE;
 }
 
-.scene,
-.layer {
+.scene, .layer {
   display: block;
   height: 100%;
   width: 100%;
@@ -87,6 +86,10 @@ body{
     background-size: 600px auto;
     bottom: -5%;
   }
+  .second-page{
+    margin-top: 0em;
+    margin-bottom: 0em;
+  }
 }
 
 .first-page{
@@ -97,5 +100,21 @@ body{
   }
 }
 
-.second-page{ 
+.second-page{
+}
+
+.section-three{
+  background-image:url(image_path('home.jpg'));
+  background-size: cover;
+}
+
+.icon-image-size{
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+}
+
+.th{
+  background-color: #3BC492;
+  border: solid 4px #3BC492 !important;
 }

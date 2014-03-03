@@ -71,7 +71,7 @@ gem 'foundation-rails', github: 'zurb/foundation-rails'
 gem 'foundation-icons-sass-rails', github: 'zaiste/foundation-icons-sass-rails'
 gem 'kaminari'
 gem 'ransack'
-
+gem 'paranoia', :github => 'radar/paranoia', :branch => 'rails4'
 gem 'puma'
 gem 'public_activity'
 
@@ -91,5 +91,6 @@ gem 'capistrano-bundler', github: 'capistrano/bundler'
 gem 'capistrano-rbenv', github: 'capistrano/rbenv'
 
 gem 'capistrano-puma', github: "seuros/capistrano-puma"
+
 # Use debugger
 # gem 'debugger', group: [:development, :test]

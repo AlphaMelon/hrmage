@@ -55,17 +55,49 @@
   </div>
   
   <div class="content <%= 'active' if !params[:q].blank? %>" id="history">
-    <%= search_form_for [current_organization, @search] do |f| %>
-      <%= f.label :employee_id, "Name" %>
-      <%= f.select :employee_id_cont, current_organization.employees.collect{|e| [e.full_name, e.id]}, include_blank: true%>
-      <%= f.label :subject_cont, "Subject" %>
-      <%= f.select :subject_cont, ["Petrol", "Entertainment", "Accomodation", "Others"], include_blank: true %>
-      <%= f.label :date_gteq, "Date between" %>
-      <%= f.text_field :date_gteq, placeholder: Date.today %>
-      <%= f.label :date_lteq, "and" %>
-      <%= f.text_field :date_lteq, placeholder: Date.today + 10 %>    
-      <div class="actions"><%= f.submit "Search" %></div>
+    <fieldset>
+      <legend>Search</legend>
+      <%= search_form_for [current_organization, @search] do |f| %>
+      <div class="row">
+        <div class="large-3 columns">
+          <%= f.label :employee_id, "Name", class: "left inline" %>
+        </div>
+        <div class="large-9 columns">
+          <%= f.select :employee_id_cont, current_organization.employees.collect{|e| [e.full_name, e.id]}, include_blank: true%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-3 columns">
+          <%= f.label :subject_cont, "Subject", class: "left inline" %>
+        </div>
+        <div class="large-9 columns">
+          <%= f.select :subject_cont, ["Petrol", "Entertainment", "Accomodation", "Others"], include_blank: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-3 columns">
+          <%= f.label :date_gteq, "Date between", class: "left inline" %>
+        </div>
+        <div class="large-9 columns">
+          <%= f.text_field :date_gteq, placeholder: Date.today %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-3 columns">
+          <%= f.label :date_lteq, "and", class: "left inline" %>
+        </div>
+        <div class="large-9 columns">
+          <%= f.text_field :date_lteq, placeholder: Date.today + 10 %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-3 columns"></div>
+        <div class="large-9 columns">
+          <%= f.submit "Search", class: "button" %>
+        </div>
+      </div>
     <% end %>
+    </fieldset>
     <table class="large-12">
       <thead>
         <th><%= sort_link @search, :employee_id, t(:name) %></th>

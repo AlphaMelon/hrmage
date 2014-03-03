@@ -80,13 +80,28 @@
   </div>
   
   <div class="content <%= 'active' if !params[:q].blank? %>" id="history">
-    <%= search_form_for [current_organization, @search] do |f| %>
-      <%= f.label :start_date_gteq, "Date between" %>
-      <%= f.text_field :start_date_gteq, placeholder: Date.today %>
-      <%= f.label :start_date_lteq, "and" %>
-      <%= f.text_field :start_date_lteq, placeholder: Date.today + 10 %>    
-      <div class="actions"><%= f.submit "Search" %></div>
+    <fieldset>
+      <legend><%= t :search_by_date %></legend>
+      <%= search_form_for [current_organization, @search] do |f| %>
+      <div class="row">
+        <div class="large-2 columns">
+          <%= f.label :start_date_gteq, t(:date_between), class: "left inline" %>
+        </div>
+        <div class="large-3 columns">
+          <%= f.text_field :start_date_gteq, placeholder: Date.today %>
+        </div>
+        <div class="large-2 columns">
+          <%= f.label :start_date_lteq, t(:and), class: "left inline" %>
+        </div>
+        <div class="large-3 columns">
+          <%= f.text_field :start_date_lteq, placeholder: Date.today + 10 %>
+        </div>
+        <div class="large-2 columns">
+          <%= f.submit "Search", class: "button postfix" %>
+        </div>
+      </div>
     <% end %>
+    </fieldset>
     <table class = "large-12 columns">
       <thead>
         <th><%= sort_link @search, :last_name, t(:name) %></th>

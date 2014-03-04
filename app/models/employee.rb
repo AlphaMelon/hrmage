@@ -22,10 +22,10 @@ class Employee < ActiveRecord::Base
   validates :position_id, presence: true
   validates :employee_identification, presence: true
   validates_uniqueness_of :employee_identification, scope: :organization_id
-
+  acts_as_paranoid
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_account }
-  tracked organization_id: Proc.new { |controller, model| controller.current_organization.id }
+  tracked organization_id: Proc.new { |controller, model| model.organization_id }
   
   def set_default_values
     #self.can_self_approve = false if self.can_self_approve.blank?

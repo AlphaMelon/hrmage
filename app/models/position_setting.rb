@@ -6,7 +6,7 @@ class PositionSetting < ActiveRecord::Base
   
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_account }
-  tracked organization_id: Proc.new { |controller, model| controller.current_organization.id }  
+  tracked organization_id: Proc.new { |controller, model| model.position.organization_id }  
   
   def leaves_cannot_be_zero_or_negative
     if !self.max_leaves_seconds.nil?

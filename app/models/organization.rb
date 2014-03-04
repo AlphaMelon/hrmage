@@ -11,7 +11,7 @@ class Organization < ActiveRecord::Base
   has_many :organization_holidays, dependent: :destroy
   has_many :payslips, dependent: :destroy
   has_many :payslip_settings, dependent: :destroy
-  
+  has_many :claim_subjects, dependent: :destroy
   validates :domain, uniqueness: true
   validates :domain, presence: true
   validates :name, presence: true

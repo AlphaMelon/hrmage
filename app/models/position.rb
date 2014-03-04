@@ -7,9 +7,9 @@ class Position < ActiveRecord::Base
   validates :monthly_max_claims_cents, presence: true
   
   monetize :monthly_max_claims_cents, as: "monthly_max_claims"
-  
+  acts_as_paranoid
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_account }
-  tracked organization_id: Proc.new { |controller, model| controller.current_organization.id }
+  tracked organization_id: Proc.new { |controller, model| model.organization_id }
 
 end

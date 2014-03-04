@@ -1,5 +1,6 @@
 class Claim < ActiveRecord::Base
 
+
   before_save :set_default_values
   belongs_to :organization
   belongs_to :employee
@@ -11,12 +12,12 @@ class Claim < ActiveRecord::Base
   validates :date, presence: true
   validates :amount_cents, presence: true
   monetize :amount_cents, as: "amount"
-  
+  acts_as_paranoid
   mount_uploader :image, ImageUploader
   
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_account }
-  tracked organization_id: Proc.new { |controller, model| controller.current_organization.id }
+  tracked organization_id: Proc.new { |controller, model| model.organization_id }
   
   def set_default_values
     self.status = "Pending" if self.status.nil?

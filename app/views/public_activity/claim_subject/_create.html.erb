@@ -1,0 +1,6 @@
+created a claim subject named 
+<% if activity.trackable %>
+  <%= link_to activity.trackable.name, organization_claim_subjects_path(current_organization) %>
+<% else %>
+  which has since been removed 
+<% end %>

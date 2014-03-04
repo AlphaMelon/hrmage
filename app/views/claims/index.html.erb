@@ -71,7 +71,7 @@
           <%= f.label :subject_cont, "Subject", class: "left inline" %>
         </div>
         <div class="large-9 columns">
-          <%= f.select :subject_cont, ["Petrol", "Entertainment", "Accomodation", "Others"], include_blank: true %>
+          <%= f.select :subject_cont, current_organization.claim_subjects.collect{|cs| [cs.name, cs.name]}, include_blank: true %>
         </div>
       </div>
       <div class="row">

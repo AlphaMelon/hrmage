@@ -82,6 +82,22 @@ body{
     background-image:url(image_path('home.jpg')) !important;
     background-size: cover;
   }
+  .background {
+    background-image: url(image-path('bg1.jpg'));
+    background-color: #3498db;
+    bottom: -5%;
+    background-size: cover;
+    position: absolute;
+    background-position-x: center;
+    width: 110%;
+    left: -5%;
+    top: -5%;
+  }
+  .first-page{
+    h1, p{
+      color: #fff !important;
+    }
+  }
 }
 
 .first-page{

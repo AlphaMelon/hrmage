@@ -64,6 +64,7 @@ RSpec.configure do |config|
   config.include(AdminUserMacros)
   config.include(CountrySettingMacros)
   config.include(CountryHolidaySettingMacros)
+  config.include(ClaimSubjectMacros)
   config.before(:each) do
     Capybara.javascript_driver = :webkit
     #Capybara.always_include_port = true
@@ -110,6 +111,7 @@ RSpec.configure do |config|
     create_admin_user
     create_country_setting
     create_country_holiday_setting
+    create_claim_subject
     
   end
 end

@@ -10,6 +10,8 @@
     <li class="divider"></li>
     <li><%= link_to t(:leave_types), organization_leave_types_path(current_organization) %></li>
     <li class="divider"></li>
+    <li><%= link_to "Claim Subjects", organization_claim_subjects_path(current_organization) %></li>
+    <li class="divider"></li>
     <li><%= link_to t(:organization_settings), organization_organization_settings_path(current_organization) %></li> 
     <% if !current_organization.organization_setting.nil?%>    
       <% if !current_organization.organization_setting.id.nil?%>

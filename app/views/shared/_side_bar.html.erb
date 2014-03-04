@@ -45,6 +45,10 @@
 <% elsif (!@positions.nil? || !@position.nil?) && session[:employee_session] %>
   <%# render what employee can see here %>
 
+<% elsif (!@claim_subjects.nil? || !@claim_subject.nil?) && session[:admin_session] %>
+ <%= render "shared/admin_panel" %>
+<% elsif (!@claim_subjects.nil? || !@claim_subject.nil?) && session[:employee_session] %>
+
 <%# leave type panel %>
 <% elsif (!@leave_types.nil? || !@leave_type.nil?) && session[:admin_session] %>
  <%= render "shared/admin_panel" %>

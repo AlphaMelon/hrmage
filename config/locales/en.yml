@@ -278,3 +278,6 @@ en:
   password_requirement: "minimum 8 characters"
   organization_settings_helper: "Your organization do not have any settings yet, please click the button below to create setting"
   max_leaves_in_days: "Maximum Leaves (in days)"
+  add_new_claim_subject: "Add Claim Subject"
+  claim_subject_new_description: "This is where you add new claim subject. Employee will choose from this list when they apply for new claim."
+  claim_subject_edit_description: "This is where you edit existing subject that your organization created."

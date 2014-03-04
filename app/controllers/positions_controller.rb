@@ -6,7 +6,7 @@ class PositionsController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @positions = current_organization.positions
+    @positions = current_organization.positions.order(id: :asc)
   end
   
   def new

@@ -15,6 +15,7 @@ Hrmage::Application.routes.draw do
   get 'print_salary' => "home#print_salary"
   get 'approvals' => "home#approvals"
   resources :organizations do
+    resources :claim_subjects
     resources :activities
     resources :payslip_settings
     resources :claims

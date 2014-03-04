@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h2>Claim Subject list</h2>
+    <table class="large-12">
+      <thead>
+        <th><%= t :name %></th>
+        <th><%= t :action %></th>
+      </thead>
+      <tbody>
+      <% @claim_subjects.each do |claim_subject|%>
+        <tr>
+          <td><%= claim_subject.name %></td>
+          <td>
+          <a href="#" data-dropdown="drop_<%=claim_subject.id %>" class="tiny button dropdown"><%= t :details %></a>
+            <ul id="drop_<%=claim_subject.id %>" data-dropdown-content class="f-dropdown">
+              <li>
+                <%= link_to t(:edit), edit_organization_claim_subject_path(current_organization, claim_subject), class: "fi-pencil" %>
+              </li>
+              <li>
+                <%= link_to t(:delete), organization_claim_subject_path(current_organization, claim_subject), id: 'delete_claim_subject', class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure) }%>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= link_to "Add new claim subject", new_organization_claim_subject_path(current_organization), class: "button success" %>
+  </div>
+</div>

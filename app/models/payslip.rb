@@ -12,10 +12,10 @@ class Payslip < ActiveRecord::Base
   monetize :base_salary_cents, as: "base_salary"
   validates :date, presence: true
   validates :base_salary_cents, presence: true
-
+  acts_as_paranoid
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_account }
-  tracked organization_id: Proc.new { |controller, model| controller.current_organization.id }
+  tracked organization_id: Proc.new { |controller, model| model.organization_id }
   
   def set_default_values
   end

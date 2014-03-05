@@ -122,7 +122,7 @@
         <td><%= history.start_date.to_date%></td>
         <td><%= history.status %></td>
         <td>
-        <%= history.action_by.nil? ? t(:no_action_yet) : (link_to history.action_by.profile.last_name, organization_employee_path(current_organization, history.action_by.profile)) %>
+        <%= history.action_by.nil? ? t(:no_action_yet) : (link_to history.action_by.profiles.where(organization_id: current_organization.id).first.last_name, organization_employee_path(current_organization, history.action_by.profiles.where(organization_id: current_organization.id).first)) %>
         </td>
       </tr>
       <%end%>

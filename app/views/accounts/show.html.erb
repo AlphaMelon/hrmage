@@ -1,15 +1,15 @@
-<% if !current_account.profile.nil?%>
+<% if !current_employee.nil?%>
 
 <div class="row">
   <div class="large-2 columns">
     <table class="large-12">
       <thead>
-        <th><%= current_account.profile.full_name.capitalize %></th>
+        <th><%= current_employee.full_name.capitalize %></th>
       </thead>
       <tbody>
-        <% if current_account.profile.photo? %>
+        <% if current_employee.photo? %>
           <tr>
-            <td><%= image_tag current_account.profile.photo_url(:larger_thumb) %></td>
+            <td><%= image_tag current_employee.photo_url(:larger_thumb) %></td>
           </tr>
         <% else %>
           <tr>
@@ -22,12 +22,12 @@
   <div class="large-10 columns">
     <table class="large-9">
       <thead>
-        <th colspan="2"><%= current_account.profile.first_name.capitalize %> <%= t :information %></th>
+        <th colspan="2"><%= current_employee.first_name.capitalize %> <%= t :information %></th>
       </thead>
       <tbody>
         <tr>
           <td><%= t :name %>:</td>
-          <td><%= current_account.profile.full_name %></td>
+          <td><%= current_employee.full_name %></td>
         </tr>
         <tr>
           <td><%= t :e_mail %>:</td>
@@ -35,25 +35,25 @@
         </tr>
         <tr>
           <td><%= t :mobile_no %>:</td>
-          <td><%= current_account.profile.mobile_contact %></td>
+          <td><%= current_employee.mobile_contact %></td>
         </tr>
         <tr>
           <td><%= t :address %>:</td>
-          <td><%= current_account.profile.address%></td>
+          <td><%= current_employee.address%></td>
         </tr>
       </tbody>
     </table>
 
     <table class="large-9">
       <thead>
-        <th><%=current_account.profile.last_name.capitalize %>'s <%= t :documents %></th>
+        <th><%=current_employee.last_name.capitalize %>'s <%= t :documents %></th>
       </thead>
 
       <tbody>
         <tr>
           <td>
             <ul class="clearing-thumbs " data-clearing>
-              <% current_account.profile.documents.each do |document| %>
+              <% current_employee.documents.each do |document| %>
                 <li>
                   <% if document.image? %>
                     <%= link_to image_tag(document.image_url(:larger_thumb), class: "th", "data-caption" => document.name), image_path(document.image) %><br />

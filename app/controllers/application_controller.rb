@@ -2,8 +2,9 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_filter :setup_domains
+  before_filter :setup
   helper_method :current_organization
+  helper_method :current_employee
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :can_can_compability_to_strong_paramater
   before_filter :admin_or_employee_session
@@ -30,7 +31,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) do |u|
       u.permit(:password, :password_confirmation,:current_password)
     end
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation) }
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, 
+                                                    :password_confirmation) }
   end
   
   def current_ability
@@ -41,13 +43,19 @@ class ApplicationController < ActionController::Base
     @current_organization
   end
   
+  def current_employee
+    Employee.where(account_id: current_account.id, organization_id: current_organization).first
+  end
+  
   rescue_from CanCan::AccessDenied do |exception|
     flash[:alert] = "Access denied."
     redirect_to root_url
   end
   
+
+  
   private
-  def setup_domains
+  def setup
     @current_organization = ::Organization.find_by(domain: request.host)
     if !@current_organization
       @current_organization = ::Organization.new
@@ -58,4 +66,6 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+  
+
 end

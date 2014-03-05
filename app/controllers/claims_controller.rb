@@ -33,11 +33,11 @@ class ClaimsController < ApplicationController
 
   def create
     @claim = @organization.claims.new(claim_params)
-    @claim.employee_id = current_account.profile.id
+    @claim.employee_id = current_employee.id
     if @claim.save
       @claim.employee.departments.each do |department|
         department.employee_departments.where(leader: true).each do |employee_department|
-          UserMailer.apply_claim(employee_department.employee.account, @claim).deliver if !employee_department.employee.account.nil?
+          UserMailer.apply_claim(employee_department.employee.account, @claim, employee_department.employee.id).deliver if !employee_department.employee.account.nil?
         end
       end
       redirect_to my_claims_path, notice: "Claim successfully applied, please wait for approval"
@@ -53,7 +53,7 @@ class ClaimsController < ApplicationController
     @claim.update(action_by_id: current_account.id)
 		if claim_params[:status] == "Approved"
 		  @claim.approve
-		  UserMailer.claim_approval(@claim.employee.account, @claim).deliver if !@claim.employee.account.nil?
+		  UserMailer.claim_approval(@claim.employee.account, @claim, @claim.employee).deliver if !@claim.employee.account.nil?
 			redirect_to organization_claims_path(current_organization), notice: 'Claim application approved'
 		elsif claim_params[:status]  == "Rejected"
 		  @claim.reject

@@ -124,7 +124,7 @@
             <% end %>
           </td>
           <td><%= claim.status %></td>
-          <td><%= claim.action_by.nil? ? t(:no_action_yet) : claim.action_by.profile.last_name %></td>
+          <td><%= claim.action_by.nil? ? t(:no_action_yet) : claim.action_by.profiles.where(organization_id: current_organization.id).first.last_name %></td>
         </tr>
       <% end %>
     </table>

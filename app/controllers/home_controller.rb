@@ -9,12 +9,12 @@ class HomeController < ApplicationController
     end
 
     if account_signed_in?
-      if !current_account.profile.nil?
-        if !current_account.profile.position.nil?
-          @my_leaves = current_account.profile.leaves.order(id: :desc)
+      if !current_account.profiles.nil?
+        if !current_employee.position.nil?
+          @my_leaves = current_employee.leaves.order(id: :desc)
           authenticate_account!
-          @my_claims = current_account.profile.claims.order(id: :desc)
-          @claims_remaining_percentage = (current_account.profile.claims.where(status: "Approved", date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).sum :amount_cents)/current_account.profile.position.monthly_max_claims_cents
+          @my_claims = current_employee.claims.order(id: :desc)
+          @claims_remaining_percentage = (current_employee.claims.where(status: "Approved", date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).sum :amount_cents)/current_employee.position.monthly_max_claims_cents
         end
       end
     end
@@ -22,32 +22,32 @@ class HomeController < ApplicationController
   
   def my_leaves
     authenticate_account!
-    @my_leaves = current_account.profile.leaves.order(start_date: :desc).page(params[:page]).per(5) if !current_account.profile.nil?
+    @my_leaves = current_employee.leaves.order(start_date: :desc).page(params[:page]).per(5) if !current_employee.nil?
   end
   
   def my_claims
     authenticate_account!
-    @my_claims = current_account.profile.claims.order(id: :desc).page(params[:page]).per(5) if !current_account.profile.nil?
-    @claims_remaining_percentage = (current_account.profile.claims.where(status: "Approved", date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).sum :amount_cents)/current_account.profile.position.monthly_max_claims_cents
+    @my_claims = current_employee.claims.order(id: :desc).page(params[:page]).per(5) if !current_employee.nil?
+    @claims_remaining_percentage = (current_employee.claims.where(status: "Approved", date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).sum :amount_cents)/current_employee.position.monthly_max_claims_cents
   end
 
   def my_salary
     authenticate_account!
-    @my_salarys = current_account.profile.payslips.order(date: :asc) if !current_account.profile.nil?
+    @my_salarys = current_employee.payslips.order(date: :asc) if !current_employee.nil?
   end
 
   def my_salary_show
     @payslip = Payslip.find(params[:payslip_id])
     @affected_leave = []
-    current_account.profile.leaves.where(status: "Approved", start_date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).each do |leave|
+    current_employee.leaves.where(status: "Approved", start_date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).each do |leave|
       if leave.leave_type.affected_entity.include?("salary")
         @affected_leave << leave
       end
     end
     
     @base_salary_cents = @payslip.base_salary_cents
-    @total = @payslip.commission_cents + (current_account.profile.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)
-    if @payslip.employee_id != current_account.profile.id
+    @total = @payslip.commission_cents + (current_employee.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)
+    if @payslip.employee_id != current_employee.id
       redirect_to(root_path, alert: "You are not authorize to view this.")
     end
   
@@ -56,14 +56,14 @@ class HomeController < ApplicationController
   def print_salary
     @payslip = Payslip.find(params[:payslip_id])
     @affected_leave = []
-    current_account.profile.leaves.where(status: "Approved", start_date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).each do |leave|
+    current_employee.leaves.where(status: "Approved", start_date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).each do |leave|
       if leave.leave_type.affected_entity.include?("salary")
         @affected_leave << leave
       end
     end
     @base_salary_cents = @payslip.base_salary_cents
-    @total = @payslip.commission_cents + (current_account.profile.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)
-    if @payslip.employee_id != current_account.profile.id
+    @total = @payslip.commission_cents + (current_employee.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)
+    if @payslip.employee_id != current_employee.id
       redirect_to(root_path, alert: "You are not authorize to view this.") and return
     end
     render layout: "blank"
@@ -109,7 +109,7 @@ class HomeController < ApplicationController
     
     @employees = []
 
-    current_account.profile.departments.each do |department| 
+    current_employee.departments.each do |department| 
       department.employees.each do |employee|
         @employees << employee
       end
@@ -129,7 +129,7 @@ class HomeController < ApplicationController
   end
 
   def approvals
-    @my_leaves = current_account.profile.leaves.where(status: "Approved").order(start_date: :desc).page(params[:page]).per(5) if !current_account.profile.nil?
+    @my_leaves = current_employee.leaves.where(status: "Approved").order(start_date: :desc).page(params[:page]).per(5) if !current_employee.nil?
   end
 
 end

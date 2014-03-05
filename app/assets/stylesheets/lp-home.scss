@@ -4,7 +4,7 @@
  *= require jquery.fullPage
  *= require_self
 */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
 
 body{
   font-family: 'Open Sans', sans-serif !important;
@@ -109,6 +109,9 @@ body{
 }
 
 .second-page{
+  fieldset legend{
+    background: none;
+  }
 }
 
 .section-three{
@@ -126,7 +129,11 @@ body{
   width: 120px;
 }
 
+.box-line{
+  background-color: #fff;
+}
+
 .th{
   background-color: #16a085;
-  border: solid 4px #3BC492;
+  border: solid 1px #3BC492;
 }

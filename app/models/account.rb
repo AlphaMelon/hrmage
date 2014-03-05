@@ -7,7 +7,7 @@ class Account < ActiveRecord::Base
   before_save :set_default_values
   validates :email, uniqueness: true
   
-  has_one :profile, class_name: "Employee"
+  has_many :profiles, class_name: "Employee"
   has_many :account_organizations, dependent: :destroy
   has_many :organizations, :through => :account_organizations
   

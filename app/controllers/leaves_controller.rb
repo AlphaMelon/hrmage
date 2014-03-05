@@ -65,7 +65,7 @@ class LeavesController < ApplicationController
     if @leave.save
       @leave.employee.departments.each do |department|
         department.employee_departments.where(leader: true).each do |employee_department|
-          UserMailer.apply_leave(employee_department.employee.account, @leave).deliver if !employee_department.employee.account.nil?
+          UserMailer.apply_leave(employee_department.employee.account, @leave, employee_department.employee).deliver if !employee_department.employee.account.nil?
         end
       end
       redirect_to my_leaves_path, notice: "Leave successfully applied, please wait for admin to approve"
@@ -81,7 +81,7 @@ class LeavesController < ApplicationController
     @leave.update(action_by_id: current_account.id)
 		if leave_params[:status] == "Approved"
 		  @leave.approve
-		  UserMailer.leave_approval(@leave.employee.account, @leave).deliver if !@leave.employee.account.nil?
+		  UserMailer.leave_approval(@leave.employee.account, @leave, @leave.employee).deliver if !@leave.employee.account.nil?
 			redirect_to organization_leaves_path(current_organization), notice: 'Leaves request approved'
 		elsif leave_params[:status]  == "Rejected"
 		  @leave.reject

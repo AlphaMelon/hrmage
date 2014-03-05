@@ -24,7 +24,7 @@
             </li>
             <li class="divider"></li>
             <li class="has-dropdown">
-              <a href="#"><%= t :hello %> <%= !current_account.profile.nil? ? current_account.profile.last_name : t(:new_user) %></a>
+              <a href="#"><%= t :hello %> <%= !current_employee.nil? ? current_employee.name_with_initial : t(:new_user) %></a>
               <ul class="dropdown">
                 <li><%= link_to t(:view_my_profile), account_path(current_account) %></li>
                 <li><%= link_to t(:change_my_password), edit_account_registration_path %></li>

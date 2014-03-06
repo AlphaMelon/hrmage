@@ -58,7 +58,7 @@ class LeavesController < ApplicationController
 
   def create
     @leave = current_organization.leaves.new(leave_params)
-    @leave.employee_id = current_account.profile.id if @leave.employee_id.nil?
+    @leave.employee_id = current_employee.id if @leave.employee_id.nil?
     
     @leave.duration_seconds = @leave.duration_seconds*24*60*60 if !@leave.duration_seconds.nil?
     @leave.status = "Verification Needed" if !@leave.leave_type.approval_needed

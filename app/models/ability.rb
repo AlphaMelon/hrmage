@@ -6,6 +6,7 @@ class Ability
     #
     account ||= Account.new # guest user (not logged in)
     organization ||= Organization.new
+    employee = Employee.where(organization_id: organization.id, account_id: account.id).first
     acc_org = AccountOrganization.where(account_id: account.id, organization_id: organization.id).first
     
     if acc_org.nil?
@@ -20,10 +21,10 @@ class Ability
       can :read, Leave
       can :read, Claim
       can :update, Leave do |leave|
-        (leave.try(:employee_id) != account.profile.id || account.profile.can_self_approve) && account.profile.this_employee_in_my_department?(leave.employee_id)
+        (leave.try(:employee_id) != employee.id || employee.can_self_approve) && employee.this_employee_in_my_department?(leave.employee_id)
       end
       can :update, Claim do |claim|
-        (claim.try(:employee_id) != account.profile.id || account.profile.can_self_approve) && account.profile.this_employee_in_my_department?(claim.employee_id) && claim.try(:status) != "Paid"
+        (claim.try(:employee_id) != employee.id || employee.can_self_approve) && employee.this_employee_in_my_department?(claim.employee_id)
       end
     elsif acc_org.role == "Employee"
       can :create, Leave

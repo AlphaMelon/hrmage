@@ -8,6 +8,11 @@
         <%= f.input :email %>
         <%= f.input :password, placeholder: t(:edit_login_info_password_placeholder) %>
         <%= f.input :role, collection: ["Super Admin", "Admin", "Employee"], selected: AccountOrganization.where(account_id: @account.id, organization_id: @organization.id).first.role %>
+        
+        <div id="admin_or_not">
+          <%= f.input :claim_subject, as: :manageable %>
+        </div>
+        
         <div class="row">
           <div class="large-3 small-3 columns"></div>    
           <div class="large-9 small-9 columns">

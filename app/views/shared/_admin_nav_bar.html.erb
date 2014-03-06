@@ -1,16 +1,14 @@
 <% if can? :manage, :all %>
 
-  <div class="panel">
-    <ul class="inline-list">
-      <li><h6><%= t :admin %>: </h6></li>
-      <li><%= link_to t(:my_organization), organization_path(current_organization), id: "current_organization" %></li>
-      <li><%= link_to t(:employee), organization_employees_path(current_organization), id: "organization_employees" %></li>
-      <li><%= link_to t(:leaves), organization_leaves_path(current_organization), id: "organization_leaves" %></li>
-      <li><%= link_to t(:claims),  organization_claims_path(current_organization), id: "organization_claims"%></li>
-      <li><%= link_to "Payslip Setting", organization_payslip_settings_path(current_organization) %></li>
-      <li><%= link_to "Activities", organization_activities_path(current_organization)%>
+  <ul class="inline-list">
+    <li><h6><%= t :admin %>: </h6></li>
+    <li><%= link_to t(:my_organization), organization_path(current_organization), id: "current_organization" %></li>
+    <li><%= link_to t(:employee), organization_employees_path(current_organization), id: "organization_employees" %></li>
+    <li><%= link_to t(:leaves), organization_leaves_path(current_organization), id: "organization_leaves" %></li>
+    <li><%= link_to t(:claims),  organization_claims_path(current_organization), id: "organization_claims"%></li>
+    <li><%= link_to "Payslip Setting", organization_payslip_settings_path(current_organization) %></li>
+    <li><%= link_to "Activities", organization_activities_path(current_organization)%>
     </ul>
-  </div>
   
 <% else %>
 

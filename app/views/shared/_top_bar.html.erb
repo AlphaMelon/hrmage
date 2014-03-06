@@ -8,10 +8,14 @@
         <% end %>
         </li>
       </ul>
-      <ul class="inline-list right">
+      <ul class="inline-list right top-bar-nav">
+        <% if account_signed_in? %>
         <li>
           Logged in as:<%= !current_employee.nil? ? current_employee.full_name : t(:new_user) %>
         </li>
+        <% else %>
+        <li><%= link_to t(:sign_in), account_session_path %></li>
+        <% end %>
 
         <li>
           <%if account_signed_in? %>
@@ -29,16 +33,24 @@
               <% end %>
           <% end %>
         </li>
+        <% if account_signed_in? %>
+          <li>
+            <%= link_to "#{image_tag('icon/Flaticon_2530.png', width: 12, height: 20)} Account".html_safe, "", "data-dropdown" => "hover1", "data-options" => "is_hover:true" %>
+            <ul id="hover1" class="f-dropdown" data-dropdown-content>
+              <li><%= link_to t(:view_my_profile), account_path(current_account) %></li>
+              <li><%= link_to t(:change_my_password), edit_account_registration_path %></li>
+            </ul>
+          </li>
 
-        <li>
-          <%= link_to "#{image_tag('icon/Flaticon_2530.png', width: 12, height: 20)} Account".html_safe, "", "data-dropdown" => "hover1", "data-options" => "is_hover:true" %>
-          <ul id="hover1" class="f-dropdown" data-dropdown-content>
-            <li><%= link_to t(:view_my_profile), account_path(current_account) %></li>
-            <li><%= link_to t(:change_my_password), edit_account_registration_path %></li>
-          </ul>
-        </li>
+          <li><%= link_to "#{image_tag('icon/Flaticon_1380.png', width: 12, height: 20)} #{t(:logout)}".html_safe, destroy_account_session_path, method: :delete %></li>
 
-        <li><%= link_to "#{image_tag('icon/Flaticon_1380.png', width: 12, height: 20)} #{t(:logout)}".html_safe, destroy_account_session_path, method: :delete %></li>
+          <% if !current_organization.id.nil? && (can? :read, Leave ) %>
+            <% if can? :read, Leave %>
+            <li><%= session[:admin_session] ?  ("<b>"+t(:admin)+"</b>").html_safe : (link_to t(:admin), root_path(admin_session: true)) %></li>
+            <li><%= session[:employee_session] ?  ("<b>"+t(:normal)+"</b>").html_safe : (link_to t(:normal), root_path(employee_session: true)) %></li>
+            <% end %>
+          <% end %>
+        <% end %>
       </ul>
     </div>
   </div>

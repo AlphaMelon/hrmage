@@ -133,3 +133,45 @@ html, body{
 .first-top-bar{
   margin-top: 1em;
 }
+
+.top-bar-nav{
+  margin-bottom: 0;
+  margin-top: 1em;
+}
+
+.first-nav{
+  background-color: #3498db;
+  ul,li{
+    a{
+      color: #f5f5f5;
+    }
+    a:hover{
+      color: #95a5a6;
+    }
+  }
+}
+
+.admin-first-nav{
+  .inline-list{
+    margin-bottom: 0;
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+}
+
+.second-nav{
+  background-color: #2ecc71;
+  .inline-list{
+    margin-bottom: 0;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    ul,li{
+      a{
+        color: #f5f5f5;
+      }
+      a:hover{
+        color: #95a5a6;
+      }
+    }
+  }
+}

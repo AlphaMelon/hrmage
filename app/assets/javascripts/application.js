@@ -32,6 +32,18 @@ function ready(){
     dateFormat: "yy-mm-dd",
     minDate: -1
   });
+  
+  if ($( "#account_role option:selected" ).text() == "Admin")
+    $("#admin_or_not").show();
+  else
+    $("#admin_or_not").hide();
+  $("#account_role").click(function(){
+    if ($( "#account_role option:selected" ).text() == "Admin")
+      $("#admin_or_not").show();
+    else
+      $("#admin_or_not").hide();
+   });
+
 }
 
 $(document).ready(ready)

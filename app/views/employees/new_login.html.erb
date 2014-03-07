@@ -7,7 +7,7 @@
           <%= f.input :email %>
           <%= f.input :password, placeholder: t(:password_requirement) %>
           <%= f.input :role, collection: [t(:super_admin), t(:admin), t(:employee)], selected: t(:employee) %>
-          <%= f.button :submit %>
+          <%= render "login_fields",f: f%>
         <% end %>
     </fieldset>
   </div>

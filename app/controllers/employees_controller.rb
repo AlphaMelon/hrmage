@@ -56,10 +56,17 @@ class EmployeesController < ApplicationController
     
     @account_organization = AccountOrganization.where(account_id: @account.id, organization_id: @organization.id).first
     @account_organization.role = params[:account][:role]
+    @account_organization.claim_subject = params[:account][:claim_subject]
+    @account_organization.department = params[:account][:department]
+    @account_organization.employee = params[:account][:employee]
+    @account_organization.leave_type = params[:account][:leave_type]
+    @account_organization.payslip = params[:account][:payslip]
+    @account_organization.payslip_setting = params[:account][:payslip_setting]
+    @account_organization.position = params[:account][:position]
 		if @account.save && @account_organization.save
 			redirect_to organization_employees_path(@organization), notice: 'Account successfully updated'
 		else
-			redirect_to  organization_employee_edit_login_info_path(@organization, params[:employee_id]), alert: "password must be 8 characters or more"
+			redirect_to organization_employee_edit_login_info_path(@organization, params[:employee_id]), alert: "password must be 8 characters or more"
 		end
   end
 
@@ -73,6 +80,13 @@ class EmployeesController < ApplicationController
     
 		if @account.save
 		  @account_organization = AccountOrganization.new(account_id: @account.id, organization_id: @organization.id, role: params[:account][:role])
+      @account_organization.claim_subject = params[:account][:claim_subject]
+      @account_organization.department = params[:account][:department]
+      @account_organization.employee = params[:account][:employee]
+      @account_organization.leave_type = params[:account][:leave_type]
+      @account_organization.payslip = params[:account][:payslip]
+      @account_organization.payslip_setting = params[:account][:payslip_setting]
+      @account_organization.position = params[:account][:position]
 		  @account_organization.save
 		  
 		  employee = Employee.find(params[:employee_id])

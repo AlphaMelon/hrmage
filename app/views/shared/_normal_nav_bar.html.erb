@@ -1,5 +1,5 @@
 <ul class="inline-list">
-  <li><%= link_to t(:dashboard), root_path %></li>
+  <li><%= link_to "#{image_tag('icon/Flaticon_190.png', class: 'first-nav-icon')} #{t(:dashboard)}".html_safe, root_path %></li>
   <li><%= link_to "#{image_tag('icon/Flaticon_14959.png', class: 'first-nav-icon')} #{t(:leaves)}".html_safe,  my_leaves_path, id: "my_leaves" %></li>
   <li><%= link_to "#{image_tag('icon/Flaticon_2226.png', class: 'first-nav-icon')} #{t(:claims)}".html_safe,  my_claims_path, id: "my_claims" %></li>
   <li><%= link_to "#{image_tag('icon/Flaticon_14281.png', class: 'first-nav-icon')} #{t(:salary)}".html_safe, my_salary_path, id: "my_salary" %></li>

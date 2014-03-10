@@ -10,7 +10,7 @@
       </ul>
       <ul class="inline-list right top-bar-nav">
         <% if account_signed_in? %>
-        <li>
+        <li class="subheader">
           Logged in as:<%= !current_employee.nil? ? current_employee.name_with_initial : t(:new_user) %>
         </li>
         <% else %>
@@ -49,8 +49,8 @@
               <a href="#" data-dropdown="hover3" data-options="is_hover:true">Change view</a>
 
               <ul id="hover3" class="f-dropdown" data-dropdown-content>
-                <li><%= session[:admin_session] ?  ("<b>"+t(:admin)+"</b>").html_safe : (link_to t(:admin), root_path(admin_session: true)) %></li>
-                <li><%= session[:employee_session] ?  ("<b>"+t(:normal)+"</b>").html_safe : (link_to t(:normal), root_path(employee_session: true)) %></li>
+                <li><%= session[:admin_session] ?  ("<a href='#' class='hover3'><b>"+t(:admin)+"</b></a>").html_safe : (link_to t(:admin), root_path(admin_session: true)) %></li>
+                <li><%= session[:employee_session] ?  ("<a href='#' class='hover3'><b>"+t(:normal)+"</b></a>").html_safe : (link_to t(:normal), root_path(employee_session: true)) %></li>
               </ul>
             </li>
             <% end %>

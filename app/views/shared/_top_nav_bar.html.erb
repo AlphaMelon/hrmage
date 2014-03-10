@@ -1,7 +1,7 @@
 <%if account_signed_in? %>
   <div class="first-nav">
     <div class="row">
-      <div class="large-8 small-12 large-centered columns admin-first-nav">
+      <div class="large-9 small-12 large-centered columns admin-first-nav">
         <% if !current_organization.id.nil? && (can? :read, Leave ) %>
           <% if (!current_organization.nil? || !current_organization.nil?) && session[:admin_session] %>
             <%= render "shared/admin_nav_bar" %>
@@ -39,7 +39,7 @@
   <% else %>
   <div class="second-nav">
     <div class="row">
-      <div class="large-8 small-12 large-centered columns">
+      <div class="large-9 small-12 large-centered columns">
         <%= render "shared/side_bar" %>
       </div>
     </div>

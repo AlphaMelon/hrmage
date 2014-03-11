@@ -79,7 +79,7 @@
           <%= f.label :date_gteq, "Date between", class: "left inline" %>
         </div>
         <div class="large-9 columns">
-          <%= f.text_field :date_gteq, placeholder: Date.today %>
+          <%= f.text_field :date_gteq, placeholder: Date.today, class: "date_only" %>
         </div>
       </div>
       <div class="row">
@@ -87,7 +87,7 @@
           <%= f.label :date_lteq, "and", class: "left inline" %>
         </div>
         <div class="large-9 columns">
-          <%= f.text_field :date_lteq, placeholder: Date.today + 10 %>
+          <%= f.text_field :date_lteq, placeholder: Date.today + 10, class: "date_only" %>
         </div>
       </div>
       <div class="row">

@@ -8,7 +8,7 @@ feature "[Domain]" do
   scenario "View Organization using domain" do
     
     visit "http://xyztest.hrmage.dev:#{Capybara.server_port}"
-    page.should have_content("xyz test")
+    page.should have_content("Xyz test")
     current_url.should == "http://xyztest.hrmage.dev/accounts/sign_in"
     
     #test no domain found

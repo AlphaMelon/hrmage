@@ -1,6 +1,15 @@
+<div class="content-header">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2>
+        <%= t :leave_types_list %>
+        <%= link_to "#{image_tag('icon/Flaticon_2664.png', width: 16, height: 16)} #{t(:new_leave_type)}".html_safe, new_organization_leave_type_path(current_organization), class: "button success right" %>
+      </h2>
+    </div>
+  </div>
+</div>
 <div class="row">
   <div class="large-12 columns">
-    <h2><%= t :leave_types_list %></h2>
     <table class="large-12">
       <thead>
         <th><%= t :name %></th>
@@ -27,6 +36,5 @@
       <% end %>
       </tbody>
     </table>
-    <%= link_to t(:add_new_leave_type), new_organization_leave_type_path(current_organization), class: "button success" %>
   </div>
 </div>

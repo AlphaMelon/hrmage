@@ -1,6 +1,20 @@
+<div class="content-header">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2 data-holiday-index="header">
+        <%= current_organization.name%>'s <%= t :holiday_list %>
+        <div class="right">
+          <%= link_to "#{image_tag('icon/Flaticon_2664.png', width: 16, height: 16)} #{t(:new_holiday)}".html_safe, new_organization_organization_setting_organization_holiday_path(current_organization, @organization_setting), class: "button success" %>
+          <%= link_to t(:default_holiday), organization_organization_setting_organization_holiday_get_and_update_holiday_path(current_organization, @organization_setting, 1), class: "button", method: "post", data: { confirm: t(:are_you_sure) }%>
+        </div>
+      </h2>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="large-12 columns">
-    <h2 data-holiday-index="header"><%= current_organization.name%>'s <%= t :holiday_list %></h2>
+    
     <table class="large-12">
       <thead>
         <th><%= t :name%></th>
@@ -27,8 +41,5 @@
       <% end %>
       </tbody>
     </table>
-
-    <%= link_to t(:add_new_holiday), new_organization_organization_setting_organization_holiday_path(current_organization, @organization_setting), class: "button success" %>
-    <%= link_to t(:default_holiday), organization_organization_setting_organization_holiday_get_and_update_holiday_path(current_organization, @organization_setting, 1), class: "button", method: "post", data: { confirm: t(:are_you_sure) }%>
   </div>
 </div>

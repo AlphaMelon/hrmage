@@ -188,3 +188,14 @@ html, body{
 .first-nav-icon{
   margin-top: -5px;
 }
+
+.content-header{
+  background-color: #F5F5F5;
+  border-bottom: 1px solid #DADADA;
+  margin-bottom: 1em;
+  padding-top: 1em;
+  h2{
+    color: #222;
+    text-transform: capitalize;
+  }
+}

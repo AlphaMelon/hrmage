@@ -1,3 +1,14 @@
+<div class="content-header">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2>
+        <%= @employee.full_name.capitalize %> <%= t :details%>
+        <%= link_to t(:back), :back, class: "button success right" %>
+      </h2>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="large-2 columns">
     <table class="large-12">

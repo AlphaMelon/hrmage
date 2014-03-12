@@ -1,6 +1,15 @@
+<div class="content-header">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2>
+        <%= t :employees_list %>
+        <%= link_to "#{image_tag('icon/Flaticon_2664.png', width: 16, height: 16)} #{t(:add_new_employee)}".html_safe, new_organization_employee_path, class: "button success right" %>
+      </h2>
+    </div>
+  </div>
+</div>
 <div class="row">
   <div class="large-12 columns">
-    <h2><%= t :employees_list %></h2>
     <fieldset>
       <legend><%= t :search_employee %></legend>
       <%= search_form_for [current_organization, @search] do |f| %>
@@ -76,8 +85,5 @@
       </tbody>
     </table>
     <%= paginate @employees %>
-    <%= link_to t(:add_new_employee), new_organization_employee_path, class: "button success" %>
   </div>
 </div>
-
-

@@ -1,6 +1,18 @@
+<div class="content-header">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2>
+        <%= current_organization.name%>'s <%= t :settings %>
+        <% if !current_organization.organization_setting.nil?%>
+        <% else %>
+          <%= link_to "#{image_tag('icon/Flaticon_2664.png', width: 16, height: 16)} #{t(:create_settings)}".html_safe, new_organization_organization_setting_path(current_organization), class: "button success right" %>
+        <% end %>
+      </h2>
+    </div>
+  </div>
+</div>
 <div class="row">
   <div class="large-12 columns">
-    <h2><%= current_organization.name%>'s <%= t :settings %></h2>
     <% if !current_organization.organization_setting.nil?%>
       <table class="large-12">
         <thead>
@@ -45,10 +57,9 @@
       <%= link_to t(:edit), edit_organization_organization_setting_path(current_organization, @organization_setting), class: "button success"%>
       <%= link_to t(:delete), organization_organization_setting_path(current_organization, @organization_setting), method: :delete, data: { confirm: t(:delete_organization_holidays) }, class: "button alert" %>
     <% else %>
-      <div class="panel large-9">
+      <div class="panel large-9 large-centered columns">
         <%= t :organization_settings_helper %>
       </div>
-      <%= link_to t(:create_settings) , new_organization_organization_setting_path(current_organization), class: "button success" %>
     <% end%>
   </div>
 </div>

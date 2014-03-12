@@ -1,6 +1,15 @@
+<div class="content-header">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2>
+      <%= @position.name%>'s <%= t :list%>
+      <%= link_to t(:back), organization_positions_path(current_organization), class: "button success right" %>
+      </h2>
+    </div>
+  </div>
+</div>
 <div class="row">
   <div class="large-12 small-12 columns">
-    <h2><%= @position.name%>'s <%= t :list%></h2>
     <table class="large-12">
       <thead>
         <th><%= t :last_name %></th>
@@ -43,7 +52,6 @@
       <% end %>
       </tbody>
     </table>
-    <%= link_to t(:back), organization_positions_path(current_organization), class: "button success" %>
 
   </div>
 </div>

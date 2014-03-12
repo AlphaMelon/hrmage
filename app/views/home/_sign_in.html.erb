@@ -1,7 +1,13 @@
 <% if !current_organization.new_record?%>
   <% if !current_employee.nil?%>
     <% if !current_employee.position.nil?%>
-      <h3>Welcome, you are now in <%= current_organization.name.capitalize if !current_organization.new_record?%> Organization</h3>
+      <div class="content-header">
+        <div class="row">
+          <div class="large-9 large-centered columns">
+            <h3>Welcome, you are now in <%= current_organization.name.capitalize if !current_organization.new_record?%> Organization</h3>
+          </div>
+        </div>
+      </div>
       <div class="dashboard row" data-equalizer>
         <div class="large-4 small-12 columns" >
           <h3><%= t :leaves %></h3>

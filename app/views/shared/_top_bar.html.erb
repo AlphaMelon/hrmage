@@ -20,7 +20,7 @@
         <li>
           <%if account_signed_in? %>
             <% if can? :manage, :all %>
-              <%= link_to "#{image_tag('icon/Flaticon_1914.png', height: 2)} #{current_organization.name || t(:organization)}".html_safe, organizations_path, "data-options" => "is_hover:true", 
+              <%= link_to "#{image_tag('icon/Flaticon_1914.png', height: 2)} #{current_organization.name || t(:organization)}".html_safe, organizations_path, class: "organization", "data-options" => "is_hover:true", 
               "data-dropdown" => "hover2" %>
               <ul id="hover2" class="f-dropdown" data-dropdown-content>
                 <% current_account.organizations.each do |org| %>

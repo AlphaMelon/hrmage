@@ -140,6 +140,9 @@ html, body{
   .hover3{
     cursor: not-allowed;
   }
+  .organization{
+    text-transform: capitalize;
+  }
 }
 
 .first-nav{

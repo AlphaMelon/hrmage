@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "[CanCan Ability Claims]" do
   background do
-    create_employee_cancan("testing@example.dev", "spree123", true, false, "IT")
+    acc_org = create_employee_cancan("testing@example.dev", "spree123", true, false, "IT")
     admin_login("testing@example.dev", "spree123")
   end
 

@@ -56,4 +56,12 @@ feature "[Admin payslip]" do
     page.should have_content("can't be blank")
   end
 
+  scenario "show payslip" do
+    visit root_path
+    click_on "Admin"
+    click_on "Employee"
+    click_on "Payslip"
+    click_on "Show"
+    page.should have_content("Payslip")
+  end
 end

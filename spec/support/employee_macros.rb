@@ -30,6 +30,13 @@ module EmployeeMacros
     account.save
     
     account_organization = AccountOrganization.new(account_id: account.id, organization_id: organization.id, role: "Admin")
+    account_organization.claim_subject = "No Access"
+    account_organization.department = "No Access"
+    account_organization.employee = "No Access"
+    account_organization.leave_type = "No Access"
+    account_organization.payslip = "No Access"
+    account_organization.payslip_setting = "No Access"
+    account_organization.position = "No Access"   
     account_organization.save
     
     position = Position.new(name: "Clerk", monthly_max_claims_cents: 240000, can_approve_leave: can_approve_leave, can_approve_claim: can_approve_claim)
@@ -44,5 +51,7 @@ module EmployeeMacros
     department = Department.where(name: department).first_or_create
     employee_department = EmployeeDepartment.new(employee_id: employee.id, department_id: department.id, leader: true)
     employee_department.save
+    
+    return account_organization
   end
 end

@@ -1,23 +1,10 @@
-<% if can? :manage, :all %>
-
-  <ul class="inline-list">
-    <li><h6><%= t :admin %>: </h6></li>
-    <li><%= link_to "#{image_tag('icon/Flaticon_26076.png', width: 16, height: 16)} #{t(:my_organization)}".html_safe, organization_path(current_organization), id: "current_organization" %></li>
-    <li><%= link_to "#{image_tag('icon/Flaticon_30868.png', width: 24, height: 24)} #{t(:employee)}".html_safe, organization_employees_path(current_organization), id: "organization_employees" %></li>
-    <li><%= link_to "#{image_tag('icon/Flaticon_9799.png' , width: 16, height: 16, class: "first-nav-icon")} #{t(:leaves)}".html_safe, organization_leaves_path(current_organization), id: "organization_leaves" %></li>
-    <li><%= link_to "#{image_tag('icon/Flaticon_33615.png', width: 13, height: 13)} #{t(:claims)}".html_safe,  organization_claims_path(current_organization), id: "organization_claims"%></li>
-    <li><%= link_to "#{image_tag('icon/Flaticon_14281.png', width: 16, height: 16)} #{t(:payslip_setting)}".html_safe, organization_payslip_settings_path(current_organization) %></li>
-    <li><%= link_to "#{image_tag('icon/Flaticon_663.png', width: 16, height: 16)} #{t(:activities)}".html_safe, organization_activities_path(current_organization)%>
-    </ul>
+<ul class="inline-list">
+  <li><h6><%= t :admin %>: </h6></li>
+  <li><%= link_to "#{image_tag('icon/Flaticon_26076.png', width: 16, height: 16)} #{t(:my_organization)}".html_safe, organization_path(current_organization), id: "current_organization" if can? :read, Organization %></li>
+  <li><%= link_to "#{image_tag('icon/Flaticon_30868.png', width: 24, height: 24)} #{t(:employee)}".html_safe, organization_employees_path(current_organization), id: "organization_employees" if can? :read, Employee %></li>
+  <li><%= link_to "#{image_tag('icon/Flaticon_9799.png' , width: 16, height: 16, class: "first-nav-icon")} #{t(:leaves)}".html_safe, organization_leaves_path(current_organization), id: "organization_leaves" %></li>
+  <li><%= link_to "#{image_tag('icon/Flaticon_33615.png', width: 13, height: 13)} #{t(:claims)}".html_safe,  organization_claims_path(current_organization), id: "organization_claims"%></li>
+  <li><%= link_to "#{image_tag('icon/Flaticon_14281.png', width: 16, height: 16)} #{t(:payslip_setting)}".html_safe, organization_payslip_settings_path(current_organization)  if can? :read, PayslipSetting%></li>
+  <li><%= link_to "#{image_tag('icon/Flaticon_663.png', width: 16, height: 16)} #{t(:activities)}".html_safe, organization_activities_path(current_organization)%>
+</ul>
   
-<% else %>
-
-  <div class="panel">
-    <ul class="inline-list">
-      <li><h6><%= t :admin %>: </h6></li>
-      <li><%= link_to t(:leaves), organization_leaves_path(current_organization), id: "organization_leaves" %></li>
-      <li><%= link_to t(:claims),  organization_claims_path(current_organization), id: "organization_claims"%></li>
-    </ul>
-  </div>
-  
-<% end %>

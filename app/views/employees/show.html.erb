@@ -86,7 +86,7 @@
           </td>
         </tr>
         <tr>
-          <td><%= link_to t(:add_new_document), new_organization_employee_document_path(@organization, @employee), class: "button success" %></td>
+          <td><%= link_to "#{image_tag('icon/Flaticon_2664.png', width: 16, height: 16)} #{t(:new_document)}".html_safe, new_organization_employee_document_path(@organization, @employee), class: "button success" %></td>
         </tr>
       </tbody>
     </table>

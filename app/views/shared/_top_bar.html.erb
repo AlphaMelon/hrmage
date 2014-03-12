@@ -46,7 +46,7 @@
           <% if !current_organization.id.nil? && (can? :read, Leave ) %>
             <% if can? :read, Leave %>
             <li>
-              <a href="#" data-dropdown="hover3" data-options="is_hover:true">Change view</a>
+              <%= link_to "#{image_tag('icon/Flaticon_25677.png')} Chnage view".html_safe, "", "data-dropdown" => "hover3", "data-options" => "is_hover:true" %>
 
               <ul id="hover3" class="f-dropdown" data-dropdown-content>
                 <li><%= session[:admin_session] ?  ("<a href='#' class='hover3'><b>"+t(:admin)+"</b></a>").html_safe : (link_to t(:admin), root_path(admin_session: true)) %></li>

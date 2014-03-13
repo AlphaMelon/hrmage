@@ -9,7 +9,7 @@ class HomeController < ApplicationController
     end
 
     if account_signed_in?
-      if !current_account.profiles.nil?
+      if !current_employee.nil?
         if !current_employee.position.nil?
           @my_leaves = current_employee.leaves.order(id: :desc)
           authenticate_account!

@@ -3,7 +3,10 @@
     <div class="large-9 large-centered columns">
       <h2>
         <%= @position.name %>'s <%= t :settings %>
-        <%= link_to "#{image_tag('icon/Flaticon_2664.png', width: 16, height: 16)} #{t(:new_setting)}".html_safe, new_organization_position_position_setting_path(current_organization, @position), class: "button success right" %>
+        <%= link_to "#{image_tag('icon/Flaticon_2664.png', 
+        width: 16, height: 16)} #{t(:new_setting)}".html_safe, 
+        new_organization_position_position_setting_path(current_organization, @position), 
+        class: "button success right", id: "new_position_setting" %>
       </h2>
     </div>
   </div>

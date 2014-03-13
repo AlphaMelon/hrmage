@@ -18,7 +18,7 @@ feature "[Admin Claim Subject]" do
     click_on "Admin"
     click_on "My Organization"
     click_on "Claim Subjects"
-    click_on "Add new claim subject"
+    click_on "new_claim_subject"
 		fill_in 'Name', with: 'Entertainment'
 		click_on "Create Claim subject"
     page.should have_content("Claim subject successfully created")
@@ -52,7 +52,7 @@ feature "[Admin Claim Subject]" do
     click_on "Admin"
     click_on "My Organization"
     click_on "Claim Subjects"
-    click_on "Add new claim subject"
+    click_on "new_claim_subject"
 		click_on "Create Claim subject"
     page.should have_content("can't be blank")
   end

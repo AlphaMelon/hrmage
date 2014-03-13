@@ -32,7 +32,7 @@ feature "[CanCan Ability Leaves]" do
     page.should have_content("Leave successfully applied, please wait for admin to approve")
     
     visit organization_leaves_path(Organization.first)
-    all('#approve_leave')[1].click
+    all('#approve_leave')[0].click
     page.should have_content("Leaves request approved")
   end
   

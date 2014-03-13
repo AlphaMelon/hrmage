@@ -7,7 +7,11 @@
         <% else %>
           <%= current_organization.name.capitalize %> <%=t :departments_list %>
         <% end %>
-        <%= link_to "#{image_tag('icon/Flaticon_2664.png', width: 16, height: 16)} #{t(:new_department)}".html_safe, new_organization_department_path, class: "button success right" %>
+        <%= link_to "#{image_tag('icon/Flaticon_2664.png', 
+        width: 16, height: 16)} #{t(:new_department)}".html_safe, 
+        new_organization_department_path, 
+        class: "button success right",
+        id: "new_department" %>
       </h2>
     </div>
   </div>

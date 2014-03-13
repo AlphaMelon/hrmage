@@ -67,7 +67,7 @@ module FirstTimeSignupMacros
     
     def payment_step
       #payment part
-      click_on "Skip"
+      click_on "payment_skip"
       page.should have_content("Finish! Take a look at your organization!")
     end
     

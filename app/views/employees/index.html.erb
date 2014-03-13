@@ -3,7 +3,11 @@
     <div class="large-9 large-centered columns">
       <h2>
         <%= t :employees_list %>
-        <%= link_to "#{image_tag('icon/Flaticon_2664.png', width: 16, height: 16)} #{t(:new_employee)}".html_safe, new_organization_employee_path, class: "button success right" %>
+        <%= link_to "#{image_tag('icon/Flaticon_2664.png', 
+        width: 16, height: 16)} #{t(:new_employee)}".html_safe, 
+        new_organization_employee_path, 
+        class: "button success right",
+        id: "new_employee" %>
       </h2>
     </div>
   </div>

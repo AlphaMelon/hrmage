@@ -43,6 +43,7 @@ en:
   new_department: "New Department"
   last_name: "Last Name"
   first_name: "First Name"
+  full_name: "Full Name"
   e_mail: "E-mail"
   search: "Search"
   search_employee: "Search employee"

@@ -202,3 +202,10 @@ html, body{
     text-transform: capitalize;
   }
 }
+
+.profile{
+  margin-top: 2em;
+  h6{
+    text-transform: capitalize;
+  }
+}

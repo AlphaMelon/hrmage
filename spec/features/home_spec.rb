@@ -19,6 +19,6 @@ feature "[Home]" do
 		fill_in 'account_current_password', with: 'spree123'
 		click_on "Update"
     page.should have_content("You updated your account successfully.")
-  end 
+  end
   
 end

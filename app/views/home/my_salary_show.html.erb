@@ -1,12 +1,12 @@
 <div class="row">
-  <div class="large-12 columns">
-    <h2><%= current_account.profile.full_name.capitalize %> (<%= @payslip.date.to_date %>) </h2>
+  <div class="large-9 large-centered columns">
+    <h2><%= current_employee.full_name.capitalize %> (<%= @payslip.date.to_date %>) </h2>
   </div>
 </div>
 
 <div class="row">
-  <div class="large-12 columns">
-    <table class="large-8">
+  <div class="large-9 large-centered columns">
+    <table class="large-12 columns">
       <thead>
         <tr>
           <th colspan="2"><center><%= t :payments %></center></th>
@@ -43,7 +43,7 @@
         <th colspan="2"><center><%= t :claims %></center></th>
       </thead>
       <tbody>
-        <% current_account.profile.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).each do |claim|%>
+        <% current_employee.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).each do |claim|%>
           <tr>
             <td><%= claim.subject %></td>
             <td>
@@ -83,7 +83,7 @@
       </tbody>
     </table>
 
-    <table class="large-8">
+    <table class="large-12 columns">
       <thead>
          <tr>
             <th><%= t :net_pay %></th>

@@ -42,7 +42,7 @@ feature "[Employee Claims]" do
     page.should have_content("cannot be 0 or negative")
   end
   
-  scenario "Claim remaining progress bar" do
+  scenario "Claim remaining progress bar (My Claims)" do
     #0 out of 560000 claims remaining
     #approve claims of 77.81
     visit root_path

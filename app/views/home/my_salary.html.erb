@@ -20,7 +20,8 @@
           <td><%= salary.date.to_date %></td>
           <td><%= humanized_money_with_symbol salary.base_salary %></td>
           <td><%= humanized_money_with_symbol salary.commission %></td>
-          <td><%= link_to t(:show), "my_salary_show/#{salary.id}", class: "fi-eye" %></td>
+          <td><%= link_to t(:show), "my_salary_show/#{salary.id}", 
+          class: "fi-eye", id: "show_my_salary"%></td>
         </tr>
         <% end %>
       </tbody>

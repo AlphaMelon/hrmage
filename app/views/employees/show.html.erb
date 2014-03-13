@@ -36,7 +36,7 @@
         </tr>
         <tr>
           <td><h6><%= t :e_mail %>:</h6></td>
-          <td><h6><%= @employee.account.email if !@employee.account.nil?%></h6></td>
+          <td><h6 class="exception"><%= @employee.account.email if !@employee.account.nil?%></h6></td>
         </tr>
         <tr>
           <td><h6><%= t :mobile_no %>:</h6></td>
@@ -87,7 +87,7 @@
       </tbody>
     </table>
 
-   <table class="large-12">
+    <table class="large-12">
       <thead>
         <th colspan="3"><center><h6><%= t :claims %></h6></center></th>
       </thead>

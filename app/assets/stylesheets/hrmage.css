@@ -208,4 +208,7 @@ html, body{
   h6{
     text-transform: capitalize;
   }
+  .exception{
+    text-transform: none;
+  }
 }

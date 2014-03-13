@@ -20,7 +20,7 @@ feature "[Admin Organization Holiday]" do
     click_on "Admin"
     click_on "My Organization"
     click_on "Organization Holidays"
-    click_on "Add New Holiday"
+    click_on "new_organization_holiday"
     fill_in 'Name', with: "Deepavali"
     fill_in "Date", with: Date.today.to_s
     click_on "Create Organization holiday"
@@ -56,7 +56,7 @@ feature "[Admin Organization Holiday]" do
     click_on "Admin"
     click_on "My Organization"
     click_on "Organization Holidays"
-    click_on "Add New Holiday"
+    click_on "new_organization_holiday"
     click_on "Create Organization holiday"
     page.should have_content("can't be blank")
   end

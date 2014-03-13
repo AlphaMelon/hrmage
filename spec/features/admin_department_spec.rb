@@ -19,7 +19,7 @@ feature "[Admin Department]" do
     click_on "Admin"
     click_on "My Organization"
     click_on "Department"
-    click_on "Add New Department"
+    click_on "new_department"
 		fill_in 'Name', with: 'Sales'
 		click_on "Create Department"
     page.should have_content("Department successfully created")
@@ -51,7 +51,7 @@ feature "[Admin Department]" do
     click_on "Admin"
     click_on "My Organization"
     click_on "Department"
-    click_on "Add New Department"
+    click_on "new_department"
 		click_on "Create Department"
     page.should have_content("can't be blank")
   end

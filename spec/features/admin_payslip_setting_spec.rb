@@ -16,7 +16,7 @@ feature "[Admin payslip]" do
     visit root_path
     click_on "Admin"
     click_on "Payslip Setting"
-    click_on "Add New Payslip Settings"
+    click_on "new_payslip_setting"
     fill_in "Name", with: 'epf'
     fill_in "Value", with: '1000'
     select "Addition", from: 'Maths'
@@ -45,7 +45,7 @@ feature "[Admin payslip]" do
     visit root_path
     click_on "Admin"
     click_on "Payslip Setting"
-    click_on "Add New Payslip Settings"
+    click_on "new_payslip_setting"
     click_button "Create Payslip setting"
     page.should have_content("can't be blank")
   end

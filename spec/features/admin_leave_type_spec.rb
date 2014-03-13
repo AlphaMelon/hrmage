@@ -18,7 +18,7 @@ feature "[Admin Leave Type]" do
     click_on "Admin"
     click_on "My Organization"
     click_on "Leave Types"
-    click_on "Add New Leave Type"
+    click_on "new_leave_type"
 		fill_in 'Name', with: 'Medical leave'
 		select "Yes", from: "leave_type_approval_needed"
 		select "Leave", from: "leave_type_affected_entity"
@@ -48,7 +48,7 @@ feature "[Admin Leave Type]" do
     click_on "Admin"
     click_on "My Organization"
     click_on "Leave Types"
-    click_on "Add New Leave Type"
+    click_on "new_leave_type"
 		click_on "Create Leave type"
     page.should have_content("Please fill in the required field")
   end

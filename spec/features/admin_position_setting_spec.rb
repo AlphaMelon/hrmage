@@ -20,7 +20,7 @@ feature "[Admin Position Setting]" do
     click_on "My Organization"
     click_on "Position"
     click_on "Settings"
-    click_on "Add New Setting"
+    click_on "new_position_setting"
 		fill_in 'position_setting_max_leaves_seconds', with: 20
 		click_on "Create Position setting"
     page.should have_content("Position setting successfully created")
@@ -58,7 +58,7 @@ feature "[Admin Position Setting]" do
     click_on "My Organization"
     click_on "Position"
     click_on "Settings"
-    click_on "Add New Setting"
+    click_on "new_position_setting"
     fill_in "position_setting_max_leaves_seconds", with: ""
 		click_on "Create Position setting"
     page.should have_content("can't be blank")

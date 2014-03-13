@@ -17,7 +17,7 @@ feature "[Admin Employee]" do
     visit root_path
     click_on "Admin"
     click_on "Employee"
-    click_on "Add New Employee"
+    click_on "new_employee"
     fill_in 'Employee identification', with: "STN555"
 		fill_in 'Last name', with: 'Lee'
 		fill_in 'First name', with: 'Alan'
@@ -54,7 +54,7 @@ feature "[Admin Employee]" do
     visit root_path
     click_on "Admin"
     click_on "Employee"
-    click_on "Add New Employee"
+    click_on "new_employee"
 		click_on "Create Employee"
     page.should have_content("can't be blank")
   end
@@ -75,7 +75,7 @@ feature "[Admin Employee]" do
     visit root_path
     click_on "Admin"
     click_on "Employee"
-    click_on "Add New Employee"
+    click_on "new_employee"
     fill_in 'Employee identification', with: "STN444"
 		fill_in 'Last name', with: 'Lee'
 		fill_in 'First name', with: 'Alan'
@@ -105,7 +105,7 @@ feature "[Admin Employee]" do
     visit root_path
     click_on "Admin"
     click_on "Employee"
-    click_on "Add New Employee"
+    click_on "new_employee"
     fill_in 'Employee identification', with: "STN555"
 		fill_in 'Last name', with: 'Lee'
 		fill_in 'First name', with: 'Alan'

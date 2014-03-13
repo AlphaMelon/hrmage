@@ -18,7 +18,7 @@ feature "[Admin payslip]" do
     click_on "Admin"
     click_on "Employee"
     click_on "Payslip"
-    click_on "Add new payslips"
+    click_on "new_payslip"
     fill_in "Date", with: '2014-01-27'
     fill_in "Commission", with: '1000'
     check "EPF"
@@ -51,7 +51,7 @@ feature "[Admin payslip]" do
     click_on "Admin"
     click_on "Employee"
     click_on "Payslip"
-    click_on "Add new payslips"
+    click_on "new_payslip"
     click_button "Create Payslip"
     page.should have_content("can't be blank")
   end

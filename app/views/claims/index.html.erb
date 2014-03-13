@@ -67,7 +67,7 @@
               <%= f.label :employee_id, "Name", class: "left inline" %>
             </div>
             <div class="large-9 columns">
-              <%= f.select :employee_id_cont, current_organization.employees.collect{|e| [e.full_name, e.id]}, include_blank: true%>
+              <%= f.select :employee_id_eq, current_organization.employees.collect{|e| [e.full_name, e.id]}, include_blank: true%>
             </div>
           </div>
           <div class="row">

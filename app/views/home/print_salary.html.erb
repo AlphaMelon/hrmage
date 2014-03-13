@@ -1,6 +1,6 @@
 <div class="row">
   <div class="large-12 columns">
-    <h2><%= current_account.profile.full_name.capitalize %> (<%= @payslip.date.to_date %>) </h2>
+    <h2><%= current_employee.full_name.capitalize %> (<%= @payslip.date.to_date %>) </h2>
   </div>
 </div>
 
@@ -43,12 +43,12 @@
         <th colspan="2"><center><%= t :claims %></center></th>
       </thead>
       <tbody>
-        <% current_account.profile.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).each do |claim|%>
+        <% current_employee.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).each do |claim|%>
           <tr>
             <td><%= claim.subject %></td>
             <td>
             <%= humanized_money_with_symbol claim.amount %>
-            <%#= humanized_money_with_symbol (current_account.profile.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)/100 %></td>
+            <%#= humanized_money_with_symbol (current_employee.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)/100 %></td>
           </tr>
         <% end %>
       </tbody>

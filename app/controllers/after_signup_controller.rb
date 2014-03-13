@@ -15,7 +15,7 @@ class AfterSignupController < ApplicationController
     when :add_position
       @position = Position.new
     when :about_yourself
-      @employee = current_account.build_profile
+      @employee = current_account.profiles.new
     when :payment
       
     when :finish
@@ -83,7 +83,7 @@ class AfterSignupController < ApplicationController
         redirect_to "/after_signup/add_position", alert: @position.errors.full_messages.to_sentence
       end
     when :about_yourself
-      @employee = current_account.build_profile
+      @employee = current_account.profiles.new
       emp_params = params.require(:employee).permit(:last_name, :first_name, :mobile_contact, :address, :photo, :base_salary_cents, :base_salary,:employee_identification)
       @employee.assign_attributes(emp_params)
       @employee.organization_id = current_account.organizations.first.id

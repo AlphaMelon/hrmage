@@ -44,7 +44,7 @@ class PayslipsController < ApplicationController
     end
     
     @base_salary_cents = @payslip.base_salary_cents
-    @total = @payslip.commission_cents + (current_account.profile.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)
+    @total = @payslip.commission_cents + (@employee.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)
   end
   
 	def destroy

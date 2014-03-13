@@ -1,17 +1,22 @@
-<div class="row">
-  <div class="large-8 columns">
-    <h3><%= current_organization.name %>'s <%= t :activities %></h3>
-    <hr>
+<div class="content-header">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2><%= current_organization.name %>'s <%= t :activities %></h2>
+    </div>
   </div>
 </div>
 
-<% @activities.each do |activity| %>
-  <div class="row activity">
-    <div class="large-11 columns">
-    <h5><small><%="about #{time_ago_in_words(activity.created_at)} ago "%></small></h5>
-    <h5><%= link_to activity.owner.profile.name_with_initial, organization_employee_path(current_organization, activity.owner.profile) if activity.owner %>
-      <%= render_activity activity %></h5>
-    </div>
+<div class="row">
+  <div class="large-9 large-centered columns">
+    <% @activities.each do |activity| %>
+      <div class="row activity">
+        <div class="large-11 columns">
+        <h5><small><%="about #{time_ago_in_words(activity.created_at)} ago "%></small></h5>
+        <h5><%= link_to activity.owner.profiles.where(organization_id: current_organization.id).first.name_with_initial, organization_employee_path(current_organization, activity.owner.profiles.where(organization_id: current_organization.id).first) if activity.owner %>
+          <%= render_activity activity %></h5>
+        </div>
+      </div>
+    <% end %>
+    <%= paginate @activities %>
   </div>
-<% end %>
-<%= paginate @activities %>
+</div>

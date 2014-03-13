@@ -4,7 +4,7 @@
  *= require jquery.fullPage
  *= require_self
 */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
 
 body{
   font-family: 'Open Sans', sans-serif !important;
@@ -69,14 +69,6 @@ body{
   left: -5%;
   top: -5%;
 }
-.hands {
-  background-image: url(image-path( 't33_home_hands.gif'));
-  background-repeat: no-repeat;
-  background-size: auto 100%;
-  background-position-x: center;
-  background-position-y: bottom;
-  height: 100%;
-}
 
 @media only screen and (max-width: 500px){
   body {
@@ -86,9 +78,25 @@ body{
     background-size: 600px auto;
     bottom: -5%;
   }
-  .second-page{
-    margin-top: 0em;
-    margin-bottom: 0em;
+  .section-three{
+    background-image:url(image_path('home.jpg')) !important;
+    background-size: cover;
+  }
+  .background {
+    background-image: url(image-path('bg1.jpg'));
+    background-color: #3498db;
+    bottom: -5%;
+    background-size: cover;
+    position: absolute;
+    background-position-x: center;
+    width: 110%;
+    left: -5%;
+    top: -5%;
+  }
+  .first-page{
+    h1, p{
+      color: #fff !important;
+    }
   }
 }
 
@@ -101,11 +109,18 @@ body{
 }
 
 .second-page{
+  fieldset legend{
+    background: none;
+  }
 }
 
 .section-three{
-  background-image:url(image_path('home.jpg'));
+  background-image:url(image_path('cofee.jpg'));
   background-size: cover;
+}
+
+.text{
+  margin-bottom: 3em;
 }
 
 .icon-image-size{
@@ -114,7 +129,11 @@ body{
   width: 120px;
 }
 
+.box-line{
+  background-color: #fff;
+}
+
 .th{
   background-color: #16a085;
-  border: solid 4px #3BC492;
+  border: solid 1px #3BC492;
 }

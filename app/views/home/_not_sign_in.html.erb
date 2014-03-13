@@ -4,12 +4,12 @@
       <li class="layer" data-depth="0.2"><div class="background"></div></li>
 
       <li class="layer" data-depth="0">
-        <div class="row first-page">
-          <div class="large-12 columns hide-for-medium hide-for-small">
+        <div class="row first-page hide-for-medium hide-for-small">
+          <div class="large-12 columns ">
             <div class="row">
               <div class="large-5 columns">
                 <center>
-                  <h1>let's get started.</h1>
+                  <h1>Let's get started.</h1>
                   <p>OfficeMage magic for your office.</p>
                 </center>
                 <%= link_to "Register Now", new_account_registration_path, class: "button radius" %>
@@ -17,55 +17,68 @@
             </div>
           </div>
         </div>
+        <div class="row first-page hide-for-large">
+          <div class="large-12 columns">
+            <center>
+              <h1><strong>Let's get started.</strong></h1>
+              <p>OfficeMage magic for your office.</p>
+            </center>
+            <%= link_to "Register Now", new_account_registration_path, class: "button radius" %>
+          </div>
+        </div>
       </li>
     </ul>
   </div>
 
-  <div class="section">
-    <div class="row">
-      <div class="large-3 small-6 columns">
-        <%= image_tag("icon/Flaticon_11296.png", class: "icon-image-size th")%>
-        <h3>An office made for you</h3>
-        <h4>Officemage.com is a new Human Resource System that just made for your company. </h4>
+  <div class="section second-page">
+    <div class="row" data-equalizer>
+      <div class="large-6 small-6 columns">
+        <fieldset class="box-line" data-equalizer-watch>
+          <legend><%= image_tag("icon/Flaticon_11296.png", class: "icon-image-size th")%></legend>
+          <h5><strong>An office made for you</strong></h5>
+          <h6>Officemage.com is a new Human Resource System that just made for your company. </h6>
+        </fieldset>
       </div>
-      <div class="large-3 small-6 columns">
-        <%= image_tag("icon/Flaticon_181.png", class: "icon-image-size th")%>
-        <h3>Access anywhere in world</h3>
-        <h4>
-          Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search
-        </h4>
+      <div class="large-6 small-6 columns">
+        <fieldset class="box-line" data-equalizer-watch>
+          <legend><%= image_tag("icon/Flaticon_181.png", class: "icon-image-size th")%></legend>
+          <h5><strong>Access anywhere in world</strong></h5>
+          <h6>
+            Many desktop publishing packages and web page editors now use Lorem Ipsum
+          </h6>
+        </fieldset>
       </div>
-      <div class="large-3 small-6 columns">
-        <%= image_tag("icon/Flaticon_24587.png", class: "icon-image-size th")%>
-        <h3>Like a magic</h3>
-        <h4>
-          Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search
-        </h4>
+    </div>
+    <div class="row" data-equalizer>
+      <div class="large-6 small-6 columns">
+        <fieldset class="box-line" data-equalizer-watch>
+          <legend><%= image_tag("icon/Flaticon_24587.png", class: "icon-image-size th")%></legend>
+          <h5><strong>Like a magic</strong></h5>
+          <h6>
+            Many desktop publishing packages and web page editors now use Lorem Ipsum
+          </h6>
+        </fieldset>
       </div>
-      <div class="large-3 small-6 columns">
-        <%= image_tag("icon/Flaticon_1712.png", class: "icon-image-size th")%>
-        <h3>Easy setting</h3>
-        <h4>
-          Customize your own setting with OfficeMage. It is easy as 1, 2 ,3!
-        </h4>
+      <div class="large-6 small-6 columns">
+        <fieldset class="box-line" data-equalizer-watch>
+          <legend><%= image_tag("icon/Flaticon_1712.png", class: "icon-image-size th")%></legend>
+          <h5><strong>Easy setting</strong></h5>
+          <h6>
+            Customize your own setting with OfficeMage. It is easy as 1, 2 ,3!
+          </h6>
+        </fieldset>
       </div>
     </div>
   </div>
 
   <div class="section section-three">
     <div class="row">
+      <div class="large-4 columns"></div>
       <div class="large-8 columns">
-        <h1>Subscribe to us</h1>
-        <h6>
-          <p>
-            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. 
-          </p>
-          <p>
-            Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)
-          </p>
-        </h6>
-        <a href="#" class="button radius">Subscribe</a>
-        <div class="large-4 columns"></div>
+        <div class="text">
+          <h1>Haven't subscribe yet? </h1><h1> Subscribe now and enjoy.</h1>
+          <a href="#" class="button radius">Subscribe</a>
+        </div>
       </div>
     </div>
   </div>
@@ -96,7 +109,13 @@
             </p>
           </div>
           <div class="large-6 columns">
-
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            <center>
+            <h6>Office Mage - © 2013 Alpha Melon Sdn Bhd</h6>
+            </center>
           </div>
         </div>
       </li>

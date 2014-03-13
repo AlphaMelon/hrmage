@@ -1,6 +1,6 @@
 <ul class="inline-list">
-  <li><%= link_to t(:dashboard), root_path %></li>
-  <li><%= link_to t(:leaves),  my_leaves_path, id: "my_leaves" %></li>
-  <li><%= link_to t(:claims),  my_claims_path, id: "my_claims" %></li>
-  <li><%= link_to t(:salary), my_salary_path, id: "my_salary" %></li>
+  <li><%= link_to "#{image_tag('icon/Flaticon_190.png', width: 16, height: 16, class: 'first-nav-icon')} #{t(:dashboard)}".html_safe, root_path %></li>
+  <li><%= link_to "#{image_tag('icon/Flaticon_9799.png', width: 16, height: 16, class: 'first-nav-icon')} #{t(:leaves)}".html_safe,  my_leaves_path, id: "my_leaves" %></li>
+  <li><%= link_to "#{image_tag('icon/Flaticon_33615.png', width: 13, height: 13, class: 'first-nav-icon')} #{t(:claims)}".html_safe,  my_claims_path, id: "my_claims" %></li>
+  <li><%= link_to "#{image_tag('icon/Flaticon_14281.png', width: 16, height: 16, class: 'first-nav-icon')} #{t(:salary)}".html_safe, my_salary_path, id: "my_salary" %></li>
 </ul>

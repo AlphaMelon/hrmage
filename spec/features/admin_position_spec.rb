@@ -22,7 +22,7 @@ feature "[Admin Position]" do
     click_on "Admin"
     click_on "My Organization"
     click_on "Position"
-    click_on "Add New Position"
+    click_on "new_position"
 		fill_in 'Name', with: 'Manager'
 		fill_in 'position_monthly_max_claims', with: 12000
 		click_on "Create Position"
@@ -55,7 +55,7 @@ feature "[Admin Position]" do
     click_on "Admin"
     click_on "My Organization"
     click_on "Position"
-    click_on "Add New Position"
+    click_on "new_position"
 		click_on "Create Position"
     page.should have_content("can't be blank")
   end

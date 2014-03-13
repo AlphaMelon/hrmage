@@ -1,6 +1,6 @@
 <div class="row">
   <div class="large-8 small-12 columns">
-    <% if !current_account.profile.nil? %>
+    <% if !current_employee.nil? %>
       <%= simple_form_for [@organization, @claim], wrapper: :custom do |f| %>
         <fieldset>
           <div class="panel"><%= t :claims_description %></div>

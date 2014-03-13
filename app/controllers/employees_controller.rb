@@ -50,16 +50,24 @@ class EmployeesController < ApplicationController
   end
   
   def update_login_info
+    
     @account = Employee.find(params[:employee_id]).account
     @account.password = params[:account][:password] if !params[:account][:password].blank?
     @account.email = params[:account][:email]
     
     @account_organization = AccountOrganization.where(account_id: @account.id, organization_id: @organization.id).first
     @account_organization.role = params[:account][:role]
+    @account_organization.claim_subject = params[:claim_subjects]
+    @account_organization.department = params[:departments]
+    @account_organization.employee = params[:employees]
+    @account_organization.leave_type = params[:leave_types]
+    @account_organization.payslip = params[:payslips]
+    @account_organization.payslip_setting = params[:payslip_settings]
+    @account_organization.position = params[:positions]
 		if @account.save && @account_organization.save
 			redirect_to organization_employees_path(@organization), notice: 'Account successfully updated'
 		else
-			redirect_to  organization_employee_edit_login_info_path(@organization, params[:employee_id]), alert: "password must be 8 characters or more"
+			redirect_to organization_employee_edit_login_info_path(@organization, params[:employee_id]), alert: "password must be 8 characters or more"
 		end
   end
 
@@ -73,6 +81,13 @@ class EmployeesController < ApplicationController
     
 		if @account.save
 		  @account_organization = AccountOrganization.new(account_id: @account.id, organization_id: @organization.id, role: params[:account][:role])
+      @account_organization.claim_subject = params[:account][:claim_subjects]
+      @account_organization.department = params[:departments]
+      @account_organization.employee = params[:employees]
+      @account_organization.leave_type = params[:leave_types]
+      @account_organization.payslip = params[:payslips]
+      @account_organization.payslip_setting = params[:payslip_settings]
+      @account_organization.position = params[:positions]
 		  @account_organization.save
 		  
 		  employee = Employee.find(params[:employee_id])

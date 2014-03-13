@@ -1,12 +1,17 @@
-<div class="row">
-  <div class="large-12 columns">
-    <h2><%= @employee.name_with_initial %>'s <%= t :payslips %></h2>
+<div class="content-header">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2>
+        <%= @employee.name_with_initial %>'s <%= t :payslips %>
+        <%= link_to t(:back), :back, class: "button success right" %>
+      </h2>
+    </div>
   </div>
 </div>
 
 <div class="row">
-  <div class="large-12 columns">
-    <table class="large-8">
+  <div class="large-9 large-centered columns">
+    <table class="large-12">
       <thead>
         <tr>
           <th colspan="2"><center><%= t :payments %></center></th>
@@ -43,7 +48,7 @@
         <th colspan="2"><center><%= t :claims %></center></th>
       </thead>
       <tbody>
-        <% current_account.profile.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).each do |claim|%>
+        <% @employee.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).each do |claim|%>
           <tr>
             <td><%= claim.subject %></td>
             <td><%= humanized_money_with_symbol claim.amount %></td>
@@ -81,7 +86,7 @@
       </tbody>
     </table>
 
-    <table class="large-8">
+    <table class="large-12">
       <thead>
          <tr>
             <th><%= t :net_pay %></th>
@@ -89,6 +94,6 @@
           </tr>
       </thead>
     </table>
-    <%= link_to t(:back), :back, class: "button success" %>
+    
   </div>
 </div>

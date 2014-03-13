@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140304055057) do
+ActiveRecord::Schema.define(version: 20140306074104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(version: 20140304055057) do
     t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "claim_subject"
+    t.string   "department"
+    t.string   "employee"
+    t.string   "leave_type"
+    t.string   "payslip"
+    t.string   "payslip_setting"
+    t.string   "position"
   end
 
   create_table "accounts", force: true do |t|
@@ -286,14 +293,6 @@ ActiveRecord::Schema.define(version: 20140304055057) do
   end
 
   add_index "payslips", ["deleted_at"], name: "index_payslips_on_deleted_at", using: :btree
-
-  create_table "position_default_variables", force: true do |t|
-    t.integer  "position_id"
-    t.integer  "leave_type_id"
-    t.integer  "max_leaves_seconds"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "position_settings", force: true do |t|
     t.integer  "position_id"

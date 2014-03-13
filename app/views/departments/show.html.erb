@@ -1,12 +1,17 @@
-<div class="row">
-  <div class="large-12 columns">
-     <h2><%= @department.name.upcase %> <%=t :departments %></h2>
+<div class="content-header">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+       <h2>
+        <%= @department.name.upcase %> <%=t :departments %>
+        <%= link_to t(:back), :back, class: "button success right" %>
+       </h2>
+    </div>
   </div>
 </div>
 
 <div class="row">
   <div class="large-12 columns">
-    <h5><%= t :employees_of %> <%= @department.name%> <%=t :departments %></h5>
+    <h4 class="subheader"><%= t :employees_of %> <%= @department.name%> <%=t :departments %></h4>
     <table class="large-12">
       <thead>
         <th><%=t :last_name %></th>
@@ -37,6 +42,5 @@
         <% end %>
       </tbody>
     </table>
-    <%= link_to t(:back), :back, class: "button success" %>
   </div>
 </div>

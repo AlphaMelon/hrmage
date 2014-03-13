@@ -31,9 +31,8 @@ class Employee < ActiveRecord::Base
     #self.can_self_approve = false if self.can_self_approve.blank?
   end
 
-  def name_with_initial
-    name = self.last_name.chars.first.capitalize + ". " + self.first_name
-    return name
+  def name_with_initial 
+    return (self.first_name + " " + self.last_name.chars.first.capitalize + ".")
   end
   
   def full_name

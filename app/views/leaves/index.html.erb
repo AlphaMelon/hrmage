@@ -1,151 +1,157 @@
-<div class="row">
-  <div class="large-12 columns">
-    <h1><%= current_organization.name.capitalize %>'s <%= t :employees_leaves %></h1>
+<div class="content-header">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2><%= current_organization.name.capitalize %>'s <%= t :employees_leaves %></h2>
+    </div>
   </div>
 </div>
 
-<dl class="tabs" data-tab>
-  <dd class="<%= 'active' if params[:q].blank? && params[:date].blank? %>"><a href="#pending_leaves"><%= t :pending_leaves %></a></dd>
-  <dd><a href="#verify_leaves"><%= t :waiting_for_verification_leaves %></a></dd>
-  <dd class="<%= 'active' if !params[:q].blank? %>"><a href="#history"><%= t :history %></a></dd>
-  <dd class="<%= 'active' if !params[:date].blank? && params[:q].blank?%>"><a href="#leave_calendar"><%= t :leave_calendar %></a></dd>
-</dl>
+<div class="row">
+  <div class="large-12 columns">
+    <dl class="tabs" data-tab>
+      <dd class="<%= 'active' if params[:q].blank? && params[:date].blank? %>"><a href="#pending_leaves"><%= t :pending_leaves %></a></dd>
+      <dd><a href="#verify_leaves"><%= t :waiting_for_verification_leaves %></a></dd>
+      <dd class="<%= 'active' if !params[:q].blank? %>"><a href="#history"><%= t :history %></a></dd>
+      <dd class="<%= 'active' if !params[:date].blank? && params[:q].blank?%>"><a href="#leave_calendar"><%= t :leave_calendar %></a></dd>
+    </dl>
 
-<div class="tabs-content">
+    <div class="tabs-content">
 
-  <div class="content <%= 'active' if params[:q].blank? && params[:date].blank? %>" id="pending_leaves">
-    <table class="large-12">
-      <thead>
-        <th><%= t :name %></th>
-        <th><%= t :start_date %> </th>
-        <th><%= t :duration %></th>
-        <th><%= t :comment %></th>
-        <th><%= t :leave_type %></th>
-        <th><%= t :action %></th>
-      </thead>
-      <% @pending_leaves.each do |leave|%>
-        <tr>
-          <td><%= link_to leave.employee.name_with_initial, organization_employee_path(current_organization, leave.employee) %></td>
-          <td><%= leave.start_date.to_date %></td>
-          <td><%= leave.duration_seconds/24/60/60%> Days</td>
-          <td><%= leave.comment %></td>
-          <td><%= leave.leave_type.name%></td>
-          <td>
-          <a href="#" data-dropdown="drop_<%=leave.id %>" class="tiny button dropdown"><%= t :details %></a>
-            <ul id="drop_<%=leave.id %>" data-dropdown-content class="f-dropdown">
-              <li>
-                <%= link_to t(:approve), organization_leave_path(current_organization, leave, leave: {status: "Approved"}), method: "patch", class: "fi-check", id: "approve_leave"%>
-              </li>
-              <li>
-                <%= link_to t(:reject), organization_leave_path(current_organization, leave, leave: {status: "Rejected"}), method: "patch", class: "fi-x", id: "reject_leave"%>
-              </li>
-            </ul>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
-  
-  <div class="content" id="verify_leaves">
-    <table class="large-12">
-      <thead>
-        <th><%= t :name %></th>
-        <th><%= t :start_date %></th>
-        <th><%= t :duration %></th>
-        <th><%= t :comment %></th>
-        <th><%= t :leave_type %></th>
-        <th><%= t :action %></th>
-      </thead>
-      <% @verification_needed_leaves.each do |leave|%>
-        <tr>
-          <td><%= link_to leave.employee.name_with_initial, organization_employee_path(current_organization, leave.employee) %></td>
-          <td><%= leave.start_date.to_date %></td>
-          <td><%= leave.duration_seconds/24/60/60%> Days</td>
-          <td><%= leave.comment %></td>
-          <td><%= leave.leave_type.name %></td>
-          <td>
-            <a href="#" data-dropdown="drop_<%= leave.id %>" class="tiny button dropdown"><%= t :details %></a>
-            <ul id="drop_<%= leave.id %>" data-dropdown-content class="f-dropdown">
-              <li>
-                <%= link_to t(:verify), organization_leave_path(current_organization, leave, leave: {status: "Approved"}), method: "patch", class: "fi-check" %>
-              </li>
-              <li>
-                <%= link_to t(:reject), organization_leave_path(current_organization, leave, leave: {status: "Rejected"}), method: "patch", class: "fi-x" %>
-              </li>
-            </ul>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
-  
-  <div class="content <%= 'active' if !params[:q].blank? %>" id="history">
-    <fieldset>
-      <legend><%= t :search_by_date %></legend>
-      <%= search_form_for [current_organization, @search] do |f| %>
-      <div class="row">
-        <div class="large-2 columns">
-          <%= f.label :start_date_gteq, t(:date_between), class: "left inline" %>
-        </div>
-        <div class="large-3 columns">
-          <%= f.text_field :start_date_gteq, placeholder: Date.today %>
-        </div>
-        <div class="large-2 columns">
-          <%= f.label :start_date_lteq, t(:and), class: "left inline" %>
-        </div>
-        <div class="large-3 columns">
-          <%= f.text_field :start_date_lteq, placeholder: Date.today + 10 %>
-        </div>
-        <div class="large-2 columns">
-          <%= f.submit "Search", class: "button postfix" %>
-        </div>
+      <div class="content <%= 'active' if params[:q].blank? && params[:date].blank? %>" id="pending_leaves">
+        <table class="large-12">
+          <thead>
+            <th><%= t :name %></th>
+            <th><%= t :start_date %> </th>
+            <th><%= t :duration %></th>
+            <th><%= t :comment %></th>
+            <th><%= t :leave_type %></th>
+            <th><%= t :action %></th>
+          </thead>
+          <% @pending_leaves.each do |leave|%>
+            <tr>
+              <td><%= link_to leave.employee.name_with_initial, organization_employee_path(current_organization, leave.employee) %></td>
+              <td><%= leave.start_date.to_date %></td>
+              <td><%= leave.duration_seconds/24/60/60%> Days</td>
+              <td><%= leave.comment %></td>
+              <td><%= leave.leave_type.name%></td>
+              <td>
+              <a href="#" data-dropdown="drop_<%=leave.id %>" class="tiny button dropdown"><%= t :details %></a>
+                <ul id="drop_<%=leave.id %>" data-dropdown-content class="f-dropdown">
+                  <li>
+                    <%= link_to t(:approve), organization_leave_path(current_organization, leave, leave: {status: "Approved"}), method: "patch", class: "fi-check", id: "approve_leave"%>
+                  </li>
+                  <li>
+                    <%= link_to t(:reject), organization_leave_path(current_organization, leave, leave: {status: "Rejected"}), method: "patch", class: "fi-x", id: "reject_leave"%>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          <% end %>
+        </table>
       </div>
-    <% end %>
-    </fieldset>
-    <table class = "large-12 columns">
-      <thead>
-        <th><%= sort_link @search, :last_name, t(:name) %></th>
-        <th><%= t :type %></th>
-        <th><%= sort_link @search, :comment, t(:comment) %></th>
-        <th><%= sort_link @search, :duration_seconds, t(:duration) %></th>
-        <th><%= sort_link @search, :start_date, t(:when) %></th>
-        <th><%= sort_link @search, :status, t(:status) %></th>
-        <th><%= t :action_by %></th>
-      </thead>
-      <tbody>
-      <% @leaves.each do |history|%>
-      <tr>
-        <td><%= link_to history.employee.name_with_initial, organization_employee_path(current_organization, history.employee) %></td>
-        <td><%= history.leave_type.name %></td>
-        <td><%= history.comment %></td>
-        <td><%= (history.duration_seconds)/60/60/24 %> Days</td>
-        <td><%= history.start_date.to_date%></td>
-        <td><%= history.status %></td>
-        <td>
-        <%= history.action_by.nil? ? t(:no_action_yet) : (link_to history.action_by.profile.last_name, organization_employee_path(current_organization, history.action_by.profile)) %>
-        </td>
-      </tr>
-      <%end%>
-      </tbody>
-    </table>
-    <%= paginate @leaves %>
-    <a href="#" data-dropdown="end_of_year" class="tiny button dropdown"><%= t :end_of_year%></a>
-    <ul id="end_of_year" data-dropdown-content class="f-dropdown">
-      <li><%= link_to t(:reset_employees_available_leaves), organization_end_of_year_action_path(forfeit: true), method: :post%></li>
-      <li><%= link_to t(:carry_forward_employees_available_leaves), organization_end_of_year_action_path(forward: true), method: :post%></li>
-    </ul>
-  </div>
-  
-  <div class="content <%= 'active' if !params[:date].blank? && params[:q].blank?%>" id="leave_calendar">
-    <%= render "select_year_month" %>
-    <% if current_organization.organization_setting.nil? %>
-      <%= render "without_setting"%>
-    <% else %>
-      <%= render "with_setting" %>
-    <% end %>
-  </div>
-  
+      
+      <div class="content" id="verify_leaves">
+        <table class="large-12">
+          <thead>
+            <th><%= t :name %></th>
+            <th><%= t :start_date %></th>
+            <th><%= t :duration %></th>
+            <th><%= t :comment %></th>
+            <th><%= t :leave_type %></th>
+            <th><%= t :action %></th>
+          </thead>
+          <% @verification_needed_leaves.each do |leave|%>
+            <tr>
+              <td><%= link_to leave.employee.name_with_initial, organization_employee_path(current_organization, leave.employee) %></td>
+              <td><%= leave.start_date.to_date %></td>
+              <td><%= leave.duration_seconds/24/60/60%> Days</td>
+              <td><%= leave.comment %></td>
+              <td><%= leave.leave_type.name %></td>
+              <td>
+                <a href="#" data-dropdown="drop_<%= leave.id %>" class="tiny button dropdown"><%= t :details %></a>
+                <ul id="drop_<%= leave.id %>" data-dropdown-content class="f-dropdown">
+                  <li>
+                    <%= link_to t(:verify), organization_leave_path(current_organization, leave, leave: {status: "Approved"}), method: "patch", class: "fi-check" %>
+                  </li>
+                  <li>
+                    <%= link_to t(:reject), organization_leave_path(current_organization, leave, leave: {status: "Rejected"}), method: "patch", class: "fi-x" %>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      
+      <div class="content <%= 'active' if !params[:q].blank? %>" id="history">
+        <fieldset>
+          <legend><%= t :search_by_date %></legend>
+          <%= search_form_for [current_organization, @search] do |f| %>
+          <div class="row">
+            <div class="large-2 columns">
+              <%= f.label :start_date_gteq, t(:date_between), class: "left inline" %>
+            </div>
+            <div class="large-3 columns">
+              <%= f.text_field :start_date_gteq, placeholder: Date.today, class: "date_only" %>
+            </div>
+            <div class="large-2 columns">
+              <%= f.label :start_date_lteq, t(:and), class: "left inline" %>
+            </div>
+            <div class="large-3 columns">
+              <%= f.text_field :start_date_lteq, placeholder: Date.today + 10, class: "date_only" %>
+            </div>
+            <div class="large-2 columns">
+              <%= f.submit "Search", class: "button postfix" %>
+            </div>
+          </div>
+        <% end %>
+        </fieldset>
+        <table class = "large-12 columns">
+          <thead>
+            <th><%= sort_link @search, :last_name, t(:name) %></th>
+            <th><%= t :type %></th>
+            <th><%= sort_link @search, :comment, t(:comment) %></th>
+            <th><%= sort_link @search, :duration_seconds, t(:duration) %></th>
+            <th><%= sort_link @search, :start_date, t(:when) %></th>
+            <th><%= sort_link @search, :status, t(:status) %></th>
+            <th><%= t :action_by %></th>
+          </thead>
+          <tbody>
+          <% @leaves.each do |history|%>
+          <tr>
+            <td><%= link_to history.employee.name_with_initial, organization_employee_path(current_organization, history.employee) %></td>
+            <td><%= history.leave_type.name %></td>
+            <td><%= history.comment %></td>
+            <td><%= (history.duration_seconds)/60/60/24 %> Days</td>
+            <td><%= history.start_date.to_date%></td>
+            <td><%= history.status %></td>
+            <td>
+            <%= history.action_by.nil? ? t(:no_action_yet) : (link_to history.action_by.profiles.where(organization_id: current_organization.id).first.last_name, organization_employee_path(current_organization, history.action_by.profiles.where(organization_id: current_organization.id).first)) %>
+            </td>
+          </tr>
+          <%end%>
+          </tbody>
+        </table>
+        <%= paginate @leaves %>
+        <a href="#" data-dropdown="end_of_year" class="tiny button dropdown"><%= t :end_of_year%></a>
+        <ul id="end_of_year" data-dropdown-content class="f-dropdown">
+          <li><%= link_to t(:reset_employees_available_leaves), organization_end_of_year_action_path(forfeit: true), method: :post%></li>
+          <li><%= link_to t(:carry_forward_employees_available_leaves), organization_end_of_year_action_path(forward: true), method: :post%></li>
+        </ul>
+      </div>
+      
+      <div class="content <%= 'active' if !params[:date].blank? && params[:q].blank?%>" id="leave_calendar">
+        <%= render "select_year_month" %>
+        <% if current_organization.organization_setting.nil? %>
+          <%= render "without_setting"%>
+        <% else %>
+          <%= render "with_setting" %>
+        <% end %>
+      </div>
+      
 
+    </div>
+  </div>
 </div>
 
 

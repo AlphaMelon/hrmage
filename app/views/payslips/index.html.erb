@@ -1,6 +1,20 @@
+<div class="content-header">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2>
+        <%= @employee.full_name%> <%= t :payslips %>
+        <%= link_to "#{image_tag('icon/Flaticon_2664.png', 
+        width: 16, height: 16)} #{t(:new_payslips)}".html_safe, 
+        new_organization_employee_payslip_path, 
+        class: "button success right",
+        id: "new_payslip" %>
+      </h2>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="large-12 columns">
-    <h2><%= @employee.full_name%> <%= t :payslips %></h2>
     <table class="large-12">
       <thead>
         <th><%= t :working_date %></th>
@@ -30,6 +44,5 @@
       <% end %>
       </tbody>
     </table>
-    <%= link_to t(:add_new_payslips), new_organization_employee_payslip_path, class: "button success" %>
   </div>
 </div>

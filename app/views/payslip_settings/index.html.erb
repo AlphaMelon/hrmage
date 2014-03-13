@@ -1,7 +1,20 @@
+<div class="content-header">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2>
+        <%= t :payslip_setting %>
+        <%= link_to "#{image_tag('icon/Flaticon_2664.png', 
+        width: 16, height: 16)} #{t(:new_payslip_settings)}".html_safe, 
+        new_organization_payslip_setting_path(current_organization, @payslip_setting),
+        class: "button success right", 
+        id: "new_payslip_setting" %>
+      </h2>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="large-12 small-12 columns">
-    <h1><%= t :payslip_setting %></h1>
-
     <table class="large-12">
       <thead>
         <th><%= t :Name %></th>
@@ -30,7 +43,5 @@
         <% end %>
       </tbody>
     </table>
-
-    <%= link_to t(:add_new_payslip_settings), new_organization_payslip_setting_path(current_organization, @payslip_setting), class: "button success"%>
   </div>
 </div>

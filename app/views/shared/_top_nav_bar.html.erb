@@ -1,71 +1,48 @@
-<% if !current_organization.id.nil? && (can? :read, Leave ) %>
-  <div class="row">
-
-    <div class="large-2 hide-for-small columns">
-      <div class="logo">
-        <%= link_to root_path do %>
-          <%= image_tag('logo/hrmerge-logo.jpg') %>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="large-8 columns">
-      <div class="top-nav-bar">
-        <% if (!current_organization.nil? || !current_organization.nil?) && session[:admin_session] %>
-          <%= render "shared/admin_nav_bar" %>
-        <% elsif (!current_organization.nil? || !current_organization.nil?) && session[:employee_session] %>
-          <%= render "shared/normal_nav_bar" %>
-        <% elsif (!@my_leaves.nil? || !@my_leave.nil?) && session[:admin] %>
-          <%= render "shared/admin_nav_bar" %>
-        <% elsif (!@my_leaves.nil? || !@my_leave.nil?) && session[:employee] %>
-          <%= render "shared/normal_nav_bar" %>
-        <% elsif (!@my_claims.nil? || !@my_claim.nil?) && session[:admin] %>
-          <%= render "shared/admin_nav_bar" %>
-        <% elsif (!@my_claims.nil? || !@my_claim.nil?) && session[:employee] %>
-          <%= render "shared/normal_nav_bar" %>
-        <% elsif (@accounts.nil? || !@account.nil?) && session[:admin] %>
-          <%= render "shared/admin_nav_bar" %>
-        <% elsif (@accounts.nil? || !@account.nil?) && session[:employee] %>
-          <%= render "shared/normal_nav_bar" %>
-        <%end%>
-      </div>
-    </div>
-
-    <div class="large-2 columns">
-      <div class="user-panel">
-        <% if can? :read, Leave %>
-          <ul class="side-nav">
-            <li><%= session[:admin_session] ?  ("<b>"+t(:admin)+"</b>").html_safe : (link_to t(:admin), root_path(admin_session: true)) %></li>
-            <li><%= session[:employee_session] ?  ("<b>"+t(:normal)+"</b>").html_safe : (link_to t(:normal), root_path(employee_session: true)) %></li>
-          </ul>
+<%if account_signed_in? %>
+  <div class="first-nav">
+    <div class="row">
+      <div class="large-9 small-12 large-centered columns admin-first-nav">
+        <% if !current_organization.id.nil? && (can? :read, Leave ) %>
+          <% if (!current_organization.nil? || !current_organization.nil?) && session[:admin_session] %>
+            <%= render "shared/admin_nav_bar" %>
+          <% elsif (!current_organization.nil? || !current_organization.nil?) && session[:employee_session] %>
+            <%= render "shared/normal_nav_bar" %>
+          <% elsif (!@my_leaves.nil? || !@my_leave.nil?) && session[:admin] %>
+            <%= render "shared/admin_nav_bar" %>
+          <% elsif (!@my_leaves.nil? || !@my_leave.nil?) && session[:employee] %>
+            <%= render "shared/normal_nav_bar" %>
+          <% elsif (!@my_claims.nil? || !@my_claim.nil?) && session[:admin] %>
+            <%= render "shared/admin_nav_bar" %>
+          <% elsif (!@my_claims.nil? || !@my_claim.nil?) && session[:employee] %>
+            <%= render "shared/normal_nav_bar" %>
+          <% elsif (@accounts.nil? || !@account.nil?) && session[:admin] %>
+            <%= render "shared/admin_nav_bar" %>
+          <% elsif (@accounts.nil? || !@account.nil?) && session[:employee] %>
+            <%= render "shared/normal_nav_bar" %>
+          <%end%>
+      
+        <% elsif !current_organization.id.nil? %>
+          <% if (!current_organization.nil? || !current_organization.nil?) && session[:employee_session] %>
+            <%= render "shared/normal_nav_bar" %>
+          <% elsif (!@my_leaves.nil? || !@my_leave.nil?) && session[:employee] %>
+            <%= render "shared/normal_nav_bar" %>
+          <% elsif (!@my_claims.nil? || !@my_claim.nil?) && session[:employee] %>
+            <%= render "shared/normal_nav_bar" %>
+          <% elsif (@accounts.nil? || !@account.nil?) && session[:employee] %>
+            <%= render "shared/normal_nav_bar" %>
+          <%end%>
         <% end %>
       </div>
     </div>
   </div>
-
-<% elsif !current_organization.id.nil? %>
-  <div class="row">
-
-    <div class="large-2 hide-for-small columns">
-      <div class="logo">
-        <%= link_to root_path do %>
-          <%= image_tag('logo/hrmerge-logo.jpg') %>
-        <%end%>
-      </div>
-    </div>
-
-    <div class="large-10 columns">
-      <div class="top-nav-bar">
-        <% if (!current_organization.nil? || !current_organization.nil?) && session[:employee_session] %>
-          <%= render "shared/normal_nav_bar" %>
-        <% elsif (!@my_leaves.nil? || !@my_leave.nil?) && session[:employee] %>
-          <%= render "shared/normal_nav_bar" %>
-        <% elsif (!@my_claims.nil? || !@my_claim.nil?) && session[:employee] %>
-          <%= render "shared/normal_nav_bar" %>
-        <% elsif (@accounts.nil? || !@account.nil?) && session[:employee] %>
-          <%= render "shared/normal_nav_bar" %>
-        <%end%>
+  <% if request.env['PATH_INFO'] == root_path %>
+  <% else %>
+  <div class="second-nav">
+    <div class="row">
+      <div class="large-9 small-12 large-centered columns">
+        <%= render "shared/side_bar" %>
       </div>
     </div>
   </div>
-<%end%>
+  <% end %>
+<% end %>

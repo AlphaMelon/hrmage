@@ -2,9 +2,6 @@ html, body{
   font-size: 80%;
 }
 
-h1, h2, h3, h4, h5, h6{
-  text-transform: capitalize;
-}
 .alert-box.account{
   background-color: #c17d11;
   a{
@@ -130,5 +127,88 @@ h1, h2, h3, h4, h5, h6{
   }
   .large-12 {
     margin-bottom: 1em;
+  }
+}
+
+.first-top-bar{
+  margin-top: 1em;
+}
+
+.top-bar-nav{
+  margin-bottom: 0;
+  margin-top: 1em;
+  .hover3{
+    cursor: not-allowed;
+  }
+  .organization{
+    text-transform: capitalize;
+  }
+}
+
+.first-nav{
+  background-color: #3498db;
+  ul,li{
+    a{
+      color: #f5f5f5;
+      text-transform: uppercase;
+    }
+    a:hover{
+      color: #95a5a6; 
+    }
+  }
+}
+
+.admin-first-nav{
+  .inline-list{
+    margin-bottom: 0;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    h6{
+      color: #fff;
+    }
+  }
+}
+
+.second-nav{
+  background-color: #2ecc71;
+  .inline-list{
+    margin-bottom: 0;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    ul,li{
+      a{
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 0.85em;
+      }
+      a:hover{
+        color: #95a5a6;
+      }
+    }
+  }
+}
+
+.first-nav-icon{
+  margin-top: -5px;
+}
+
+.content-header{
+  background-color: #F5F5F5;
+  border-bottom: 1px solid #DADADA;
+  margin-bottom: 1em;
+  padding-top: 1em;
+  h2{
+    color: #222;
+    text-transform: capitalize;
+  }
+}
+
+.profile{
+  margin-top: 2em;
+  h6{
+    text-transform: capitalize;
+  }
+  .exception{
+    text-transform: none;
   }
 }

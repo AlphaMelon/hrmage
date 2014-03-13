@@ -1,13 +1,23 @@
+<div class="content-header">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2>
+        <% if current_organization.id.nil? %><%=t :departments_list %>
+          
+        <% else %>
+          <%= current_organization.name.capitalize %> <%=t :departments_list %>
+        <% end %>
+        <%= link_to "#{image_tag('icon/Flaticon_2664.png', 
+        width: 16, height: 16)} #{t(:new_department)}".html_safe, 
+        new_organization_department_path, 
+        class: "button success right",
+        id: "new_department" %>
+      </h2>
+    </div>
+  </div>
+</div>
 <div class="row">
-  <div class="large-12 columns">
-    
-    <h2>
-      <% if current_organization.id.nil? %><%=t :departments_list %>
-        
-      <% else %>
-        <%= current_organization.name.capitalize %> <%=t :departments_list %>
-      <% end %>
-    </h2>
+  <div class="large-12 columns"> 
 
     <table class="large-12">
       <thead>
@@ -36,6 +46,6 @@
         <% end %>
       </tbody>
     </table>
-    <%= link_to t(:add_new_department), new_organization_department_path, class: "button success" %>
+    
   </div>
 </div>

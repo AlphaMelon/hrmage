@@ -1,8 +1,9 @@
-<div class="row">
+<div class="row profile">
+  <!--picture-->
   <div class="large-2 columns">
-    <table class="large-12">
+    <table class="large-12 columns">
       <thead>
-        <th><%= @employee.full_name.capitalize %></th>
+        <th><h6><%= @employee.full_name %></h6></th>
       </thead>
       <tbody>
         <% if @employee.photo? %>
@@ -17,42 +18,48 @@
       </tbody>
     </table>
   </div>
+
+  <!--details-->
   <div class="large-10 columns">
-    <table class="large-12">
+    <table class="large-12 columns">
       <thead>
-        <th colspan="2"><%= @employee.first_name.capitalize %> <%= t :information%></th>
+        <th colspan="2"><h6>Personal Details</h6></th>
       </thead>
       <tbody>
         <tr>
-          <td><%= t :name %>: </td>
-          <td><%= @employee.full_name%></td>
+          <td class="large-2"><h6><%= t :full_name %></h6></td>
+          <td class="large-10"><h6><%= @employee.full_name%></h6></td>
         </tr>
         <tr>
-          <td><%= t :e_mail %>:</td>
-          <td><%= @employee.account.email if !@employee.account.nil?%></td>
+          <td><h6>Employee ID</h6></td>
+          <td><h6><%= @employee.employee_identification %></h6></td>
         </tr>
         <tr>
-          <td><%= t :mobile_no %>:</td>
-          <td><%= @employee.mobile_contact%></td>
+          <td><h6><%= t :e_mail %>:</h6></td>
+          <td><h6 class="exception"><%= @employee.account.email if !@employee.account.nil?%></h6></td>
         </tr>
         <tr>
-          <td><%= t :address %>:</td>
-          <td><%= @employee.address%></td>
+          <td><h6><%= t :mobile_no %>:</h6></td>
+          <td><h6><%= @employee.mobile_contact%></h6></td>
         </tr>
         <tr>
-          <td><%= t :departments %>:</td>
-          <td><%= @employee.departments.map {|x| x.name}.to_sentence %></td>
+          <td><h6><%= t :address %>:</h6></td>
+          <td><h6><%= @employee.address%></h6></td>
+        </tr>
+        <tr>
+          <td><h6><%= t :departments %>:</h6></td>
+          <td><h6><%= @employee.departments.map {|x| x.name}.to_sentence %></h6></td>
         </tr>
       </tbody>
     </table>
 
     <table class="large-12">
       <thead>
-        <th><%=@employee.last_name.capitalize %>'s <%= t :documents%></th>
+        <th><h6><%=@employee.last_name.capitalize %>'s <%= t :documents%></h6></th>
       </thead>
       <tbody>
         <tr>
-          <td>
+          <td><h6>
             <ul class="clearing-thumbs large-block-grid-3" data-equalizer data-clearing>
               <% @employee.documents.each do |document| %>
                 <li data-equalizer-watch>        
@@ -72,17 +79,17 @@
                 </li>
               <% end %>
             </ul>
-          </td>
+          </h6></td>
         </tr>
         <tr>
-          <td><%= link_to t(:add_new_document), new_organization_employee_document_path(@organization, @employee), class: "button success" %></td>
+          <td><%= link_to "#{image_tag('icon/Flaticon_2664.png', width: 16, height: 16)} #{t(:new_document)}".html_safe, new_organization_employee_document_path(@organization, @employee), class: "button success" %></td>
         </tr>
       </tbody>
     </table>
 
-   <table class="large-12">
+    <table class="large-12">
       <thead>
-        <th colspan="3"><center><%= t :claims %></center></th>
+        <th colspan="3"><center><h6><%= t :claims %></h6></center></th>
       </thead>
       <thead>
         <th><%= t :working_date %></th>
@@ -92,9 +99,9 @@
       <tbody>
         <% @employee_claims.each do |employee_claim|%>
           <tr>
-            <td><%= employee_claim.date.to_date %></td>
-            <td><%= employee_claim.subject%></td>
-            <td><%= humanized_money_with_symbol employee_claim.amount%></td>
+            <td><h6><%= employee_claim.date.to_date %></h6></td>
+            <td><h6><%= employee_claim.subject%></h6></td>
+            <td><h6><%= humanized_money_with_symbol employee_claim.amount%></h6></td>
           </tr>
         <% end %>
       </tbody>
@@ -104,7 +111,7 @@
     <table class="large-12">
       <thead>
         <tr>
-          <th colspan="5"><center><%= t :leaves %></center></th>
+          <th colspan="5"><center><h6><%= t :leaves %></h6></center></th>
         </tr>
       </thead>
       <thead>
@@ -119,11 +126,11 @@
       <tbody>
         <% @employee_leaves.each do |employee_leave| %>
           <tr>
-            <td><%= employee_leave.leave_type.name %></td>
-            <td><%= employee_leave.comment %></td>
-            <td><%= (employee_leave.duration_seconds)/60/60/24 %> <%= t :b_days %></td>
-            <td><%= employee_leave.start_date.to_date%> - <%= (employee_leave.start_date.to_date + ((employee_leave.duration_seconds)/60/60/24-1).days)%></td>
-            <td><%= employee_leave.status %></td>
+            <td><h6><%= employee_leave.leave_type.name %></h6></td>
+            <td><h6><%= employee_leave.comment %></h6></td>
+            <td><h6><%= (employee_leave.duration_seconds)/60/60/24 %> <%= t :b_days %></h6></td>
+            <td><h6><%= employee_leave.start_date.to_date%> - <%= (employee_leave.start_date.to_date + ((employee_leave.duration_seconds)/60/60/24-1).days)%></h6></td>
+            <td><h6><%= employee_leave.status %></h6></td>
           </tr>
         <% end %>
       </tbody>

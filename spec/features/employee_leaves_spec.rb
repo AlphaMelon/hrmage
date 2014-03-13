@@ -78,7 +78,7 @@ feature "[Employee Leaves]" do
     page.should have_content("is off day")
   end
 
-  scenario "Leave remaining progress bar" do
+  scenario "Leave remaining progress bar (My Leaves)" do
     #10 out of 21 leave days remaining
     #approve leave of 3 days
     visit root_path
@@ -94,11 +94,18 @@ feature "[Employee Leaves]" do
     page.should have_content("7/21")
   end
 
-  scenario "view calendar" do
+  scenario "View calendar" do
     visit root_path
     click_on "my_leaves", match: :first
     click_on "Calendar"
     page.should have_content("Leave Calendar")
+  end
+
+  scenario "View Approvals" do
+    visit root_path
+    click_on "my_leaves", match: :first
+    click_on "employee_approvals"
+    page.should have_content("Approvals")
   end
 
 end

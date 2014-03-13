@@ -23,6 +23,7 @@ feature "[CanCan Ability Leaves]" do
   end
   
   scenario "Approve Own Leave" do
+    Leave.delete_all
     visit root_path
     click_on "Leaves", match: :first
     click_on "Apply Leave"
@@ -32,7 +33,8 @@ feature "[CanCan Ability Leaves]" do
     page.should have_content("Leave successfully applied, please wait for admin to approve")
     
     visit organization_leaves_path(Organization.first)
-    all('#approve_leave')[0].click
+    #all('#approve_leave')[0].click
+    click_on("approve_leave")
     page.should have_content("Leaves request approved")
   end
   

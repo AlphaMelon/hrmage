@@ -29,7 +29,6 @@
         <td><%= t :comment %></td>
         <td><%= t :status %></td>
         <td><%= t :action_by %></td>
-        <td><%= t :action %></td>
       </thead>
       <% @my_claims.each do |claim| %>
       <tbody>
@@ -39,12 +38,6 @@
         <td><%= claim.comment %></td>
         <td><%= claim.status %></td>
         <td><%= claim.action_by.nil? ? t(:no_action_yet) : claim.action_by.profiles.where(organization_id: current_organization.id).first.last_name %></td>
-        <td>
-          <a href="#" data-dropdown="drop2" class="tiny button dropdown"><%= t :details %></a>
-          <ul id="drop2" data-dropdown-content class="f-dropdown">
-            <li><a href="#">test</a></li>
-          </ul>
-        </td>
       </tbody>
       <%end%>
     </table>

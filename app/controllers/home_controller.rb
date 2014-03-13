@@ -114,6 +114,7 @@ class HomeController < ApplicationController
         @employees << employee
       end
     end
+    @employees = @employees.uniq
 
     if !current_organization.organization_setting.nil?
       @workday = [false,false,false,false,false,false,false,false]

@@ -35,7 +35,7 @@
           <td><h6><%= @employee.employee_identification %></h6></td>
         </tr>
         <tr>
-          <td><h6><%= t :e_mail %>:</h6></td>
+          <td><h6><%= t :e_mail %></h6></td>
           <td><h6 class="exception"><%= @employee.account.email if !@employee.account.nil?%></h6></td>
         </tr>
         <tr>
@@ -53,7 +53,7 @@
       </tbody>
     </table>
 
-    <table class="large-12">
+    <table class="large-12 columns">
       <thead>
         <th><h6><%=@employee.last_name.capitalize %>'s <%= t :documents%></h6></th>
       </thead>

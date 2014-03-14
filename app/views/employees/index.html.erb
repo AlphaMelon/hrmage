@@ -38,7 +38,11 @@
         </div>
         <div class="large-3 columns"></div>
         <div class="large-9 columns">
-          <%= f.submit t(:search), class: "button" %>
+          <%#= f.submit t(:search), class: "button"%>
+          <%= button_tag(class: "button") do %>
+            <%= image_tag('icon/Flaticon_34097.png', width: 16, height: 16) %>
+            <%= t :search %>
+          <% end %>
         </div> 
       </div>
     <% end %>

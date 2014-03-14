@@ -285,3 +285,5 @@ en:
   claim_subject_new_description: "This is where you add new claim subject. Employee will choose from this list when they apply for new claim."
   claim_subject_edit_description: "This is where you edit existing subject that your organization created."
   awesome: "Awesome!!"
+  personal_deatils: "Personal Details"
+  employee_id: "Employee ID"

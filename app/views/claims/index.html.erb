@@ -60,7 +60,7 @@
       
       <div class="content <%= 'active' if !params[:q].blank? %>" id="history">
         <fieldset>
-          <legend>Search</legend>
+          <legend><%=t :search %></legend>
           <%= search_form_for [current_organization, @search] do |f| %>
           <div class="row">
             <div class="large-3 columns">
@@ -97,7 +97,10 @@
           <div class="row">
             <div class="large-3 columns"></div>
             <div class="large-9 columns">
-              <%= f.submit "Search", class: "button" %>
+              <%= button_tag(class: "button") do %>
+                <%= image_tag('icon/Flaticon_34097.png', width: 16, height: 16) %>
+                <%= t :search %>
+              <% end %>
             </div>
           </div>
         <% end %>

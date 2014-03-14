@@ -33,11 +33,18 @@
         <td>
           <a href="#" data-dropdown="drop_<%= payslip.id %>" class="tiny button dropdown"><%= t :details %></a><br>
             <ul id="drop_<%= payslip.id %>" data-dropdown-content class="f-dropdown">
-              <li><%= link_to t(:show), organization_employee_payslip_path(current_organization, @employee, payslip), class: "fi-eye"%></li>
+              <li><%= link_to t(:show), 
+              organization_employee_payslip_path(current_organization, @employee, payslip), 
+              class: "fi-eye", id: "show_payslip"%></li>
               <li>
-                <%= link_to t(:edit), edit_organization_employee_payslip_path(current_organization, @employee, payslip), class: "fi-pencil"%>
+                <%= link_to t(:edit), 
+                edit_organization_employee_payslip_path(current_organization, @employee, payslip), 
+                class: "fi-pencil", id: "edit_payslip"%>
               </li>
-              <li><%= link_to t(:delete), organization_employee_payslip_path(current_organization, @employee, payslip), class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure) }%></li>
+              <li><%= link_to t(:delete), 
+              organization_employee_payslip_path(current_organization, @employee, payslip), 
+              class: "fi-trash", method: :delete, 
+              data: { confirm: t(:are_you_sure) }, id: "delete_payslip"%></li>
             </ul>
         </td>
       </tr>

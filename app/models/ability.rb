@@ -63,6 +63,11 @@ class Ability
       can :update, Position if acc_org.position == "Read and Update"
       can :manage, Position if acc_org.position == "Manage all"
 
+      can :read, PositionSetting if acc_org.position[0..3] == "Read"
+      can :create, PositionSetting if acc_org.position == "Read and Create"
+      can :update, PositionSetting if acc_org.position == "Read and Update"
+      can :manage, PositionSetting if acc_org.position == "Manage all"
+
     elsif acc_org.role == "Employee"
       can :create, Leave
       can :create, Claim

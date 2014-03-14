@@ -9,7 +9,8 @@
           new_organization_organization_setting_organization_holiday_path(current_organization, @organization_setting), 
           class: "button success",
           id: "new_organization_holiday" %>
-          <%= link_to t(:default_holiday), organization_organization_setting_organization_holiday_get_and_update_holiday_path(current_organization, @organization_setting, 1), class: "button", method: "post", data: { confirm: t(:are_you_sure) }%>
+          <%= link_to "#{image_tag('icon/Flaticon_3622.png', 
+          width: 16, height: 16)} #{t(:default_holiday)}".html_safe, organization_organization_setting_organization_holiday_get_and_update_holiday_path(current_organization, @organization_setting, 1), class: "button", method: "post", data: { confirm: t(:are_you_sure) }%>
         </div>
       </h2>
     </div>

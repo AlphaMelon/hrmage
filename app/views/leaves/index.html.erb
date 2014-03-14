@@ -101,7 +101,11 @@
               <%= f.text_field :start_date_lteq, placeholder: Date.today + 10, class: "date_only" %>
             </div>
             <div class="large-2 columns">
-              <%= f.submit "Search", class: "button postfix" %>
+              <%#= f.submit "Search", class: "button postfix" %>
+              <%= button_tag(class: "button postfix") do %>
+                <%= image_tag('icon/Flaticon_34097.png', width: 16, height: 16) %>
+                <%= t :search %>
+              <% end %>
             </div>
           </div>
         <% end %>

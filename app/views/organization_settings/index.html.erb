@@ -54,8 +54,8 @@
           </tr>
         </tbody>
       </table>
-      <%= link_to t(:edit), edit_organization_organization_setting_path(current_organization, @organization_setting), class: "button success"%>
-      <%= link_to t(:delete), organization_organization_setting_path(current_organization, @organization_setting), method: :delete, data: { confirm: t(:delete_organization_holidays) }, class: "button alert" %>
+      <%= link_to t(:edit), edit_organization_organization_setting_path(current_organization, @organization_setting), class: "fi-pencil button success"%>
+      <%= link_to t(:delete), organization_organization_setting_path(current_organization, @organization_setting), method: :delete, data: { confirm: t(:delete_organization_holidays) }, class: "fi-trash button alert" %>
     <% else %>
       <div class="panel large-9 large-centered columns">
         <%= t :organization_settings_helper %>

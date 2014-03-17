@@ -64,7 +64,7 @@
           <%= search_form_for [current_organization, @search] do |f| %>
           <div class="row">
             <div class="large-3 columns">
-              <%= f.label :employee_id, "Name", class: "left inline" %>
+              <%= f.label :employee_id, t(:name), class: "left inline" %>
             </div>
             <div class="large-9 columns">
               <%= f.select :employee_id_eq, current_organization.employees.collect{|e| [e.full_name, e.id]}, include_blank: true%>
@@ -72,7 +72,7 @@
           </div>
           <div class="row">
             <div class="large-3 columns">
-              <%= f.label :subject_cont, "Subject", class: "left inline" %>
+              <%= f.label :subject_cont, t(:subject), class: "left inline" %>
             </div>
             <div class="large-9 columns">
               <%= f.select :subject_cont, current_organization.claim_subjects.collect{|cs| [cs.name, cs.name]}, include_blank: true %>
@@ -80,7 +80,7 @@
           </div>
           <div class="row">
             <div class="large-3 columns">
-              <%= f.label :date_gteq, "Date between", class: "left inline" %>
+              <%= f.label :date_gteq, t(:date_between), class: "left inline" %>
             </div>
             <div class="large-9 columns">
               <%= f.text_field :date_gteq, placeholder: Date.today, class: "date_only", value: (@search.date_gteq.blank? ? '' : @search.date_gteq.strftime('%Y-%m-%d')) %>
@@ -88,7 +88,7 @@
           </div>
           <div class="row">
             <div class="large-3 columns">
-              <%= f.label :date_lteq, "and", class: "left inline" %>
+              <%= f.label :date_lteq, t(:and), class: "left inline" %>
             </div>
             <div class="large-9 columns">
               <%= f.text_field :date_lteq, placeholder: Date.today + 10, class: "date_only", value: (@search.date_lteq.blank? ? '' : @search.date_lteq.strftime('%Y-%m-%d')) %>

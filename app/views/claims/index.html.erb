@@ -137,7 +137,7 @@
         </table>
         <%= paginate @claims %>
         <h6>
-          Download: <%= link_to "CSV", ""%> | <%= link_to "XLS", ""%>
+          <%= t :download %>: <%= link_to t(:spreadsheet), organization_claims_path(format: "csv"), class: "fi-page-export" %>
         </h6>
       </div>
     </div>

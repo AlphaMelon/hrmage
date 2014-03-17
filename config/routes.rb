@@ -22,7 +22,9 @@ Hrmage::Application.routes.draw do
     resources :positions do
       resources :position_settings
     end
-    resources :account_organizations
+    resources :account_organizations do
+      resources :access_levels
+    end
     resources :departments
     resources :leaves
     resources :leave_types

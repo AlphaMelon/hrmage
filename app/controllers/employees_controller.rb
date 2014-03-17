@@ -47,6 +47,7 @@ class EmployeesController < ApplicationController
   
   def edit_login_info
     @account = Employee.find(params[:employee_id]).account
+    @account_organization = AccountOrganization.where(account_id: @account.id, organization_id: @organization.id).first
   end
   
   def update_login_info

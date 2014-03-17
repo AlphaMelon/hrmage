@@ -1,0 +1,52 @@
+<div class="content-header">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2>
+        <%= t :access_levels_list %> 
+        <%= @employee.full_name %>
+        <%= link_to "#{image_tag('icon/Flaticon_2664.png', 
+        width: 16, height: 16)} #{t(:new_access_level)}".html_safe, 
+        new_organization_account_organization_access_level_path(current_organization, @account_organization), 
+        class: "button success right", id: "new_access_level" %>
+      </h2>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <table class="large-12">
+      <thead>
+        <th><%= t :department %></th>
+        <th><%= t :access_level %></th>
+        <th><%= t :module %></th>
+        <th><%= t :action %></th>
+      </thead>
+      <tbody>
+      <% @access_levels.each do |access_level|%>
+        <tr>
+          <td><%= access_level.department.name %></td>
+          <td><%= access_level.access_level %></td>
+          <td><%= access_level.class_name %></td>
+          <td>
+          <a href="#" data-dropdown="drop_<%=access_level.id %>" class="tiny button dropdown"><%= t :details %></a>
+            <ul id="drop_<%=access_level.id %>" data-dropdown-content class="f-dropdown">
+              <li>
+                <%= link_to t(:edit), 
+                edit_organization_account_organization_access_level_path(current_organization, @account_organization,access_level), 
+                class: "fi-pencil", id: "edit_access_level"  %>
+              </li>
+              <li>
+                <%= link_to t(:delete), 
+                organization_account_organization_access_level_path(current_organization, @account_organization,access_level), 
+                id: 'delete_access_level', class: "fi-trash", 
+                method: :delete, data: { confirm: t(:are_you_sure) }%>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -83,7 +83,7 @@
               <%= f.label :date_gteq, "Date between", class: "left inline" %>
             </div>
             <div class="large-9 columns">
-              <%= f.text_field :date_gteq, placeholder: Date.today, class: "date_only" %>
+              <%= f.text_field :date_gteq, placeholder: Date.today, class: "date_only", value: (@search.date_gteq.blank? ? '' : @search.date_gteq.strftime('%Y-%m-%d')) %>
             </div>
           </div>
           <div class="row">
@@ -91,7 +91,7 @@
               <%= f.label :date_lteq, "and", class: "left inline" %>
             </div>
             <div class="large-9 columns">
-              <%= f.text_field :date_lteq, placeholder: Date.today + 10, class: "date_only" %>
+              <%= f.text_field :date_lteq, placeholder: Date.today + 10, class: "date_only", value: (@search.date_lteq.blank? ? '' : @search.date_lteq.strftime('%Y-%m-%d')) %>
             </div>
           </div>
           <div class="row">

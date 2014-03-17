@@ -92,13 +92,13 @@
               <%= f.label :start_date_gteq, t(:date_between), class: "left inline" %>
             </div>
             <div class="large-3 columns">
-              <%= f.text_field :start_date_gteq, placeholder: Date.today, class: "date_only" %>
+              <%= f.text_field :start_date_gteq, placeholder: Date.today, class: "date_only", value: (@search.start_date_gteq.blank? ? '' : @search.start_date_gteq.strftime('%Y-%m-%d')) %>
             </div>
             <div class="large-2 columns">
               <%= f.label :start_date_lteq, t(:and), class: "left inline" %>
             </div>
             <div class="large-3 columns">
-              <%= f.text_field :start_date_lteq, placeholder: Date.today + 10, class: "date_only" %>
+              <%= f.text_field :start_date_lteq, placeholder: Date.today + 10, class: "date_only", value: (@search.start_date_lteq.blank? ? '' : @search.start_date_lteq.strftime('%Y-%m-%d')) %>
             </div>
             <div class="large-2 columns">
               <%#= f.submit "Search", class: "button postfix" %>

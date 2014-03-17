@@ -261,6 +261,7 @@ en:
   new_payslips: "new payslips"
   print: "Print"
   payslips: "Payslips"
+  logged_in_as: "Logged in as:"
   new_paid: "New paid"
   edit_payslip_setting: "Edit Payslip Settting"
   payslip_setting: "Payslip Setting"

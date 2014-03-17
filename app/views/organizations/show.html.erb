@@ -67,7 +67,7 @@
               <tr>
                 <td><%= acc_org.account.email %></td>
                 <td><%= acc_org.role %></td>
-                <th><%= link_to t(:remove_link), organization_account_organization_path(@organization, acc_org), method: :delete, data: { confirm: t(:are_you_sure) }%></th>
+                <td><%= link_to t(:remove_link), organization_account_organization_path(@organization, acc_org), method: :delete, data: { confirm: t(:are_you_sure) }%></td>
               </tr>
             <% end %>
           </tbody>

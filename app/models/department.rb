@@ -3,6 +3,7 @@ class Department < ActiveRecord::Base
 
   has_many :employee_departments, dependent: :destroy
   has_many :employees, through: :employee_departments
+  has_many :access_levels
   acts_as_paranoid
   validates :name, presence: true
 

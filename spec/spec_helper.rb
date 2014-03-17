@@ -65,6 +65,7 @@ RSpec.configure do |config|
   config.include(CountrySettingMacros)
   config.include(CountryHolidaySettingMacros)
   config.include(ClaimSubjectMacros)
+  config.include(AccessLevelMacros)
   config.before(:each) do
     Capybara.javascript_driver = :webkit
     #Capybara.always_include_port = true
@@ -93,7 +94,7 @@ RSpec.configure do |config|
     AdminUser.delete_all
     CountrySetting.delete_all
     CountryHolidaySetting.delete_all
-    
+    AccessLevel.delete_all
     
     create_admin_account
     create_organization
@@ -112,6 +113,7 @@ RSpec.configure do |config|
     create_country_setting
     create_country_holiday_setting
     create_claim_subject
-    
+    create_access_level
+
   end
 end

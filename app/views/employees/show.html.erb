@@ -106,7 +106,7 @@
         <% end %>
       </tbody>
     </table>
-    <%= paginate @employee_claims %>
+    <%= paginate @employee_claims, param_name: "claims_page" %>
 
     <table class="large-12">
       <thead>
@@ -135,7 +135,7 @@
         <% end %>
       </tbody>
     </table>
-    <%= paginate @employee_leaves %>
+    <%= paginate @employee_leaves, param_name: "leaves_page" %>
     <%= link_to t(:back), :back, class: "button success" %>
   </div>
 </div>

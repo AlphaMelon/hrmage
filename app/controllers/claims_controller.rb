@@ -12,9 +12,9 @@ class ClaimsController < ApplicationController
     
     @search = @organization.claims.search(params[:q])
     if params[:q].nil?
-      @claims = @organization.claims.order(id: :desc).page(params[:page]).per(5)
+      @claims = @organization.claims.order(id: :desc).page(params[:claim_page]).per(5)
     else
-      @claims = @search.result.order(id: :desc).page(params[:page]).per(5)
+      @claims = @search.result.order(id: :desc).page(params[:claim_page]).per(5)
     end
     
     respond_to do |format|

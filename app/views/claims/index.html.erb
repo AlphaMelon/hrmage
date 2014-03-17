@@ -9,12 +9,12 @@
 <div class="row">
   <div class="large-12 columns">
     <dl class="tabs" data-tab>
-      <dd class="<%= 'active' if params[:q].blank? %>"><a href="#pending_claims"><%= t :pending_claims %></a></dd>
-      <dd class="<%= 'active' if !params[:q].blank? %>"><a href="#history"><%= t :history %></a></dd>
+      <dd class="<%= 'active' if params[:q].nil? && params[:claim_page].blank? %>"><a href="#pending_claims"><%= t :pending_claims %></a></dd>
+      <dd class="<%= 'active' if !params[:q].blank? || !params[:claim_page].blank? %>"><a href="#history"><%= t :history %></a></dd>
     </dl>
 
     <div class="tabs-content">
-      <div class="content <%= 'active' if params[:q].blank? %>" id="pending_claims">
+      <div class="content <%= 'active' if params[:q].nil? && params[:claim_page].blank? %>" id="pending_claims">
         <table class="large-12 columns">
           <thead>
             <th><%= t :name %></th>
@@ -58,7 +58,7 @@
         <%= paginate @pending_claims %>
       </div>
       
-      <div class="content <%= 'active' if !params[:q].blank? %>" id="history">
+      <div class="content <%= 'active' if !params[:q].blank? || !params[:claim_page].blank? %>" id="history">
         <fieldset>
           <legend><%=t :search %></legend>
           <%= search_form_for [current_organization, @search] do |f| %>
@@ -135,7 +135,7 @@
             </tr>
           <% end %>
         </table>
-        <%= paginate @claims %>
+        <%= paginate @claims, param_name: "claim_page" %>
         <h6>
           <%= t :download %>: <%= link_to t(:spreadsheet), organization_claims_path(format: "csv"), class: "fi-page-export" %>
         </h6>

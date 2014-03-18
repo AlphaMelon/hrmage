@@ -51,17 +51,19 @@
   </div>
 
   <div class="large-12 columns">
-    <h6><strong><%= t :remark %></strong></h6>
-  </div>
-  <div class="large-12 columns remark-leaves">
-    <ul class="large-block-grid-12">
-      <li class="present"><%= t :no_leave %></li>
-      <li class="pending"><%= t :pending %></li>
-      <li class="offday"><%= t :offday%></li>
-      <li class="holiday"><%= t :holiday %></li>
-      <% @leave_types.each do |leave_type|%>
-        <li style="background-color: <%=leave_type.colour%>"><%=leave_type.name%></li>
-      <%end%>
-    </ul>
+    <fieldset>
+      <legend><%= t :remark %></legend>
+      <div class="large-12 columns remark-leaves">
+        <ul class="large-block-grid-12">
+          <li class="present"><%= t :no_leave %></li>
+          <li class="pending"><%= t :pending %></li>
+          <li class="offday"><%= t :offday%></li>
+          <li class="holiday"><%= t :holiday %></li>
+          <% @leave_types.each do |leave_type|%>
+            <li style="background-color: <%=leave_type.colour%>"><%=leave_type.name%></li>
+          <%end%>
+        </ul>
+      </div>
+    </fieldset>
   </div>
 </div>

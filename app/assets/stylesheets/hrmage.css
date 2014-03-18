@@ -55,22 +55,19 @@ html, body{
 }
 
 .offday {
-  background-color: #C1C9FA;
+  background-color: #3498db;
 }
 
 .holiday {
-  background-color: #F3E2C7;
+  background-color: #9b59b6;
 }
 
 .present{
-  background-color: #E7E7E7;
-}
-.absent{
-  background-color: #da1337;
+  background-color: #ecf0f1;
 }
 
 .pending{
-  background-color: #000000;
+  background-color: #7f8c8d;
 }
 .table-overflow{
   overflow-x:auto;
@@ -83,7 +80,17 @@ html, body{
   color: #008CBA;
 }
 .remark-leaves{
-  margin-top: 1em;
+  ul{
+    margin: 0;
+    li{
+      padding: 0;
+      text-align: center;
+      margin-right: 1em;
+      margin-bottom: 1em;
+      text-transform: capitalize;
+    }
+
+  }
 }
 .minicolors-theme-default .minicolors-swatch {
   top: 1px;

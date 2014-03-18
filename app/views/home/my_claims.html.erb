@@ -10,10 +10,10 @@
   </div>
   <div class="large-12 columns">
     <h6 class="text-left">
-      Claim Amount:
+      <%= t :claim_amout %>:
       <%= humanized_money_with_symbol (current_employee.claims.where(status: "Approved", date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).sum :amount_cents).to_f/100 %></h6>
     <h6>
-      Claim Remaining: <%= humanized_money_with_symbol (current_employee.position.monthly_max_claims_cents - (current_employee.claims.where(status: "Approved", date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).sum :amount_cents)).to_f/100 %>
+      <%= t :claim_remaining %>: <%= humanized_money_with_symbol (current_employee.position.monthly_max_claims_cents - (current_employee.claims.where(status: "Approved", date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).sum :amount_cents)).to_f/100 %>
     </h6>
   <hr>
 </div>
@@ -23,23 +23,25 @@
     <h2><%= t :history %></h2>
     <table class="large-12">
       <thead>
-        <td><%= t :subject %></td>
-        <td><%= t :working_date %></td>
-        <td><%= t :amount %></td>
-        <td><%= t :comment %></td>
-        <td><%= t :status %></td>
-        <td><%= t :action_by %></td>
+        <th><%= t :subject %></th>
+        <th><%= t :working_date %></th>
+        <th><%= t :amount %></th>
+        <th><%= t :comment %></th>
+        <th><%= t :status %></th>
+        <th><%= t :action_by %></th>
       </thead>
-      <% @my_claims.each do |claim| %>
       <tbody>
-        <td><%= claim.subject %></td>
-        <td><%= claim.date.to_date.strftime("%d/%m/%Y") %></td>
-        <td><%= humanized_money_with_symbol claim.amount %></td>
-        <td><%= claim.comment %></td>
-        <td><%= claim.status %></td>
-        <td><%= claim.action_by.nil? ? t(:no_action_yet) : claim.action_by.profiles.where(organization_id: current_organization.id).first.last_name %></td>
-      </tbody>
+      <% @my_claims.each do |claim| %>
+        <tr>
+          <td><%= claim.subject %></td>
+          <td><%= claim.date.to_date.strftime("%d/%m/%Y") %></td>
+          <td><%= humanized_money_with_symbol claim.amount %></td>
+          <td><%= claim.comment %></td>
+          <td><%= claim.status %></td>
+          <td><%= claim.action_by.nil? ? t(:no_action_yet) : claim.action_by.profiles.where(organization_id: current_organization.id).first.last_name %></td>
+        </tr>
       <%end%>
+      </tbody>
     </table>
     <%= paginate @my_claims %>
   </div>

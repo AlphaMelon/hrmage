@@ -23,7 +23,7 @@
           <td><%= @organization.domain %></td>
           <td><%= @organization.country %></td>
           <td><%= @organization.default_currency %></td>
-          <td><%= link_to t(:edit_organization), edit_organization_path(@organization), id: "edit_organization" %></td>
+          <td><%= link_to t(:edit_organization), edit_organization_path(@organization), id: "edit_organization", class: "fi-pencil" %></td>
         </tr>
       </tbody>
     </table>

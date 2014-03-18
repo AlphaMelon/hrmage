@@ -89,7 +89,6 @@ html, body{
       margin-bottom: 1em;
       text-transform: capitalize;
     }
-
   }
 }
 .minicolors-theme-default .minicolors-swatch {
@@ -168,22 +167,32 @@ html, body{
 .admin-first-nav{
   .inline-list{
     margin-bottom: 0;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    ul,li{
+      a{
+        padding-bottom: 1em;
+        padding-top: 1em;
+      }
+    }
     h6{
+      padding-bottom: 1em;
+      padding-top: 1em;
       color: #fff;
     }
   }
+}
+
+.selected{
+
 }
 
 .second-nav{
   background-color: #2ecc71;
   .inline-list{
     margin-bottom: 0;
-    padding-top: 1em;
-    padding-bottom: 1em;
     ul,li{
       a{
+        padding-top: 1em;
+        padding-bottom: 1em;
         color: #fff;
         text-transform: uppercase;
         font-size: 0.85em;

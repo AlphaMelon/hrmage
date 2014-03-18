@@ -32,21 +32,23 @@
       <h2><%= t :history %></h2>
       <table class="large-12">
         <thead>
-          <td><%= t :type %></td>
-          <td><%= t :reason %></td>
-          <td><%= t :duration%></td>
-          <td><%= t :when %></td>
-          <td><%= t :status %></td>
+          <th><%= t :type %></th>
+          <th><%= t :reason %></th>
+          <th><%= t :duration%></th>
+          <th><%= t :when %></th>
+          <th><%= t :status %></th>
         </thead>
-        <% @my_leaves.each do |leave| %>
         <tbody>
-          <td><%= leave.leave_type.name %></td>
-          <td><%= leave.comment %></td>
-          <td><%= (leave.duration_seconds)/60/60/24 %> <%= t :b_days%></td>
-          <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %> - <%= (leave.start_date.to_date + ((leave.duration_seconds)/60/60/24-1).days).strftime("%d/%m/%Y") %></td>
-          <td><%= leave.status %></td>
+        <% @my_leaves.each do |leave| %>
+          <tr>
+            <td><%= leave.leave_type.name %></td>
+            <td><%= leave.comment %></td>
+            <td><%= (leave.duration_seconds)/60/60/24 %> <%= t :b_days%></td>
+            <td><%= leave.start_date.to_date.strftime("%d/%m/%Y") %> - <%= (leave.start_date.to_date + ((leave.duration_seconds)/60/60/24-1).days).strftime("%d/%m/%Y") %></td>
+            <td><%= leave.status %></td>
+          </tr>
+          <%end%>
         </tbody>
-        <%end%>
       </table>
       <%= paginate @my_leaves %>
     </div>

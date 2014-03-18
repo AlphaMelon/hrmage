@@ -2,27 +2,33 @@ require 'spec_helper'
 
 feature "[CanCan Ability Claims]" do
   background do
-    acc_org = create_employee_cancan("testing@example.dev", "spree123", true, false, "IT")
+    @acc_org = create_employee_cancan("testing@example.dev", "spree123", true, false, "IT")
+    @access_level = @acc_org.access_levels.first
     admin_login("testing@example.dev", "spree123")
   end
 
-  scenario "Approve Claim from another department" do
+  scenario "Approve Claim without authority" do
+    @access_level.class_name = "Leave"
+    @access_level.save
     visit organization_claims_path(Organization.first)
     click_on "Approve"
     page.should have_content("Access denied")
   end
   
-  scenario "Approve leave from own department" do
-    ed = EmployeeDepartment.first
-    ed.department_id = EmployeeDepartment.last.department_id
-    ed.save
+  scenario "Approve claim with authority" do
+    @access_level.class_name = "Claim"
+    @access_level.access_level = "Read and Update"
+    @access_level.department_id = Department.last.id
+    @access_level.save
     
-    visit organization_leaves_path(Organization.first)
+    visit organization_claims_path(Organization.first)
     click_on "Approve"
-    page.should have_content("Leaves request approved")
+    page.should have_content("Claim application approved")
   end
   
   scenario "Approve Own claim" do
+    @acc_org.can_self_approve = true
+    @acc_org.save
     visit root_path
     click_on "Claims", match: :first
     click_on "Apply Claim"
@@ -38,9 +44,8 @@ feature "[CanCan Ability Claims]" do
   end
   
   scenario "Approve Own Claim without authority" do
-    employee = Employee.last
-    employee.can_self_approve = false
-    employee.save
+    @acc_org.can_self_approve = false
+    @acc_org.save
     
     visit root_path
     click_on "Claims", match: :first
@@ -52,7 +57,7 @@ feature "[CanCan Ability Claims]" do
     page.should have_content("Claim successfully applied, please wait for approval")
     
     visit organization_claims_path(Organization.first)
-    all('#approve_claim')[1].click
+    all('#approve_claim')[0].click
     page.should have_content("Access denied")
   end
 end

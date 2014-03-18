@@ -9,7 +9,7 @@ feature "[Admin Claim Subject]" do
     visit root_path
     click_on "Admin"
     click_on "My Organization"
-    click_on "Claim Subjects"
+    click_on "claim subject"
     page.should have_content("Petrol")
   end 
   
@@ -17,7 +17,7 @@ feature "[Admin Claim Subject]" do
     visit root_path
     click_on "Admin"
     click_on "My Organization"
-    click_on "Claim Subjects"
+    click_on "claim subject"
     click_on "new_claim_subject"
 		fill_in 'Name', with: 'Entertainment'
 		click_on "Create Claim subject"
@@ -29,7 +29,7 @@ feature "[Admin Claim Subject]" do
     visit root_path
     click_on "Admin"
     click_on "My Organization"
-    click_on "Claim Subjects"
+    click_on "claim subject"
     click_on "delete_claim_subject"
     page.should have_content("Claim subject successfully deleted")
     page.should_not have_content("Petrol")
@@ -39,7 +39,7 @@ feature "[Admin Claim Subject]" do
     visit root_path
     click_on "Admin"
     click_on "My Organization"
-    click_on "Claim Subjects"
+    click_on "claim subject"
     click_on "Edit"
 		fill_in 'Name', with: 'Edited subject'
 		click_on "Update Claim subject"
@@ -51,7 +51,7 @@ feature "[Admin Claim Subject]" do
     visit root_path
     click_on "Admin"
     click_on "My Organization"
-    click_on "Claim Subjects"
+    click_on "claim subject"
     click_on "new_claim_subject"
 		click_on "Create Claim subject"
     page.should have_content("can't be blank")

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140317060449) do
+ActiveRecord::Schema.define(version: 20140318072818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20140317060449) do
     t.string   "payslip"
     t.string   "payslip_setting"
     t.string   "position"
+    t.boolean  "can_self_approve"
   end
 
   create_table "accounts", force: true do |t|
@@ -198,7 +199,6 @@ ActiveRecord::Schema.define(version: 20140317060449) do
     t.integer  "position_id"
     t.integer  "account_id"
     t.integer  "organization_id"
-    t.boolean  "can_self_approve"
     t.integer  "base_salary_cents"
     t.string   "employee_identification"
     t.datetime "deleted_at"

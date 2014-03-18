@@ -40,7 +40,7 @@
             <tr>
               <td><%= ed.department.name %></td>
               <td><%= ed.leader ? t(:leader) : t(:employee) %></td>
-              <td><%= link_to t(:remove_link), organization_employee_employee_department_path(@organization, @employee, ed), class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure) }%></td>
+              <td><%= link_to t(:remove_link), organization_employee_employee_department_path(@organization, @employee, ed), class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure) }, id: "delete_department_link"%></td>
             </tr>
           <% end %>
           </tbody>

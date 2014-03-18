@@ -21,11 +21,19 @@ class Ability
       can :create, Claim
       can :read, Leave
       can :read, Claim
-      can :update, Leave do |leave|
-        (leave.try(:employee_id) != employee.id || employee.can_self_approve) && employee.this_employee_in_my_department?(leave.employee_id)
-      end
-      can :update, Claim do |claim|
-        (claim.try(:employee_id) != employee.id || employee.can_self_approve) && employee.this_employee_in_my_department?(claim.employee_id)
+
+      acc_org.access_levels.each do |access|
+        if access.access_level == "Read and Update"
+          if access.class_name == "Claim"
+            can :update, Claim do |claim|
+              (claim.try(:employee_id) != employee.id || acc_org.can_self_approve) && employee.is_in_this_department?(access.department.id)
+            end
+          elsif access.class_name == "Leave"
+            can :update, Leave do |leave|
+              (leave.try(:employee_id) != employee.id || acc_org.can_self_approve) && employee.is_in_this_department?(access.department.id)
+            end
+          end
+        end
       end
       
       can :read, ClaimSubject if acc_org.claim_subject[0..3] == "Read"
@@ -42,6 +50,16 @@ class Ability
       can :create, Employee if acc_org.employee == "Read and Create"
       can :update, Employee if acc_org.employee == "Read and Update"
       can :manage, Employee if acc_org.employee == "Manage all"
+
+      can :read, EmployeeVariable if acc_org.employee[0..3] == "Read"
+      can :create, EmployeeVariable if acc_org.employee == "Read and Create"
+      can :update, EmployeeVariable if acc_org.employee == "Read and Update"
+      can :manage, EmployeeVariable if acc_org.employee == "Manage all"
+
+      can :read, EmployeeDepartment if acc_org.employee[0..3] == "Read"
+      can :create, EmployeeDepartment if acc_org.employee == "Read and Create"
+      can :update, EmployeeDepartment if acc_org.employee == "Read and Update"
+      can :manage, EmployeeDepartment if acc_org.employee == "Manage all"
 
       can :read, LeaveType if acc_org.leave_type[0..3] == "Read"
       can :create, LeaveType if acc_org.leave_type == "Read and Create"

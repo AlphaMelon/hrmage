@@ -49,10 +49,10 @@ feature "[Admin Access Level]" do
     click_on "Edit Login Info"
     click_on "More Access Level"
     click_on "edit_access_level"
-		select "Manage all", from: "Access level" 
+		select "Read and Update", from: "Access level" 
 		click_on "Update Access level"
     page.should have_content("Access Level successfully updated")
-    page.should have_content("Manage all")
+    page.should have_content("Read and Update")
   end
 
 end

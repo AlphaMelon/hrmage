@@ -55,4 +55,17 @@ class Employee < ActiveRecord::Base
     end
     return status
   end
+  
+  def is_in_this_department?(department_id)
+    status = false
+    self.departments.each do |department|
+      if department.id == department_id
+        status = true
+        break
+      else
+        status = false
+      end
+    end
+    return status
+  end
 end

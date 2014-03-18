@@ -1,4 +1,5 @@
 <div id="admin_or_not">
+  <%= f.input :can_self_approve, as: :no_or_yes%>
   <%= f.input :claim_subjects, as: :manageable %>
   <%= f.input :departments, as: :manageable %>
   <%= f.input :employees, as: :manageable %>
@@ -12,7 +13,7 @@
     <div class="large-9 small-3 columns">
       <%= link_to "More Access Level", 
       organization_account_organization_access_levels_path(@organization, @account_organization),
-      class: "button alert"%>
+      class: "button alert" if !@account_organization.blank?%>
     </div>
   </div>
 </div>

@@ -3,7 +3,7 @@
      <%= simple_form_for [current_organization, @account_organization, @access_level], wrapper: :custom do |f| %>
       <%= render '/shared/error_message', object: f.object %>
       <%= f.association :department, collection: current_organization.departments, include_blank: false%>
-      <%= f.input :access_level, collection: ["No Access","Read Only", "Read and Create", "Read and Update", "Manage all"], include_blank: false %>
+      <%= f.input :access_level, collection: ["No Access", "Read and Update"], include_blank: false %>
       <%= f.input :class_name, label: "Module", collection: ["Leave","Claim"], include_blank: false %>
       
       <div class="row">

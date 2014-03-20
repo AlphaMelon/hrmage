@@ -37,13 +37,13 @@
                 class: "fi-pencil", id: "edit_position"  %>
               </li>
               <li>
+                <%= link_to t(:b_settings), organization_position_position_settings_path(current_organization, position), class: "fi-widget" %>
+              </li>
+              <li>
                 <%= link_to t(:delete), 
                 organization_position_path(current_organization, position), 
                 id: 'delete_position', class: "fi-trash", 
                 method: :delete, data: { confirm: t(:are_you_sure) }%>
-              </li>
-              <li>
-                <%= link_to t(:b_settings), organization_position_position_settings_path(current_organization, position), class: "fi-widget" %>
               </li>
             </ul>
           </td>

@@ -160,8 +160,15 @@ html, body{
       text-transform: uppercase;
     }
     a:hover{
-      color: #95a5a6; 
+      color: #95a5a6;
+      border-bottom: 3px solid #95a5a6;
     }
+  }
+}
+
+.selected{
+  a{
+    border-bottom: 3px solid #ecf0f1;
   }
 }
 
@@ -182,10 +189,6 @@ html, body{
   }
 }
 
-.selected{
-
-}
-
 .second-nav{
   background-color: #2ecc71;
   .inline-list{
@@ -204,6 +207,7 @@ html, body{
     }
   }
 }
+
 
 .first-nav-icon{
   margin-top: -5px;

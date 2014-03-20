@@ -59,8 +59,11 @@ class LeavesController < ApplicationController
   def create
     @leave = current_organization.leaves.new(leave_params)
     @leave.employee_id = current_employee.id if @leave.employee_id.nil?
-    
-    @leave.duration_seconds = @leave.duration_seconds*24*60*60 if !@leave.duration_seconds.nil?
+    if params[:hour_or_day] == "Hours"
+      @leave.duration_seconds = @leave.duration_seconds*60*60 if !@leave.duration_seconds.nil?
+    else
+      @leave.duration_seconds = @leave.duration_seconds*24*60*60 if !@leave.duration_seconds.nil?
+    end
     @leave.status = "Verification Needed" if !@leave.leave_type.approval_needed
     if @leave.save
       @leave.employee.departments.each do |department|
@@ -107,6 +110,7 @@ class LeavesController < ApplicationController
 	end
 
 	def leave_params
-		params.require(:leave).permit(:start_date, :comment, :leave_type_id, :duration_seconds, :status)
+		params.require(:leave).permit(:start_date, :comment, :leave_type_id, 
+		:duration_seconds, :status, :employee_id)
 	end
 end

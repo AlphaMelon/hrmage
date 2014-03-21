@@ -59,5 +59,12 @@ class OrganizationSetting < ActiveRecord::Base
         errors.add(:sunday,"cannot be negative number or zero")
       end
     end
+  end
+  
+  def average_working_hour
+    arr = [self.monday,self.tuesday,self.wednesday,self.thursday, self.friday,
+          self.saturday, self.sunday]
+    arr = arr.compact
+    return arr.sum.to_f/arr.count
   end 
 end

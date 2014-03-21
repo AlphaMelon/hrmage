@@ -23,7 +23,7 @@
                 <% pending = false %>
                 <% duration = 0 %>
                 <% employee.leaves.each do |emp_lea|%>
-                  <% if (emp_lea.start_date..emp_lea.start_date+(emp_lea.duration_seconds/24/60/60-1+offday).day).cover?(Date.new(@year,@month,count))%>
+                  <% if (emp_lea.start_date..emp_lea.start_date+(emp_lea.duration_seconds/working_hours/60/60-1+offday).ceil.day).cover?(Date.new(@year,@month,count))%>
                     <% got_leave = true %>
                     <% type = emp_lea.leave_type %>
                     <% pending = true if emp_lea.status == "Pending" %>

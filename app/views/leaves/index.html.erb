@@ -31,7 +31,7 @@
             <tr>
               <td><%= link_to leave.employee.name_with_initial, organization_employee_path(current_organization, leave.employee) %></td>
               <td><%= leave.start_date.to_date %></td>
-              <td><%= leave.duration_seconds/24/60/60%> Days</td>
+              <td><%= leave.duration_seconds.to_f/working_hours/60/60%> Days</td>
               <td><%= leave.comment %></td>
               <td><%= leave.leave_type.name%></td>
               <td>
@@ -64,7 +64,7 @@
             <tr>
               <td><%= link_to leave.employee.name_with_initial, organization_employee_path(current_organization, leave.employee) %></td>
               <td><%= leave.start_date.to_date %></td>
-              <td><%= leave.duration_seconds/24/60/60%> Days</td>
+              <td><%= leave.duration_seconds.to_f/working_hours/60/60%> Days</td>
               <td><%= leave.comment %></td>
               <td><%= leave.leave_type.name %></td>
               <td>
@@ -126,7 +126,7 @@
             <td><%= link_to history.employee.name_with_initial, organization_employee_path(current_organization, history.employee) %></td>
             <td><%= history.leave_type.name %></td>
             <td><%= history.comment %></td>
-            <td><%= (history.duration_seconds)/60/60/24 %> Days</td>
+            <td><%= (history.duration_seconds).to_f/working_hours/60/60 %> Days</td>
             <td><%= history.start_date.to_date%></td>
             <td><%= history.status %></td>
             <td>

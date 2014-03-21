@@ -17,7 +17,7 @@ class LeaveTypesController < ApplicationController
     @leave_type = LeaveType.new(leave_type_params)
     @leave_type.affected_entity = leave_type_params[:affected_entity].delete('\"').split(',')
     @leave_type.organization_id = current_organization.id
-        @leave_type.default_count_seconds = leave_type_params[:default_count_seconds].to_i*24*60*60 if !leave_type_params[:default_count_seconds].blank?
+    @leave_type.default_count_seconds = leave_type_params[:default_count_seconds].to_i*24*60*60 if !leave_type_params[:default_count_seconds].blank?
     if @leave_type.save
       redirect_to organization_leave_types_path(current_organization), notice: "Leave type successfully created"
     else

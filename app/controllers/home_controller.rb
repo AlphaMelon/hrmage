@@ -87,9 +87,10 @@ class HomeController < ApplicationController
 
   def calendar
     
-    @my_leaves = "asb"
+    @my_leaves = current_employee.leaves
     @leave_types = current_organization.leave_types
     
+    @working_hours = (current_organization.organization_setting.nil? ? 8.0 : current_organization.organization_setting.average_working_hour)
     @month = !params[:date].blank? ? params[:date][:month].to_i : DateTime.now.month
     @year = !params[:date].blank? ? params[:date][:year].to_i : DateTime.now.year
     @date = DateTime.new(@year, @month)

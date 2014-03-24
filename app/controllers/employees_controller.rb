@@ -65,6 +65,7 @@ class EmployeesController < ApplicationController
     @account_organization.payslip = params[:payslips]
     @account_organization.payslip_setting = params[:payslip_settings]
     @account_organization.position = params[:positions]
+    @account_organization.can_self_approve = params[:can_self_approve]
 		if @account.save && @account_organization.save
 			redirect_to organization_employees_path(@organization), notice: 'Account successfully updated'
 		else
@@ -74,6 +75,7 @@ class EmployeesController < ApplicationController
 
   def new_login
     @account = Account.new
+    @account_organization = AccountOrganization.new
   end
   
   def create_login
@@ -89,6 +91,7 @@ class EmployeesController < ApplicationController
       @account_organization.payslip = params[:payslips]
       @account_organization.payslip_setting = params[:payslip_settings]
       @account_organization.position = params[:positions]
+      @account_organization.can_self_approve = params[:can_self_approve]
 		  @account_organization.save
 		  
 		  employee = Employee.find(params[:employee_id])

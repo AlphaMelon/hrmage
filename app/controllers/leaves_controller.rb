@@ -6,7 +6,7 @@ class LeavesController < ApplicationController
 	load_and_authorize_resource
   
   def index
-
+    
     @search = @organization.leaves.search(params[:q])
     if params[:q].nil?
       @leaves = @organization.leaves.order(id: :desc).page(params[:leave_page]).per(5)
@@ -17,7 +17,7 @@ class LeavesController < ApplicationController
     @pending_leaves = @organization.leaves.where(status: "Pending")
     @verification_needed_leaves = @organization.leaves.where(status: "Verification Needed")
     @leave_types = @organization.leave_types
-    
+  
     @month = !params[:date].blank? ? params[:date][:month].to_i : DateTime.now.month
     @year = !params[:date].blank? ? params[:date][:year].to_i : DateTime.now.year
     @date = DateTime.new(@year, @month)
@@ -59,8 +59,11 @@ class LeavesController < ApplicationController
   def create
     @leave = current_organization.leaves.new(leave_params)
     @leave.employee_id = current_employee.id if @leave.employee_id.nil?
-    
-    @leave.duration_seconds = @leave.duration_seconds*24*60*60 if !@leave.duration_seconds.nil?
+    if params[:hour_or_day] == "Hours"
+      @leave.duration_seconds = @leave.duration_seconds*60*60 if !@leave.duration_seconds.nil?
+    else
+      @leave.duration_seconds = @leave.duration_seconds*24*60*60 if !@leave.duration_seconds.nil?
+    end
     @leave.status = "Verification Needed" if !@leave.leave_type.approval_needed
     if @leave.save
       @leave.employee.departments.each do |department|
@@ -107,6 +110,7 @@ class LeavesController < ApplicationController
 	end
 
 	def leave_params
-		params.require(:leave).permit(:start_date, :comment, :leave_type_id, :duration_seconds, :status)
+		params.require(:leave).permit(:start_date, :comment, :leave_type_id, 
+		:duration_seconds, :status, :employee_id)
 	end
 end

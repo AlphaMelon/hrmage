@@ -12,8 +12,8 @@
       <div class="large-12 columns">
         <div class="large-2 small-2 columns">
           <h5 class="text-left">
-            <%= EmployeeVariable.where(employee_id: current_employee.id, leave_type_id: leave_type.id).first_or_create.available_leaves_seconds/24/60/60 %>/<%= !current_employee.position.position_settings.where(leave_type_id: leave_type.id).blank? ? 
-            current_employee.position.position_settings.where(leave_type_id: leave_type.id).first.max_leaves_seconds/24/60/60 : leave_type.default_count_seconds/24/60/60%>
+            <%= EmployeeVariable.where(employee_id: current_employee.id, leave_type_id: leave_type.id).first_or_create.available_leaves_seconds/working_hours/60/60 %>/<%= !current_employee.position.position_settings.where(leave_type_id: leave_type.id).blank? ? 
+            current_employee.position.position_settings.where(leave_type_id: leave_type.id).first.max_leaves_seconds/working_hours/60/60 : leave_type.default_count_seconds/working_hours/60/60%>
           </h5>
         </div>
         <div class=" progress success large-10 small-10 columns">

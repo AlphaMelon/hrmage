@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
     if current_organization.organization_setting.nil? 
       return 8.0 
     else
-      return current_organization.organization_setting.average_working_hour
+      return current_organization.organization_setting.average_working_hour.to_f
     end
   end
   

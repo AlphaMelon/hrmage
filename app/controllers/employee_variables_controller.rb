@@ -17,7 +17,7 @@ class EmployeeVariablesController < ApplicationController
   end
   
   def update
-    @employee_variable.available_leaves_seconds = employee_variables_params[:available_leaves_seconds].to_i*24*60*60
+    @employee_variable.available_leaves_seconds = employee_variables_params[:available_leaves_seconds].to_i*working_hours*60*60
 		if @employee_variable.save
 			redirect_to organization_employee_employee_variables_path(current_organization, @employee), notice: "Employee's settings successfully updated"
 		else

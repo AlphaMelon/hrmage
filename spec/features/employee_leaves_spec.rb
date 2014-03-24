@@ -79,19 +79,19 @@ feature "[Employee Leaves]" do
   end
 
   scenario "Leave remaining progress bar (My Leaves)" do
-    #10 out of 21 leave days remaining
-    #approve leave of 3 days
+    #30 out of 63 leave days remaining
+    #approve leave of 9 days
     visit root_path
     click_on "Admin"
     click_on "organization_leaves"
     click_on "Approve"
     page.should have_content("Leaves request approved")
     
-    #progress bar should be 7 out of 21 leaves days
+    #progress bar should be 21 out of 63 leaves days
     #visit my_leaves_path
     click_on "Normal"
     click_on "my_leaves", match: :first
-    page.should have_content("7/21")
+    page.should have_content("21.0/63.0")
   end
 
   scenario "View calendar" do

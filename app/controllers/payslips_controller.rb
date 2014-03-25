@@ -44,7 +44,10 @@ class PayslipsController < ApplicationController
     end
     
     @base_salary_cents = @payslip.base_salary_cents
-    @total = @payslip.commission_cents + (@employee.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)
+    if @payslip.include_claim
+      @claims = @employee.claims.where(status: "Approved", created_at: @payslip.claim_start_date..@payslip.claim_end_date)
+    end
+    @total = @payslip.commission_cents + (@claims ? (@claims.sum :amount_cents) : 0)
   end
   
 	def destroy
@@ -64,7 +67,8 @@ class PayslipsController < ApplicationController
 
   def payslip_params
     params.require(:payslip).permit(:employee_id, :organzation_id, :date, :commission, 
-    :commission_cents, :base_salary_cents, :base_salary, { :payslip_setting_ids => [] })
+    :commission_cents, :base_salary_cents, :base_salary,:note, 
+    :include_claim, :claim_start_date, :claim_end_date,{ :payslip_setting_ids => [] })
   end
 
 end

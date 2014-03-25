@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140318072818) do
+ActiveRecord::Schema.define(version: 20140325054651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -299,6 +299,10 @@ ActiveRecord::Schema.define(version: 20140318072818) do
     t.integer  "commission_cents"
     t.integer  "base_salary_cents"
     t.datetime "deleted_at"
+    t.boolean  "include_claim"
+    t.date     "claim_start_date"
+    t.date     "claim_end_date"
+    t.string   "note"
   end
 
   add_index "payslips", ["deleted_at"], name: "index_payslips_on_deleted_at", using: :btree

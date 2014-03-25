@@ -45,6 +45,18 @@ function ready(){
       $("#admin_or_not").hide();
    });
 
+
+  if ($( "#payslip_include_claim option:selected").text() == "Yes")
+    $("#include_claim_or_not").show();
+  else
+    $("#include_claim_or_not").hide();
+  $("#payslip_include_claim").click(function(){
+    if ($("#payslip_include_claim option:selected").text() == "Yes")
+      $("#include_claim_or_not").show();
+    else
+      $("#include_claim_or_not").hide();
+   });
+   
 }
 
 

@@ -23,4 +23,5 @@ feature "[Admin Employee]" do
     page.should have_content("Organization successfully created")
     page.should have_content("Hi lolZ")
   end
+ 
 end

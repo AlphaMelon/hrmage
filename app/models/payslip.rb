@@ -7,6 +7,7 @@ class Payslip < ActiveRecord::Base
   has_many :payslip_settings, :through => :payslip_calculations
   
   before_save :set_default_values
+  validate :claim_start_and_end_date_cannot_nil_if_include_claim
   
   monetize :commission_cents, as: "commission"
   monetize :base_salary_cents, as: "base_salary"
@@ -18,6 +19,14 @@ class Payslip < ActiveRecord::Base
   tracked organization_id: Proc.new { |controller, model| model.organization_id }
   
   def set_default_values
+  end
+  
+  def claim_start_and_end_date_cannot_nil_if_include_claim
+    if self.include_claim?
+      if self.claim_start_date.blank? || self.claim_end_date.blank?
+        errors.add("Claim Start and End Date", "cannot be empty")
+      end
+    end
   end
   
   def calculate(payslip_setting, base_salary_cents)

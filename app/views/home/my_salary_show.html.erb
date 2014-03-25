@@ -39,19 +39,21 @@
         </tr>
       </tbody>
 
-      <thead>
-        <th colspan="2"><center><%= t :claims %></center></th>
-      </thead>
-      <tbody>
-        <% current_employee.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).each do |claim|%>
-          <tr>
-            <td><%= claim.subject %></td>
-            <td>
-            <%= humanized_money_with_symbol claim.amount %>
-            <%#= humanized_money_with_symbol (current_account.profile.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)/100 %></td>
-          </tr>
-        <% end %>
-      </tbody>
+      <% if @claims %>
+        <thead>
+          <th colspan="2"><center><%= t :claims %></center></th>
+        </thead>
+        <tbody>
+          <% @claims.each do |claim|%>
+            <tr>
+              <td><%= claim.subject %></td>
+              <td>
+              <%= humanized_money_with_symbol claim.amount %>
+              <%#= humanized_money_with_symbol (current_account.profile.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)/100 %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      <% end %>
 
       <thead>
         <th colspan="2"><center><%= t :others %></center></th>
@@ -88,6 +90,10 @@
          <tr>
             <th><%= t :net_pay %></th>
             <th><%= humanized_money_with_symbol (@total+@base_salary_cents).to_f/100 %></th>
+          </tr>
+         <tr>
+            <th><%= t :note %></th>
+            <th><%= @payslip.note %></th>
           </tr>
       </thead>
     </table>

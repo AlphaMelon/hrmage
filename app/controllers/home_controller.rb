@@ -46,7 +46,11 @@ class HomeController < ApplicationController
     end
     
     @base_salary_cents = @payslip.base_salary_cents
-    @total = @payslip.commission_cents + (current_employee.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)
+    if @payslip.include_claim
+      @claims = current_employee.claims.where(status: "Approved", created_at: @payslip.claim_start_date..@payslip.claim_end_date)
+    end
+    @total = @payslip.commission_cents + (@claims ? (@claims.sum :amount_cents) : 0)
+    
     if @payslip.employee_id != current_employee.id
       redirect_to(root_path, alert: "You are not authorize to view this.")
     end
@@ -62,7 +66,10 @@ class HomeController < ApplicationController
       end
     end
     @base_salary_cents = @payslip.base_salary_cents
-    @total = @payslip.commission_cents + (current_employee.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)
+    if @payslip.include_claim
+      @claims = current_employee.claims.where(status: "Approved", created_at: @payslip.claim_start_date..@payslip.claim_end_date)
+    end
+    @total = @payslip.commission_cents + (@claims ? (@claims.sum :amount_cents) : 0)
     if @payslip.employee_id != current_employee.id
       redirect_to(root_path, alert: "You are not authorize to view this.") and return
     end

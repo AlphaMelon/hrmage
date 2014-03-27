@@ -22,6 +22,8 @@ class Leave < ActiveRecord::Base
       return -(base_salary_cents/26*(self.duration_seconds/24/60/60))
     elsif self.leave_type.type == "LeaveAddition"
       return base_salary_cents/26*(self.duration_seconds/24/60/60)
+    else
+      return 0
     end
   end
   

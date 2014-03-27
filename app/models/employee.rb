@@ -36,7 +36,7 @@ class Employee < ActiveRecord::Base
   end
   
   def full_name
-    name = self.last_name + " " + self.first_name
+    name = self.first_name + " " + self.last_name
     return name
   end
   

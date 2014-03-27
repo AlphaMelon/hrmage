@@ -12,12 +12,15 @@ class Organization < ActiveRecord::Base
   has_many :payslips, dependent: :destroy
   has_many :payslip_settings, dependent: :destroy
   has_many :claim_subjects, dependent: :destroy
+  
   validates :domain, uniqueness: true
   validates :domain, presence: true
   validates :name, presence: true
   validates :name, uniqueness: true
   validates :default_currency, presence: true
   validates :country, presence: true
+  validates :time_zone, presence: true
+  validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map(&:name)
   
   before_save :setup_currency
   before_validation :remove_special_character_from_name_and_automatically_generate_domain

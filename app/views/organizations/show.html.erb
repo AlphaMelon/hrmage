@@ -14,6 +14,7 @@
         <th><%= t :name %></th>
         <th><%= t :domain %></th>
         <th><%= t :country %></th>
+        <th><%= t :time_zone %></th>
         <th><%= t :currency %></th>
         <th><%= t :action %></th>
       </thead>
@@ -22,7 +23,8 @@
           <td><%= @organization.name %></td>
           <td><%= @organization.domain %></td>
           <td><%= @organization.country %></td>
-          <td><%= @organization.default_currency %></td>
+          <td><%= @organization.time_zone %></td>
+          <td><%= @organization.default_currency.upcase %></td>
           <td><%= link_to t(:edit_organization), edit_organization_path(@organization), id: "edit_organization", class: "fi-pencil" %></td>
         </tr>
       </tbody>

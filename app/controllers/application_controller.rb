@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :can_can_compability_to_strong_paramater
   before_filter :admin_or_employee_session
+  around_filter :organization_time_zone, if: :current_organization
   
   include PublicActivity::StoreController
 
@@ -61,7 +62,9 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
   
-
+  def organization_time_zone(&block)
+    Time.use_zone(current_organization.time_zone, &block)
+  end
   
   private
   def setup

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140325054651) do
+ActiveRecord::Schema.define(version: 20140327052834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -269,6 +269,7 @@ ActiveRecord::Schema.define(version: 20140325054651) do
     t.datetime "updated_at"
     t.string   "default_currency"
     t.string   "country"
+    t.string   "time_zone"
   end
 
   create_table "payslip_calculations", force: true do |t|

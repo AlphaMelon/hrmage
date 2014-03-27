@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "[Domain]" do
   background do
-    create_organization_with_parameter("xyz test", "Malaysia","myr")
+    create_organization_with_parameter("xyz test", "Malaysia","myr", "Kuala Lumpur")
   end
 
   scenario "View Organization using domain" do

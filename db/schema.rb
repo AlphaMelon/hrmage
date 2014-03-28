@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140327052834) do
+ActiveRecord::Schema.define(version: 20140328064817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -218,6 +218,8 @@ ActiveRecord::Schema.define(version: 20140327052834) do
     t.string   "colour"
     t.integer  "default_count_seconds"
     t.datetime "deleted_at"
+    t.integer  "divide_by_days"
+    t.string   "rules"
   end
 
   add_index "leave_types", ["deleted_at"], name: "index_leave_types_on_deleted_at", using: :btree
@@ -304,6 +306,9 @@ ActiveRecord::Schema.define(version: 20140327052834) do
     t.date     "claim_start_date"
     t.date     "claim_end_date"
     t.string   "note"
+    t.boolean  "include_affected_leave"
+    t.date     "leave_start_date"
+    t.date     "leave_end_date"
   end
 
   add_index "payslips", ["deleted_at"], name: "index_payslips_on_deleted_at", using: :btree

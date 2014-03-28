@@ -1,7 +1,14 @@
 <%= render '/shared/error_message', object: f.object %>
 <%= f.input :name, :autofocus => true %>
 <%= f.input :approval_needed, as: :select, include_blank: false%>
-<%= f.input :affected_entity, collection: [["Leave",'leave'], ["Salary","salary"], ["Leave & Salary",'"leave","salary"']], include_blank: false %>
+<%= f.input :affected_entity, 
+collection: [["Leave",'leave'], ["Salary","salary"], ["Leave & Salary",'"leave","salary"']], 
+include_blank: false, input_html: {id: "leave_type_affected_entity"} %>
+<div id="divide_by_days">
+  <%= f.input :divide_by_days, label: "Division by days",
+  placeholder: "(Employee base salary) X (insert your days here) X (number of leave day taken)" %>
+</div>
+<%= f.input :rules, collection: ["No Rules", "Entitlement Rules"], include_blank: false %>
 <%= f.input :type, collection: Rails.application.config.leave_types.collect{|l| [l.description,l.name]}, include_blank: false %>
 <%= f.input :default_count_seconds, label: "Default Leaves (in days)", input_html: { value: !@leave_type.default_count_seconds.blank? ? @leave_type.default_count_seconds/24/60/60 : 14}%>
 <%= f.input :description %>

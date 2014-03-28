@@ -62,7 +62,7 @@ class LeavesController < ApplicationController
     if params[:hour_or_day] == "Hours"
       @leave.duration_seconds = @leave.duration_seconds*60*60 if !@leave.duration_seconds.nil?
     else
-      @leave.duration_seconds = @leave.duration_seconds*24*60*60 if !@leave.duration_seconds.nil?
+      @leave.duration_seconds = @leave.duration_seconds*working_hours*60*60 if !@leave.duration_seconds.nil?
     end
     @leave.status = "Verification Needed" if !@leave.leave_type.approval_needed
     if @leave.save

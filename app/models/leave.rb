@@ -12,20 +12,11 @@ class Leave < ActiveRecord::Base
   validate :cannot_take_leave_on_off_day
   validates :start_date, presence: true
   validates :duration_seconds, presence: true
+
   acts_as_paranoid
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_account }
   tracked organization_id: Proc.new { |controller, model| model.organization_id }
-  
-  def salary_calculate(base_salary_cents)
-    if self.leave_type.type == "LeaveSubstraction"
-      return -(base_salary_cents/26*(self.duration_seconds/24/60/60))
-    elsif self.leave_type.type == "LeaveAddition"
-      return base_salary_cents/26*(self.duration_seconds/24/60/60)
-    else
-      return 0
-    end
-  end
   
   def set_default_values
     self.status = "Pending" if self.status.blank?

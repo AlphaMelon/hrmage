@@ -4,7 +4,7 @@
   
   <%= f.input :base_salary, label: "Base Amount",
   input_html: { value: (@payslip.base_salary_cents.nil? ? 
-  0 : @payslip.base_salary_cents/100)} %>
+  @payslip.employee.base_salary_cents/100 : @payslip.base_salary_cents/100)} %>
   
   <%= f.input :commission, input_html: { value: (@payslip.commission.nil? ? 
   0 : @payslip.commission)} %>
@@ -14,6 +14,13 @@
     <%= f.input :claim_start_date, as: :string, autocomplete: :off, input_html: {class: 'date_only'} %>
     <%= f.input :claim_end_date, as: :string, autocomplete: :off, input_html: {class: 'date_only'} %>
   </div>
+  
+  <%= f.input :include_affected_leave, collection: [["No",false],["Yes",true]], include_blank: false %>
+  <div id="include_leave_or_not">
+    <%= f.input :leave_start_date, as: :string, autocomplete: :off, input_html: {class: 'date_only'} %>
+    <%= f.input :leave_end_date, as: :string, autocomplete: :off, input_html: {class: 'date_only'} %>
+  </div>
+
   <%= f.input :note, placeholder: "write any note here" %>
   <%= f.association :payslip_settings, as: :check_boxes,label_method: :name, collection: current_organization.payslip_settings %>
   

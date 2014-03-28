@@ -45,7 +45,6 @@ function ready(){
       $("#admin_or_not").hide();
    });
 
-
   if ($( "#payslip_include_claim option:selected").text() == "Yes")
     $("#include_claim_or_not").show();
   else
@@ -55,6 +54,28 @@ function ready(){
       $("#include_claim_or_not").show();
     else
       $("#include_claim_or_not").hide();
+   });
+
+  if ($( "#payslip_include_affected_leave option:selected").text() == "Yes")
+    $("#include_leave_or_not").show();
+  else
+    $("#include_leave_or_not").hide();
+  $("#payslip_include_affected_leave").click(function(){
+    if ($("#payslip_include_affected_leave option:selected").text() == "Yes")
+      $("#include_leave_or_not").show();
+    else
+      $("#include_leave_or_not").hide();
+   });
+
+  if ($( "#leave_type_affected_entity option:selected").text().indexOf("Salary") != -1)
+    $("#divide_by_days").show();
+  else
+    $("#divide_by_days").hide();
+  $("#leave_type_affected_entity").click(function(){
+    if ($("#leave_type_affected_entity option:selected").text().indexOf("Salary") != -1)
+      $("#divide_by_days").show();
+    else
+      $("#divide_by_days").hide();
    });
    
 }

@@ -7,6 +7,7 @@ class LeaveType < ActiveRecord::Base
   validates :name, presence: true
   validates :colour, presence: true
   validates :default_count_seconds, presence: true
+  validate :divide_by_days_cannot_be_blank_if_salary_is_affected_entity
   before_save :set_default_values
   acts_as_paranoid
   include PublicActivity::Model
@@ -23,5 +24,11 @@ class LeaveType < ActiveRecord::Base
   
   def calculate(options)
     raise Exception, "This method is mean to be extended."
+  end
+  
+  def divide_by_days_cannot_be_blank_if_salary_is_affected_entity
+    if self.affected_entity.include?("salary") && self.divide_by_days.blank?
+      errors.add(:divide_by_days, "can't be blank if affected entity includes salary")
+    end
   end
 end

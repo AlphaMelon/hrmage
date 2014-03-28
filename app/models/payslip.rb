@@ -8,6 +8,7 @@ class Payslip < ActiveRecord::Base
   
   before_save :set_default_values
   validate :claim_start_and_end_date_cannot_nil_if_include_claim
+  validate :leave_start_and_end_date_cannot_nil_if_include_affected_leave
   
   monetize :commission_cents, as: "commission"
   monetize :base_salary_cents, as: "base_salary"
@@ -25,6 +26,14 @@ class Payslip < ActiveRecord::Base
     if self.include_claim?
       if self.claim_start_date.blank? || self.claim_end_date.blank?
         errors.add("Claim Start and End Date", "cannot be empty")
+      end
+    end
+  end
+
+  def leave_start_and_end_date_cannot_nil_if_include_affected_leave
+    if self.include_affected_leave?
+      if self.leave_start_date.blank? || self.leave_end_date.blank?
+        errors.add("Leave Start and End Date", "cannot be empty")
       end
     end
   end

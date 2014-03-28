@@ -225,7 +225,7 @@ en:
   employees_new_login_description: "This is where you add login information for the employee. Super Admin can manage whole organization and pretty much everything in it. Employee can only apply claims and leaves.  Admin can's authority can be set accordingly. "
   my_leaves_error_msg: "Your profile is not ready"
   leave_types_edit_description: "This is where you edit leave types of your organization."
-  leave_types_new_description: "This is where you add leave types of your organization. The colour is the representative colour for the calendar."
+  leave_types_new_description: "This is where you add leave types of your organization. The colour is the representative colour for the calendar. Division by days will be used if salary is affected by this particular leave."
   organization_holidays_edit_description: "This is where you edit your organization holiday."
   organization_holidays_new_description: "This is where you add your organization holiday."
   organization_settings_edit_description: "This is where you edit organization's settings. You need to enter the number of working hours per day, leave blank if it is not a working day for your organization."

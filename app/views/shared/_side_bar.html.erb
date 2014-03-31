@@ -6,17 +6,17 @@
 
 <%# leaves panel %>
 <% elsif (!@leaves.nil? || !@leave.nil?) && session[:admin_session] %>
-  <%= render "shared/admin_leaves_panel" %>
+
 <% elsif (!@leaves.nil? || !@leave.nil?) && session[:employee_session] %>
   <%= render "shared/leaves_panel" %>
 <% elsif (!@my_leaves.nil? || !@my_leave.nil?) && session[:admin_session] %>
-  <%= render "shared/admin_leaves_panel" %>
+
 <% elsif (!@my_leaves.nil? || !@my_leave.nil?) && session[:employee_session] %>
   <%= render "shared/leaves_panel" %>
 
 <%# claim panel %>
 <% elsif (!@claims.nil? || !@claim.nil?) && session[:admin_session]  %>
-  <%= render "shared/admin_claims_panel" %>
+
 <% elsif (!@claims.nil? || !@claim.nil?) && session[:employee_session]  %>
   <%= render "shared/claims_panel" %>
 
@@ -29,7 +29,7 @@
   <%= render "shared/salary_panel" %>
 
 <% elsif (!@my_claims.nil? || !@my_claim.nil?) && session[:admin_session]  %>
-  <%= render "shared/admin_claims_panel" %>
+
 <% elsif (!@my_claims.nil? || !@my_claim.nil?) && session[:employee_session]  %>
   <%= render "shared/claims_panel" %>
 

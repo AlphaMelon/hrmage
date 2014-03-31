@@ -161,14 +161,7 @@ html, body{
     }
     a:hover{
       color: #95a5a6;
-      border-bottom: 3px solid #95a5a6;
     }
-  }
-}
-
-.selected{
-  a{
-    border-bottom: 3px solid #ecf0f1;
   }
 }
 

@@ -50,7 +50,7 @@
           <% @organization.departments.each do |department|%>
             <tr>
               <td><%= department.name%></td>
-              <td><%= link_to t(:edit), edit_organization_department_path(@organization, department)%></td>
+              <td><%= link_to t(:edit), edit_organization_department_path(@organization, department), class: "fi-pencil" %></td>
             </tr>
           <% end %>
           </tbody>
@@ -69,7 +69,7 @@
               <tr>
                 <td><%= acc_org.account.email %></td>
                 <td><%= acc_org.role %></td>
-                <td><%= link_to t(:remove_link), organization_account_organization_path(@organization, acc_org), method: :delete, data: { confirm: t(:are_you_sure) }%></td>
+                <td><%= link_to t(:remove_link), organization_account_organization_path(@organization, acc_org), class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure) }%></td>
               </tr>
             <% end %>
           </tbody>
@@ -94,7 +94,7 @@
                 <td><%= employee.account.email if !employee.account.nil?%></td>
                 <td><%= employee.mobile_contact %></td>
                 <td><%= employee.address%></td>
-                <td><%= link_to t(:edit), edit_organization_employee_path(@organization, employee)%></td>
+                <td><%= link_to t(:edit), edit_organization_employee_path(@organization, employee), class: "fi-pencil" %></td>
               </tr>
             <% end %>
           </tbody>

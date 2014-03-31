@@ -1,9 +1,8 @@
 <div class="row">
   <div class="large-12 small-12 columns">
     <h1><%= t :my_claims %></h1>
+    <hr>
   </div>
-  
-  <hr>
 
   <div class="large-12 small-12 columns">
     <h5><strong><%= t :claims_for %> <%=Date::MONTHNAMES[Date.today.month]%></strong></h5>
@@ -16,9 +15,7 @@
       <%= t :claim_remaining %>: <%= humanized_money_with_symbol (current_employee.position.monthly_max_claims_cents - (current_employee.claims.where(status: "Approved", date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).sum :amount_cents)).to_f/100 %>
     </h6>
   <hr>
-</div>
-
-<div class="row">
+  </div>
   <div class="large-12 columns">
     <h2><%= t :history %></h2>
     <table class="large-12">

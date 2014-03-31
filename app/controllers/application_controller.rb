@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_organization
   helper_method :current_employee
   helper_method :working_hours
+  helper_method :salary_calculate
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :can_can_compability_to_strong_paramater
   before_filter :admin_or_employee_session
@@ -55,6 +56,14 @@ class ApplicationController < ActionController::Base
   
   def current_employee
     Employee.where(account_id: current_account.id, organization_id: current_organization).first
+  end
+  
+  def salary_calculate(leave_type, base_salary,duration)
+    if leave_type.type == "LeaveSubstraction"
+      return -(base_salary/leave_type.divide_by_days*(duration/working_hours/60/60))
+    elsif leave_type.type == "LeaveAddition"
+      return base_salary/leave_type.divide_by_days*(duration/working_hours/60/60)
+    end
   end
   
   rescue_from CanCan::AccessDenied do |exception|

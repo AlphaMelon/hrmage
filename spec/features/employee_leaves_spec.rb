@@ -67,6 +67,18 @@ feature "[Employee Leaves]" do
     page.should have_content("You have leave on the selected day already.")
   end
 
+  scenario "take leave more than entitled leave" do
+    create_leave_type_with_entitlement
+    visit root_path
+    click_on "Leaves", match: :first
+    click_on "Apply Leave"
+    fill_in "leave_start_date", with: Date.today
+    fill_in "leave_duration_seconds", with: Date.today.month + 2
+    select "Entitlement Leave", from: "leave_leave_type_id"
+    click_button "Apply Leave"
+    page.should have_content("Duration is more than your entitled leaves")
+  end
+
   scenario "take leave on off day" do
     create_organization_setting
     visit root_path

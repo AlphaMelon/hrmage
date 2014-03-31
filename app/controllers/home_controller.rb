@@ -51,15 +51,12 @@ class HomeController < ApplicationController
       affected_leave_total = 0
       @affected_leave.each do |leave|
         affected_leave_calculation = 0
-        if leave.leave_type.type == "LeaveSubstraction"
-          affected_leave_calculation =  -(@base_salary_cents/leave.leave_type.divide_by_days*(leave.duration_seconds/working_hours/60/60))
-        elsif leave.leave_type.type == "LeaveAddition"
-          affected_leave_calculation = @base_salary_cents/leave.leave_type.divide_by_days*(leave.duration_seconds/working_hours/60/60)
-        end
+        affected_leave_calculation = salary_calculate(leave.leave_type, @base_salary_cents,leave.duration_seconds)
         affected_leave_total = affected_leave_total + affected_leave_calculation
       end
+      @base_salary_cents = @base_salary_cents + affected_leave_total
     end
-    @base_salary_cents = @base_salary_cents + affected_leave_total
+    
     
     if @payslip.include_claim
       @claims = current_employee.claims.where(status: "Approved", created_at: @payslip.claim_start_date..@payslip.claim_end_date)
@@ -86,15 +83,12 @@ class HomeController < ApplicationController
       affected_leave_total = 0
       @affected_leave.each do |leave|
         affected_leave_calculation = 0
-        if leave.leave_type.type == "LeaveSubstraction"
-          affected_leave_calculation =  -(@base_salary_cents/leave.leave_type.divide_by_days*(leave.duration_seconds/working_hours/60/60))
-        elsif leave.leave_type.type == "LeaveAddition"
-          affected_leave_calculation = @base_salary_cents/leave.leave_type.divide_by_days*(leave.duration_seconds/working_hours/60/60)
-        end
+        affected_leave_calculation = salary_calculate(leave.leave_type, @base_salary_cents,leave.duration_seconds)
         affected_leave_total = affected_leave_total + affected_leave_calculation
       end
+      @base_salary_cents = @base_salary_cents + affected_leave_total
     end
-    @base_salary_cents = @base_salary_cents + affected_leave_total
+    
     
     if @payslip.include_claim
       @claims = current_employee.claims.where(status: "Approved", created_at: @payslip.claim_start_date..@payslip.claim_end_date)

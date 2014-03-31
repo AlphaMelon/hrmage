@@ -50,7 +50,7 @@ feature "[Admin Leave Type]" do
     click_on "Leave Types"
     click_on "new_leave_type"
 		click_on "Create Leave type"
-    page.should have_content("Please fill in the required field")
+    page.should have_content("can't be blank")
   end
   
 end

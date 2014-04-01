@@ -29,6 +29,10 @@ class LeaveType < ActiveRecord::Base
   def divide_by_days_cannot_be_blank_if_salary_is_affected_entity
     if self.affected_entity.include?("salary") && self.divide_by_days.blank?
       errors.add(:divide_by_days, "can't be blank if affected entity includes salary")
+    elsif !self.divide_by_days.blank?
+      if self.divide_by_days <= 0
+        errors.add(:divide_by_days, "can't be be 0 or less then 0")
+      end
     end
   end
 end

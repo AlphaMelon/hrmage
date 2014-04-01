@@ -53,4 +53,20 @@ feature "[Admin Leave Type]" do
     page.should have_content("can't be blank")
   end
   
+  scenario "Add New Leave Type with affected salary but without division by days" do
+    visit root_path
+    click_on "Admin"
+    click_on "My Organization"
+    click_on "Leave Types"
+    click_on "new_leave_type"
+		fill_in 'Name', with: 'Affected salary leave'
+		select "Yes", from: "leave_type_approval_needed"
+		select "Salary", from: "leave_type_affected_entity"
+		fill_in "Description", with: "Sick leaves"
+		fill_in "Colour", with: "#f4f4f4"
+		fill_in "leave_type_default_count_seconds", with: 100
+		click_on "Create Leave type"
+    page.should have_content(" Divide by days can't be blank if affected entity includes salary")
+  end  
+  
 end

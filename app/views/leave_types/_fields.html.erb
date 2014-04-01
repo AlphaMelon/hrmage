@@ -6,7 +6,7 @@ collection: [["Leave",'leave'], ["Salary","salary"], ["Leave & Salary",'"leave",
 include_blank: false, input_html: {id: "leave_type_affected_entity"} %>
 <div id="divide_by_days">
   <%= f.input :divide_by_days, label: "Division by days",
-  placeholder: "(Employee base salary) X (insert your days here) X (number of leave day taken)" %>
+  placeholder: "(Payslip base amount) X (insert your days here) X (number of leave day taken)" %>
 </div>
 <%= f.input :rules, collection: ["No Rules", "Entitlement Rules"], include_blank: false %>
 <%= f.input :type, collection: Rails.application.config.leave_types.collect{|l| [l.description,l.name]}, include_blank: false %>

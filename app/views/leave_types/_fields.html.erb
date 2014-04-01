@@ -16,5 +16,8 @@ include_blank: false, input_html: {id: "leave_type_affected_entity"} %>
 
 <div class="row">
   <div class="large-3 small-3 columns"></div>
-  <div class="large-9 small-9 columns"><%= f.button :submit, class: "button success" %></div>
+  <div class="large-9 small-9 columns">
+    <%= f.button :submit, class: "button success" %>
+    <%= link_to t(:cancel), organization_leave_types_path(current_organization), class: "button" %>
+  </div>
 </div>

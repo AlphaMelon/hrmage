@@ -32,10 +32,15 @@
             <a href="#" data-dropdown="drop_<%= payslip_setting.id %>" class="tiny button dropdown"><%= t :details %></a><br>
             <ul id="drop_<%= payslip_setting.id %>" data-dropdown-content class="f-dropdown">
               <li>
-                <%= link_to t(:edit), edit_organization_payslip_setting_path(current_organization, payslip_setting), class: "fi-pencil"%>
+                <%= link_to t(:edit), 
+                edit_organization_payslip_setting_path(current_organization, payslip_setting), 
+                class: "fi-pencil", id: "edit_payslip_setting"%>
               </li>
               <li>
-                <%= link_to t(:delete), organization_payslip_setting_path(current_organization, payslip_setting), id: 'delete_payslip_setting', class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure) }%>
+                <%= link_to t(:delete), 
+                organization_payslip_setting_path(current_organization, payslip_setting), 
+                id: 'delete_payslip_setting', class: "fi-trash", 
+                method: :delete, data: { confirm: t(:are_you_sure) }%>
               </li>
             </ul>
           </td>

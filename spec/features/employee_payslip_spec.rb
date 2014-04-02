@@ -16,7 +16,7 @@ feature "[Employee Claims]" do
     visit root_path
     click_on "my_salary", match: :first
     click_on "show_my_salary"
-    page.should have_content("Wong david (")
+    page.should have_content("David wong (")
     page.should have_content("3,000")
   end
 

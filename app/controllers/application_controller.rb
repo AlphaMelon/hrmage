@@ -5,9 +5,12 @@ class ApplicationController < ActionController::Base
   before_filter :setup
   helper_method :current_organization
   helper_method :current_employee
+  helper_method :working_hours
+  helper_method :salary_calculate
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :can_can_compability_to_strong_paramater
   before_filter :admin_or_employee_session
+  around_filter :organization_time_zone, if: :current_organization
   
   include PublicActivity::StoreController
 
@@ -35,6 +38,14 @@ class ApplicationController < ActionController::Base
                                                     :password_confirmation) }
   end
   
+  def working_hours
+    if current_organization.organization_setting.nil? 
+      return 8.0 
+    else
+      return current_organization.organization_setting.average_working_hour.to_f
+    end
+  end
+  
   def current_ability
     @current_ability ||= ::Ability.new(current_account, current_organization)
   end
@@ -47,12 +58,22 @@ class ApplicationController < ActionController::Base
     Employee.where(account_id: current_account.id, organization_id: current_organization).first
   end
   
+  def salary_calculate(leave_type, base_salary,duration)
+    if leave_type.type == "LeaveSubstraction"
+      return -(base_salary/leave_type.divide_by_days*(duration/working_hours/60/60))
+    elsif leave_type.type == "LeaveAddition"
+      return base_salary/leave_type.divide_by_days*(duration/working_hours/60/60)
+    end
+  end
+  
   rescue_from CanCan::AccessDenied do |exception|
     flash[:alert] = "Access denied."
     redirect_to root_url
   end
   
-
+  def organization_time_zone(&block)
+    Time.use_zone(current_organization.time_zone, &block)
+  end
   
   private
   def setup

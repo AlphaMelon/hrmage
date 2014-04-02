@@ -38,15 +38,30 @@ class HomeController < ApplicationController
 
   def my_salary_show
     @payslip = Payslip.find(params[:payslip_id])
-    @affected_leave = []
-    current_employee.leaves.where(status: "Approved", start_date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).each do |leave|
-      if leave.leave_type.affected_entity.include?("salary")
-        @affected_leave << leave
+    @base_salary_cents = @payslip.base_salary_cents
+    @total = 0
+    
+    if @payslip.include_affected_leave
+      @affected_leave = []
+      current_employee.leaves.where(status: "Approved", start_date: @payslip.leave_start_date..@payslip.leave_end_date).each do |leave|
+        if leave.leave_type.affected_entity.include?("salary")
+          @affected_leave << leave
+        end
       end
+      affected_leave_total = 0
+      @affected_leave.each do |leave|
+        affected_leave_calculation = 0
+        affected_leave_calculation = salary_calculate(leave.leave_type, @base_salary_cents,leave.duration_seconds)
+        affected_leave_total = affected_leave_total + affected_leave_calculation
+      end
+      @base_salary_cents = @base_salary_cents + affected_leave_total
     end
     
-    @base_salary_cents = @payslip.base_salary_cents
-    @total = @payslip.commission_cents + (current_employee.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)
+    
+    if @payslip.include_claim
+      @claims = current_employee.claims.where(status: "Approved", created_at: @payslip.claim_start_date..@payslip.claim_end_date)
+    end
+    
     if @payslip.employee_id != current_employee.id
       redirect_to(root_path, alert: "You are not authorize to view this.")
     end
@@ -55,14 +70,30 @@ class HomeController < ApplicationController
 
   def print_salary
     @payslip = Payslip.find(params[:payslip_id])
-    @affected_leave = []
-    current_employee.leaves.where(status: "Approved", start_date: DateTime.now.beginning_of_month..DateTime.now.end_of_month).each do |leave|
-      if leave.leave_type.affected_entity.include?("salary")
-        @affected_leave << leave
-      end
-    end
     @base_salary_cents = @payslip.base_salary_cents
-    @total = @payslip.commission_cents + (current_employee.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)
+    @total = 0
+    
+    if @payslip.include_affected_leave
+      @affected_leave = []
+      current_employee.leaves.where(status: "Approved", start_date: @payslip.leave_start_date..@payslip.leave_end_date).each do |leave|
+        if leave.leave_type.affected_entity.include?("salary")
+          @affected_leave << leave
+        end
+      end
+      affected_leave_total = 0
+      @affected_leave.each do |leave|
+        affected_leave_calculation = 0
+        affected_leave_calculation = salary_calculate(leave.leave_type, @base_salary_cents,leave.duration_seconds)
+        affected_leave_total = affected_leave_total + affected_leave_calculation
+      end
+      @base_salary_cents = @base_salary_cents + affected_leave_total
+    end
+    
+    
+    if @payslip.include_claim
+      @claims = current_employee.claims.where(status: "Approved", created_at: @payslip.claim_start_date..@payslip.claim_end_date)
+    end
+    
     if @payslip.employee_id != current_employee.id
       redirect_to(root_path, alert: "You are not authorize to view this.") and return
     end
@@ -87,9 +118,10 @@ class HomeController < ApplicationController
 
   def calendar
     
-    @my_leaves = "asb"
+    @my_leaves = current_employee.leaves
     @leave_types = current_organization.leave_types
     
+    @working_hours = (current_organization.organization_setting.nil? ? 8.0 : current_organization.organization_setting.average_working_hour)
     @month = !params[:date].blank? ? params[:date][:month].to_i : DateTime.now.month
     @year = !params[:date].blank? ? params[:date][:year].to_i : DateTime.now.year
     @date = DateTime.new(@year, @month)

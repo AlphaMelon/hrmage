@@ -11,11 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140306074104) do
+ActiveRecord::Schema.define(version: 20140328064817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+
+  create_table "access_levels", force: true do |t|
+    t.integer  "account_organization_id"
+    t.integer  "department_id"
+    t.string   "access_level"
+    t.string   "class_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "account_organizations", force: true do |t|
     t.integer  "account_id"
@@ -30,6 +39,7 @@ ActiveRecord::Schema.define(version: 20140306074104) do
     t.string   "payslip"
     t.string   "payslip_setting"
     t.string   "position"
+    t.boolean  "can_self_approve"
   end
 
   create_table "accounts", force: true do |t|
@@ -189,7 +199,6 @@ ActiveRecord::Schema.define(version: 20140306074104) do
     t.integer  "position_id"
     t.integer  "account_id"
     t.integer  "organization_id"
-    t.boolean  "can_self_approve"
     t.integer  "base_salary_cents"
     t.string   "employee_identification"
     t.datetime "deleted_at"
@@ -209,6 +218,8 @@ ActiveRecord::Schema.define(version: 20140306074104) do
     t.string   "colour"
     t.integer  "default_count_seconds"
     t.datetime "deleted_at"
+    t.integer  "divide_by_days"
+    t.string   "rules"
   end
 
   add_index "leave_types", ["deleted_at"], name: "index_leave_types_on_deleted_at", using: :btree
@@ -260,6 +271,7 @@ ActiveRecord::Schema.define(version: 20140306074104) do
     t.datetime "updated_at"
     t.string   "default_currency"
     t.string   "country"
+    t.string   "time_zone"
   end
 
   create_table "payslip_calculations", force: true do |t|
@@ -290,6 +302,13 @@ ActiveRecord::Schema.define(version: 20140306074104) do
     t.integer  "commission_cents"
     t.integer  "base_salary_cents"
     t.datetime "deleted_at"
+    t.boolean  "include_claim"
+    t.date     "claim_start_date"
+    t.date     "claim_end_date"
+    t.string   "note"
+    t.boolean  "include_affected_leave"
+    t.date     "leave_start_date"
+    t.date     "leave_end_date"
   end
 
   add_index "payslips", ["deleted_at"], name: "index_payslips_on_deleted_at", using: :btree

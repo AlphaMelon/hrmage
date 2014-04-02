@@ -20,7 +20,7 @@
         <th><%= t :working_date %></th>
         <th><%= t :base_salary %></th>
         <th><%= t :commission %></th>
-        <th><%= t :b_settings %></th>
+        <th><%= t :note %></th>
         <th><%= t :action%></th>
       </thead>
       <tbody>
@@ -29,15 +29,22 @@
         <td><%= payslip.date.to_date %></td>
         <td><%= humanized_money_with_symbol payslip.base_salary%></td>
         <td><%= humanized_money_with_symbol payslip.commission%></td>
-        <td><%= payslip.payslip_settings.collect{|n| n.name}.join(",") %></td>
+        <td><%= payslip.note %></td>
         <td>
           <a href="#" data-dropdown="drop_<%= payslip.id %>" class="tiny button dropdown"><%= t :details %></a><br>
             <ul id="drop_<%= payslip.id %>" data-dropdown-content class="f-dropdown">
-              <li><%= link_to t(:show), organization_employee_payslip_path(current_organization, @employee, payslip), class: "fi-eye"%></li>
+              <li><%= link_to t(:show), 
+              organization_employee_payslip_path(current_organization, @employee, payslip), 
+              class: "fi-eye", id: "show_payslip"%></li>
               <li>
-                <%= link_to t(:edit), edit_organization_employee_payslip_path(current_organization, @employee, payslip), class: "fi-pencil"%>
+                <%= link_to t(:edit), 
+                edit_organization_employee_payslip_path(current_organization, @employee, payslip), 
+                class: "fi-pencil", id: "edit_payslip"%>
               </li>
-              <li><%= link_to t(:delete), organization_employee_payslip_path(current_organization, @employee, payslip), class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure) }%></li>
+              <li><%= link_to t(:delete), 
+              organization_employee_payslip_path(current_organization, @employee, payslip), 
+              class: "fi-trash", method: :delete, 
+              data: { confirm: t(:are_you_sure) }, id: "delete_payslip"%></li>
             </ul>
         </td>
       </tr>

@@ -30,7 +30,7 @@ class AfterSignupController < ApplicationController
     case step
     when :create_organization
       @organization = Organization.new
-      organization_params = params.require(:organization).permit(:name, :default_currency, :country)
+      organization_params = params.require(:organization).permit(:name, :default_currency, :country, :time_zone)
       @organization.assign_attributes(organization_params)
       if @organization.save
         account_organization = AccountOrganization.new

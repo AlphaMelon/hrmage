@@ -1,11 +1,29 @@
 <div id="admin_or_not">
-  <%= f.input :claim_subjects, as: :manageable %>
-  <%= f.input :departments, as: :manageable %>
-  <%= f.input :employees, as: :manageable %>
-  <%= f.input :leave_types, as: :manageable %>
-  <%= f.input :payslips, as: :manageable %>
-  <%= f.input :payslip_settings, as: :manageable %>
-  <%= f.input :positions, as: :manageable %>
+  <%= f.input :can_self_approve, as: :no_or_yes, 
+  input_html: {value: @account_organization.can_self_approve} %>
+  <%= f.input :claim_subjects, as: :manageable, 
+  input_html: {value: (@account_organization.claim_subject.blank? ? "No Access" : @account_organization.claim_subject)} %>
+  <%= f.input :departments, as: :manageable, 
+  input_html: {value: (@account_organization.department.blank? ? "No Access" : @account_organization.department)} %>
+  <%= f.input :employees, as: :manageable, 
+  input_html: {value: (@account_organization.department.blank? ? "No Access" : @account_organization.department)} %>
+  <%= f.input :leave_types, as: :manageable, 
+  input_html: {value: (@account_organization.leave_type.blank? ? "No Access" : @account_organization.leave_type)} %>
+  <%= f.input :payslips, as: :manageable, 
+  input_html: {value: (@account_organization.payslip.blank? ? "No Access" : @account_organization.payslip)} %>
+  <%= f.input :payslip_settings, as: :manageable, 
+  input_html: {value: (@account_organization.payslip_setting.blank? ? "No Access" : @account_organization.payslip_setting)} %>
+  <%= f.input :positions, as: :manageable, 
+  input_html: {value: (@account_organization.position.blank? ? "No Access" : @account_organization.position)} %>
+  <div class="row">
+    <div class="large-3 small-3 columns">
+    </div>
+    <div class="large-9 small-3 columns">
+      <%= link_to "More Access Level", 
+      organization_account_organization_access_levels_path(@organization, @account_organization),
+      class: "button alert" if !@account_organization.new_record?%>
+    </div>
+  </div>
 </div>
 <div class="row">
   <div class="large-3 columns"></div>

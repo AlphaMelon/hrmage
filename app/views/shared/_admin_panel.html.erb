@@ -2,10 +2,9 @@
 
   <ul class="inline-list">
     <li><%= link_to t(:department), organization_departments_path(current_organization) %></li>
-    <li ><%= link_to t(:position), organization_positions_path(current_organization) %></li> 
-    <li><%= link_to t(:employee), organization_employees_path(current_organization) %></li>
+    <li ><%= link_to t(:position), organization_positions_path(current_organization) %></li>
     <li><%= link_to t(:leave_types), organization_leave_types_path(current_organization) %></li>
-    <li><%= link_to "Claim Subjects", organization_claim_subjects_path(current_organization) %></li>
+    <li><%= link_to t(:claim_subject), organization_claim_subjects_path(current_organization) %></li>
     <li><%= link_to t(:organization_settings), organization_organization_settings_path(current_organization) %></li> 
     <% if !current_organization.organization_setting.nil?%>    
       <% if !current_organization.organization_setting.id.nil?%>

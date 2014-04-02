@@ -9,13 +9,13 @@
 <div class="row">
   <div class="large-12 columns">
     <dl class="tabs" data-tab>
-      <dd class="<%= 'active' if params[:q].blank? %>"><a href="#pending_claims"><%= t :pending_claims %></a></dd>
-      <dd class="<%= 'active' if !params[:q].blank? %>"><a href="#history"><%= t :history %></a></dd>
+      <dd class="<%= 'active' if params[:q].nil? && params[:claim_page].blank? %>"><a href="#pending_claims"><%= t :pending_claims %></a></dd>
+      <dd class="<%= 'active' if !params[:q].blank? || !params[:claim_page].blank? %>"><a href="#history"><%= t :history %></a></dd>
     </dl>
 
     <div class="tabs-content">
-      <div class="content <%= 'active' if params[:q].blank? %>" id="pending_claims">
-        <table class="large-12 columns">
+      <div class="content <%= 'active' if params[:q].nil? && params[:claim_page].blank? %>" id="pending_claims">
+        <table class="large-12">
           <thead>
             <th><%= t :name %></th>
             <th><%= t :subject %></th>
@@ -58,13 +58,13 @@
         <%= paginate @pending_claims %>
       </div>
       
-      <div class="content <%= 'active' if !params[:q].blank? %>" id="history">
+      <div class="content <%= 'active' if !params[:q].blank? || !params[:claim_page].blank? %>" id="history">
         <fieldset>
-          <legend>Search</legend>
+          <legend><%=t :search %></legend>
           <%= search_form_for [current_organization, @search] do |f| %>
           <div class="row">
             <div class="large-3 columns">
-              <%= f.label :employee_id, "Name", class: "left inline" %>
+              <%= f.label :employee_id, t(:name), class: "left inline" %>
             </div>
             <div class="large-9 columns">
               <%= f.select :employee_id_eq, current_organization.employees.collect{|e| [e.full_name, e.id]}, include_blank: true%>
@@ -72,7 +72,7 @@
           </div>
           <div class="row">
             <div class="large-3 columns">
-              <%= f.label :subject_cont, "Subject", class: "left inline" %>
+              <%= f.label :subject_cont, t(:subject), class: "left inline" %>
             </div>
             <div class="large-9 columns">
               <%= f.select :subject_cont, current_organization.claim_subjects.collect{|cs| [cs.name, cs.name]}, include_blank: true %>
@@ -80,24 +80,27 @@
           </div>
           <div class="row">
             <div class="large-3 columns">
-              <%= f.label :date_gteq, "Date between", class: "left inline" %>
+              <%= f.label :date_gteq, t(:date_between), class: "left inline" %>
             </div>
             <div class="large-9 columns">
-              <%= f.text_field :date_gteq, placeholder: Date.today, class: "date_only" %>
+              <%= f.text_field :date_gteq, placeholder: Date.today, class: "date_only", value: (@search.date_gteq.blank? ? '' : @search.date_gteq.strftime('%Y-%m-%d')) %>
             </div>
           </div>
           <div class="row">
             <div class="large-3 columns">
-              <%= f.label :date_lteq, "and", class: "left inline" %>
+              <%= f.label :date_lteq, t(:and), class: "left inline" %>
             </div>
             <div class="large-9 columns">
-              <%= f.text_field :date_lteq, placeholder: Date.today + 10, class: "date_only" %>
+              <%= f.text_field :date_lteq, placeholder: Date.today + 10, class: "date_only", value: (@search.date_lteq.blank? ? '' : @search.date_lteq.strftime('%Y-%m-%d')) %>
             </div>
           </div>
           <div class="row">
             <div class="large-3 columns"></div>
             <div class="large-9 columns">
-              <%= f.submit "Search", class: "button" %>
+              <%= button_tag(class: "button") do %>
+                <%= image_tag('icon/Flaticon_34097.png', width: 16, height: 16) %>
+                <%= t :search %>
+              <% end %>
             </div>
           </div>
         <% end %>
@@ -132,9 +135,9 @@
             </tr>
           <% end %>
         </table>
-        <%= paginate @claims %>
+        <%= paginate @claims, param_name: "claim_page" %>
         <h6>
-          Download: <%= link_to "CSV", ""%> | <%= link_to "XLS", ""%>
+          <%= t :download %>: <%= link_to t(:spreadsheet), organization_claims_path(format: "csv"), class: "fi-page-export" %>
         </h6>
       </div>
     </div>

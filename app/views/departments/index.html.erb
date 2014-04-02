@@ -17,7 +17,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="large-12 columns"> 
+  <div class="large-9 large-centered columns"> 
 
     <table class="large-12">
       <thead>
@@ -32,13 +32,13 @@
               <a href="#" data-dropdown="drop_<%= department.id %>" class="tiny button dropdown"><%=t :details%></a>
               <ul id="drop_<%= department.id %>" data-dropdown-content class="f-dropdown">
                 <li>
-                  <%= link_to t(:show), organization_department_path(@organization, department), class: "fi-eye"%>
+                  <%= link_to t(:show), organization_department_path(@organization, department), class: "fi-eye", id: "show_department"%>
                 </li>
                 <li>
-                  <%= link_to t(:edit), edit_organization_department_path(@organization, department), class: "fi-pencil" %>
+                  <%= link_to t(:edit), edit_organization_department_path(@organization, department), class: "fi-pencil", id: "edit_department" %>
                 </li>
                 <li>
-                  <%= link_to t(:delete), organization_department_path(@organization, department), id: 'delete_department', class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure) }%>
+                  <%= link_to t(:delete), organization_department_path(@organization, department), id: 'delete_department', class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure), id: "delete_department"  }%>
                 </li>
               </ul>
             </td>

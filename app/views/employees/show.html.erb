@@ -1,7 +1,7 @@
 <div class="row profile">
   <!--picture-->
   <div class="large-2 columns">
-    <table class="large-12 columns">
+    <table class="large-12">
       <thead>
         <th><h6><%= @employee.full_name %></h6></th>
       </thead>
@@ -21,9 +21,9 @@
 
   <!--details-->
   <div class="large-10 columns">
-    <table class="large-12 columns">
+    <table class="large-12">
       <thead>
-        <th colspan="2"><h6>Personal Details</h6></th>
+        <th colspan="2"><h6><%= t :personal_deatils %></h6></th>
       </thead>
       <tbody>
         <tr>
@@ -31,11 +31,11 @@
           <td class="large-10"><h6><%= @employee.full_name%></h6></td>
         </tr>
         <tr>
-          <td><h6>Employee ID</h6></td>
+          <td><h6><%= t :employee_id %></h6></td>
           <td><h6><%= @employee.employee_identification %></h6></td>
         </tr>
         <tr>
-          <td><h6><%= t :e_mail %>:</h6></td>
+          <td><h6><%= t :e_mail %></h6></td>
           <td><h6 class="exception"><%= @employee.account.email if !@employee.account.nil?%></h6></td>
         </tr>
         <tr>
@@ -60,9 +60,9 @@
       <tbody>
         <tr>
           <td><h6>
-            <ul class="clearing-thumbs large-block-grid-3" data-equalizer data-clearing>
+            <ul class="clearing-thumbs large-block-grid-3" data-clearing>
               <% @employee.documents.each do |document| %>
-                <li data-equalizer-watch>        
+                <li>        
                   <% if document.image? %>
                     <%= link_to image_tag(document.image_url(:larger_thumb), class: "th", "data-caption" => document.name ), image_path(document.image) %><br>
                   <% else %>
@@ -106,7 +106,7 @@
         <% end %>
       </tbody>
     </table>
-    <%= paginate @employee_claims %>
+    <%= paginate @employee_claims, param_name: "claims_page" %>
 
     <table class="large-12">
       <thead>
@@ -135,7 +135,7 @@
         <% end %>
       </tbody>
     </table>
-    <%= paginate @employee_leaves %>
+    <%= paginate @employee_leaves, param_name: "leaves_page" %>
     <%= link_to t(:back), :back, class: "button success" %>
   </div>
 </div>

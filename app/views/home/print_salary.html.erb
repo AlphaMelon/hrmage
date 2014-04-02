@@ -39,32 +39,48 @@
         </tr>
       </tbody>
 
-      <thead>
-        <th colspan="2"><center><%= t :claims %></center></th>
-      </thead>
-      <tbody>
-        <% current_employee.claims.where(status: "Approved", created_at: @payslip.date.beginning_of_month..@payslip.date.end_of_month).each do |claim|%>
-          <tr>
-            <td><%= claim.subject %></td>
-            <td>
-            <%= humanized_money_with_symbol claim.amount %>
-            <%#= humanized_money_with_symbol (current_employee.claims.where(status: "Approved", date: @payslip.date.beginning_of_month..@payslip.date.end_of_month).sum :amount_cents)/100 %></td>
-          </tr>
-        <% end %>
-      </tbody>
+      <% if @claims %>
+        <thead>
+          <th colspan="2"><center><%= t :claims %></center></th>
+        </thead>
+        <tbody>
+          <% @claims.each do |claim|%>
+            <tr>
+              <td><%= claim.subject %></td>
+              <td><%= humanized_money_with_symbol claim.amount %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      <% end %>
+      
+      <% if @affected_leave %>
+        <thead>
+          <th colspan="2"><center><%= t :affected_leave %></center></th>
+        </thead>
+        <tbody>
+          <% @affected_leave.each do |leave| %>
+            <tr>
+              <td><%= leave.leave_type.name %></td>
+              <td> 
+                <% if leave.leave_type.type == "LeaveSubstraction" %>
+                  <%= humanized_money_with_symbol -(@payslip.base_salary_cents/leave.leave_type.divide_by_days*(leave.duration_seconds/working_hours/60/60)/100) %>
+                <% elsif leave.leave_type.type == "LeaveAddition" %>
+                  <%= humanized_money_with_symbol @payslip.base_salary_cents/leave.leave_type.divide_by_days*(leave.duration_seconds/working_hours/60/60)/100 %>
+                <% else %>
+                  <%= humanized_money_with_symbol 0 %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      <% end %>
+      
 
       <thead>
         <th colspan="2"><center><%= t :others %></center></th>
       </thead>
 
       <tbody>
-        <% @affected_leave.each do |leave| %>
-          <tr>
-            <td><%= leave.leave_type.name %></td>
-            <td><%= humanized_money_with_symbol leave.salary_calculate(@payslip.base_salary_cents).to_f/100 %></td>
-          </tr>
-          <% @base_salary_cents = @base_salary_cents + leave.salary_calculate(@payslip.base_salary_cents)%>
-        <% end %>
         
         <% @payslip.payslip_settings.each do |payslip_setting| %>
           <% if payslip_setting.positive? %>
@@ -78,16 +94,22 @@
               <td><%=humanized_money_with_symbol @payslip.calculate(payslip_setting, @base_salary_cents)/100%></td>
             </tr>
           <% end %>
-          <%@total = @total + @payslip.calculate(payslip_setting, @base_salary_cents)%>    
+
+          <%@total = @total + @payslip.calculate(payslip_setting, @base_salary_cents)%>   
         <% end %>
       </tbody>
     </table>
-
+    
+    <% @total = @total + @payslip.commission_cents + (@claims ? (@claims.sum :amount_cents) : 0)%>
     <table class="large-8">
       <thead>
          <tr>
             <th><%= t :net_pay %></th>
             <th><%= humanized_money_with_symbol (@total+@base_salary_cents).to_f/100 %></th>
+          </tr>
+         <tr>
+            <th><%= t :note %></th>
+            <th><%= @payslip.note %></th>
           </tr>
       </thead>
     </table>

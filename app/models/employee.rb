@@ -36,7 +36,7 @@ class Employee < ActiveRecord::Base
   end
   
   def full_name
-    name = self.last_name + " " + self.first_name
+    name = self.first_name + " " + self.last_name
     return name
   end
   
@@ -52,6 +52,19 @@ class Employee < ActiveRecord::Base
         end
       end
       break if status == true
+    end
+    return status
+  end
+  
+  def is_in_this_department?(department_id)
+    status = false
+    self.departments.each do |department|
+      if department.id == department_id
+        status = true
+        break
+      else
+        status = false
+      end
     end
     return status
   end

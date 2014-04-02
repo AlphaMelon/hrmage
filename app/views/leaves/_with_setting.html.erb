@@ -23,7 +23,7 @@
                 <% pending = false %>
                 <% duration = 0 %>
                 <% employee.leaves.each do |emp_lea|%>
-                  <% if (emp_lea.start_date..emp_lea.start_date+(emp_lea.duration_seconds/24/60/60-1+offday).day).cover?(Date.new(@year,@month,count))%>
+                  <% if (emp_lea.start_date..emp_lea.start_date+(emp_lea.duration_seconds/working_hours/60/60-1+offday).ceil.day).cover?(Date.new(@year,@month,count))%>
                     <% got_leave = true %>
                     <% type = emp_lea.leave_type %>
                     <% pending = true if emp_lea.status == "Pending" %>
@@ -59,24 +59,19 @@
   </div>
 
   <div class="large-12 columns">
-    <table class="remark-leaves">
-      <tbody>
-        <tr>
-          <th><%= t :remark %></th>
-          <th><%= t :no_leave %></th>
-          <td class="present"></td>
-          <th><%= t :pending %></th>
-          <td class="pending"></td>
-          <th>Offday</th>
-          <td class="offday"></td>
-          <th>Holiday</th>
-          <td class="holiday"></td>
+    <fieldset>
+      <legend><h6><strong><%= t :remark %></strong></h6></legend>
+      <div class="large-12 columns remark-leaves">
+        <ul class="large-block-grid-12">
+          <li class="present"><%= t :no_leave %></li>
+          <li class="pending"><%= t :pending %></li>
+          <li class="offday"><%= t :offday%></li>
+          <li class="holiday"><%= t :holiday %></li>
           <% @leave_types.each do |leave_type|%>
-            <th><%=leave_type.name%></th>
-            <td bgcolor="<%=leave_type.colour%>">
+            <li style="background-color: <%=leave_type.colour%>"><%=leave_type.name%></li>
           <%end%>
-        </tr>
-      </tbody>
-    </table>
+        </ul>
+      </div>
+    </fieldset>
   </div>
 </div>

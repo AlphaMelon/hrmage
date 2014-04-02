@@ -4,9 +4,8 @@ class LeaveNeutral < LeaveType
     "Do nothing"
   end
 
-  def calculate(options)
+  def calculate(employee_id, leave_type_id, duration_seconds)
   
-    return "neutral extended class"  
   end
 
 end

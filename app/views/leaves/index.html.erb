@@ -9,15 +9,15 @@
 <div class="row">
   <div class="large-12 columns">
     <dl class="tabs" data-tab>
-      <dd class="<%= 'active' if params[:q].blank? && params[:date].blank? %>"><a href="#pending_leaves"><%= t :pending_leaves %></a></dd>
+      <dd class="<%= 'active' if params[:q].nil? && params[:date].blank? && params[:leave_page].blank? %>"><a href="#pending_leaves"><%= t :pending_leaves %></a></dd>
       <dd><a href="#verify_leaves"><%= t :waiting_for_verification_leaves %></a></dd>
-      <dd class="<%= 'active' if !params[:q].blank? %>"><a href="#history"><%= t :history %></a></dd>
+      <dd class="<%= 'active' if !params[:q].blank? || !params[:leave_page].blank? %>"><a href="#history"><%= t :history %></a></dd>
       <dd class="<%= 'active' if !params[:date].blank? && params[:q].blank?%>"><a href="#leave_calendar"><%= t :leave_calendar %></a></dd>
     </dl>
 
     <div class="tabs-content">
 
-      <div class="content <%= 'active' if params[:q].blank? && params[:date].blank? %>" id="pending_leaves">
+      <div class="content <%= 'active' if params[:q].nil? && params[:date].blank? && params[:leave_page].blank? %>" id="pending_leaves">
         <table class="large-12">
           <thead>
             <th><%= t :name %></th>
@@ -31,7 +31,7 @@
             <tr>
               <td><%= link_to leave.employee.name_with_initial, organization_employee_path(current_organization, leave.employee) %></td>
               <td><%= leave.start_date.to_date %></td>
-              <td><%= leave.duration_seconds/24/60/60%> Days</td>
+              <td><%= leave.duration_seconds.to_f/working_hours/60/60%> Days</td>
               <td><%= leave.comment %></td>
               <td><%= leave.leave_type.name%></td>
               <td>
@@ -64,7 +64,7 @@
             <tr>
               <td><%= link_to leave.employee.name_with_initial, organization_employee_path(current_organization, leave.employee) %></td>
               <td><%= leave.start_date.to_date %></td>
-              <td><%= leave.duration_seconds/24/60/60%> Days</td>
+              <td><%= leave.duration_seconds.to_f/working_hours/60/60%> Days</td>
               <td><%= leave.comment %></td>
               <td><%= leave.leave_type.name %></td>
               <td>
@@ -83,7 +83,7 @@
         </table>
       </div>
       
-      <div class="content <%= 'active' if !params[:q].blank? %>" id="history">
+      <div class="content <%= 'active' if !params[:q].blank? || !params[:leave_page].blank? %>" id="history">
         <fieldset>
           <legend><%= t :search_by_date %></legend>
           <%= search_form_for [current_organization, @search] do |f| %>
@@ -92,21 +92,25 @@
               <%= f.label :start_date_gteq, t(:date_between), class: "left inline" %>
             </div>
             <div class="large-3 columns">
-              <%= f.text_field :start_date_gteq, placeholder: Date.today, class: "date_only" %>
+              <%= f.text_field :start_date_gteq, placeholder: Date.today, class: "date_only", value: (@search.start_date_gteq.blank? ? '' : @search.start_date_gteq.strftime('%Y-%m-%d')) %>
             </div>
             <div class="large-2 columns">
               <%= f.label :start_date_lteq, t(:and), class: "left inline" %>
             </div>
             <div class="large-3 columns">
-              <%= f.text_field :start_date_lteq, placeholder: Date.today + 10, class: "date_only" %>
+              <%= f.text_field :start_date_lteq, placeholder: Date.today + 10, class: "date_only", value: (@search.start_date_lteq.blank? ? '' : @search.start_date_lteq.strftime('%Y-%m-%d')) %>
             </div>
             <div class="large-2 columns">
-              <%= f.submit "Search", class: "button postfix" %>
+              <%#= f.submit "Search", class: "button postfix" %>
+              <%= button_tag(class: "button postfix") do %>
+                <%= image_tag('icon/Flaticon_34097.png', width: 16, height: 16) %>
+                <%= t :search %>
+              <% end %>
             </div>
           </div>
         <% end %>
         </fieldset>
-        <table class = "large-12 columns">
+        <table class="large-12">
           <thead>
             <th><%= sort_link @search, :last_name, t(:name) %></th>
             <th><%= t :type %></th>
@@ -122,7 +126,7 @@
             <td><%= link_to history.employee.name_with_initial, organization_employee_path(current_organization, history.employee) %></td>
             <td><%= history.leave_type.name %></td>
             <td><%= history.comment %></td>
-            <td><%= (history.duration_seconds)/60/60/24 %> Days</td>
+            <td><%= (history.duration_seconds).to_f/working_hours/60/60 %> Days</td>
             <td><%= history.start_date.to_date%></td>
             <td><%= history.status %></td>
             <td>
@@ -132,7 +136,7 @@
           <%end%>
           </tbody>
         </table>
-        <%= paginate @leaves %>
+        <%= paginate @leaves, param_name: "leave_page" %>
         <a href="#" data-dropdown="end_of_year" class="tiny button dropdown"><%= t :end_of_year%></a>
         <ul id="end_of_year" data-dropdown-content class="f-dropdown">
           <li><%= link_to t(:reset_employees_available_leaves), organization_end_of_year_action_path(forfeit: true), method: :post%></li>

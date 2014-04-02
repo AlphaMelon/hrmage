@@ -7,5 +7,6 @@ FactoryGirl.define do
     name "AlphaMelonTesting"
     country "Malaysia"
     default_currency "myr"
+    time_zone "Kuala Lumpur"
   end
 end

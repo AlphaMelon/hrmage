@@ -10,20 +10,14 @@ class Leave < ActiveRecord::Base
   validate :duration_cannot_be_zero_or_negative
   validate :cannot_same_day_leave, on: :create
   validate :cannot_take_leave_on_off_day
+  validate :leave_type_rules
   validates :start_date, presence: true
   validates :duration_seconds, presence: true
+
   acts_as_paranoid
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_account }
   tracked organization_id: Proc.new { |controller, model| model.organization_id }
-  
-  def salary_calculate(base_salary_cents)
-    if self.leave_type.type == "LeaveSubstraction"
-      return -(base_salary_cents/26*(self.duration_seconds/24/60/60))
-    elsif self.leave_type.type == "LeaveAddition"
-      return base_salary_cents/26*(self.duration_seconds/24/60/60)
-    end
-  end
   
   def set_default_values
     self.status = "Pending" if self.status.blank?
@@ -38,6 +32,24 @@ class Leave < ActiveRecord::Base
   def reject
     self.status = "Rejected"
     self.save
+  end
+  
+  def leave_type_rules
+    if self.leave_type.rules == "Entitlement Rules"
+      total_leaves = self.employee.leaves.where(leave_type_id: self.leave_type.id, status: "Approved")
+      total_leaves = total_leaves.where('extract(year  from start_date) = ?', Date.today.year)
+      duration_total = (total_leaves.sum :duration_seconds) + self.duration_seconds
+      
+      if !self.employee.position.position_settings.where(leave_type_id: self.leave_type.id).blank?
+        max_permitted_leave_duration = self.employee.position.position_settings.where(leave_type_id: leave_type.id).first.max_leaves_seconds
+      else
+        max_permitted_leave_duration = leave_type.default_count_seconds
+      end
+      
+      if duration_total > max_permitted_leave_duration/12*Date.today.month
+        errors.add("Duration", "is more than your entitled leaves")
+      end
+    end
   end
   
   def start_date_cannot_be_in_past

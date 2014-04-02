@@ -38,13 +38,17 @@
         </div>
         <div class="large-3 columns"></div>
         <div class="large-9 columns">
-          <%= f.submit t(:search), class: "button" %>
+          <%#= f.submit t(:search), class: "button"%>
+          <%= button_tag(class: "button") do %>
+            <%= image_tag('icon/Flaticon_34097.png', width: 16, height: 16) %>
+            <%= t :search %>
+          <% end %>
         </div> 
       </div>
     <% end %>
     </fieldset>
     
-    <table class="large-12 columns">
+    <table class="large-12">
       <thead>
         <th><%= sort_link(@search, :employee_identification, t(:identification)) %></th>
         <th><%= sort_link(@search, :last_name, (t :last_name)) %></th>
@@ -77,10 +81,10 @@
                 <%= link_to t(:delete), organization_employee_path(@organization, employee), id: 'delete_employee', class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure_employee) }%>
               </li>
               <li>
-                <%= link_to t(:b_settings), organization_employee_employee_variables_path(@organization, employee), class: "fi-widget"%>
+                <%= link_to t(:employee_variables), organization_employee_employee_variables_path(@organization, employee), class: "fi-widget", id: "employee_leaves"%>
               </li>
               <li>
-                <%= link_to t(:payslip), organization_employee_payslips_path(@organization, employee), class: "fi-dollar" %>
+                <%= link_to t(:payslip), organization_employee_payslips_path(@organization, employee), class: "fi-dollar", id: "employee_payslips" %>
               </li>
             </ul>
           </td>

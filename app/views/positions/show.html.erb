@@ -17,8 +17,7 @@
         <th><%= t :position %></th>
         <th><%= t :e_mail %></th>
         <th><%= t :mobile_no %></th>
-        <th>Base Salary</th>
-        <th><%= t :Can_self_approve %></th>
+        <th><%= t :base_salary %></th>
         <th><%= t :action %></th>
       </thead>
       <tbody>
@@ -30,7 +29,6 @@
           <td><%= employee.account.email if !employee.account.nil?%></td>
           <td><%= employee.mobile_contact%></td>
           <td><%= humanized_money_with_symbol employee.base_salary%></td>
-          <td><%= employee.can_self_approve%></td>
           <td>
             <a href="#" data-dropdown="drop_<%= employee.id %>" class="tiny button dropdown"><%= t :details %></a><br>
             <ul id="drop_<%= employee.id %>" data-dropdown-content class="f-dropdown">

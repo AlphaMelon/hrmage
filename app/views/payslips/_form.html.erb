@@ -1,12 +1,27 @@
 <%= simple_form_for [current_organization, @employee, @payslip], wrapper: :custom do |f| %>
   <%= render "shared/error_message", object: f.object %>
-  <%= f.input :date, as: :string, autocomplete: :off, input_html: {class: 'date_only'} %>
-  <% if @payslip.base_salary_cents.nil?%>
-    <%= f.input :base_salary, as: :integer,input_html: {  value: @employee.base_salary_cents/100} %>
-  <% else %>
-    <%= f.input :base_salary, as: :integer %>
-  <% end %>
-  <%= f.input :commission, as: :integer %>
+  <%= f.input :date, as: :string, autocomplete: :off, input_html: {class: 'date_only', value: Date.today} %>
+  
+  <%= f.input :base_salary, label: "Base Amount",
+  input_html: { value: (@payslip.base_salary_cents.nil? ? 
+  @payslip.employee.base_salary_cents/100 : @payslip.base_salary_cents/100)} %>
+  
+  <%= f.input :commission, input_html: { value: (@payslip.commission.nil? ? 
+  0 : @payslip.commission)} %>
+  
+  <%= f.input :include_claim, collection: [["No",false],["Yes",true]], include_blank: false %>
+  <div id="include_claim_or_not">
+    <%= f.input :claim_start_date, as: :string, autocomplete: :off, input_html: {class: 'date_only'} %>
+    <%= f.input :claim_end_date, as: :string, autocomplete: :off, input_html: {class: 'date_only'} %>
+  </div>
+  
+  <%= f.input :include_affected_leave, collection: [["No",false],["Yes",true]], include_blank: false %>
+  <div id="include_leave_or_not">
+    <%= f.input :leave_start_date, as: :string, autocomplete: :off, input_html: {class: 'date_only'} %>
+    <%= f.input :leave_end_date, as: :string, autocomplete: :off, input_html: {class: 'date_only'} %>
+  </div>
+
+  <%= f.input :note, placeholder: "write any note here" %>
   <%= f.association :payslip_settings, as: :check_boxes,label_method: :name, collection: current_organization.payslip_settings %>
   
   <div class="row">

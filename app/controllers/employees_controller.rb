@@ -15,8 +15,8 @@ class EmployeesController < ApplicationController
   end
   
   def show
-    @employee_claims = @employee.claims.order(date: :asc).page(params[:page]).per(5)
-    @employee_leaves = @employee.leaves.order(start_date: :desc).page(params[:page]).per(5)
+    @employee_claims = @employee.claims.order(date: :asc).page(params[:claims_page]).per(5)
+    @employee_leaves = @employee.leaves.order(start_date: :desc).page(params[:leaves_page]).per(5)
   end
   
   def new
@@ -47,6 +47,7 @@ class EmployeesController < ApplicationController
   
   def edit_login_info
     @account = Employee.find(params[:employee_id]).account
+    @account_organization = AccountOrganization.where(account_id: @account.id, organization_id: @organization.id).first
   end
   
   def update_login_info
@@ -64,6 +65,7 @@ class EmployeesController < ApplicationController
     @account_organization.payslip = params[:payslips]
     @account_organization.payslip_setting = params[:payslip_settings]
     @account_organization.position = params[:positions]
+    @account_organization.can_self_approve = params[:can_self_approve]
 		if @account.save && @account_organization.save
 			redirect_to organization_employees_path(@organization), notice: 'Account successfully updated'
 		else
@@ -73,6 +75,7 @@ class EmployeesController < ApplicationController
 
   def new_login
     @account = Account.new
+    @account_organization = AccountOrganization.new
   end
   
   def create_login
@@ -88,6 +91,7 @@ class EmployeesController < ApplicationController
       @account_organization.payslip = params[:payslips]
       @account_organization.payslip_setting = params[:payslip_settings]
       @account_organization.position = params[:positions]
+      @account_organization.can_self_approve = params[:can_self_approve]
 		  @account_organization.save
 		  
 		  employee = Employee.find(params[:employee_id])
@@ -125,6 +129,6 @@ class EmployeesController < ApplicationController
 	def employee_params
 		params.require(:employee).permit(:first_name, :last_name, :mobile_contact, 
 		:address, :photo, :properties, :department_ids, :account_id, :position_id, 
-		:can_self_approve, :base_salary_cents, :base_salary, :employee_identification)
+		:base_salary_cents, :base_salary, :employee_identification)
 	end
 end

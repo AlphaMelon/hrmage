@@ -2,28 +2,39 @@ require 'spec_helper'
 
 feature "[CanCan Ability Leaves]" do
   background do
-    create_employee_cancan("testing@example.dev", "spree123", true, false, "IT")
+    @acc_org = create_employee_cancan("testing@example.dev", "spree123", true, false, "IT")
+    @access_level = @acc_org.access_levels.first
     admin_login("testing@example.dev", "spree123")
   end
 
-  scenario "Approve Leave from other department" do
+  scenario "Approve Leave without authority" do
+    @access_level.class_name = "Claim"
+    @access_level.save
     visit organization_leaves_path(Organization.first)
     click_on "Approve"
     page.should have_content("Access denied")
   end
   
-  scenario "Approve leave from own department" do
-    ed = EmployeeDepartment.first
-    ed.department_id = EmployeeDepartment.last.department_id
-    ed.save
+  scenario "Approve leave with authority" do
+    @access_level.class_name = "Leave"
+    @access_level.access_level = "Read and Update"
+    @access_level.department_id = Department.last.id
+    @access_level.save
     
     visit organization_leaves_path(Organization.first)
     click_on "Approve"
     page.should have_content("Leaves request approved")
   end
   
-  scenario "Approve Own Leave" do
+  scenario "Approve Own Leave with authority" do
     Leave.delete_all
+    @acc_org.can_self_approve = true
+    @acc_org.save
+    
+    @access_level.class_name = "Leave"
+    @access_level.department_id = Department.last.id
+    @access_level.save
+    
     visit root_path
     click_on "Leaves", match: :first
     click_on "Apply Leave"
@@ -39,9 +50,8 @@ feature "[CanCan Ability Leaves]" do
   end
   
   scenario "Approve Own Leave without authority" do
-    employee = Employee.last
-    employee.can_self_approve = false
-    employee.save
+    @acc_org.can_self_approve = false
+    @acc_org.save
     
     visit root_path
     click_on "Leaves", match: :first

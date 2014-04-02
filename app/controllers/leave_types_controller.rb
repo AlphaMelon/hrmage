@@ -17,12 +17,12 @@ class LeaveTypesController < ApplicationController
     @leave_type = LeaveType.new(leave_type_params)
     @leave_type.affected_entity = leave_type_params[:affected_entity].delete('\"').split(',')
     @leave_type.organization_id = current_organization.id
-        @leave_type.default_count_seconds = leave_type_params[:default_count_seconds].to_i*24*60*60 if !leave_type_params[:default_count_seconds].blank?
+    @leave_type.default_count_seconds = leave_type_params[:default_count_seconds].to_i*working_hours*60*60 if !leave_type_params[:default_count_seconds].blank?
     if @leave_type.save
       redirect_to organization_leave_types_path(current_organization), notice: "Leave type successfully created"
     else
       #render action: 'new'
-      redirect_to new_organization_leave_type_path(current_organization), alert: "Please fill in the required field"
+      redirect_to new_organization_leave_type_path(current_organization), alert: @leave_type.errors.full_messages.to_sentence
     end
   end
   
@@ -31,7 +31,7 @@ class LeaveTypesController < ApplicationController
   
   def update
     @leave_type.update(leave_type_params)
-    @leave_type.default_count_seconds = leave_type_params[:default_count_seconds].to_i*24*60*60 if !leave_type_params[:default_count_seconds].blank?
+    @leave_type.default_count_seconds = leave_type_params[:default_count_seconds].to_i*working_hours*60*60 if !leave_type_params[:default_count_seconds].blank?
 		if @leave_type.save
 		  @leave_type.affected_entity = leave_type_params[:affected_entity].delete('\"').split(',')
 		  @leave_type.save
@@ -58,13 +58,21 @@ class LeaveTypesController < ApplicationController
 
 	def leave_type_params
 	  if !params[:leave_substraction].nil?
-	    params.require(:leave_substraction).permit(:name, :description, :affected_entity, :type, :approval_needed, :colour, :default_count_seconds)
+	    params.require(:leave_substraction).permit(:name, :description, 
+	    :affected_entity, :type, :approval_needed, :colour, 
+	    :default_count_seconds, :divide_by_days, :rules)
 		elsif !params[:leave_neutral].nil?
-		  params.require(:leave_neutral).permit(:name, :description, :affected_entity, :type, :approval_needed, :colour, :default_count_seconds)
+		  params.require(:leave_neutral).permit(:name, :description, 
+		  :affected_entity, :type, :approval_needed, :colour, 
+		  :default_count_seconds, :divide_by_days, :rules)
 		elsif !params[:leave_addition].nil?
-		  params.require(:leave_addition).permit(:name, :description, :affected_entity, :type, :approval_needed, :colour, :default_count_seconds)
+		  params.require(:leave_addition).permit(:name, :description, 
+		  :affected_entity, :type, :approval_needed, :colour, 
+		  :default_count_seconds, :divide_by_days, :rules)
 		else
-		  params.require(:leave_type).permit(:name, :description, :affected_entity, :type, :approval_needed, :colour, :default_count_seconds)
+		  params.require(:leave_type).permit(:name, :description, 
+		  :affected_entity, :type, :approval_needed, :colour, 
+		  :default_count_seconds, :divide_by_days, :rules)
 		end
 	end
 end

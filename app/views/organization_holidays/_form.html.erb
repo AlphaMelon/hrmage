@@ -6,6 +6,9 @@
 
 <div class="row">
   <div class="large-3 small-3 columns"></div>
-  <div class="large-9 small-9 columns"><%= f.button :submit, class: "button success" %></div>
+  <div class="large-9 small-9 columns">
+    <%= f.button :submit, class: "button success" %>
+    <%= link_to t(:cancel), organization_organization_setting_organization_holidays_path(current_organization, current_organization.organization_setting), class: "button" %>
+  </div>
 </div>
 <% end %>

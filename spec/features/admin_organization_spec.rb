@@ -12,7 +12,7 @@ feature "[Admin Employee]" do
     select "United States Dollar - USD", from: "organization_default_currency", match: :first
     click_on "Update Organization"
     page.should have_content("Organization successfully updated")
-    page.should have_content("usd")
+    page.should have_content("USD")
   end
   
   scenario "Add Organization" do
@@ -23,4 +23,5 @@ feature "[Admin Employee]" do
     page.should have_content("Organization successfully created")
     page.should have_content("Hi lolZ")
   end
+ 
 end

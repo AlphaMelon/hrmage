@@ -13,7 +13,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="large-12 columns">
+  <div class="large-9 large-centered columns">
     <table class="large-12">
       <thead>
         <th><%= t :name %></th>
@@ -27,10 +27,15 @@
           <a href="#" data-dropdown="drop_<%=claim_subject.id %>" class="tiny button dropdown"><%= t :details %></a>
             <ul id="drop_<%=claim_subject.id %>" data-dropdown-content class="f-dropdown">
               <li>
-                <%= link_to t(:edit), edit_organization_claim_subject_path(current_organization, claim_subject), class: "fi-pencil" %>
+                <%= link_to t(:edit), 
+                edit_organization_claim_subject_path(current_organization, claim_subject), 
+                class: "fi-pencil", id: "edit_claim_subject" %>
               </li>
               <li>
-                <%= link_to t(:delete), organization_claim_subject_path(current_organization, claim_subject), id: 'delete_claim_subject', class: "fi-trash", method: :delete, data: { confirm: t(:are_you_sure) }%>
+                <%= link_to t(:delete), 
+                organization_claim_subject_path(current_organization, claim_subject), 
+                id: 'delete_claim_subject', class: "fi-trash", 
+                method: :delete, data: { confirm: t(:are_you_sure) }%>
               </li>
             </ul>
           </td>

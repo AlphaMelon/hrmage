@@ -30,6 +30,7 @@ module EmployeeMacros
     account.save
     
     account_organization = AccountOrganization.new(account_id: account.id, organization_id: organization.id, role: "Admin")
+    account_organization.can_self_approve = false
     account_organization.claim_subject = "No Access"
     account_organization.department = "No Access"
     account_organization.employee = "No Access"
@@ -42,7 +43,7 @@ module EmployeeMacros
     position = Position.new(name: "Clerk", monthly_max_claims_cents: 240000, can_approve_leave: can_approve_leave, can_approve_claim: can_approve_claim)
     position.save
   
-    employee = Employee.new(employee_identification: "STN999", first_name: "Test", last_name: "lee", can_self_approve: true, base_salary_cents: 300000)
+    employee = Employee.new(employee_identification: "STN999", first_name: "Test", last_name: "lee", base_salary_cents: 300000)
     employee.account_id = account.id
     employee.organization_id = organization.id
     employee.position_id = position.id
@@ -51,6 +52,12 @@ module EmployeeMacros
     department = Department.where(name: department).first_or_create
     employee_department = EmployeeDepartment.new(employee_id: employee.id, department_id: department.id, leader: true)
     employee_department.save
+    
+    access_level = account_organization.access_levels.new
+    access_level.department = department
+    access_level.access_level = "Read and Update"
+    access_level.class_name = "Claim"
+    access_level.save
     
     return account_organization
   end

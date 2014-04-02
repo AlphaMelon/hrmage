@@ -7,6 +7,5 @@ FactoryGirl.define do
     last_name "Wong"
     mobile_contact "016123214"
     base_salary_cents 300000
-    can_self_approve true
   end
 end

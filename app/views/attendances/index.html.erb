@@ -1,0 +1,21 @@
+<div class="content-header">
+  <div class="row">
+    <div class="large-6 columns">
+      <h2><%= t(:attendance_list)%></h2>
+    </div>
+    <div class="large-6 columns">
+      <%= form_tag organization_attendances_path, 
+        multipart: true, id: "new_attendance", method: :post do%>
+        <%= file_field_tag :attendance_file %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  $("#new_attendance").change(function(){
+    $("#new_attendance").submit();
+  });
+</script>
+
+

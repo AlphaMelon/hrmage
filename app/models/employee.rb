@@ -10,7 +10,8 @@ class Employee < ActiveRecord::Base
   has_many :claims, dependent: :destroy
   has_many :employee_variables, dependent: :destroy
   has_many :payslips, dependent: :destroy
-    
+  has_many :attendances, dependent: :destroy
+
   before_save :set_default_values
   
   monetize :base_salary_cents, as: "base_salary", allow_nil: true

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328064817) do
+ActiveRecord::Schema.define(version: 20140403065339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,15 @@ ActiveRecord::Schema.define(version: 20140328064817) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "attendances", force: true do |t|
+    t.integer  "organization_id"
+    t.integer  "employee_id"
+    t.integer  "clock_id"
+    t.datetime "clock_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "claim_subjects", force: true do |t|
     t.string   "name"
@@ -312,6 +321,14 @@ ActiveRecord::Schema.define(version: 20140328064817) do
   end
 
   add_index "payslips", ["deleted_at"], name: "index_payslips_on_deleted_at", using: :btree
+
+  create_table "position_default_variables", force: true do |t|
+    t.integer  "position_id"
+    t.integer  "leave_type_id"
+    t.integer  "max_leaves_seconds"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "position_settings", force: true do |t|
     t.integer  "position_id"

@@ -12,6 +12,7 @@ class Organization < ActiveRecord::Base
   has_many :payslips, dependent: :destroy
   has_many :payslip_settings, dependent: :destroy
   has_many :claim_subjects, dependent: :destroy
+  has_many :attendances, dependent: :destroy
   
   validates :domain, uniqueness: true
   validates :domain, presence: true

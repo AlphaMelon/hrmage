@@ -5,6 +5,7 @@
     <li ><%= link_to t(:position), organization_positions_path(current_organization) %></li>
     <li><%= link_to t(:leave_types), organization_leave_types_path(current_organization) %></li>
     <li><%= link_to t(:claim_subject), organization_claim_subjects_path(current_organization) %></li>
+    <li><%= link_to t(:attendance), organization_attendances_path(current_organization)%>
     <li><%= link_to t(:organization_settings), organization_organization_settings_path(current_organization) %></li> 
     <% if !current_organization.organization_setting.nil?%>    
       <% if !current_organization.organization_setting.id.nil?%>

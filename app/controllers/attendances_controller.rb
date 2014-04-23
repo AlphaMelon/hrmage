@@ -42,9 +42,8 @@ class AttendancesController < ApplicationController
       employee = current_organization.employees.where(employee_identification: row[03]).first
       if !employee.blank?
         date_str = "20#{row[01][4..5]}-#{row[01][2..3]}-#{row[01][0..1]} #{row[02][0..1]}:#{row[02][2..3]}"
-        attendance = employee.attendances.new
+        attendance = employee.attendances.where(clock_time: date_str.to_datetime).first_or_initialize
         attendance.organization_id = current_organization.id
-        attendance.clock_time = date_str.to_datetime
         attendance.save
         count = count + 1 if attendance.save
       end

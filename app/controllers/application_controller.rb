@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_employee
   helper_method :working_hours
   helper_method :salary_calculate
+  helper_method :calculate_hours
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :can_can_compability_to_strong_paramater
   before_filter :admin_or_employee_session
@@ -64,6 +65,20 @@ class ApplicationController < ActionController::Base
     elsif leave_type.type == "LeaveAddition"
       return base_salary/leave_type.divide_by_days*(duration/working_hours/60/60)
     end
+  end
+  
+  def calculate_hours(attendances)
+    hours_total = 0.0
+    previous_date = nil
+    attendances.each do |attendance|
+      if previous_date.nil?
+        previous_date = attendance.clock_time
+      else
+        hours_total = (attendance.clock_time.to_f - previous_date.to_f)/3600
+        previous_date = nil
+      end
+    end
+    return hours_total.round(2)
   end
   
   rescue_from CanCan::AccessDenied do |exception|

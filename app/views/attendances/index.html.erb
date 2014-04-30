@@ -73,7 +73,8 @@
                   <td>
                     <% attendances = employee.attendances.where(clock_time: @date+count-1..@date+count) %>
                     <% data_reveal_str = employee.last_name + employee.id.to_s + "_" + count.to_s%>
-                    <%= link_to calculate_hours(attendances), "#", :"date-reveal-id" => data_reveal_str%>
+                    <%= link_to "modal", "#", :"date-reveal-id" => data_reveal_str%>
+                    <%= link_to calculate_hours(attendances), organization_attendance_path(current_organization,1,employee_id: employee.id, date: @date+count)%>
                     <div id="<%= data_reveal_str %>" class="reveal-modal" data-reveal>
                       <ul>
                         <% attendances.each do |attendance| %>

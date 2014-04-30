@@ -1,6 +1,6 @@
 class AttendancesController < ApplicationController
 	before_action :set_organization
-	before_action :set_attendance, only: [:show, :edit, :update, :destroy]
+	before_action :set_attendance, only: [:edit, :update, :destroy]
 	before_filter :authenticate_account!
   
   load_and_authorize_resource
@@ -28,6 +28,16 @@ class AttendancesController < ApplicationController
     ["November", 11], 
     ["December", 12]]
     
+  end
+  
+  def show
+    @employee = current_organization.employees.find(params[:employee_id])
+    if !@employee.blank?
+      @date =  params[:date].to_datetime
+      @attendances = @employee.attendances.where(clock_time: @date-1..@date)
+    else
+      redirect_to root_path, alert: "You do not have authority to do this"
+    end  
   end
   
   def new

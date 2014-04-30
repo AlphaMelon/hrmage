@@ -1,0 +1,24 @@
+<div class="content-header">
+  <div class="row">
+    <div class="large-9 large-centered columns">
+      <h2>Attendance for <%= @employee.full_name %> on <%= @date.to_date %></h2>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <table class="large-12">
+      <thead>
+        <th><%= t :clock_time %></th>
+      </thead>
+      <tbody>
+      <% @attendances.each do |attendance| %>
+        <tr>
+          <td><%= attendance.clock_time %></td>
+        </tr>
+      <%end%>
+      </tbody>
+    </table>
+    <%= link_to "Back", organization_attendances_path(current_organization), class: "button"%>
+  </div>
+</div>

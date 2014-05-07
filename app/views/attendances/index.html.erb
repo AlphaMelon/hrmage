@@ -27,30 +27,6 @@
     </div>
   </div>
   
-  <%= link_to 9999, "#", :"date-reveal-id" => "9999"%>
-  <div id="9999" class="reveal-modal" data-reveal>
-    <ul>
-        <li>99999</li>
-      <a class="close-reveal-modal">&#215;</a>
-    </ul>
-  </div>
-
-  <%= link_to "sadfasgf", "#", :"data-reveal-id" => "Haha1_1"%>
-  <div id="Haha1_1" class="reveal-modal" data-reveal>
-    <ul>
-        <li><%=DateTime.now%></li>
-    </ul>
-    <a class="close-reveal-modal">&#215;</a>
-  </div>
-  
-  <%= link_to "asd", "#", :"data-reveal-id" => "lolaasd4_2122"%>
-  <div id="lolaasd4_2122" class="reveal-modal" data-reveal>
-    <ul>
-    </ul>
-    <a class="close-reveal-modal">&#215;</a>
-  </div>
-  
-  
   <div class="row">
     <div class="large-12 columns">
       
@@ -73,9 +49,9 @@
                   <td>
                     <% attendances = employee.attendances.where(clock_time: @date+count-1..@date+count) %>
                     <% data_reveal_str = employee.last_name + employee.id.to_s + "_" + count.to_s%>
-                    <%= link_to "modal", "#", :"date-reveal-id" => data_reveal_str%>
-                    <%= link_to calculate_hours(attendances), organization_attendance_path(current_organization,1,employee_id: employee.id, date: @date+count)%>
+                    <%= link_to calculate_hours(attendances), "#", :"data-reveal-id" => data_reveal_str%>
                     <div id="<%= data_reveal_str %>" class="reveal-modal" data-reveal>
+                      <h2>Attendance for <%= employee.full_name %> on <%= (@date+count).to_date %></h2>
                       <ul>
                         <% attendances.each do |attendance| %>
                           <li><%= attendance.clock_time %></li>

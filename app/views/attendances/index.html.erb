@@ -47,7 +47,8 @@
                 <% count = 1 %>
                 <% while count <= @date.end_of_month.day%>
                   <td>
-                    <% attendances = employee.attendances.where(clock_time: @date+count-1..@date+count) %>
+                    <% zone = current_organization.time_zone%>
+                    <% attendances = employee.attendances.where(clock_time: @date+(count-1).day..@date+count.day) %>
                     <% data_reveal_str = employee.last_name + employee.id.to_s + "_" + count.to_s%>
                     <%= link_to calculate_hours(attendances), "#", :"data-reveal-id" => data_reveal_str%>
                     <div id="<%= data_reveal_str %>" class="reveal-modal" data-reveal>

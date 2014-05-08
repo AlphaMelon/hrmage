@@ -13,7 +13,7 @@ class AttendancesController < ApplicationController
     
     @month = !params[:date].blank? ? params[:date][:month].to_i : DateTime.now.month
     @year = !params[:date].blank? ? params[:date][:year].to_i : DateTime.now.year
-    @date = DateTime.new(@year, @month)
+    @date = DateTime.new(@year, @month).in_time_zone(current_organization.time_zone).at_midnight
     @month_collection = [
     ["January", 1], 
     ["February", 2], 
@@ -51,8 +51,8 @@ class AttendancesController < ApplicationController
     csv.each do |row|
       employee = current_organization.employees.where(employee_identification: row[03]).first
       if !employee.blank?
-        date_str = "20#{row[01][4..5]}-#{row[01][2..3]}-#{row[01][0..1]} #{row[02][0..1]}:#{row[02][2..3]}"
-        raise date_str.inspect
+        zone = ActiveSupport::TimeZone.new(current_organization.time_zone).formatted_offset
+        date_str = "20#{row[01][4..5]}-#{row[01][2..3]}-#{row[01][0..1]} #{row[02][0..1]}:#{row[02][2..3]} #{zone}"
         attendance = employee.attendances.where(clock_time: date_str.to_datetime).first_or_initialize
         attendance.organization_id = current_organization.id
         attendance.save

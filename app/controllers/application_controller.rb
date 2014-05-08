@@ -74,7 +74,7 @@ class ApplicationController < ActionController::Base
       if previous_date.nil?
         previous_date = attendance.clock_time
       else
-        hours_total = (attendance.clock_time.to_f - previous_date.to_f)/3600
+        hours_total = hours_total + (attendance.clock_time.to_f - previous_date.to_f)/3600
         previous_date = nil
       end
     end
